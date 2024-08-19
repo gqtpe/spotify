@@ -1,0 +1,31 @@
+@import '../../styles/vars';
+
+
+.button{
+  font-size: 18px;
+  padding: 12px 40px;
+  font-family: inherit;
+  font-weight: 700;
+  border: none;
+  border-radius: 20px;
+  &:active{
+    opacity: 0.8;
+  }
+}
+.filled{
+  background-color: var(--color-primary);
+  color: var(--color-black);
+  &:disabled{
+    opacity: 0.5;
+  }
+}
+.outlined{
+  background-color: transparent;
+  color: var(--color-white);
+  border: 1px solid var(--color-white);
+}
+.text{
+  color: var(--color-white);
+  background-color: transparent;
+  border: none;
+}
