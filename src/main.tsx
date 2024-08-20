@@ -2,22 +2,28 @@ import {createRoot} from 'react-dom/client'
 import App from './app/App.tsx'
 import './index.scss'
 import {createBrowserRouter, RouterProvider} from "react-router-dom";
+import {Login} from "./features/Auth";
+import {RequireAuth} from "./app/hoc/RequireAuth.tsx";
+import {Provider} from "react-redux";
+import {store} from "./app";
+
+
 
 const router = createBrowserRouter([
     {
-        path: "/",
-        element: <App/>,
-        errorElement: <div>Not Found</div>,
-        children: [
-            {
-                path: "/home",
-                element: <div>homePage</div>
-            }
-        ]
+        path: '/',
+        element: <RequireAuth><App/></RequireAuth>,
+
+    },
+    {
+        path: 'login',
+        element: <Login/>
     }
 ])
 
 
 createRoot(document.getElementById('root')!).render(
-    <RouterProvider router={router}/>
+    <Provider store={store}>
+        <RouterProvider router={router}/>
+    </Provider>
 )
