@@ -15,8 +15,7 @@ const Button = ({children, variant, className,link, ...rest}: Props) => {
     const resultClassName = `${styles.button} ${variantStyles} ${className}`;
 
     if(link){
-        console.log('link is here')
-        return <Link className={resultClassName} target="_blank" to={link}>
+        return <Link className={resultClassName + ' ' + styles.buttonLink} to={link}>
             {children}
         </Link>
     }

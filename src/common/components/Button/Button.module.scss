@@ -1,4 +1,4 @@
-@import '../../styles/vars';
+@import '../../../styles/vars';
 
 
 .button{
@@ -10,6 +10,9 @@
   border-radius: 20px;
   &:active{
     opacity: 0.8;
+  }
+  &:hover{
+    filter: brightness(1.1);
   }
 }
 .filled{
@@ -28,4 +31,8 @@
   color: var(--color-white);
   background-color: transparent;
   border: none;
+}
+
+.buttonLink{
+  text-decoration: none;
 }
