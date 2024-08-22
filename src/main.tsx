@@ -3,10 +3,9 @@ import App from './app/App.tsx'
 import './index.scss'
 import {createBrowserRouter, RouterProvider} from "react-router-dom";
 import {Login} from "./features/Auth";
-import {RequireAuth} from "./app/hoc/RequireAuth.tsx";
 import {Provider} from "react-redux";
 import {store} from "./app";
-
+import {RequireAuth} from "./app/hoc/RequireAuth.tsx";
 
 
 const router = createBrowserRouter([
