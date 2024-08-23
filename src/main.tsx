@@ -6,18 +6,30 @@ import {Login} from "./features/Auth";
 import {Provider} from "react-redux";
 import {store} from "./app";
 import {RequireAuth} from "./app/hoc/RequireAuth.tsx";
+import {Home} from "./features/Home/Home.tsx";
+import {Browse} from "./features/Browse/Browse.tsx";
 
 
 const router = createBrowserRouter([
     {
         path: '/',
         element: <RequireAuth><App/></RequireAuth>,
-
+        children: [
+            {
+                path: 'home',
+                element: <Home/>
+            },
+            {
+                path: '/search',
+                element: <Browse/>
+            }
+        ]
     },
     {
-        path: 'login',
+        path: '/login',
         element: <Login/>
-    }
+    },
+
 ])
 
 
