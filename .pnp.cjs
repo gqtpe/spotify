@@ -50,6 +50,7 @@ const RAW_RUNTIME_STATE =
           ["globals", "npm:15.9.0"],\
           ["react", "npm:18.3.1"],\
           ["react-dom", "virtual:92131d7fc970e1047d0c1f075c1049fead291e8709d9da304fa1f5ccebf968850d0e8d0b3185cb77789803cd3916a2ac810611863f7b51bafccab39e73016375#npm:18.3.1"],\
+          ["react-icons", "virtual:92131d7fc970e1047d0c1f075c1049fead291e8709d9da304fa1f5ccebf968850d0e8d0b3185cb77789803cd3916a2ac810611863f7b51bafccab39e73016375#npm:5.3.0"],\
           ["react-redux", "virtual:92131d7fc970e1047d0c1f075c1049fead291e8709d9da304fa1f5ccebf968850d0e8d0b3185cb77789803cd3916a2ac810611863f7b51bafccab39e73016375#npm:9.1.2"],\
           ["react-router-dom", "virtual:92131d7fc970e1047d0c1f075c1049fead291e8709d9da304fa1f5ccebf968850d0e8d0b3185cb77789803cd3916a2ac810611863f7b51bafccab39e73016375#npm:6.26.1"],\
           ["sass", "npm:1.77.8"],\
@@ -9427,6 +9428,28 @@ const RAW_RUNTIME_STATE =
         "linkType": "HARD"\
       }]\
     ]],\
+    ["react-icons", [\
+      ["npm:5.3.0", {\
+        "packageLocation": "../../../Users/t4sya/AppData/Local/Yarn/Berry/cache/react-icons-npm-5.3.0-3814684035-10c0.zip/node_modules/react-icons/",\
+        "packageDependencies": [\
+          ["react-icons", "npm:5.3.0"]\
+        ],\
+        "linkType": "SOFT"\
+      }],\
+      ["virtual:92131d7fc970e1047d0c1f075c1049fead291e8709d9da304fa1f5ccebf968850d0e8d0b3185cb77789803cd3916a2ac810611863f7b51bafccab39e73016375#npm:5.3.0", {\
+        "packageLocation": "./.yarn/__virtual__/react-icons-virtual-43a9956a3e/4/Users/t4sya/AppData/Local/Yarn/Berry/cache/react-icons-npm-5.3.0-3814684035-10c0.zip/node_modules/react-icons/",\
+        "packageDependencies": [\
+          ["react-icons", "virtual:92131d7fc970e1047d0c1f075c1049fead291e8709d9da304fa1f5ccebf968850d0e8d0b3185cb77789803cd3916a2ac810611863f7b51bafccab39e73016375#npm:5.3.0"],\
+          ["@types/react", "npm:18.3.3"],\
+          ["react", "npm:18.3.1"]\
+        ],\
+        "packagePeers": [\
+          "@types/react",\
+          "react"\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
     ["react-is", [\
       ["npm:16.13.1", {\
         "packageLocation": "../../../Users/t4sya/AppData/Local/Yarn/Berry/cache/react-is-npm-16.13.1-a9b9382b4f-10c0.zip/node_modules/react-is/",\
@@ -10133,6 +10156,7 @@ const RAW_RUNTIME_STATE =
           ["globals", "npm:15.9.0"],\
           ["react", "npm:18.3.1"],\
           ["react-dom", "virtual:92131d7fc970e1047d0c1f075c1049fead291e8709d9da304fa1f5ccebf968850d0e8d0b3185cb77789803cd3916a2ac810611863f7b51bafccab39e73016375#npm:18.3.1"],\
+          ["react-icons", "virtual:92131d7fc970e1047d0c1f075c1049fead291e8709d9da304fa1f5ccebf968850d0e8d0b3185cb77789803cd3916a2ac810611863f7b51bafccab39e73016375#npm:5.3.0"],\
           ["react-redux", "virtual:92131d7fc970e1047d0c1f075c1049fead291e8709d9da304fa1f5ccebf968850d0e8d0b3185cb77789803cd3916a2ac810611863f7b51bafccab39e73016375#npm:9.1.2"],\
           ["react-router-dom", "virtual:92131d7fc970e1047d0c1f075c1049fead291e8709d9da304fa1f5ccebf968850d0e8d0b3185cb77789803cd3916a2ac810611863f7b51bafccab39e73016375#npm:6.26.1"],\
           ["sass", "npm:1.77.8"],\
