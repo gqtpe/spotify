@@ -1,0 +1,30 @@
+@import '../../../styles/vars';
+
+$size: 30px;
+
+.badge {
+  display: inline-block;
+  font-size: $size;
+  height: $size;
+  width: $size; /* Ensure badge is a circle by setting width */
+  padding: 8px;
+  border-radius: 50%;
+  text-align: center; /* Center align text inside badge */
+  line-height: $size; /* Vertically center text */
+  cursor: pointer; /* Change cursor on hover */
+  transition: background-color 0.3s; /* Smooth background color transition */
+ &:active{
+   filter: brightness(0.9);
+ }
+  &:hover {
+    transform: scale(1.1); /* Увеличение размера при hover */
+  }
+}
+
+.filled {
+  background: $background-darker;
+}
+
+.icon {
+  background: transparent; /* No background for icons */
+}
