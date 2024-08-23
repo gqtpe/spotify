@@ -1,42 +1,74 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+@mixin flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+@mixin temp-lightning {
+  border: 1px solid white;
+  border-radius: 15px;
+  margin: 0 5px;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
-}
+.app {
+  display: grid;
+  grid-template-columns: 1fr 3fr 0.5fr;
+  grid-template-rows: auto 1fr auto;
+  height: 100vh;
+  grid-template-areas:
+        "logo header blank"
+        "nav main blank"
+        "footer footer footer";
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto 1fr auto;
+    grid-template-areas:
+            "header"
+            "main"
+            "footer";
   }
-  to {
-    transform: rotate(360deg);
+  header{
+    grid-area: header;
+    height: 80px;
+    background: transparent;
+  }
+
+  nav {
+    grid-area: nav;
+    padding: 1rem;
+    border-right: 1px solid #fff; //delete
+    background: #1db954;
+    @include flex-center; // Применяем миксин для центрирования
+    @include temp-lightning;
+  }
+
+  main {
+    grid-area: main;
+    padding: 1rem;
+    color: #fff;
+    background: #120f0f;
+    border: 1px solid white;
+    @include temp-lightning;
+
+  }
+
+
+  footer {
+    grid-area: footer;
+    background-color: var(--color-black);
+    border: 1px solid #fff; //delete
+    color: #fff;
+    padding: 1rem;
+    text-align: center;
+    height: 80px; // Высота футера по умолчанию
+    @include flex-center;
+
+    @media (max-width: 768px) {
+      height: 100px; // Высота футера на мобильных устройствах
+    }
   }
 }
-
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
-}
-
-.card {
-  padding: 2em;
-}
-
-.read-the-docs {
-  color: #888;
+.header{
+  @include flex-center;
+  gap: 8px;
 }
