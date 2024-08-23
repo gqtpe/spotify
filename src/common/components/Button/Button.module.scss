@@ -12,23 +12,22 @@
     opacity: 0.8;
   }
   &:hover{
-    filter: brightness(1.1);
+    filter: $primary-400;
   }
 }
 .filled{
-  background-color: var(--color-primary);
-  color: var(--color-black);
+  background-color: $primary-500;
+  color: $background-dark;
   &:disabled{
     opacity: 0.5;
   }
 }
 .outlined{
   background-color: transparent;
-  color: var(--color-white);
-  border: 1px solid var(--color-white);
+  color: $white;
+  border: 1px solid $white;
 }
 .text{
-  color: var(--color-white);
   background-color: transparent;
   border: none;
 }
