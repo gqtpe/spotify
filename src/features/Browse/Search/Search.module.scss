@@ -1,0 +1,40 @@
+@import '../../../styles/vars';
+
+.search {
+  background: $background-darker;
+  border-radius: 20px;
+  padding: 8px 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  #search-icon {
+    color: $text-secondary;
+    font-size: 24px;
+  }
+
+  border: 2px solid transparent;
+  transition: border-color 0.3s ease-in-out;
+
+  &:focus-within {
+    border-color: $white;
+    background: $background-light;
+
+  }
+
+  input {
+    flex-grow: 1;
+    background: transparent;
+    font-size: 1.15rem;
+    color: $text-primary;
+    border: none;
+
+    &::placeholder {
+      color: $text-secondary
+    }
+
+    &:focus {
+      outline: none;
+    }
+  }
+}
