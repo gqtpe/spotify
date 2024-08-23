@@ -1,20 +1,30 @@
 import './App.scss'
-import {Outlet} from "react-router-dom";
-import {spotifyAPI} from "../api/spotifyAPI.ts";
-import Button from "../common/components/Button/Button.tsx";
-
+import {Outlet, useNavigate} from "react-router-dom";
+import Search from "../features/Browse/Search/Search.tsx";
+import Badge from "../common/components/Badge/Badge.tsx";
+import {AiFillHome} from "react-icons/ai";
 
 function App() {
-    const handleClick = () => {
-        spotifyAPI.getMe().then(res => console.log('me:',res))
-        spotifyAPI.getSavedTracks().then(res => console.log('saved tracks:',res))
-        spotifyAPI.getSavedPlaylists().then(res => console.log('saved playlists:',res))
+    const navigate = useNavigate()
+    const handleClick = () =>{
+        navigate('/home')
     }
     return (
-        <div>
-            <h1>Spotify Clone</h1>
-            <Button variant="filled" onClick={handleClick}>get me</Button>
-            <Outlet/>
+        <div className="app">
+            <header className="header">
+                <Badge variant="filled" onClick={handleClick}><AiFillHome /></Badge>
+                <Search width={25}/>
+            </header>
+            <nav>
+                nav
+            </nav>
+            {/*<Button variant="filled" onClick={handleClick}>get me</Button>*/}
+            <main>
+                <Outlet/>
+            </main>
+            <footer>
+                <p>© 2022. All rights reserved.</p>
+            </footer>
         </div>
     )
 }
