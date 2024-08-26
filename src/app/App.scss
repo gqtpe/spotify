@@ -1,24 +1,28 @@
+@import '../styles/vars';
+
 @mixin flex-center {
   display: flex;
   justify-content: center;
   align-items: center;
 }
-@mixin temp-lightning {
-  border: 1px solid white;
-  border-radius: 15px;
-  margin: 0 5px;
+@mixin top-radius($radius) {
+    border-radius: $radius $radius 0 0;
+}
+@mixin paper {
+  background: $background-darker;
+  @include top-radius(15px);
 }
 
 .app {
   display: grid;
-  grid-template-columns: 1fr 3fr 0.5fr;
+  grid-template-columns: 1fr 3fr 0.8fr;
   grid-template-rows: auto 1fr auto;
   height: 100vh;
+  background: $background-dark;
   grid-template-areas:
-        "logo header blank"
+        "logo header panel"
         "nav main blank"
         "footer footer footer";
-
   @media (max-width: 768px) {
     grid-template-columns: 1fr;
     grid-template-rows: auto 1fr auto;
@@ -27,48 +31,71 @@
             "main"
             "footer";
   }
-  header{
+
+  header {
     grid-area: header;
-    height: 80px;
+    margin: 8px 0;
     background: transparent;
+  }
+
+  .user-panel {
+    grid-area: panel;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    justify-content: flex-end;
+    padding: 0 12px;
   }
 
   nav {
     grid-area: nav;
     padding: 1rem;
-    border-right: 1px solid #fff; //delete
     background: #1db954;
-    @include flex-center; // Применяем миксин для центрирования
-    @include temp-lightning;
+    margin: 0 8px;
+    @include flex-center;
+    @include paper;
   }
 
   main {
     grid-area: main;
     padding: 1rem;
     color: #fff;
-    background: #120f0f;
-    border: 1px solid white;
-    @include temp-lightning;
-
+    background: $background-darker;
+    @include paper;
   }
-
 
   footer {
     grid-area: footer;
     background-color: var(--color-black);
-    border: 1px solid #fff; //delete
     color: #fff;
     padding: 1rem;
     text-align: center;
     height: 80px; // Высота футера по умолчанию
     @include flex-center;
-
     @media (max-width: 768px) {
       height: 100px; // Высота футера на мобильных устройствах
     }
   }
+
 }
-.header{
+
+.header {
   @include flex-center;
   gap: 8px;
+}
+
+.loader {
+  width: 20px;
+  margin: 12px auto 0;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  border: 8px solid lightblue;
+  border-right-color: $primary-500;
+  animation: l2 1s infinite linear;
+}
+
+@keyframes l2 {
+  to {
+    transform: rotate(1turn)
+  }
 }

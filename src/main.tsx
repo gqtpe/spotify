@@ -1,11 +1,11 @@
+import {store} from "./app/store.ts";
 import {createRoot} from 'react-dom/client'
 import App from './app/App.tsx'
 import './index.scss'
 import {createBrowserRouter, RouterProvider} from "react-router-dom";
 import {Login} from "./features/Auth";
 import {Provider} from "react-redux";
-import {store} from "./app";
-import {RequireAuth} from "./app/hoc/RequireAuth.tsx";
+import {RequireAuth} from "./common/hoc/RequireAuth.tsx";
 import {Home} from "./features/Home/Home.tsx";
 import {Browse} from "./features/Browse/Browse.tsx";
 
@@ -21,7 +21,7 @@ const router = createBrowserRouter([
             },
             {
                 path: '/search',
-                element: <Browse/>
+                element: <RequireAuth><Browse/></RequireAuth>
             }
         ]
     },
