@@ -1,0 +1,24 @@
+@import '../../../styles/vars';
+.tabs{
+  .container{
+    display: flex;
+    gap: 12px;
+  }
+  .tabItem{
+    padding: 12px 16px;
+    border-radius: 20px;
+    cursor: pointer;
+    background: $background-lighter;
+    transition: background-color 0.3s ease-in-out;
+    &__active{
+      background: $white;
+      color: $background-darker;
+    }
+    &:hover{
+      filter: brightness(0.9);
+    }
+    &:active{
+      filter: brightness(0.8);
+    }
+  }
+}
