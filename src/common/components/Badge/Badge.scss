@@ -1,6 +1,6 @@
 @import '../../../styles/vars';
 
-$size: 30px;
+$size: 32px;
 
 .badge {
   display: inline-block;
@@ -13,7 +13,13 @@ $size: 30px;
   line-height: $size; /* Vertically center text */
   cursor: pointer; /* Change cursor on hover */
   transition: background-color 0.3s; /* Smooth background color transition */
- &:active{
+  img{
+    width: $size;
+    height: $size;
+    border-radius: 50%;
+  }
+
+  &:active{
    filter: brightness(0.9);
  }
   &:hover {
@@ -22,9 +28,12 @@ $size: 30px;
 }
 
 .filled {
-  background: $background-darker;
+  background: $background-lighter;
 }
 
 .icon {
   background: transparent; /* No background for icons */
+  height: $size*0.75;
+  width: $size*0.75;
+  font-size: $size*0.75;
 }
