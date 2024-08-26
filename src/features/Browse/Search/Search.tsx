@@ -1,4 +1,4 @@
-import {ChangeEvent, DetailedHTMLProps, InputHTMLAttributes, memo, useEffect, useState} from "react";
+import {DetailedHTMLProps, InputHTMLAttributes, memo} from "react";
 import styles from "./Search.module.scss";
 import {IoIosSearch} from "react-icons/io";
 import {useNavigate} from "react-router-dom";
@@ -7,7 +7,7 @@ import {useNavigate} from "react-router-dom";
 type Props = DetailedHTMLProps<InputHTMLAttributes<HTMLInputElement>, HTMLInputElement> & {
     width: number;
 }
-const Search = ({width, placeholder = 'What do you want to play?', ...rest}:Props) => {
+const Search = ({width, placeholder = 'What do you want to play?', ...rest}: Props) => {
     //todo:bind with rtk
 
     // const [value, setValue] = useState('')
@@ -24,11 +24,11 @@ const Search = ({width, placeholder = 'What do you want to play?', ...rest}:Prop
     //
     // }
 
-    return <div className={styles.search} style={{width: `${width*16}px`}}>
+    return <div className={styles.search} style={{width: `${width * 16}px`}}>
         <IoIosSearch id="search-icon" size={30}/>
         <input
             type="text"
-            onFocus={()=>navigate('/search')}
+            onFocus={() => navigate('/search')}
             placeholder={placeholder}
             {...rest}
         />
