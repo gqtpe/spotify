@@ -11,13 +11,16 @@ export const spotifyAPI = {
         spotifyAPIInstance.defaults.headers.common['Authorization'] = `Bearer ${token}`
     },
     async getMe() {
-            return await spotifyAPIInstance.get('me');
+            return await spotifyAPIInstance.get<User>('me');
     },
     async getSavedPlaylists() {
         return await spotifyAPIInstance.get('me/playlists')
     },
     async getSavedTracks() {
         return await spotifyAPIInstance.get<ResponseType<Item[]>>(`me/tracks`)
+    },
+    async search() {
+        return await spotifyAPIInstance.get('search')
     }
 }
 type ResponsePaginationUrl = null | string
@@ -54,7 +57,6 @@ type SimplifiedArtist = {
 type Item = {
     added_at: string, // YYYY-MM-DDTHH:MM:SSZ
     track: Track
-
 }
 type Track = {
     album:Album
@@ -98,4 +100,29 @@ type Album = {
     uri: string
     artist: SimplifiedArtist[]
 }
+//user
+export type User = {
+    country: string
+    display_name: string
+    email: string
+    explicit_content: {
+        filter_enabled: boolean
+        filter_locked: boolean
+    }
+    external_urls: External_Urls
+    followers: {
+        href: string
+        total: number
+    }
 
+    href: string
+    id: string
+    images:{
+        url: string
+        height: number
+        width: number
+    }[]
+    product: string
+    type: 'user'
+    uri: string
+}
