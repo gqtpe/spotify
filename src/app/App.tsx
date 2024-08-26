@@ -17,7 +17,7 @@ function App() {
             initializeApp()
         },500)
 
-    }, [])
+    }, [initializeApp])
     const navigate = useNavigate()
     const user = useAppSelector(state => state.auth.user)
     const handleClick = () => {
