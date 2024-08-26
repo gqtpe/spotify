@@ -1,4 +1,4 @@
-import {appHooks} from "../../../app";
+import {appHooks} from "../../Application";
 import {authActions} from "../index.ts";
 import {useLocation} from "react-router-dom";
 import {scopes} from "../scopes.ts";
