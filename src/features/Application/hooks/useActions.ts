@@ -8,5 +8,5 @@ export function useActions<T extends ActionCreatorsMapObject>(actions: T) {
 
     return useMemo(() => {
         return bindActionCreators(actions, dispatch)
-    }, [dispatch])
+    }, [dispatch, useMemo])
 }
