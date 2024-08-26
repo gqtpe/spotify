@@ -11,7 +11,7 @@ const Login = () => {
         return <Navigate to={fromPage} replace/>
     }
     return (
-        <div>
+        <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center', margin: '12px 0'}}>
             <Button variant="filled"
                     link={authURL}>Log
                 In</Button>
