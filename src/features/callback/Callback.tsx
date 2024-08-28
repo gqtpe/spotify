@@ -17,7 +17,7 @@ const Callback = () => {
         if (code) {
             fetchSpotifyToken(code);
         }
-    }, [fetchSpotifyToken]);
+    }, [fetchSpotifyToken, location.search]);
     useEffect(()=>{
         if(loggedIn){
             navigate(fromPage)
