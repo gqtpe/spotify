@@ -3,15 +3,59 @@ import axios from "axios";
 const spotifyAPIInstance = axios.create({
     baseURL: 'https://api.spotify.com/v1/', // ваш базовый URL для Spotify API
 });
+const clientId = import.meta.env.VITE_CLIENT_ID;
+const clientSecret = import.meta.env.VITE_CLIENT_SECRET;
+const REDIRECT_URI = import.meta.env.VITE_REDIRECT_URI;
+
+export interface SpotifyTokenResponse {
+    access_token: string;
+    token_type: string;
+    scope: string;
+    expires_in: number;
+    refresh_token: string;
+}
 
 
+const tokenServiceInstance = axios.create({
+    baseURL: 'https://accounts.spotify.com/'
+})
+
+
+export const spotifyTokenService = {
+    async getToken(code: string) {
+        return await tokenServiceInstance.post<SpotifyTokenResponse>('api/token', new URLSearchParams({
+            grant_type: 'authorization_code',
+            code: code,
+            redirect_uri: REDIRECT_URI,
+        }), {
+            headers: {
+                'Authorization': `Basic ${btoa(`${clientId}:${clientSecret}`)}`,
+                'Content-Type': 'application/x-www-form-urlencoded',
+            }
+        }).then(res => {
+            spotifyAPIInstance.defaults.headers.common['Authorization'] = `Bearer ${res.data.access_token}`
+            return res
+        })
+    },
+    async getRefreshToken(refreshToken: string) {
+        return tokenServiceInstance.post<SpotifyTokenResponse>('api/token', new URLSearchParams({
+            grant_type: 'refresh_token',
+            refresh_token: refreshToken,
+        }),{
+            headers:{
+                'Content-Type': 'application/x-www-form-urlencoded',
+                'Authorization': `Basic ${btoa(`${clientId}:${clientSecret}`)}`
+            }
+        })
+    }
+}
 
 export const spotifyAPI = {
-    _setToken(token: string){
+    _setToken(token: string) {
         spotifyAPIInstance.defaults.headers.common['Authorization'] = `Bearer ${token}`
     },
     async getMe() {
-            return await spotifyAPIInstance.get<User>('me');
+        return await spotifyAPIInstance.get<User>('me');
     },
     async getSavedPlaylists() {
         return await spotifyAPIInstance.get('me/playlists')
@@ -36,12 +80,9 @@ type ResponseType<T> = {
 }
 
 
-
-
-
 //common
 type Restrictions = {
-    reason: 'market'| 'product' | 'explicit'
+    reason: 'market' | 'product' | 'explicit'
 }
 type External_Urls = { [key: string]: string };
 type SimplifiedArtist = {
@@ -59,13 +100,13 @@ type Item = {
     track: Track
 }
 type Track = {
-    album:Album
+    album: Album
     artists: SimplifiedArtist[]
     availableMarkets: string[]
     disc_number: number
     duration_ms: number
     explicit: boolean
-    external_ids: {[key: string]: string}
+    external_ids: { [key: string]: string }
     external_urls: External_Urls
     href: string
     id: string
@@ -117,7 +158,7 @@ export type User = {
 
     href: string
     id: string
-    images:{
+    images: {
         url: string
         height: number
         width: number
