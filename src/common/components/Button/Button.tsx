@@ -6,10 +6,10 @@ import {Link} from "react-router-dom";
 type ButtonVariants = 'filled'|'outlined'|'text'
 
 type Props = React.ButtonHTMLAttributes<HTMLButtonElement> & {
-    variant:ButtonVariants
+    variant?:ButtonVariants
     link?:string
 }
-const Button = ({children, variant, className,link, ...rest}: Props) => {
+const Button = ({children, variant = 'filled', className,link, ...rest}: Props) => {
     const variantStyles = variant === 'filled'? styles.filled : variant === 'outlined'? styles.outlined : styles.text;
 
     const resultClassName = `${styles.button} ${variantStyles} ${className}`;
