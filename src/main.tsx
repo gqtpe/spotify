@@ -14,7 +14,7 @@ import Callback from "./features/callback/Callback.tsx";
 const router = createBrowserRouter([
     {
         path: '/',
-        element: <RequireAuth><App/></RequireAuth>,
+        element: <App/>,
         children: [
             {
                 index: true,
