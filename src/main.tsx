@@ -16,6 +16,10 @@ const router = createBrowserRouter([
         element: <RequireAuth><App/></RequireAuth>,
         children: [
             {
+                index: true,
+                element: <Navigate to="home" replace/>
+            },
+            {
                 path: 'home',
                 element: <Home/>
             },
