@@ -2,7 +2,7 @@ import {store} from "./app/store.ts";
 import {createRoot} from 'react-dom/client'
 import App from './app/App.tsx'
 import './index.scss'
-import {createBrowserRouter, RouterProvider} from "react-router-dom";
+import {createBrowserRouter, Navigate, RouterProvider} from "react-router-dom";
 import {Login} from "./features/Auth";
 import {Provider} from "react-redux";
 import {RequireAuth} from "./common/hoc/RequireAuth.tsx";
