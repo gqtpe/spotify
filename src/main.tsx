@@ -8,6 +8,7 @@ import {Provider} from "react-redux";
 import {RequireAuth} from "./common/hoc/RequireAuth.tsx";
 import {Home} from "./features/Home/Home.tsx";
 import {Browse} from "./features/Browse/Browse.tsx";
+import Callback from "./features/callback/Callback.tsx";
 
 
 const router = createBrowserRouter([
