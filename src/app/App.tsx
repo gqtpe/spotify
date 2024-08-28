@@ -4,13 +4,17 @@ import Search from "../features/Browse/Search/Search.tsx";
 import Badge from "../common/components/Badge/Badge.tsx";
 import {AiFillHome} from "react-icons/ai";
 import {IoIosNotificationsOutline} from "react-icons/io";
-import {useActions, useAppSelector} from "../features/Application/hooks";
 import {useEffect} from 'react';
 import {appActions} from "../features/Application";
+import {useActions, useAppSelector} from "../features/Application/hooks";
+
 
 function App() {
     console.log('APP')
+    const isInitialized = useAppSelector(state=>state.app.isInitialized)
+    const user = useAppSelector(state => state.auth.user)
     const {initializeApp} = useActions(appActions)
+
     useEffect(() => {
         document.title = 'Spotify'
         setTimeout(()=>{
@@ -19,19 +23,18 @@ function App() {
 
     }, [initializeApp])
     const navigate = useNavigate()
-    const user = useAppSelector(state => state.auth.user)
-    const handleClick = () => {
-        navigate('/home')
-    }
-    const isInitialized = useAppSelector(state=>state.app.isInitialized)
+
+
 
     if (!isInitialized) {
         return <div className="loader"/>
     }
+
+
     return (
         <div className="app">
             <header className="header">
-                <Badge variant="filled" onClick={handleClick}><AiFillHome/></Badge>
+                <Badge variant="filled" onClick={()=>navigate('/')}><AiFillHome/></Badge>
                 <Search width={25}/>
             </header>
             <div className="user-panel">
@@ -42,7 +45,6 @@ function App() {
                 nav
             </nav>
             <main>
-
                 <Outlet/>
             </main>
             <footer>
