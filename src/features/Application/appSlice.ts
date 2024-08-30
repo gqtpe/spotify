@@ -5,6 +5,8 @@ import {spotifyAPI, SpotifyTokenResponse, spotifyTokenService} from "../../api/s
 export const initializeApp = createAsyncThunk<SpotifyTokenResponse|null>(
     'app/initializeApp',
     async (_, thunkAPI) => {
+        debugger;
+
         const authToken = getItem('auth_token')
         const refreshToken = getItem('refresh_token')
         const expirationTime = getItem('expiration_time')

@@ -9,7 +9,6 @@ const authEndpoint = import.meta.env.VITE_AUTH_ENDPOINT;
 const Login = () => {
     console.log('Login')
     const endpoint = `${authEndpoint}/?response_type=${RESPONSE_TYPE}&client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&scope=${scopes}&show_dialog=true`
-
     return (
         <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center', margin: '12px 0'}}>
             <Button variant="filled" link={endpoint}>Log In</Button>
