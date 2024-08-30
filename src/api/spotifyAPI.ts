@@ -41,10 +41,10 @@ export const spotifyTokenService = {
         return tokenServiceInstance.post<SpotifyTokenResponse>('api/token', new URLSearchParams({
             grant_type: 'refresh_token',
             refresh_token: refreshToken,
-            client_id: clientId
         }),{
             headers:{
                 'Content-Type': 'application/x-www-form-urlencoded',
+                'Authorization': `Basic ${btoa(`${clientId}:${clientSecret}`)}`,
             }
         })
     }

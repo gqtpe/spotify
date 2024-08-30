@@ -18,7 +18,8 @@ function App() {
     useEffect(() => {
         document.title = 'Spotify'
         setTimeout(()=>{
-            initializeApp()
+            initializeApp();
+
         },500)
 
     }, [initializeApp])

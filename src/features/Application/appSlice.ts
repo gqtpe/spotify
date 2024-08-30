@@ -1,44 +1,58 @@
 import {createAsyncThunk, createSlice, PayloadAction} from "@reduxjs/toolkit";
 import {getItem, setItem} from "../../utils/localStorage.ts";
 import {spotifyAPI, SpotifyTokenResponse, spotifyTokenService} from "../../api/spotifyAPI.ts";
+import {authActions} from "../Auth";
 
-export const initializeApp = createAsyncThunk<SpotifyTokenResponse|null>(
+export const initializeApp = createAsyncThunk<SpotifyTokenResponse | null>(
     'app/initializeApp',
     async (_, thunkAPI) => {
-        const authToken = getItem('auth_token')
+
+        let authToken = getItem('auth_token')
         const refreshToken = getItem('refresh_token')
-        const expirationTime = getItem('expiration_time')
-        const tokenType = getItem('token_type')
-        const scopes = getItem('scope')
+        let expirationTime = getItem('expiration_time')
+        let tokenType = getItem('token_type')
+        let scopes = getItem('scope')
         if (expirationTime && authToken && refreshToken) {
             const currentTime = Date.now()
             if (currentTime >= Number(expirationTime)) {
                 try {
                     const response = await spotifyTokenService.getRefreshToken(refreshToken)
-                    const newExpirationTime = Date.now() + response.data.expires_in * 1000
-                    setItem('auth_token', response.data.access_token)
-                    console.log(response.data.refresh_token)
-                    setItem('refresh_token', response.data.refresh_token)
-                    setItem('expiration_time', newExpirationTime.toString())
-                    setItem('token_type', response.data.token_type)
-                    setItem('scope', response.data.scope)
-                    return response.data
 
+                    const newExpirationTime = (Date.now() + response.data.expires_in * 1000).toString()
+
+                    authToken = response.data.access_token
+                    expirationTime = newExpirationTime
+                    tokenType = response.data.token_type
+                    scopes = response.data.scope
+
+                    setItem('auth_token', authToken)
+                    setItem('refresh_token', refreshToken)
+                    setItem('expiration_time', newExpirationTime)
+                    setItem('token_type', tokenType)
+                    setItem('scope', scopes)
                 } catch (e) {
                     return thunkAPI.rejectWithValue(e)
                 }
-            } else {
-                spotifyAPI._setToken(authToken)
-                return {
-                    access_token: authToken,
-                    refresh_token: refreshToken,
-                    expires_in: Number(expirationTime),
-                    token_type: tokenType,
-                    scope: scopes,
-                } as SpotifyTokenResponse
             }
         }
-        return null
+        if (authToken) {
+            spotifyAPI._setToken(authToken)
+            try {
+                await thunkAPI.dispatch(authActions.getMe())
+            } catch (e) {
+                return thunkAPI.rejectWithValue(e)
+            }
+            return {
+                access_token: authToken,
+                refresh_token: refreshToken,
+                expires_in: Number(expirationTime),
+                token_type: tokenType,
+                scope: scopes,
+            } as SpotifyTokenResponse
+        } else {
+            return null
+        }
+
 
     }
 )

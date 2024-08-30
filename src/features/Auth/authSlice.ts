@@ -1,5 +1,5 @@
 import {createAsyncThunk, createSlice, PayloadAction} from "@reduxjs/toolkit";
-import {SpotifyTokenResponse, spotifyTokenService, User} from "../../api/spotifyAPI.ts";
+import {spotifyAPI, SpotifyTokenResponse, spotifyTokenService, User} from "../../api/spotifyAPI.ts";
 import {initializeApp} from "../Application/appSlice.ts";
 import {setItem} from "../../utils/localStorage.ts";
 
@@ -14,10 +14,19 @@ export const fetchSpotifyToken = createAsyncThunk<SpotifyTokenResponse, string>(
         return rejectWithValue(e)
     }
 })
-
+export const getMe = createAsyncThunk<User, void>('auth/getMe', async (_, {rejectWithValue}) => {
+    try {
+        const response = await spotifyAPI.getMe()
+        console.log('me:',response.data)
+        return response.data
+    } catch (e) {
+        return rejectWithValue(e)
+    }
+})
 
 export const asyncActions = {
-    fetchSpotifyToken
+    fetchSpotifyToken,
+    getMe
 }
 
 export const slice = createSlice({
@@ -51,6 +60,9 @@ export const slice = createSlice({
             setItem('expiration_time', (Date.now() + expires_in * 1000).toString());
             setItem('token_type', action.payload.token_type);
             setItem('scope', action.payload.scope);
+        })
+        builder.addCase(getMe.fulfilled, (state, action: PayloadAction<User>) => {
+            state.user = action.payload
         })
     }
 })
