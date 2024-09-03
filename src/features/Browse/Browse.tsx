@@ -15,8 +15,8 @@ export const Browse = () => {
     const location = useLocation()
     const tabItems = tabs.map((tab) => {
             if(tab === 'all') return <TabItem key={tab} value={tab} label={'All'}/>
-            tab = tab + 's'
-            return <TabItem key={tab} value={tab} label={tab[0].toUpperCase() + tab.slice(1)}/>
+
+            return <TabItem key={tab} value={tab} label={tab[0].toUpperCase() + tab.slice(1) + 's'}/>
         })
     useEffect(()=>{
         const tab = location.pathname.split('/')[2] as Tabs

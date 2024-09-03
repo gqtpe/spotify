@@ -9,6 +9,7 @@ import {RequireAuth} from "./common/hoc/RequireAuth.tsx";
 import {Home} from "./features/Home/Home.tsx";
 import {Browse} from "./features/Browse/Browse.tsx";
 import Callback from "./features/callback/Callback.tsx";
+import Tracks from "./features/Browse/SearchPages/Tracks.tsx";
 
 
 const router = createBrowserRouter([
@@ -29,23 +30,23 @@ const router = createBrowserRouter([
                 element: <RequireAuth><Browse/></RequireAuth>,
                 children: [
                     {
-                        index:true,
+                        index: true,
                         element: <div>all</div>
                     },
                     {
-                        path: '/search/tracks',
-                        element: <div>tracks</div>
+                        path: '/search/track',
+                        element: <Tracks/>
                     },
                     {
-                        path: '/search/artists',
+                        path: '/search/artist',
                         element: <div>artists</div>
                     },
                     {
-                        path: '/search/albums',
+                        path: '/search/album',
                         element: <div>albums</div>
                     },
                     {
-                        path: '/search/playlists',
+                        path: '/search/playlist',
                         element: <div>playlists</div>
                     }
                 ]

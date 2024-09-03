@@ -23,7 +23,7 @@ const TabGroup = ({onChange, value, children}: Props) => {
                         onClick: () => {
                             onChange(child.props.value)
                             if(child.props.value === 'all'){
-                                navigate('/search/')
+                                navigate('/search')
                             }else{
                                 navigate('/search/' + child.props.value)
                             }
