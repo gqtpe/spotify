@@ -41,8 +41,8 @@ export const spotifyTokenService = {
         return tokenServiceInstance.post<SpotifyTokenResponse>('api/token', new URLSearchParams({
             grant_type: 'refresh_token',
             refresh_token: refreshToken,
-        }),{
-            headers:{
+        }), {
+            headers: {
                 'Content-Type': 'application/x-www-form-urlencoded',
                 'Authorization': `Basic ${btoa(`${clientId}:${clientSecret}`)}`,
             }
@@ -63,13 +63,13 @@ export const spotifyAPI = {
     async getSavedTracks() {
         return await spotifyAPIInstance.get<ResponseType<Item[]>>(`me/tracks`)
     },
-    async search() {
-        return await spotifyAPIInstance.get('search')
+    async search(tab: string, query: string) {
+        return await spotifyAPIInstance.get<SearchResult>(`search?q=${query}&type=${tab}`)
     }
 }
 type ResponsePaginationUrl = null | string
 
-type ResponseType<T> = {
+export type ResponseType<T> = {
     href: string
     items: T
     limit: number
@@ -141,6 +141,40 @@ type Album = {
     uri: string
     artist: SimplifiedArtist[]
 }
+//playlist
+type Playlist = {
+    collaborative: boolean
+    description: string
+    external_urls: External_Urls
+    followers: {
+        href: string
+        total: number
+    }
+    href: string
+    id: string
+    images: Images
+    name: string
+    owner: {
+        external_urls: External_Urls
+        followers: {
+            href: string
+            total: number
+        }
+        href: string
+        id: string
+        type: 'user'
+        uri: string
+        display_name: string
+    }
+    public: boolean
+    snapshot_id: string
+    tracks: {
+        href: string
+        total: number
+    }
+    type: 'playlist'
+    uri: string
+}
 //user
 export type User = {
     country: string
@@ -167,3 +201,113 @@ export type User = {
     type: 'user'
     uri: string
 }
+//search
+export type SearchResult = {
+    albums: ResponseType<Album[]>
+    artist: ResponseType<Artist[]>
+    audiobooks: ResponseType<Audiobook[]>
+    episodes: ResponseType<Episode[]>
+    playlists: ResponseType<Playlist[]>
+    shows: ResponseType<Shows[]>
+    tracks: ResponseType<Track[]>
+}
+//artist
+export type Artist = {
+    external_urls: External_Urls
+    followers: {
+        href: string
+        total: number
+    }
+    genres: string[]
+    href: string
+    id: string
+    images: {
+        url: string
+        height: number
+        width: number
+    }[]
+    name: string
+    popularity: number
+    type: 'artist'
+    uri: string
+}
+//audiobooks
+export type Audiobook = {
+    authors: { name: string }[]
+    available_markets: string[]
+    copyrights: Copyrigths
+    description: string
+    html_description: string
+    edition: string
+    explicit: boolean
+    external_urls: External_Urls
+    href: string
+    id: string
+    images: {
+        url: string
+        height: number
+        width: number
+    }[]
+    language: string
+    media_type: string
+    name: string
+    narrators: { name: string }[]
+    publisher: string
+    type: 'audiobook'
+    uri: string
+    total_chapter: number
+    chapters: {
+        href: string
+        limit: number
+        next: string
+        offset: number
+        previous: string
+        total: number
+        items: SimplifiedChapter[]
+    }
+}
+//episode
+export type Episode = {
+    audio_preview_url: string
+    description: string
+    duration_ms: number
+    explicit: boolean
+    external_urls: External_Urls
+    href: string
+    html_description: string
+    id: string
+    images: {
+        url: string
+        height: number
+        width: number
+    }[]
+    is_externally_hosted: boolean
+    is_playable: boolean
+    language: string
+    languages: string[]
+    name: string
+    release_date: string
+    release_date_precision: string
+    type: 'episode'
+}
+//shows
+export type Shows = {
+    available_markets: string[]
+    copyrights: Copyrigths
+    description: string
+    explicit: boolean
+    external_urls: External_Urls
+    href: string
+    html_description: string
+    id: string
+    images: Images
+    is_externally_hosted: boolean
+    languages: string[]
+    media_type: string
+    name: string
+    publisher: string
+    total_episodes: number
+    type: 'show'
+    uri: string
+}
+//
