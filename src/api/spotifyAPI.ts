@@ -93,7 +93,38 @@ type SimplifiedArtist = {
     type: 'artist'
     uri: string
 }
-
+type Copyrigths = {
+    text: string
+    type: string
+}[]
+type Images = {
+    height: number
+    url: string
+    width: number
+}[]
+type SimplifiedChapter = {
+    audio_preview_url: string
+    available_markets: string[]
+    chapter_number: number
+    description: string
+    html_description: string
+    duration_ms: number
+    explicit: boolean
+    id: string
+    images: Images
+    is_playable: boolean
+    languages: string[]
+    name: string
+    release_date: string
+    release_date_precision: string
+    resume_point: {
+        fully_played: boolean
+        resume_position_ms: number
+    }
+    type: 'episode'
+    uri: string
+    restrictions: Restrictions
+}
 //track
 type Item = {
     added_at: string, // YYYY-MM-DDTHH:MM:SSZ
