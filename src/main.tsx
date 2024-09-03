@@ -10,6 +10,7 @@ import {Home} from "./features/Home/Home.tsx";
 import {Browse} from "./features/Browse/Browse.tsx";
 import Callback from "./features/callback/Callback.tsx";
 import Tracks from "./features/Browse/SearchPages/Tracks.tsx";
+import {createTheme, MantineProvider} from "@mantine/core";
 
 
 const router = createBrowserRouter([
@@ -64,9 +65,12 @@ const router = createBrowserRouter([
 
 ])
 
+const theme = createTheme({});
 
 createRoot(document.getElementById('root')!).render(
     <Provider store={store}>
+        <MantineProvider theme={theme}>
         <RouterProvider router={router}/>
+        </MantineProvider>
     </Provider>
 )

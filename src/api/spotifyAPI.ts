@@ -130,7 +130,7 @@ type Item = {
     added_at: string, // YYYY-MM-DDTHH:MM:SSZ
     track: Track
 }
-type Track = {
+export type Track = {
     album: Album
     artists: SimplifiedArtist[]
     availableMarkets: string[]
@@ -152,7 +152,7 @@ type Track = {
 }
 //album
 type AlbumType = 'album' | 'single' | 'compilation'
-type Album = {
+export type Album = {
     album_type: AlbumType
     total_tracks: number
     availableMarkets: string[]

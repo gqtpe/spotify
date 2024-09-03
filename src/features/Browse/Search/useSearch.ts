@@ -22,18 +22,12 @@ export const useSearch = () => {
 
     const onChange = useCallback((e: ChangeEvent<HTMLInputElement>) => {
         setValue(e.target.value)
-        if (timeoutId) {
-            clearTimeout(timeoutId)
-        }
-        const newTimeoutId = setTimeout(() => {
-            browse(e.target.value)
-        }, 1000)
-        setTimeoutId(newTimeoutId)
-    }, [timeoutId, browse])
+    }, [])
 
     useEffect(() => {
         // Перезапуск поиска при смене активной вкладки
         if (value) {
+            debugger;
             if (timeoutId) {
                 clearTimeout(timeoutId)
             }
