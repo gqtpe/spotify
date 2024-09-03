@@ -26,7 +26,29 @@ const router = createBrowserRouter([
             },
             {
                 path: '/search',
-                element: <RequireAuth><Browse/></RequireAuth>
+                element: <RequireAuth><Browse/></RequireAuth>,
+                children: [
+                    {
+                        index:true,
+                        element: <div>all</div>
+                    },
+                    {
+                        path: '/search/tracks',
+                        element: <div>tracks</div>
+                    },
+                    {
+                        path: '/search/artists',
+                        element: <div>artists</div>
+                    },
+                    {
+                        path: '/search/albums',
+                        element: <div>albums</div>
+                    },
+                    {
+                        path: '/search/playlists',
+                        element: <div>playlists</div>
+                    }
+                ]
             }
         ]
     },
