@@ -5,14 +5,13 @@ import {tabs} from "./tabs.ts";
 
 export type Tabs = 'all' | 'track' | 'playlist' | 'album' | 'artist' | 'show' | 'episode' | 'audiobook'
 
-const browse = createAsyncThunk<any, string, { state: AppRootStateType }>('browse', async (query, thunkAPI) => {
-    const activeTab = thunkAPI.getState().browse.activeTab
-    let tab:string = activeTab
-    if(tab === 'all') {
-        tab = tabs.slice(1).join('%2C')
+const browse = createAsyncThunk<any, { query: string, tab:Tabs }, { state: AppRootStateType }>('browse', async ({query, tab}, thunkAPI) => {
+    let activeTab:string = tab
+    if(activeTab === 'all') {
+        activeTab = tabs.slice(1).join('%2C')
     }
     try {
-        const response = await spotifyAPI.search(tab, query)
+        const response = await spotifyAPI.search(activeTab, query)
         console.log(response)
         return response.data
     } catch (e) {
@@ -34,7 +33,7 @@ const slice = createSlice(
             } as SearchResult
         },
         reducers: {
-            setActiveTab: (state, action: PayloadAction<Tabs>) => {
+            setActiveTab(state, action: PayloadAction<Tabs>) {
                 state.activeTab = action.payload
             }
         },
