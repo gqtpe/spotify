@@ -1,38 +1,47 @@
-import {useActions, useAppSelector} from "../../Application/hooks";
 import {browseActions} from "../index.ts";
 import {ChangeEvent, useCallback, useEffect, useState} from "react";
 import {useLocation, useNavigate} from "react-router-dom";
-
+import {appHooks} from "../../Application";
 
 export const useSearch = () => {
-
+    const {useActions, useAppSelector} = appHooks
     // TODO: Add synchronization of search logic with the address bar
+    const activeTab = useAppSelector(state=>state.browse.activeTab)
+    const {browse} = useActions(browseActions)
     const [value, setValue] = useState('')
     const [timeoutId, setTimeoutId] = useState<ReturnType<typeof setTimeout> | null>(null)
-    const {browse} = useActions(browseActions)
+    //rrd
     const navigate = useNavigate()
     const location = useLocation()
-    const activeTab = useAppSelector(state => state.browse.activeTab)
 
-    const onFocus = useCallback(() =>{
+    console.log(location)
+    const onFocus = useCallback(() => {
         if (!location.pathname.includes('/search')) {
-            navigate('/search' );
+            navigate('/search');
         }
-    },[location, navigate])
+    }, [location, navigate])
 
     const onChange = useCallback((e: ChangeEvent<HTMLInputElement>) => {
-        setValue(e.target.value)
+        const query = e.target.value
+        setValue(query)
+        navigate(`/search/${query}`);
+    }, [])
+
+
+    useEffect(() => {
+        if (location.pathname.includes('/search')) {
+            const query = location.pathname.split('/')[2]
+            setValue(query)
+        }
     }, [])
 
     useEffect(() => {
-        // Перезапуск поиска при смене активной вкладки
         if (value) {
-            debugger;
             if (timeoutId) {
                 clearTimeout(timeoutId)
             }
             const newTimeoutId = setTimeout(() => {
-                browse(value)
+                browse({query: value, tab: activeTab})
             }, 1000)
             setTimeoutId(newTimeoutId)
         }
@@ -41,7 +50,7 @@ export const useSearch = () => {
                 clearTimeout(timeoutId)
             }
         }
-    }, [activeTab, value, browse]) // Зависимости: активная вкладка, значение поиска
+    }, [value, browse, activeTab])
 
     return {value, onChange, onFocus}
 }
