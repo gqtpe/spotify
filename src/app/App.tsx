@@ -5,11 +5,10 @@ import Badge from "../common/components/Badge/Badge.tsx";
 import {AiFillHome} from "react-icons/ai";
 import {IoIosNotificationsOutline} from "react-icons/io";
 import {useEffect} from 'react';
-import {appActions} from "../features/Application";
-import {useActions, useAppSelector} from "../features/Application/hooks";
-
+import {appActions, appHooks} from "../features/Application";
 
 function App() {
+    const {useAppSelector, useActions} = appHooks
     console.log('APP')
     const isInitialized = useAppSelector(state => state.app.isInitialized)
     const user = useAppSelector(state => state.auth.user)
