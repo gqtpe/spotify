@@ -1,34 +1,19 @@
 import './App.scss'
-import {Outlet, useNavigate} from "react-router-dom";
-import {Search} from "../features/Browse";
+import {Outlet} from "react-router-dom";
 import Badge from "../common/components/Badge/Badge.tsx";
-import {AiFillHome} from "react-icons/ai";
 import {IoIosNotificationsOutline} from "react-icons/io";
 import {useEffect} from 'react';
 import {appActions, appHooks} from "../features/Application";
 
 function App() {
-    const {useAppSelector, useActions} = appHooks
     console.log('APP')
-    const isInitialized = useAppSelector(state => state.app.isInitialized)
-    const user = useAppSelector(state => state.auth.user)
-    const {initializeApp} = useActions(appActions)
-
-    useEffect(() => {
-        document.title = 'Spotify'
-        setTimeout(() => {
-            initializeApp();
-        }, 500)
-
-    }, [initializeApp])
-    const navigate = useNavigate()
+    const {isInitialized, user} = useInit()
 
 
     if (!isInitialized) {
         return <div className="loader"/>
     }
-
-
+    
     return (
         <div className="app">
             <header className="header">
