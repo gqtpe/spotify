@@ -2,8 +2,8 @@ import './App.scss'
 import {Outlet} from "react-router-dom";
 import Badge from "../common/components/Badge/Badge.tsx";
 import {IoIosNotificationsOutline} from "react-icons/io";
-import {useEffect} from 'react';
-import {appActions, appHooks} from "../features/Application";
+import {useInit} from './useInit.ts';
+import {Header} from "../common/components/Header/Header.tsx";
 
 function App() {
     console.log('APP')
@@ -16,10 +16,7 @@ function App() {
     
     return (
         <div className="app">
-            <header className="header">
-                <Badge variant="filled" onClick={() => navigate('/')}><AiFillHome/></Badge>
-                <Search width={25}/>
-            </header>
+            <Header/>
             <div className="user-panel">
                 <Badge variant="icon"><IoIosNotificationsOutline/></Badge>
                 <Badge variant="filled"><img src={user?.images[0].url} alt="user-avatar"/></Badge>
