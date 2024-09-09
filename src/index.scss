@@ -4,8 +4,12 @@
 
 
 body {
-    font-family: Roboto, sans-serif;
+
     background: #181414;
+    *{
+        box-sizing: border-box;
+        font-family: Roboto, sans-serif;
+    }
 }
 html{
     font-size: 16px;

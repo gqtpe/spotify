@@ -24,12 +24,16 @@
         "nav main blank"
         "footer footer footer";
   @media (max-width: 768px) {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr 1fr;
     grid-template-rows: auto 1fr auto;
     grid-template-areas:
-            "header"
-            "main"
-            "footer";
+            "header panel"
+            "main main"
+            "footer footer";
+    nav{
+      display: none;
+
+    }
   }
 
   header {
@@ -50,10 +54,8 @@
   nav {
     grid-area: nav;
     padding: 1rem;
-    background: #1db954;
-    margin: 0 8px;
-    @include flex-center;
     @include paper;
+    margin: 0 8px;
   }
 
   main {

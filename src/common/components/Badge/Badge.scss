@@ -1,21 +1,17 @@
 @import '../../../styles/vars';
 
-$size: 32px;
-
+$size: 24px;
+$box-size: 42px;
 .badge {
-  display: inline-block;
-  font-size: $size;
-  height: $size;
-  width: $size; /* Ensure badge is a circle by setting width */
-  padding: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: $box-size;
+  height: $box-size;
   border-radius: 50%;
-  text-align: center; /* Center align text inside badge */
-  line-height: $size; /* Vertically center text */
-  cursor: pointer; /* Change cursor on hover */
-  transition: background-color 0.3s; /* Smooth background color transition */
+  font-size: $size;
   img{
-    width: $size;
-    height: $size;
+    width: 65%;
     border-radius: 50%;
   }
 
@@ -23,7 +19,8 @@ $size: 32px;
    filter: brightness(0.9);
  }
   &:hover {
-    transform: scale(1.1); /* Увеличение размера при hover */
+    transform: scale(1.05); /* Увеличение размера при hover */
+    font-size: $size * 1.02;
   }
 }
 
@@ -33,7 +30,5 @@ $size: 32px;
 
 .icon {
   background: transparent; /* No background for icons */
-  height: $size*0.75;
-  width: $size*0.75;
-  font-size: $size*0.75;
+  font-size: $size;
 }

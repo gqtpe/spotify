@@ -1,6 +1,6 @@
 import {DetailedHTMLProps, InputHTMLAttributes, memo} from "react";
 import styles from "./Search.module.scss";
-import {IoIosSearch} from "react-icons/io";
+import { FiSearch } from "react-icons/fi";
 
 type Props = DetailedHTMLProps<InputHTMLAttributes<HTMLInputElement>, HTMLInputElement> & {
     width: number
@@ -10,7 +10,8 @@ type Props = DetailedHTMLProps<InputHTMLAttributes<HTMLInputElement>, HTMLInputE
 const Search = ({width, ...rest}: Props) => {
     return (
         <div className={styles.search} style={{width: `${width * 16}px`}}>
-            <IoIosSearch id="search-icon" size={30}/>
+            <FiSearch id="search-icon" className={styles.icon}/>
+
             <input
                 type="text"
                 {...rest}

@@ -3,32 +3,43 @@
 .search {
   background: $background-lighter;
   border-radius: 25px;
-  padding: 8px 12px;
+  height: 48px;
   display: flex;
   align-items: center;
-  gap: 8px;
+  font-size: 24px;
+  gap: 10px;
+  padding:0 8px;
+  &:hover{
+    background: $background-light;
+    .icon{
+      color: $text-primary;
+    }
+    box-shadow: 0px 1px 1px 0px rgba(255, 255, 255, 0.3)
+    , 0px -1px 1px 0px rgba(255, 255, 255,0.3);
 
-  #search-icon {
-    color: $text-secondary;
-    font-size: 24px;
   }
-
   border: 2px solid transparent;
-  transition: border-color 0.3s ease-in-out;
+  transition: border-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
 
   &:focus-within {
     border-color: $white;
     background: $background-light;
-
+    .icon{
+      color: $text-primary;
+    }
   }
-
+  .icon{
+    color: $text-secondary;
+    font-size: 24px;
+    transition: color 0.3s ease-in-out;
+  }
   input {
     flex-grow: 1;
     background: transparent;
-    font-size: 1rem;
+    font-size: 16px;
     color: $text-primary;
     border: none;
-
+    font-weight: 400;
     &::placeholder {
       color: $text-secondary
     }
