@@ -22,7 +22,7 @@ export const useSearch = (navigate: ReturnType<typeof useNavigate>) =>{
             navigate(`/search/${query}${activeTab ? '/' + activeTab : ''}`);
         }
         setValue(query)
-    }, [location.pathname])
+    }, [location.pathname, navigate])
 
     const handleSearch = useCallback((query: string) => {
         browse({query, tab: activeTab})
@@ -61,7 +61,7 @@ export const useSearch = (navigate: ReturnType<typeof useNavigate>) =>{
                 clearTimeout(timeoutId)
             }
         }
-    }, [value, activeTab])
+    }, [value, handleSearch])
 
 
     return {value, onChange, onFocus}
