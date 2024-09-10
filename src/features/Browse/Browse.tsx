@@ -6,7 +6,7 @@ import TabItem from "../../common/components/TabGroup/TabItem/TabItem.tsx";
 import TabGroup from "../../common/components/TabGroup/TabGroup.tsx";
 import {appHooks} from "../Application";
 import {browseActions} from "./index.ts";
-
+import styles from './Browse.module.scss';
 
 export const Browse = () => {
     const {useAppSelector, useActions} = appHooks
@@ -36,7 +36,7 @@ export const Browse = () => {
         }
     }, [])
 
-    return <div>
+    return <div className={styles.browse}>
         <TabGroup value={activeTab} onChange={handleChange}>
             {tabItems}
         </TabGroup>
