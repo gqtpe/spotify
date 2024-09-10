@@ -40,7 +40,7 @@ const slice = createSlice(
         extraReducers: (builder) => {
             builder
                 .addCase(browse.fulfilled, (state, action) => {
-                    state.items = action.payload
+                    state.items = {...state.items, ...action.payload}
                 })
         }
     }
