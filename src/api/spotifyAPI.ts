@@ -81,11 +81,11 @@ export type ResponseType<T> = {
 
 
 //common
-type Restrictions = {
+export type Restrictions = {
     reason: 'market' | 'product' | 'explicit'
 }
-type External_Urls = { [key: string]: string };
-type SimplifiedArtist = {
+export type External_Urls = { [key: string]: string };
+export type SimplifiedArtist = {
     external_urls: External_Urls
     href: string
     id: string
@@ -93,16 +93,16 @@ type SimplifiedArtist = {
     type: 'artist'
     uri: string
 }
-type Copyrigths = {
+export type Copyrigths = {
     text: string
     type: string
 }[]
-type Images = {
+export type Images = {
     height: number
     url: string
     width: number
 }[]
-type SimplifiedChapter = {
+export type SimplifiedChapter = {
     audio_preview_url: string
     available_markets: string[]
     chapter_number: number
@@ -173,7 +173,7 @@ export type Album = {
     artist: SimplifiedArtist[]
 }
 //playlist
-type Playlist = {
+export type Playlist = {
     collaborative: boolean
     description: string
     external_urls: External_Urls
