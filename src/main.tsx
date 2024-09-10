@@ -7,8 +7,8 @@ import {Login} from "./features/Auth";
 import {RequireAuth} from "./common/hoc/RequireAuth.tsx";
 import {Home} from "./features/Home/Home.tsx";
 import Callback from "./features/callback/Callback.tsx";
-import {createTheme, MantineProvider} from "@mantine/core";
-import {Browse} from "./features/Browse/Browse.tsx";
+import {MantineProvider} from "@mantine/core";
+import {Browse, Playlists, Tracks} from "./features/Browse";
 import './index.scss'
 
 
@@ -35,7 +35,7 @@ const router = createBrowserRouter([
                     },
                     {
                         path: '/search/:query',
-                        element: <Browse/>,
+                        element: <RequireAuth><Browse/></RequireAuth>,
                         children: [
                             {
                                 index: true,
@@ -43,7 +43,7 @@ const router = createBrowserRouter([
                             },
                             {
                                 path: '/search/:query/track',
-                                element: <div>tracks</div>
+                                element: <Tracks/>
                             },
                             {
                                 path: '/search/:query/artist',
@@ -55,7 +55,7 @@ const router = createBrowserRouter([
                             },
                             {
                                 path: '/search/:query/playlist',
-                                element: <div>playlists</div>
+                                element: <Playlists/>
                             }
                         ]
                     }
@@ -75,11 +75,10 @@ const router = createBrowserRouter([
 
 ])
 
-const theme = createTheme({});
 
 createRoot(document.getElementById('root')!).render(
     <Provider store={store}>
-        <MantineProvider theme={theme}>
+        <MantineProvider forceColorScheme={'dark'}>
             <RouterProvider router={router}/>
         </MantineProvider>
     </Provider>
