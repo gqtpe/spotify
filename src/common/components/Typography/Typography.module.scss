@@ -1,0 +1,58 @@
+$white: #FFFFFF;
+$text-primary: $white;
+$text-secondary: #B3B3B3;
+$text-muted: #999999;
+
+.h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: $text-primary;
+}
+
+.h2 {
+    font-size: 2rem;
+    font-weight: 600;
+    color: $text-primary;
+}
+
+.h3 {
+    font-size: 1.75rem;
+    font-weight: 600;
+    color: $text-primary;
+}
+
+.h4 {
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: $text-primary;
+}
+
+.h5 {
+    font-size: 1.25rem;
+    font-weight: 500;
+    color: $text-secondary;
+}
+
+.h6 {
+    font-size: 1rem;
+    font-weight: 500;
+    color: $text-secondary;
+}
+
+.body1 {
+    font-size: 1rem;
+    font-weight: 400;
+    color: $text-primary;
+}
+
+.body2 {
+    font-size: 0.875rem;
+    font-weight: 400;
+    color: $text-secondary;
+}
+
+.caption {
+    font-size: 0.75rem;
+    font-weight: 400;
+    color: $text-muted;
+}
