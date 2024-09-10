@@ -1,0 +1,15 @@
+.browse{
+    display: flex;
+    flex-direction: column;
+    padding: 16px;
+    gap: 8px;
+}
+
+.tracks{
+
+}
+.playlists{
+    display: grid;
+    grid-auto-rows: min-content;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+}
