@@ -63,8 +63,8 @@ export const spotifyAPI = {
     async getSavedTracks() {
         return await spotifyAPIInstance.get<ResponseType<Item[]>>(`me/tracks`)
     },
-    async search(tab: string, query: string) {
-        return await spotifyAPIInstance.get<SearchResult>(`search?q=${query}&type=${tab}`)
+    async search(tab: string, query: string, preview?: boolean) {
+        return await spotifyAPIInstance.get<SearchResult>(`search?q=${query}&type=${tab}${preview? '&limit=5' : ''}`)
     }
 }
 type ResponsePaginationUrl = null | string
@@ -170,7 +170,7 @@ export type Album = {
     restrictions: Restrictions
     type: 'album'
     uri: string
-    artist: SimplifiedArtist[]
+    artists: SimplifiedArtist[]
 }
 //playlist
 export type Playlist = {
@@ -235,7 +235,7 @@ export type User = {
 //search
 export type SearchResult = {
     albums: ResponseType<Album[]>
-    artist: ResponseType<Artist[]>
+    artists: ResponseType<Artist[]>
     audiobooks: ResponseType<Audiobook[]>
     episodes: ResponseType<Episode[]>
     playlists: ResponseType<Playlist[]>
