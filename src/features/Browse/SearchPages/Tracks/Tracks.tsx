@@ -10,6 +10,7 @@ import styles from '../../Browse.module.scss'
 import '@mantine/core/styles.css';
 import '@mantine/dates/styles.css';
 import 'mantine-react-table/styles.css';
+import {FaRegClock} from "react-icons/fa";
 
 const Tracks = () => {
     const tracks = appHooks.useAppSelector(browseSelectors.selectTracks)
@@ -19,6 +20,7 @@ const Tracks = () => {
                 accessorKey: 'name',
                 header: 'Title',
                 index: 1,
+
                 Cell: ({row, renderedCellValue}) => (
                     <div style={{display: 'flex', alignItems: 'center', gap: '8px'}}>
                         <img
@@ -38,13 +40,27 @@ const Tracks = () => {
                     </div>
                 ),
             },
-
             {
                 accessorKey: 'album.name',
                 header: 'Album',
                 index: 2,
+                enableSorting: false
 
             },
+            {
+                accessorFn: (track)=> {
+                    const minute = Math.floor(track.duration_ms / 60000)
+                    let second = Math.floor((track.duration_ms / 1000) % 60) + ''
+                    if (second.length === 1) {
+                        second = '0' + second
+                    }
+                    return <Typography variant={'caption'}>{minute+ ':' + second}</Typography>
+                },
+                Header: <FaRegClock />,
+                header:  '',
+                id: 'header',
+                enableSorting: false,
+            }
         ],
         [],
     );
@@ -54,14 +70,20 @@ const Tracks = () => {
         enableColumnActions: false,
         enableRowNumbers: true,
         enablePagination: false,
+        enableStickyHeader: true,
+mantineTableHeadProps: {
+            style: {
+                '--mrt-base-background-color': '#1f1f1f'
+            }
+}
     })
     if (!tracks) {
         return <div>...</div>
     }
 
     return (
-        <div className={styles.tracks} style={{ '--mrt-base-background-color':'transparent',}}>
-            <MRT_Table table={table}/>
+        <div className={styles.tracks}>
+            <MRT_Table table={table} style={{'--mrt-base-background-color': 'transparent'}}/>
 
         </div>
     );
