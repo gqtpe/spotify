@@ -6,10 +6,37 @@
 }
 
 .tracks{
-
 }
-.playlists{
+.container{
     display: grid;
     grid-auto-rows: min-content;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+}
+.preview{
     grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+}
+.all{
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+
+
+    &__songs{
+
+    }
+    &__playlists{
+
+    }
+    &__albums{
+
+    }
+    &__artists{
+
+    }
+    .title{
+        &:hover{
+            text-decoration: underline;
+        }
+    }
+
 }
