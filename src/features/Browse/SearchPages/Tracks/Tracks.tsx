@@ -1,43 +1,39 @@
+import {appHooks} from "../../../Application";
+import {browseSelectors} from "../../"
 import {memo, useMemo} from "react";
-import {useAppSelector} from "../../../Application/hooks";
-import {MRT_ColumnDef, MRT_Table, useMantineReactTable} from "mantine-react-table";
 import {Track} from "../../../../api/spotifyAPI.ts";
-import '@mantine/core/styles.css';
-import '@mantine/dates/styles.css'; //if using mantine date picker features
-import 'mantine-react-table/styles.css';
 import {Typography} from "../../../../common/components/Typography/Typography.tsx";
-import { MdExplicit } from "react-icons/md";
+import {MdExplicit} from "react-icons/md";
+import {MRT_ColumnDef, MRT_Table, useMantineReactTable} from "mantine-react-table";
+import styles from '../../Browse.module.scss'
+//
+import '@mantine/core/styles.css';
+import '@mantine/dates/styles.css';
+import 'mantine-react-table/styles.css';
 
 const Tracks = () => {
-    const tracks = useAppSelector(state => state.browse.items.tracks)
-    // const params = useParams<string>()
-    // let trackElements: ReactNode;
-    // if(params.query){
-    //     if(tracks){
-    //         trackElements = tracks.items!.map(track => <div>
-    //             {track.name}
-    //             <img style={{width: 25}} src={track.album.images[0].url}/>
-    //         </div>)
-    //     }
-    //
-    // }
-    //
+    const tracks = appHooks.useAppSelector(browseSelectors.selectTracks)
     const columns = useMemo<MRT_ColumnDef<Track>[]>(
         () => [
             {
-                accessorKey:'name',
+                accessorKey: 'name',
                 header: 'Title',
                 index: 1,
-                Cell: ({row,renderedCellValue }) => (
-                    <div style={{ display: 'flex', alignItems: 'center',gap: '8px'}}>
+                Cell: ({row, renderedCellValue}) => (
+                    <div style={{display: 'flex', alignItems: 'center', gap: '8px'}}>
                         <img
                             height={40}
                             src={row.original.album.images[2].url}
                             style={{borderRadius: '5px'}}
                         />
-                        <div style={{display:'flex', flexDirection:'column'}}>
+                        <div style={{display: 'flex', flexDirection: 'column'}}>
                             <Typography>{renderedCellValue}</Typography>
-                            <Typography variant={'caption'} sx={{display:'flex', gap:'4px', alignItems:'center'}}>{row.original.explicit && <MdExplicit fontSize={20}/>} {row.original.artists[0].name}</Typography>
+                            <Typography variant={'caption'} sx={{
+                                display: 'flex',
+                                gap: '4px',
+                                alignItems: 'center'
+                            }}>{row.original.explicit &&
+                                <MdExplicit fontSize={20}/>} {row.original.artists[0].name}</Typography>
                         </div>
                     </div>
                 ),
@@ -58,17 +54,15 @@ const Tracks = () => {
         enableColumnActions: false,
         enableRowNumbers: true,
         enablePagination: false,
-
     })
     if (!tracks) {
-
         return <div>...</div>
     }
 
     return (
-        <div style={{ '--mrt-base-background-color':'transparent',}}>
-            <MRT_Table table={table} />
-            {/*{trackElements}*/}
+        <div className={styles.tracks} style={{ '--mrt-base-background-color':'transparent',}}>
+            <MRT_Table table={table}/>
+
         </div>
     );
 };
