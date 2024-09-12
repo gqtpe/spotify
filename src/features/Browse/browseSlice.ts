@@ -7,11 +7,13 @@ export type Tabs = 'all' | 'track' | 'playlist' | 'album' | 'artist' | 'show' | 
 
 const browse = createAsyncThunk<any, { query: string, tab:Tabs }, { state: AppRootStateType }>('browse', async ({query, tab}, thunkAPI) => {
     let activeTab:string = tab
+    let preview = false
     if(activeTab === 'all') {
         activeTab = tabs.slice(1).join('%2C')
+        preview = true
     }
     try {
-        const response = await spotifyAPI.search(activeTab, query)
+        const response = await spotifyAPI.search(activeTab, query, preview)
         console.log(response)
         return response.data
     } catch (e) {
