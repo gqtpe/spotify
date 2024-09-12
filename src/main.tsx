@@ -8,8 +8,10 @@ import {RequireAuth} from "./common/hoc/RequireAuth.tsx";
 import {Home} from "./features/Home/Home.tsx";
 import Callback from "./features/callback/Callback.tsx";
 import {MantineProvider} from "@mantine/core";
-import {Browse, Playlists, Tracks} from "./features/Browse";
+import {AllPage, Browse, browseSelectors, Tracks} from "./features/Browse";
+
 import './index.scss'
+import Cards from './common/components/Cards/Cards.tsx';
 
 
 const router = createBrowserRouter([
@@ -39,7 +41,7 @@ const router = createBrowserRouter([
                         children: [
                             {
                                 index: true,
-                                element: <div>all</div>
+                                element: <AllPage/>
                             },
                             {
                                 path: '/search/:query/track',
@@ -47,15 +49,15 @@ const router = createBrowserRouter([
                             },
                             {
                                 path: '/search/:query/artist',
-                                element: <div>artists</div>
+                                element: <Cards selector={browseSelectors.selectArtists}/>
                             },
                             {
                                 path: '/search/:query/album',
-                                element: <div>albums</div>
+                                element: <Cards selector={browseSelectors.selectAlbums}/>
                             },
                             {
                                 path: '/search/:query/playlist',
-                                element: <Playlists/>
+                                element: <Cards selector={browseSelectors.selectPlaylists}/>
                             }
                         ]
                     }
