@@ -117,13 +117,13 @@ $scrollbar-thumb: #61C86A; // Цвет ползунка
 }
 
 .loader {
-  width: 20px;
+  width: 24px;
   margin: 12px auto 0;
   aspect-ratio: 1;
   border-radius: 50%;
-  border: 8px solid lightblue;
+  border: 4px solid lightblue;
   border-right-color: $primary-500;
-  animation: l2 1s infinite linear;
+  animation: l2 0.75s infinite linear;
 }
 
 @keyframes l2 {
