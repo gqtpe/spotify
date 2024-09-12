@@ -7,7 +7,7 @@ export const Home = () => {
         const data = spotifyAPI.getMe().then(res=>res.data)
         console.log(data)
     }
-    return <div>
+    return <div style={{padding: '16px'}}>
         <h1>Home</h1>
         <Button onClick={handleClick}>get me</Button>
     </div>
