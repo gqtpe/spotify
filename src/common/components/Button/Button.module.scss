@@ -37,23 +37,3 @@
 .buttonLink{
   text-decoration: none;
 }
-.icon{
-  font-size: 24px;
-  border-radius: 50%;
-  background-color: $primary-500;
-  color: $background-dark;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 20px;
-  position: relative;
-  svg{
-    position: absolute;
-    left: 10px;
-    top: 8px;
-  }
-  &:hover{
-    filter:brightness(1.2);
-    scale: 1.1;
-  }
-}
