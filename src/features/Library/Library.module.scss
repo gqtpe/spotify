@@ -1,0 +1,18 @@
+@import 'src/styles/vars';
+
+
+.library {
+  padding: 8px;
+ &__header{
+   padding: 12px 16px;
+   display: flex;
+   align-items: center;
+   gap: 12px;
+   font-weight: 900;
+   transition: color 0.3s ease-in-out;
+}
+  .title{
+    font-weight: 700;
+    color: $text-secondary
+  }
+}
