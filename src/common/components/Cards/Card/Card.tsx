@@ -1,8 +1,8 @@
 import {DetailsHTMLAttributes, FC, memo} from "react";
 import styles from './Card.module.scss'
 import Typography from "../../Typography/Typography.tsx";
-import Button from "../../Button/Button.tsx";
 import {IoMdPlay} from "react-icons/io";
+import IconButton from "../../IconButton/IconButton.tsx";
 
 type PlaylistProps = DetailsHTMLAttributes<HTMLDivElement> & {
     title: string
@@ -18,7 +18,8 @@ const Card: FC<PlaylistProps> = ({title, subtitle, image, round, ...rest}) => {
     return <div className={styles.card} {...rest}>
         <div className={styles.card__image_wp}>
             <img className={[styles.image, round && styles.round].join(' ')} src={image} alt={'image'}/>
-            <Button variant={"icon"} className={styles.popup}><IoMdPlay/></Button>
+            <IconButton className={styles.popup} fz={24}><IoMdPlay
+                style={{position: 'relative', left: '2px'}}/></IconButton>
         </div>
         <div className={styles.card__details}>
             <Typography className={styles.title}>{cutTitle}</Typography>
