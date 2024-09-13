@@ -4,7 +4,10 @@
 
 
 body {
-
+    button{
+        padding-inline: 0;
+        padding-block: 0;
+    }
     background: #181414;
     *{
         box-sizing: border-box;
