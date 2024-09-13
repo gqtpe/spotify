@@ -4,6 +4,8 @@ import Badge from "../common/components/Badge/Badge.tsx";
 import {IoIosNotificationsOutline} from "react-icons/io";
 import {useInit} from './useInit.ts';
 import {Header} from "../common/components/Header/Header.tsx";
+import {Footer} from "../features/Player";
+import {Library} from "../features/Library";
 
 function App() {
     console.log('APP')
@@ -14,6 +16,8 @@ function App() {
     // 1.3: query is changed? clear items
     // 1.4: add pagination
     // 1.5: add requesting items while scrolling
+    // 1.6: space is space
+    // 2.0: add simple search
     // 2.1: add simplified card( for tracks, playlists, albums, artists)
     // 2.2: nav panel with user saved playlists
     // 2.2.1: simple search
@@ -22,11 +26,13 @@ function App() {
     // 3.?: realize player with rtk
     // 4.1: /playlist/:id page
     // 4.?: analogous pages for tracks, albums, artists
+    // 5.1: sticky TabGroup
+    // 5.2: sticky songs table header
     //
     if (!isInitialized) {
         return <div className="loader"/>
     }
-    
+
     return (
         <div className="app">
             <Header/>
@@ -35,14 +41,12 @@ function App() {
                 <Badge variant="filled"><img src={user?.images[0].url} alt="user-avatar"/></Badge>
             </div>
             <nav>
-                nav
+                <Library/>
             </nav>
             <main>
                 <Outlet/>
             </main>
-            <footer>
-                <p>© 2022. All rights reserved.</p>
-            </footer>
+            <Footer/>
         </div>
     )
 }
