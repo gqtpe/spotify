@@ -1,4 +1,4 @@
-import {Outlet, useLocation} from "react-router-dom";
+import {Outlet, useLocation, useNavigate} from "react-router-dom";
 import {useCallback, useEffect} from "react";
 import {Tabs} from "./browseSlice.ts";
 import {tabs} from "./tabs.ts";
@@ -13,10 +13,16 @@ export const Browse = () => {
     const activeTab = useAppSelector(state => state.browse.activeTab)
     const {setActiveTab} = useActions(browseActions)
     const location = useLocation()
+    const navigate = useNavigate()
 
     const handleChange = useCallback((tab: Tabs) => {
-        setActiveTab(tab)
-    }, [setActiveTab])
+        setActiveTab(tab);
+        if(tab === 'all'){
+            navigate('')
+        }else{
+            navigate(tab)
+        }
+    }, [setActiveTab, navigate])
 
 
     const tabItems = tabs.map((tab) => {
