@@ -1,0 +1,32 @@
+@import '../../../styles/vars';
+
+
+.button{
+
+  border-radius: 50%;
+  padding: 8px;
+  position: relative;
+  border: none;
+
+
+
+  svg{
+    display: block;
+  }
+  &:hover{
+    filter:brightness(1.2);
+    scale: 1.1;
+  }
+}
+
+.filled{
+  background-color: $primary-500;
+  color: $background-dark;
+}
+.icon{
+  background-color: transparent;
+  transition: background-color 0.2s ease-in-out;
+  &:hover{
+    background: $background-lighter;
+  }
+}
