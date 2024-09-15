@@ -1,6 +1,7 @@
 import TabGroup from "./TabGroup.tsx";
 import {Meta, StoryObj} from "@storybook/react";
 import TabItem from "./TabItem/TabItem.tsx";
+import {useState} from "react";
 
 
 const meta: Meta = {
@@ -20,9 +21,16 @@ export default meta;
 type Story = StoryObj<typeof TabGroup>
 
 export const Example: Story = {
-    args: {
-        value: 'tab',
-        children: <TabItem value="all" label="All"/>,
-        onChange: ()=>{}
+    args:{
+        value: '1',
+
+    },
+    render: (args) => {
+        const [value, setValue] = useState(args.value)
+        return <TabGroup value={value} onChange={setValue}>
+            <TabItem value="1" label="Tab 1" />
+            <TabItem value="2" label="Tab 2" />
+            <TabItem value="3" label="Tab 3" />
+        </TabGroup>
     }
 }

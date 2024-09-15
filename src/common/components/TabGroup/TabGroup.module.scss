@@ -1,14 +1,16 @@
 @import '../../../styles/vars';
 .tabs{
+
   .container{
     display: flex;
     gap: 12px;
   }
   .tabItem{
+    font-family: Roboto, sans-serif;
     padding: 8px 12px;
     border-radius: 20px;
     cursor: pointer;
-
+    color: $text-primary;
     background: $background-lighter;
     transition: background-color 0.3s ease-in-out;
     &__active{
