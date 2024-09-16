@@ -1,9 +1,9 @@
-import {DetailedHTMLProps, HTMLAttributes, memo} from "react";
+import {DetailedHTMLProps, HTMLAttributes, memo, ReactNode} from "react";
 import styles from '../TabGroup.module.scss'
 
 export type TabItemProps = DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> & {
     value: string
-    label: string
+    label: ReactNode
     active?: boolean
 }
 const TabItem = ({label, active, ...rest}: TabItemProps) => {
