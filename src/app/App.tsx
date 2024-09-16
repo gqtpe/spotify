@@ -11,19 +11,6 @@ function App() {
     console.log('APP')
     const {isInitialized, user} = useInit()
     //todo:
-    // 1.1: move query to rtk
-    // 1.2: add loading logic for fetching search data,
-    // 1.3: query is changed? clear items
-    // 1.4: add pagination
-    // 1.5: add requesting items while scrolling
-    // 1.6: space is space
-    // 2.0: add simple search
-    // 2.1: add simplified card( for tracks, playlists, albums, artists)
-    // 2.2: nav panel with user saved playlists
-    // 2.2.1: simple search
-    // 2.3:
-    // 3.1: add player slice
-    // 3.?: realize player with rtk
     // 4.1: /playlist/:id page
     // 4.?: analogous pages for tracks, albums, artists
     // 5.1: sticky TabGroup
