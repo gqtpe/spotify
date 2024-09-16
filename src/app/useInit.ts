@@ -1,9 +1,9 @@
-import {appActions, appHooks} from "../features/Application";
 import {useEffect} from "react";
+import {useActions, useAppSelector} from "../features/Application/hooks";
+import {appActions} from "../features/Application";
 
 
 export const useInit = () => {
-    const {useAppSelector, useActions} = appHooks
 
     const isInitialized = useAppSelector(state => state.app.isInitialized)
     const user = useAppSelector(state => state.auth.user)
