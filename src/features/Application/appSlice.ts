@@ -2,6 +2,7 @@ import {createAsyncThunk, createSlice, PayloadAction} from "@reduxjs/toolkit";
 import {getItem, setItem} from "../../utils/localStorage.ts";
 import {spotifyAPI, SpotifyTokenResponse, spotifyTokenService} from "../../api/spotifyAPI.ts";
 import {authActions} from "../Auth";
+import {userLibraryActions} from "../Library";
 
 export const initializeApp = createAsyncThunk<SpotifyTokenResponse | null>(
     'app/initializeApp',
@@ -39,6 +40,7 @@ export const initializeApp = createAsyncThunk<SpotifyTokenResponse | null>(
             spotifyAPI._setToken(authToken)
             try {
                 await thunkAPI.dispatch(authActions.getMe())
+                await thunkAPI.dispatch(userLibraryActions.fetchUserLibrary())
             } catch (e) {
                 return thunkAPI.rejectWithValue(e)
             }
