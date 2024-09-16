@@ -4,12 +4,11 @@ import {Tabs} from "./browseSlice.ts";
 import {tabs} from "./tabs.ts";
 import TabItem from "../../common/components/TabGroup/TabItem/TabItem.tsx";
 import TabGroup from "../../common/components/TabGroup/TabGroup.tsx";
-import {appHooks} from "../Application";
 import {browseActions} from "./index.ts";
 import styles from './Browse.module.scss';
+import {useActions, useAppSelector} from "../Application/hooks";
 
 export const Browse = () => {
-    const {useAppSelector, useActions} = appHooks
     const activeTab = useAppSelector(state => state.browse.activeTab)
     const {setActiveTab} = useActions(browseActions)
     const location = useLocation()
@@ -17,9 +16,9 @@ export const Browse = () => {
 
     const handleChange = useCallback((tab: Tabs) => {
         setActiveTab(tab);
-        if(tab === 'all'){
+        if (tab === 'all') {
             navigate('')
-        }else{
+        } else {
             navigate(tab)
         }
     }, [setActiveTab, navigate])

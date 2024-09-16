@@ -1,8 +1,6 @@
 import {Navigate, useLocation} from "react-router-dom";
 import {memo, ReactNode} from "react";
-import {appHooks} from "../../features/Application";
-const {useAppSelector} = appHooks
-
+import {useAppSelector} from "../../features/Application/hooks";
 
 
 type Props = {

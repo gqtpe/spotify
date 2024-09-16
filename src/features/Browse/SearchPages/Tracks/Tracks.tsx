@@ -1,4 +1,3 @@
-import {appHooks} from "../../../Application";
 import {browseSelectors} from "../../"
 import {memo, useMemo} from "react";
 import {Track} from "../../../../api/spotifyAPI.ts";
@@ -11,9 +10,10 @@ import '@mantine/core/styles.css';
 import '@mantine/dates/styles.css';
 import 'mantine-react-table/styles.css';
 import {FaRegClock} from "react-icons/fa";
+import {useAppSelector} from "../../../Application/hooks";
 
 const Tracks = () => {
-    const tracks = appHooks.useAppSelector(browseSelectors.selectTracks)
+    const tracks = useAppSelector(browseSelectors.selectTracks)
     const columns = useMemo<MRT_ColumnDef<Track>[]>(
         () => [
             {
