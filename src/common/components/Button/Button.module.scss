@@ -1,37 +1,56 @@
 @import '../../../styles/vars';
 
-
 .button{
   position: relative;
-  font-size: 18px;
-  font-family: inherit;
+  font-size: inherit;
+  font-family: Roboto, sans-serif;
   font-weight: 700;
   line-height: 1;
-  padding:12px 40px;
+  padding: 8px 16px;
   border-radius: 24px;
   border: none;
-  &:active{
-    opacity: 0.8;
+
+  &:disabled{
+    opacity: 0.5;
   }
   &:hover{
-    filter: $primary-400;
+    filter: brightness(1.1);
+  }
+  &:active{
+    filter: brightness(0.9);
   }
 }
 .filled{
   background-color: $primary-500;
   color: $background-dark;
-  &:disabled{
-    opacity: 0.5;
-  }
+  transition: filter 0.2s ease-in-out;
+
 }
 .outlined{
   background-color: transparent;
   color: $white;
   border: 1px solid $white;
+  transition: scale 0.2s ease-in-out;
+
+  &:hover{
+    scale: 1.05;
+  }
+  &:active{
+    scale: 0.98;
+    color: $text-secondary;
+  }
 }
 .text{
   background-color: transparent;
   border: none;
+  color: $text-secondary;
+  transition: color 0.2s ease-in-out;
+  &:hover{
+    color: $text-primary;
+  }
+  &:active{
+    color: $text-secondary;
+  }
 }
 
 .buttonLink{
