@@ -12,15 +12,16 @@
   background: $background-darker;
   @include top-radius(15px);
 }
+
 $app-header-footer-height: 80px;
 
-$scrollbar-bg: #333; // Цвет фона скроллбара
-$scrollbar-thumb: #61C86A; // Цвет ползунка
+
 .app {
   display: grid;
   grid-template-columns: 1.2fr 2fr 1.2fr;
   grid-template-rows: auto 1fr $app-header-footer-height;
-  height: 100vh;
+  max-height: 100vh;
+  overflow: hidden;
   background: $background-dark;
   grid-template-areas:
         "logo header panel"
@@ -58,6 +59,8 @@ $scrollbar-thumb: #61C86A; // Цвет ползунка
     grid-area: nav;
     @include paper;
     margin: 0 8px;
+    overflow: hidden;
+    height: calc(100vh - 80px - 48px - 16px);
   }
 
   main {
@@ -67,30 +70,7 @@ $scrollbar-thumb: #61C86A; // Цвет ползунка
     background: $background-darker;
     @include paper;
     // Стилизация скроллбара для WebKit-браузеров (Chrome, Safari)
-    &::-webkit-scrollbar {
-      width: 10px;
-    }
-
-    &::-webkit-scrollbar-track {
-      background-color: $scrollbar-bg;
-    }
-
-    &::-webkit-scrollbar-thumb {
-      background-color: $scrollbar-thumb;
-      border-radius: 5px;
-    }
-
-    // Убираем стрелочки в WebKit-браузерах
-    &::-webkit-scrollbar-button {
-      display: none; // Скрыть стрелочки
-      width: 0;
-      visibility: hidden;
-    }
-
-    // Стилизация скроллбара для Firefox
-    scrollbar-color: $scrollbar-thumb $scrollbar-bg; // Цвет ползунка и фона
-    scrollbar-width: thin; // Уменьшенный скроллбар
-
+    @include scrollbar;
 
   }
   footer {
