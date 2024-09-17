@@ -2,8 +2,11 @@
 
 
 .library {
+  display: flex;
+  flex-direction: column;
   padding: 8px;
-
+  gap: 8px;
+  height: 100%;
   &__header {
     padding: 12px 16px;
     display: flex;
@@ -11,12 +14,11 @@
     gap: 12px;
     font-weight: 900;
     transition: color 0.3s ease-in-out;
-  }
-
-  .title {
-    font-weight: 700;
-    color: $text-secondary;
-    flex-grow: 1;
+    .title {
+      font-weight: 700;
+      color: $text-secondary;
+      flex-grow: 1;
+    }
   }
   &__tabs {
     display: flex;
@@ -34,5 +36,14 @@
         filter: brightness(0.8);
       }
     }
+  }
+  &__items {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5em;
+    padding: 0.5em;
+    overflow-y: auto;
+    height: 100%;
+    @include scrollbar;
   }
 }
