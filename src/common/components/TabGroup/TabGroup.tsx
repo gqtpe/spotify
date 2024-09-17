@@ -1,12 +1,11 @@
 import {Children, cloneElement, isValidElement, memo, ReactNode} from "react";
 import styles from './TabGroup.module.scss'
 import TabItem from "./TabItem/TabItem.tsx";
-import {Tabs} from "../../../features/Browse/browseSlice.ts";
 
 type Props = {
     children: ReactNode[]
     value: string | null
-    onChange: (value: Tabs) => void
+    onChange: (value: any) => void
 }
 
 const TabGroup = ({onChange, value, children}: Props) => {
