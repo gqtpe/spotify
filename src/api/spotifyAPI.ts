@@ -58,7 +58,13 @@ export const spotifyAPI = {
         return await spotifyAPIInstance.get<User>('me');
     },
     async getSavedPlaylists() {
-        return await spotifyAPIInstance.get('me/playlists')
+        return await spotifyAPIInstance.get<ResponseType<SimplifiedPlaylist[]>>('me/playlists')
+    },
+    async getSavedAlbums() {
+        return await spotifyAPIInstance.get<ResponseType<{added_at: string, album: Album}[]>>('me/albums')
+    },
+    async getSavedArtists() {
+        return await spotifyAPIInstance.get<ResponseType<Artist[]>>('me/following?type=artist')
     },
     async getSavedTracks() {
         return await spotifyAPIInstance.get<ResponseType<Item[]>>(`me/tracks`)
@@ -92,6 +98,70 @@ export type SimplifiedArtist = {
     name: string
     type: 'artist'
     uri: string
+}
+export type SimplifiedUser = {
+    display_name: string
+    external_urls: External_Urls
+    href: string
+    id: string
+    type: 'user'
+    uri: string
+}
+export type SimplifiedPlaylist = {
+    collaborative: boolean
+    description: string
+    external_urls: External_Urls
+    href: string
+    id: string
+    images: Images
+    name: string
+    owner: SimplifiedUser
+    primary_color: null
+    public: boolean
+    snapshot_id: string
+    tracks: { href: string; total: number }
+    type: 'playlist'
+    uri: string
+
+}
+export type SimplifiedTrack = {
+    artists: SimplifiedArtist[]
+    available_markets: string[]
+    disc_number: number
+    duration_ms: number
+    explicit: boolean
+    external_urls: External_Urls
+    href: string
+    id: string
+    is_playable: string
+    linked_from: { external_urls: External_Urls; href: string; id: string; type: string; uri: string }
+    restrictions: Restrictions
+    name: string
+    preview_url: string
+    track_number: number
+    type: 'track'
+    uri: string
+    is_local: boolean
+}
+export interface SimplifiedAlbum  {
+    album_type: AlbumType
+    total_tracks: number
+    availableMarkets: string[]
+    external_urls: External_Urls
+    href: string //a link to get full details
+    id: string,
+    images: {
+        url: string
+        height: number
+        width: number
+    }[]
+    name: string
+    release_date: string //"1981-12"
+    release_date_precision: 'day' | 'year' | 'month'
+    restrictions: Restrictions
+    type: 'album'
+    uri: string
+    artists: SimplifiedArtist[]
 }
 export type Copyrigths = {
     text: string
@@ -150,27 +220,16 @@ export type Track = {
     type: 'track'
     uri: string
 }
+
 //album
 type AlbumType = 'album' | 'single' | 'compilation'
-export type Album = {
-    album_type: AlbumType
-    total_tracks: number
-    availableMarkets: string[]
-    external_urls: External_Urls
-    href: string //a link to get full details
-    id: string,
-    images: {
-        url: string
-        height: number
-        width: number
-    }[]
-    name: string
-    release_date: string //"1981-12"
-    release_date_precision: 'day' | 'year' | 'month'
-    restrictions: Restrictions
-    type: 'album'
-    uri: string
-    artists: SimplifiedArtist[]
+export interface Album extends SimplifiedAlbum{
+    tracks: SimplifiedTrack
+    copyrights: Copyrigths
+    external_ids: External_Urls
+    genres: string[]
+    label: string
+    popularity: number
 }
 //playlist
 export type Playlist = {
