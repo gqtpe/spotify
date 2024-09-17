@@ -5,13 +5,41 @@ import IconButton from "../../common/components/IconButton/IconButton.tsx";
 import {IoIosArrowForward, IoMdAdd} from "react-icons/io";
 import TabItem from "../../common/components/TabGroup/TabItem/TabItem.tsx";
 import TabGroup from "../../common/components/TabGroup/TabGroup.tsx";
-import {useState} from "react";
 import {RxCross2} from "react-icons/rx";
+import {SimpleCard} from "../../common/components/SimpleCard/SimpleCard.tsx";
+import {useActions, useAppSelector} from "../Application/hooks";
+import {userLibraryActions, userLibrarySelectors} from "./index.ts";
 
 
 export const Library = () => {
+    const items = useAppSelector(userLibrarySelectors.selectFilteredItems)
+    const filter = useAppSelector(userLibrarySelectors.selectFilter)
+    const {setFilter} = useActions(userLibraryActions)
 
-    const [activeTab, setActiveTab] = useState<string | null>(null)
+
+    const cardItems = items.map(item => {
+        const {id, name, type, images} = item;
+        const img = images && images.length > 0 ? images[0].url : '';
+
+        const capitalizedType = type.charAt(0).toUpperCase() + type.slice(1);
+
+        let subtitle = '';
+        if (type === 'playlist') {
+            subtitle = `${capitalizedType} - ${item.owner.display_name}`;
+        } else if (type === 'album') {
+            subtitle = `${capitalizedType} - ${item.artists.map(artist => artist.name).join(', ')}`;
+        }
+
+        return (
+            <SimpleCard
+                key={id}
+                title={name}
+                subtitle={subtitle}
+                img={img}
+            />
+        );
+    })
+
     return <div className={styles.library}>
         <div className={styles.library__header}>
             <BiLibrary fontSize={24}/>
@@ -26,12 +54,15 @@ export const Library = () => {
             </IconButton>
         </div>
         <div className={styles.library__tabs}>
-            {activeTab && <div className={styles.removeTab}><RxCross2  onClick={() => setActiveTab(null)}/></div>}
-            <TabGroup value={activeTab} onChange={(value) => setActiveTab(value)}>
+            {filter !== 'all' && <div className={styles.removeTab}><RxCross2 onClick={() => setFilter('all')}/></div>}
+            <TabGroup value={filter} onChange={(value) => setFilter(value)}>
                 <TabItem value={'playlists'} label={"Playlists"}/>
-                <TabItem value={'artists'} label={"Artists"}/>
                 <TabItem value={'albums'} label={"Albums"}/>
+                <TabItem value={'artists'} label={"Artists"} disabled/>
             </TabGroup>
+        </div>
+        <div className={styles.library__items}>
+            {cardItems}
         </div>
         {/*
         todo:
