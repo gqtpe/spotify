@@ -5,11 +5,12 @@ export type TabItemProps = DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTM
     value: string
     label: ReactNode
     active?: boolean
+    disabled?: boolean
 }
-const TabItem = ({label, active, ...rest}: TabItemProps) => {
-
-
-    return <div className={[styles.tabItem, rest.className, active ? styles.tabItem__active : ''].join(' ')} {...rest}>
+const TabItem = ({label, active, disabled,onClick, ...rest}: TabItemProps) => {
+    const disabledClassName = disabled? styles.tabItem__disabled : styles.tabItem__item
+    const activeClassName = active ? styles.tabItem__active : ''
+    return <div className={[styles.tabItem, rest.className, activeClassName, disabledClassName].join(' ')} onClick={disabled?undefined:onClick} {...rest}>
         {label}
     </div>
 }
