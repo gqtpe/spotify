@@ -13,15 +13,24 @@
     color: $text-primary;
     background: $background-lighter;
     transition: background-color 0.3s ease-in-out;
+    user-select: none;
+    &__item{
+      &:hover{
+        filter: brightness(0.9);
+      }
+      &:active{
+        filter: brightness(0.8);
+      }
+    }
     &__active{
       background: $white;
       color: $background-darker;
+
     }
-    &:hover{
-      filter: brightness(0.9);
+    &__disabled{
+      filter: brightness(0.5);
+
     }
-    &:active{
-      filter: brightness(0.8);
-    }
+
   }
 }
