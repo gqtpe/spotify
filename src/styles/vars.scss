@@ -26,3 +26,32 @@ $accent-purple: #9B59B6;
 // Gradient Backgrounds
 $gradient-primary: linear-gradient(135deg, #61C86A 0%, #4CAF56 100%);
 $gradient-accent: linear-gradient(135deg, #509BF5 0%, #9B59B6 100%);
+
+$scrollbar-bg: #333; // Цвет фона скроллбара
+$scrollbar-thumb: #61C86A; // Цвет ползунка
+@mixin scrollbar{
+  &::-webkit-scrollbar {
+    width: 10px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background-color: $scrollbar-bg;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: $scrollbar-thumb;
+    border-radius: 5px;
+  }
+
+  // Убираем стрелочки в WebKit-браузерах
+  &::-webkit-scrollbar-button {
+    display: none; // Скрыть стрелочки
+    width: 0;
+    visibility: hidden;
+  }
+
+  // Стилизация скроллбара для Firefox
+  scrollbar-color: $scrollbar-thumb $scrollbar-bg; // Цвет ползунка и фона
+  scrollbar-width: thin; // Уменьшенный скроллбар
+
+}
