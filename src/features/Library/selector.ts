@@ -9,9 +9,9 @@ export const selectFilteredItems = createSelector(
     [selectItems, selectFilter],
     (items, filter) => {
         switch (filter) {
-            case 'playlists':
+            case 'playlist':
                 return items.filter(item => item.type === 'playlist');
-            case 'albums':
+            case 'album':
                 return items.filter(item => item.type === 'album');
             // case 'artists':
             //     return items.filter(item => item.type === 'artist')
