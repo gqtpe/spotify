@@ -1,7 +1,7 @@
 import {createAsyncThunk, createSlice, PayloadAction} from "@reduxjs/toolkit";
 import {spotifyAPI, SpotifyTokenResponse, spotifyTokenService, User} from "../../api/spotifyAPI.ts";
 import {initializeApp} from "../Application/appSlice.ts";
-import {setItem} from "../../utils/localStorage.ts";
+import {setItem} from "../../common/utils/localStorage.ts";
 
 export type Token = string
 
