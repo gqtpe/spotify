@@ -5,11 +5,14 @@ import type {PlayerBackState} from "./types.ts";
 
 const playerReducer = slice.reducer
 const playerActions = {
-    ...slice.actions
+    ...slice.actions,
+    ...asyncAction,
+
 }
 
 export {
     Footer,
     playerReducer,
-    playerActions
+    playerActions,
+    PlayerBackState
 }
