@@ -1,4 +1,4 @@
-@import '../styles/vars';
+@import '../common/styles/vars';
 
 @mixin flex-center {
   display: flex;
@@ -13,14 +13,15 @@
   @include top-radius(15px);
 }
 
-$app-header-footer-height: 80px;
+$app-footer-height: 80px;
 
 
 .app {
   display: grid;
   grid-template-columns: 1.2fr 2fr 1.2fr;
-  grid-template-rows: auto 1fr $app-header-footer-height;
+  grid-template-rows: auto 1fr $app-footer-height;
   max-height: 100vh;
+  width: 100%;
   overflow: hidden;
   background: $background-dark;
   grid-template-areas:
@@ -29,13 +30,17 @@ $app-header-footer-height: 80px;
         "footer footer footer";
   @media (max-width: 768px) {
     grid-template-columns: 1fr 1fr;
-    grid-template-rows: auto 1fr auto;
+    grid-template-rows: auto;
     grid-template-areas:
             "header panel"
             "main main"
             "footer footer";
     nav{
       display: none;
+
+    }
+    main{
+      height: calc(100vh - $app-footer-height - 48px - 16px);
 
     }
   }
@@ -71,6 +76,7 @@ $app-header-footer-height: 80px;
     @include paper;
     // Стилизация скроллбара для WebKit-браузеров (Chrome, Safari)
     @include scrollbar;
+    transition: height 0.5s ease-in-out;
 
   }
   footer {
@@ -79,10 +85,10 @@ $app-header-footer-height: 80px;
     color: #fff;
     padding: 1rem;
     text-align: center;
-    height: $app-header-footer-height; // Высота футера по умолчанию
+    height: $app-footer-height; // Высота футера по умолчанию
     @include flex-center;
     @media (max-width: 768px) {
-      height: 100px; // Высота футера на мобильных устройствах
+      height: $app-footer-height; // Высота футера на мобильных устройствах
     }
   }
 
