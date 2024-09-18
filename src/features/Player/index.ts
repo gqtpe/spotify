@@ -1,5 +1,6 @@
 import { Footer } from "./Footer";
-import slice from "./playerSlice";
+import slice, {asyncAction} from "./playerSlice";
+import type {PlayerBackState} from "./types.ts";
 
 
 const playerReducer = slice.reducer

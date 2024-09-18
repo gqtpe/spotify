@@ -12,7 +12,7 @@ const fetchPlaybackState = createAsyncThunk<Track, undefined>('player/fetchPlayb
 })
 
 
-export const authActions = {
+export const asyncAction = {
     fetchPlaybackState
 }
 
