@@ -1,4 +1,5 @@
 import axios from "axios";
+import {PlayerBackState} from "../features/Player";
 
 const spotifyAPIInstance = axios.create({
     baseURL: 'https://api.spotify.com/v1/', // ваш базовый URL для Spotify API
@@ -54,6 +55,8 @@ export const spotifyAPI = {
     _setToken(token: string) {
         spotifyAPIInstance.defaults.headers.common['Authorization'] = `Bearer ${token}`
     },
+
+    //==========curr user
     async getMe() {
         return await spotifyAPIInstance.get<User>('me');
     },
@@ -61,20 +64,25 @@ export const spotifyAPI = {
         return await spotifyAPIInstance.get<ResponseType<SimplifiedPlaylist[]>>('me/playlists')
     },
     async getSavedAlbums() {
-        return await spotifyAPIInstance.get<ResponseType<{added_at: string, album: Album}[]>>('me/albums')
+        return await spotifyAPIInstance.get<ResponseType<{added_at:string; album: SavedAlbumObject}[]>>('me/albums')
     },
     async getSavedArtists() {
         return await spotifyAPIInstance.get<ResponseType<Artist[]>>('me/following?type=artist')
     },
     async getSavedTracks() {
-        return await spotifyAPIInstance.get<ResponseType<Item[]>>(`me/tracks`)
+        return await spotifyAPIInstance.get<ResponseType<{added_at:string; track: Track}[]>>(`me/tracks`)
     },
+    async getPlaybackState() {
+        return await spotifyAPIInstance.get<PlayerBackState>('me/player')
+    },
+    //==========
+    //==========search
     async search(tab: string, query: string, preview?: boolean) {
-        return await spotifyAPIInstance.get<SearchResult>(`search?q=${query}&type=${tab}${preview? '&limit=5' : ''}`)
+        return await spotifyAPIInstance.get<SearchResult>(`search?q=${query}&type=${tab}${preview ? '&limit=5' : ''}`)
     }
 }
-type ResponsePaginationUrl = null | string
 
+type ResponsePaginationUrl = null | string
 export type ResponseType<T> = {
     href: string
     items: T
@@ -84,13 +92,20 @@ export type ResponseType<T> = {
     previous: ResponsePaginationUrl
     total: number
 }
-
-
 //common
 export type Restrictions = {
     reason: 'market' | 'product' | 'explicit'
 }
 export type External_Urls = { [key: string]: string };
+export type Images = {
+    height: number
+    url: string
+    width: number
+}[]
+export type Copyrigths = {
+    text: string
+    type: string
+}[]
 export type SimplifiedArtist = {
     external_urls: External_Urls
     href: string
@@ -122,7 +137,6 @@ export type SimplifiedPlaylist = {
     tracks: { href: string; total: number }
     type: 'playlist'
     uri: string
-
 }
 export type SimplifiedTrack = {
     artists: SimplifiedArtist[]
@@ -143,7 +157,7 @@ export type SimplifiedTrack = {
     uri: string
     is_local: boolean
 }
-export interface SimplifiedAlbum  {
+export interface SimplifiedAlbum {
     album_type: AlbumType
     total_tracks: number
     availableMarkets: string[]
@@ -163,15 +177,6 @@ export interface SimplifiedAlbum  {
     uri: string
     artists: SimplifiedArtist[]
 }
-export type Copyrigths = {
-    text: string
-    type: string
-}[]
-export type Images = {
-    height: number
-    url: string
-    width: number
-}[]
 export type SimplifiedChapter = {
     audio_preview_url: string
     available_markets: string[]
@@ -196,12 +201,8 @@ export type SimplifiedChapter = {
     restrictions: Restrictions
 }
 //track
-type Item = {
-    added_at: string, // YYYY-MM-DDTHH:MM:SSZ
-    track: Track
-}
 export type Track = {
-    album: Album
+    album: SimplifiedAlbum
     artists: SimplifiedArtist[]
     availableMarkets: string[]
     disc_number: number
@@ -223,13 +224,38 @@ export type Track = {
 
 //album
 type AlbumType = 'album' | 'single' | 'compilation'
-export interface Album extends SimplifiedAlbum{
+
+export interface Album {
     tracks: SimplifiedTrack
     copyrights: Copyrigths
     external_ids: External_Urls
     genres: string[]
     label: string
     popularity: number
+}
+
+export type SavedAlbumObject = {
+    album_type: AlbumType
+    artists: SimplifiedArtist[]
+    available_markets: string[]
+    copyrights: Copyrigths
+    external_ids: {
+        [key: string]: string
+    }
+    external_urls: External_Urls
+    genres: string[]
+    href: string
+    id: string
+    images: Images
+    label: string
+    name: string
+    popularity: number
+    release_date: string
+    release_date_precision: string
+    total_tracks: number
+    tracks: ResponseType<SimplifiedTrack[]>
+    type: 'album'
+    uri: string
 }
 //playlist
 export type Playlist = {
