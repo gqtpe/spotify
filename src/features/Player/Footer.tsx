@@ -11,11 +11,13 @@ export const Footer: FC = () => {
     // 3.?: realize player with rtk
     // 3.2: auto update when track is changing outside?
     const item = useAppSelector(selectPlayerItem)
-
     if (item) {
-        const subTitle = item.album.artists.map(artist => artist.name).join(', ')
-        return <footer className={styles.footer}><SimpleCard img={item.album.images[0]!.url} subtitle={subTitle}
-                                                             title={item.name}/></footer>
+        if(item.type === 'track'){
+            const subTitle = item.album.artists.map(artist => artist.name).join(', ')
+            return <footer className={styles.footer}><SimpleCard img={item.album.images[0]!.url} subtitle={subTitle}
+                                                                 title={item.name}/></footer>
+        }
+
     }
 
     return

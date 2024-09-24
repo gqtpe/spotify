@@ -1,8 +1,8 @@
 import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
-import {spotifyAPI, Track} from "../../api/spotifyAPI.ts";
+import {Episode, spotifyAPI, Track} from "../../api/spotifyAPI.ts";
 
 
-const fetchPlaybackState = createAsyncThunk<Track, undefined>('player/fetchPlaybackState', async (_, thunkAPI) => {
+const fetchPlaybackState = createAsyncThunk<Track|Episode|null, undefined>('player/fetchPlaybackState', async (_, thunkAPI) => {
     try {
         const res = await spotifyAPI.getPlaybackState();
         return res.data.item
@@ -20,7 +20,7 @@ export const asyncAction = {
 const slice = createSlice({
     name: 'player',
     initialState: {
-        item: null as null | Track,
+        item: null as null | Track | Episode,
         queue: [] as Array<Track>,
     },
     reducers: {},

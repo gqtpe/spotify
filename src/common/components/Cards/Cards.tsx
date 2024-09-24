@@ -1,15 +1,15 @@
 import {FC} from "react";
 import {useAppSelector} from "../../../features/Application/hooks";
 import styles from '../../../features/Browse/Browse.module.scss'
-import type {Album, Artist, Playlist, ResponseType} from "../../../api/spotifyAPI.ts";
+import type {Artist, Playlist, ResponseType, SimplifiedAlbum} from "../../../api/spotifyAPI.ts";
 import {AppRootStateType} from "../../../features/Application/types.ts";
 import Card from "./Card/Card.tsx";
 
 type CardsProps = {
-    selector: (state: AppRootStateType) => ResponseType<Playlist[] | Artist[] | Album[]>
+    selector: (state: AppRootStateType) => ResponseType<Playlist[] | Artist[] | SimplifiedAlbum[]>
     preview?: boolean
 };
-const Cards: FC<CardsProps> = ({selector, preview }) => {
+const Cards: FC<CardsProps> = ({selector, preview}) => {
     const item = useAppSelector(selector)
 
     if (!item?.items) {
@@ -18,8 +18,9 @@ const Cards: FC<CardsProps> = ({selector, preview }) => {
     return (
         <div className={styles.container + ' ' + (preview && styles.preview)}>
             {item.items.map(item => {
+                console.log(item)
                 let subTitle = ''
-                switch(item.type){
+                switch (item.type) {
                     case 'playlist':
                         subTitle = 'By ' + item.owner.display_name;
                         break;
@@ -30,7 +31,8 @@ const Cards: FC<CardsProps> = ({selector, preview }) => {
                         subTitle = 'artist'
                         break;
                 }
-                return <Card key={item.id} title={item.name} image={item.images[0].url} round={item.type === 'artist'} subtitle={subTitle} />
+                return <Card key={item.id} title={item.name} image={item.images[0].url} round={item.type === 'artist'}
+                             subtitle={subTitle}/>
             })}
         </div>
     );

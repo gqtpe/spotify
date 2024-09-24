@@ -202,7 +202,7 @@ export type SimplifiedChapter = {
 }
 //track
 export type Track = {
-    album: SimplifiedAlbum
+    album: Album
     artists: SimplifiedArtist[]
     availableMarkets: string[]
     disc_number: number
@@ -226,12 +226,21 @@ export type Track = {
 type AlbumType = 'album' | 'single' | 'compilation'
 
 export interface Album {
-    tracks: SimplifiedTrack
-    copyrights: Copyrigths
-    external_ids: External_Urls
-    genres: string[]
-    label: string
-    popularity: number
+    album_type: string
+    artists: SimplifiedArtist[]
+    available_markets: string[]
+    external_urls: External_Urls
+    href: string
+    id: string
+    images: Images
+    name: string
+    release_date: string
+    release_date_precision: string
+    restrictions: Restrictions
+    total_tracks: number
+    type: 'album'
+    uri: string
+
 }
 
 export type SavedAlbumObject = {
@@ -319,7 +328,7 @@ export type User = {
 }
 //search
 export type SearchResult = {
-    albums: ResponseType<Album[]>
+    albums: ResponseType<SimplifiedAlbum[]>
     artists: ResponseType<Artist[]>
     audiobooks: ResponseType<Audiobook[]>
     episodes: ResponseType<Episode[]>
