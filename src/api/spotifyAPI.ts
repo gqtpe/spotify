@@ -77,8 +77,8 @@ export const spotifyAPI = {
     },
     //==========
     //==========search
-    async search(tab: string, query: string, preview?: boolean) {
-        return await spotifyAPIInstance.get<SearchResult>(`search?q=${query}&type=${tab}${preview ? '&limit=5' : ''}`)
+    async search(tab: string, query: string) {
+        return await spotifyAPIInstance.get<SearchResult>(`search?q=${query}&type=${tab}`)
     }
 }
 
