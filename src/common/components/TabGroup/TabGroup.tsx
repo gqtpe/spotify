@@ -1,15 +1,15 @@
-import {Children, cloneElement, isValidElement, memo, ReactNode} from "react";
+import {Children, cloneElement, DetailedHTMLProps, isValidElement, memo, ReactNode} from "react";
 import styles from './TabGroup.module.scss'
 import TabItem from "./TabItem/TabItem.tsx";
 
-type Props = {
+type Props = DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement> & {
     children: ReactNode[]
     value: string | null
-    onChange: (value: any) => void
+    handleChange: (value: any) => void
 }
 
-const TabGroup = ({onChange, value, children}: Props) => {
-    return <div className={styles.tabs}>
+const TabGroup = ({handleChange, value, children,className, ...rest}: Props) => {
+    return <div className={[styles.tabs, className].join(' ')} {...rest}>
         <div className={styles.container}>
             {Children.map(children, (child) =>
                 isValidElement(child) && child.type === TabItem
@@ -17,7 +17,7 @@ const TabGroup = ({onChange, value, children}: Props) => {
                         ...child.props,
                         active: child.props.value === value,
                         onClick: () => {
-                            onChange(child.props.value)
+                            handleChange(child.props.value)
                         }
                     })
                     : null
