@@ -1,42 +1,80 @@
-.browse{
-    display: flex;
-    flex-direction: column;
-    padding: 16px;
-    gap: 8px;
+.browse {
+  display: flex;
+  flex-direction: column;
+  padding: 16px;
+  position: relative;
+
+  .tabs {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background: #121212;
+  }
+
 }
 
-.tracks{
+.tracks {
+  th {
+    top: 48px;
+    position: sticky;
+  }
 }
-.container{
+
+.container {
+  display: grid;
+  grid-auto-rows: min-content;
+  margin-top: 16px;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+}
+
+.preview {
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  row-gap: 100px;
+  height: 220px;
+  overflow: hidden;
+}
+
+.all {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+
+  .songs {
+    height: 400px;
+    overflow-y: scroll;
+
+    th {
+      top: 0;
+    }
+
+    tb {
+      overflow-y: scroll;
+    }
+  }
+
+  &__songs {
     display: grid;
-    grid-auto-rows: min-content;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-}
-.preview{
-    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-}
-.all{
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
+    grid-template-columns: 1fr 1.5fr;
+  }
 
+  &__playlists {
 
-    &__songs{
+  }
 
+  &__albums {
+
+  }
+
+  &__artists {
+
+  }
+
+  .title {
+    margin-bottom: 8px;
+
+    &:hover {
+      text-decoration: underline;
     }
-    &__playlists{
-
-    }
-    &__albums{
-
-    }
-    &__artists{
-
-    }
-    .title{
-        &:hover{
-            text-decoration: underline;
-        }
-    }
+  }
 
 }
