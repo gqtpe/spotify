@@ -42,7 +42,7 @@ export const Browse = () => {
     }, [])
 
     return <div className={styles.browse}>
-        <TabGroup value={activeTab} onChange={handleChange}>
+        <TabGroup value={activeTab} handleChange={handleChange} className={styles.tabs}>
             {tabItems}
         </TabGroup>
         <Outlet/>
