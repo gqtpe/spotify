@@ -12,6 +12,7 @@ import 'mantine-react-table/styles.css';
 import {FaRegClock} from "react-icons/fa";
 import {useAppSelector} from "../../../Application/hooks";
 
+
 const Tracks = () => {
     const tracks = useAppSelector(browseSelectors.selectTracks)
     const columns = useMemo<MRT_ColumnDef<Track>[]>(
@@ -20,6 +21,7 @@ const Tracks = () => {
                 accessorKey: 'name',
                 header: 'Title',
                 index: 1,
+                grow: true,
 
                 Cell: ({row, renderedCellValue}) => (
                     <div style={{display: 'flex', alignItems: 'center', gap: '8px'}}>
@@ -44,22 +46,24 @@ const Tracks = () => {
                 accessorKey: 'album.name',
                 header: 'Album',
                 index: 2,
-                enableSorting: false
+                enableSorting: false,
+                grow: true,
 
             },
             {
-                accessorFn: (track)=> {
+                accessorFn: (track) => {
                     const minute = Math.floor(track.duration_ms / 60000)
                     let second = Math.floor((track.duration_ms / 1000) % 60) + ''
                     if (second.length === 1) {
                         second = '0' + second
                     }
-                    return <Typography variant={'caption'}>{minute+ ':' + second}</Typography>
+                    return <Typography variant={'caption'}>{minute + ':' + second}</Typography>
                 },
-                Header: <FaRegClock />,
-                header:  '',
+                Header: <FaRegClock/>,
+                header: '',
                 id: 'header',
                 enableSorting: false,
+                size: 30,
             }
         ],
         [],
@@ -71,11 +75,21 @@ const Tracks = () => {
         enableRowNumbers: true,
         enablePagination: false,
         enableStickyHeader: true,
-mantineTableHeadProps: {
+
+        mantineTableHeadProps: {
             style: {
-                '--mrt-base-background-color': '#1f1f1f'
+                '--mrt-base-background-color': '#1f1f1f',
+                '--table-vertical-spacing': '4px',
+
             }
-}
+        },
+        mantineTableBodyProps: {
+            style: {
+                '--table-vertical-spacing': '4px',
+            },
+        },
+
+
     })
     if (!tracks) {
         return <div>...</div>
@@ -83,7 +97,7 @@ mantineTableHeadProps: {
 
     return (
         <div className={styles.tracks}>
-            <MRT_Table table={table} style={{'--mrt-base-background-color': 'transparent'}}/>
+            <MRT_Table table={table} style={{'--mrt-base-background-color': 'transparent', '--table-border-color': 'transparent'}} />
 
         </div>
     );
