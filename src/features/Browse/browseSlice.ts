@@ -35,11 +35,11 @@ const slice = createSlice(
             setActiveTab(state, action: PayloadAction<Tabs>) {
                 state.activeTab = action.payload
             },
+            clearItems(state) {
+                state.items = {}
+            }
         },
         extraReducers: (builder) => {
-            builder.addCase(browse.pending, (state) => {
-                state.items = {}
-            })
             builder
                 .addCase(browse.fulfilled, (state, action) => {
                     state.items = {...state.items, ...action.payload}
