@@ -1,5 +1,6 @@
 import axios from "axios";
 import {PlayerBackState} from "../features/Player";
+import {DetailedItemType} from "../features/Details/Details.tsx";
 
 const spotifyAPIInstance = axios.create({
     baseURL: 'https://api.spotify.com/v1/', // ваш базовый URL для Spotify API
@@ -15,7 +16,7 @@ export interface SpotifyTokenResponse {
     expires_in: number;
     refresh_token: string;
 }
-
+//todo:  move types to separate files by type
 
 const tokenServiceInstance = axios.create({
     baseURL: 'https://accounts.spotify.com/'
@@ -216,6 +217,7 @@ export type Track = {
     href: string
     id: string
     is_playable: boolean //is playable in the given market
+    linked_from: { external_urls: External_Urls; href: string; id: string; type: string; uri: string }
     restrictions: Restrictions
     name: string
     popularity: number
@@ -223,6 +225,7 @@ export type Track = {
     track_number: number
     type: 'track'
     uri: string
+    is_local: boolean
 }
 
 //album
@@ -243,7 +246,7 @@ export interface Album {
     total_tracks: number
     type: 'album'
     uri: string
-
+    tracks: ResponseType<SimplifiedTrack[]>
 }
 
 export type SavedAlbumObject = {
@@ -296,12 +299,22 @@ export type Playlist = {
     }
     public: boolean
     snapshot_id: string
-    tracks: {
-        href: string
-        total: number
-    }
+    tracks: ResponseType<PlaylistTrackObject[]>
     type: 'playlist'
     uri: string
+}
+export type PlaylistTrackObject = {
+    added_at: string
+    added_by: {
+        external_urls: External_Urls
+        href: string
+        id: string
+        type: 'user'
+        uri: string
+    }
+    is_local: boolean
+    primary_color: string
+    track: Track | Episode
 }
 //user
 export type User = {
@@ -335,7 +348,7 @@ export type SearchResult = {
     artists?: ResponseType<Artist[]>
     audiobooks?: ResponseType<Audiobook[]>
     episodes?: ResponseType<Episode[]>
-    playlists?: ResponseType<Playlist[]>
+    playlists?: ResponseType<SimplifiedPlaylist[]>
     shows?: ResponseType<Shows[]>
     tracks?: ResponseType<Track[]>
 }
