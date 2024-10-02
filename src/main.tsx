@@ -11,6 +11,7 @@ import Callback from "./features/callback/Callback.tsx";
 import {AllPage, Browse, browseSelectors, Tracks} from "./features/Browse";
 import './index.scss'
 import Cards from './common/components/Cards/Cards.tsx';
+import Details from "./features/Details/Details.tsx";
 
 
 const router = createBrowserRouter([
@@ -25,6 +26,10 @@ const router = createBrowserRouter([
             {
                 path: 'home',
                 element: <RequireAuth><Home/></RequireAuth>,
+            },
+            {
+                path: '/:type/:id',
+                element: <RequireAuth><Details/></RequireAuth>,
             },
             {
                 path: '/search',
@@ -63,6 +68,7 @@ const router = createBrowserRouter([
 
                 ]
             }
+
         ]
     },
     {
@@ -75,6 +81,12 @@ const router = createBrowserRouter([
     }
 
 ])
+export const AuthProvider = ({children}) => {
+
+    return (
+        {children}
+    );
+};
 
 
 createRoot(document.getElementById('root')!).render(
