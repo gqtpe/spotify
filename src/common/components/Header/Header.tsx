@@ -16,7 +16,6 @@ export const Header = () => {
         <Search
             width={25}
             placeholder={'What do you want to play?'}
-            bindToAddressBar={true}
             onFocus={onFocus}
             value={value}
             onChange={onChange}
