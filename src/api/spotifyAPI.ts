@@ -75,6 +75,9 @@ export const spotifyAPI = {
     async getPlaybackState() {
         return await spotifyAPIInstance.get<PlayerBackState>('me/player')
     },
+    async getDetailedItem(id: string, type: DetailedItemType) {
+        return await spotifyAPIInstance.get<Playlist|Artist|Album|Track>(`${type}s/${id}`)
+    },
     //==========
     //==========search
     async search(tab: string, query: string) {
