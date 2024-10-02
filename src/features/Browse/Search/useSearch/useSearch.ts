@@ -10,21 +10,20 @@ export const useSearch = (navigate: ReturnType<typeof useNavigate>) =>{
     const [value, setValue] = useState('')
     const [timeoutId, setTimeoutId] = useState<ReturnType<typeof setTimeout> | null>(null)
     const activeTab = useAppSelector(state => state.browse.activeTab)
-    const {browse} = useActions(browseActions)
+    const {browse,clearItems} = useActions(browseActions)
     //
     const onChange = useCallback((e: ChangeEvent<HTMLInputElement>) => {
-        const activeTab = location.pathname.split('/')[3] // all tab not shown in address bar
+         // all tab not shown in address bar
         const query = e.target.value
-
-        if (!query && activeTab) {
+        if(!query){
             navigate('/search/')
-        } else {
-            navigate(`/search/${query}${activeTab ? '/' + activeTab : ''}`);
         }
+
         setValue(query)
     }, [location.pathname, navigate])
 
     const handleSearch = useCallback((query: string) => {
+        if(!query) return
         browse({query, tab: activeTab})
     }, [browse, activeTab])
 
@@ -39,11 +38,11 @@ export const useSearch = (navigate: ReturnType<typeof useNavigate>) =>{
         if (location.pathname.includes('/search')) {
             const query = location.pathname.split('/')[2]
             if (query) {
-                setValue(query)
+                setValue(query.replace('%20', ' '))
             }
 
         }
-    }, [location.pathname])
+    }, [])
 
     useEffect(() => {
         if (value) {
@@ -51,6 +50,8 @@ export const useSearch = (navigate: ReturnType<typeof useNavigate>) =>{
                 clearTimeout(timeoutId)
             }
             const newTimeoutId = setTimeout(() => {
+                clearItems();
+                navigate(`/search/${value}${activeTab !== 'all' ? '/' + activeTab : ''}`);
                 handleSearch(value)
                 // browse({query: value, tab: activeTab})
             }, 1000)
@@ -61,8 +62,10 @@ export const useSearch = (navigate: ReturnType<typeof useNavigate>) =>{
                 clearTimeout(timeoutId)
             }
         }
-    }, [value, handleSearch])
-
+    }, [value])
+    useEffect(()=>{
+        handleSearch(value)
+    },[activeTab])
 
     return {value, onChange, onFocus}
 }
