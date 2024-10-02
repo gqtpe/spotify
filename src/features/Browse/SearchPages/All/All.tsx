@@ -5,13 +5,16 @@ import Cards from "../../../../common/components/Cards/Cards.tsx";
 import styles from '../../Browse.module.scss'
 
 
-
-
-const AllPage: FC = () =>{
+const AllPage: FC = () => {
     return <div className={styles.all}>
         <div className={styles.all__songs}>
-            <Typography variant="h4" className={styles.title}>Songs</Typography>
-            <Tracks/>
+            <div>
+                <Typography variant="h4" className={styles.title}>Top result</Typography>
+            </div>
+            <div className={styles.songs}>
+                <Typography variant="h4" className={styles.title}>Songs</Typography>
+                <Tracks/>
+            </div>
         </div>
         <div className={styles.all__playlists}>
             <Typography variant="h4" className={styles.title}>Playlists</Typography>

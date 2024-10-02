@@ -4,7 +4,6 @@ import { FiSearch } from "react-icons/fi";
 
 type Props = DetailedHTMLProps<InputHTMLAttributes<HTMLInputElement>, HTMLInputElement> & {
     width: number
-    bindToAddressBar?: boolean
 }
 
 const Search = ({width, ...rest}: Props) => {
@@ -18,7 +17,6 @@ const Search = ({width, ...rest}: Props) => {
     return (
         <div className={styles.search} style={{width: `${width * 16}px`}}>
             <FiSearch id="search-icon" className={styles.icon}/>
-
             <input
                 type="text"
                 {...rest}
