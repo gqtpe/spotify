@@ -328,13 +328,13 @@ export type User = {
 }
 //search
 export type SearchResult = {
-    albums: ResponseType<SimplifiedAlbum[]>
-    artists: ResponseType<Artist[]>
-    audiobooks: ResponseType<Audiobook[]>
-    episodes: ResponseType<Episode[]>
-    playlists: ResponseType<Playlist[]>
-    shows: ResponseType<Shows[]>
-    tracks: ResponseType<Track[]>
+    albums?: ResponseType<SimplifiedAlbum[]>
+    artists?: ResponseType<Artist[]>
+    audiobooks?: ResponseType<Audiobook[]>
+    episodes?: ResponseType<Episode[]>
+    playlists?: ResponseType<Playlist[]>
+    shows?: ResponseType<Shows[]>
+    tracks?: ResponseType<Track[]>
 }
 //artist
 export type Artist = {
