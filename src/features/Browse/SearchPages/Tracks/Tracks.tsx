@@ -11,10 +11,12 @@ import '@mantine/dates/styles.css';
 import 'mantine-react-table/styles.css';
 import {FaRegClock} from "react-icons/fa";
 import {useAppSelector} from "../../../Application/hooks";
+import {useNavigate} from "react-router-dom";
 
 
 const Tracks = () => {
     const tracks = useAppSelector(browseSelectors.selectTracks)
+    const navigate = useNavigate()
     const columns = useMemo<MRT_ColumnDef<Track>[]>(
         () => [
             {
@@ -75,7 +77,14 @@ const Tracks = () => {
         enableRowNumbers: true,
         enablePagination: false,
         enableStickyHeader: true,
-
+        mantineTableBodyRowProps: ({ row }) => ({
+            onClick: () => {
+               navigate(`/track/${row.original.id}`)
+            },
+            style: {
+                cursor: 'pointer', //you might want to change the cursor too when adding an onClick
+            },
+        }),
         mantineTableHeadProps: {
             style: {
                 '--mrt-base-background-color': '#1f1f1f',
