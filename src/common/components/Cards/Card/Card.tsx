@@ -9,9 +9,10 @@ type PlaylistProps = DetailsHTMLAttributes<HTMLDivElement> & {
     subtitle: string
     image: string
     round?: boolean
+    variant?: 'large'| 'default'| 'small'
 }
-
-const Card: FC<PlaylistProps> = ({title, subtitle, image, round, ...rest}) => {
+//todo: variants
+const Card: FC<PlaylistProps> = ({title, subtitle, image, round,variant='default', ...rest}) => {
 
     const cutTitle = title.length > 30 ? title.slice(0, 30) + '...' : title
 
