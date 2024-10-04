@@ -82,7 +82,7 @@ const columns = [
         header: () => <span>#</span>,
         id: 'rowNumber',
         width: 30,
-        cell: (info) => info.row.index + 1,
+        cell: (info: any) => info.row.index + 1,
     },
     {
         accessorKey: 'firstName',

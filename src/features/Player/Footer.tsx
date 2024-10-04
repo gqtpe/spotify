@@ -2,7 +2,7 @@ import {FC} from "react";
 import styles from "./Footer.module.scss";
 import {useAppSelector} from "../Application/hooks";
 import {AppRootStateType} from "../Application/types.ts";
-import {SimpleCard} from "../../common/components/SimpleCard/SimpleCard.tsx";
+import {SimpleCard} from "../../common/components/Cards/SimpleCard/SimpleCard.tsx";
 
 const selectPlayerItem = (state: AppRootStateType) => state.player.item
 export const Footer: FC = () => {
