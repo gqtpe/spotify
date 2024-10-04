@@ -1,6 +1,6 @@
 import {DetailedHTMLProps, FC, HTMLAttributes} from "react";
 import styles from './SimpleCard.module.scss'
-import Typography from "../Typography/Typography.tsx";
+import Typography from "../../Typography/Typography.tsx";
 
 type Props = DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> & {
     img: string
@@ -9,7 +9,7 @@ type Props = DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> &
 }
 
 
-//todo: story, layout, playbutton
+//todo: story, layout, playbutton, merge with card and do variant(small, medium large) card
 export const SimpleCard: FC<Props> = ({img, title, subtitle,className,  ...rest}) =>{
     return <div className={[styles.card, className].join(' ')} {...rest}>
         <div className={styles.card__img}><img src={img} alt="card-image"/></div>
