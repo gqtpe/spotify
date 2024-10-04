@@ -1,6 +1,5 @@
 import {createRoot} from 'react-dom/client'
 import {Provider} from "react-redux";
-import {MantineProvider} from "@mantine/core";
 import {store} from "./app/store.ts";
 import App from "./app/App.tsx";
 import {createBrowserRouter, Navigate, Outlet, RouterProvider} from "react-router-dom";
@@ -8,7 +7,7 @@ import {Login} from "./features/Auth";
 import {RequireAuth} from "./common/hoc/RequireAuth.tsx";
 import {Home} from "./features/Home/Home.tsx";
 import Callback from "./features/callback/Callback.tsx";
-import {AllPage, Browse, browseSelectors, Tracks} from "./features/Browse";
+import {AllPage, Browse, browseSelectors, BrowseStart, Tracks} from "./features/Browse";
 import './index.scss'
 import Cards from './common/components/Cards/Cards.tsx';
 import Details from "./features/Details/Details.tsx";
@@ -37,7 +36,7 @@ const router = createBrowserRouter([
                 children: [
                     {
                         index: true,
-                        element: <div>Start searching please BOOOOM</div>
+                        element:<BrowseStart/>
                     },
                     {
                         path: '/search/:query',
@@ -81,18 +80,12 @@ const router = createBrowserRouter([
     }
 
 ])
-export const AuthProvider = ({children}) => {
-
-    return (
-        {children}
-    );
-};
 
 
 createRoot(document.getElementById('root')!).render(
     <Provider store={store}>
-        <MantineProvider forceColorScheme={'dark'}>
+        {/*<MantineProvider forceColorScheme={'dark'}>*/}
             <RouterProvider router={router}/>
-        </MantineProvider>
+        {/*</MantineProvider>*/}
     </Provider>
 )
