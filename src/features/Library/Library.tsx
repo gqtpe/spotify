@@ -6,7 +6,7 @@ import {IoIosArrowForward, IoMdAdd} from "react-icons/io";
 import TabItem from "../../common/components/TabGroup/TabItem/TabItem.tsx";
 import TabGroup from "../../common/components/TabGroup/TabGroup.tsx";
 import {RxCross2} from "react-icons/rx";
-import {SimpleCard} from "../../common/components/SimpleCard/SimpleCard.tsx";
+import {SimpleCard} from "../../common/components/Cards/SimpleCard/SimpleCard.tsx";
 import {useActions, useAppSelector} from "../Application/hooks";
 import {userLibraryActions, userLibrarySelectors} from "./index.ts";
 
