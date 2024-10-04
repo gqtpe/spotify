@@ -1,9 +1,8 @@
 .browse {
   display: flex;
   flex-direction: column;
-  padding: 16px;
-  position: relative;
-
+  padding: 16px 16px 0 16px;
+  height:100%;
   .tabs {
     position: sticky;
     top: 0;
@@ -13,11 +12,10 @@
 
 }
 
-.tracks {
-  th {
-    top: 48px;
-    position: sticky;
-  }
+.tracks, .all {
+}
+.tracks{
+  flex-grow: 1;
 }
 
 .container {
@@ -77,4 +75,8 @@
     }
   }
 
+}
+
+.startPage {
+  padding: 0 20px;
 }
