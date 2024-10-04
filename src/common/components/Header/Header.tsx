@@ -6,11 +6,10 @@ import {GoHomeFill} from "react-icons/go";
 
 export const Header = () => {
     const navigate = useNavigate()
-
     const {value, onChange, onFocus} = useSearch(navigate)
     const handleClick = useCallback(() => {
         navigate('/')
-    }, [navigate])
+    }, [])
     return <header className="header">
         <Badge variant="filled" onClick={handleClick}><GoHomeFill/></Badge>
         <Search
