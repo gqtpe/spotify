@@ -1,5 +1,6 @@
 import {FC} from "react";
-import {type Artist} from "../../../api/spotifyAPI.ts";
+
+import type {Artist} from "../../../api/types/artist.ts";
 
 
 const Artist: FC<{ item: Artist }> = ({item}) => {

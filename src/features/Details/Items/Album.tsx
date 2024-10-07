@@ -1,5 +1,6 @@
 import {FC} from "react";
-import {type Album} from "../../../api/spotifyAPI.ts";
+
+import type {Album} from "../../../api/types/album.ts";
 
 
 const Album: FC<{ item: Album }> = ({item}) => {
@@ -11,7 +12,7 @@ const Album: FC<{ item: Album }> = ({item}) => {
 
             <img src={item.images[0]?.url} alt={item?.name}/>
             <ul>
-                {item.tracks.items.map((track) => (
+                {item.tracks.items.map(track => (
                     <li key={track.id}>
                         {track.name} by {track.type === 'track' && track.artists[0].name}
                     </li>
