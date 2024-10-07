@@ -3,7 +3,9 @@
 
 
 interface External_Urls { [key: string]: string }
-
+interface External_Ids {
+    [key: string]: string
+}
 interface Restrictions {
     reason: 'market' | 'product' | 'explicit'
 }
@@ -34,11 +36,18 @@ type ResponseType<T> = {
     total: number
 }
 
+type AvailableMarkets = string[]
+
+type ReleaseDatePrecision = 'year' | 'month' | 'day'
+
 export type {
     External_Urls,
     Restrictions,
     LinkedFrom,
     Images,
     Copyrights,
-    ResponseType
+    ResponseType,
+    AvailableMarkets,
+    ReleaseDatePrecision,
+    External_Ids
 }
