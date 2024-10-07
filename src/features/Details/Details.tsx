@@ -1,17 +1,17 @@
 import {FC, useEffect, useState} from "react";
 import {useParams} from "react-router-dom";
 import {
-    type Album as AlbumType,
-    type Artist as ArtistType,
-    type Playlist as PlaylistType,
-    spotifyAPI,
-    type Track as TrackType
+    spotifyAPI
 } from "../../api/spotifyAPI.ts";
 import {AxiosError} from "axios";
 import Playlist from "./Items/Playlist.tsx";
 import Album from "./Items/Album.tsx";
 import Artist from "./Items/Artist.tsx";
 import Track from "./Items/Track.tsx"
+import type {Album as AlbumType} from "../../api/types/album.ts";
+import type {Artist as ArtistType} from "../../api/types/artist.ts";
+import type {Playlist as PlaylistType} from "../../api/types/playlist.ts";
+import type {Track as TrackType} from "../../api/types/track.ts";
 
 export type DetailedItemType = 'album' | 'playlist' | 'track' | 'artist';
 const Details: FC = () => {
@@ -24,7 +24,6 @@ const Details: FC = () => {
         const fetchItem = async () => {
             try {
                 if (params.type && params.id) {
-                    debugger;
                     const response = await spotifyAPI.getDetailedItem(params.id, params.type);
                     setItem(response.data);
                 }
@@ -37,7 +36,7 @@ const Details: FC = () => {
             }
         };
         fetchItem();
-    }, [params.id]);
+    }, [params.id, params.type]);
     if (loading) {
         return <div>Loading...</div>;
     }
@@ -47,10 +46,10 @@ const Details: FC = () => {
     }
     return (
         <div>
-            {params.type === 'playlist' && <Playlist item={item}/>}
-            {params.type === 'album' && <Album item={item}/>}
-            {params.type === 'artist' && <Artist item={item}/>}
-            {params.type === 'track' && <Track item={item}/>}
+            {params.type === 'playlist' && <Playlist item={item as PlaylistType}/>}
+            {params.type === 'album' && <Album item={item as AlbumType}/>}
+            {params.type === 'artist' && <Artist item={item as ArtistType}/>}
+            {params.type === 'track' && <Track item={item as TrackType}/>}
         </div>
     );
 };
