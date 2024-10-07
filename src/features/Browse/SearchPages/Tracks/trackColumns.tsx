@@ -1,8 +1,8 @@
 import {ColumnDef} from "@tanstack/react-table";
-import {Track} from "../../../../api/spotifyAPI.ts";
 import Typography from "../../../../common/components/Typography/Typography.tsx";
 import {MdExplicit} from "react-icons/md";
 import {FaRegClock} from "react-icons/fa";
+import {Track} from "../../../../api/types/track.ts";
 
 export const trackColumns: ColumnDef<Track>[] = [
     {
