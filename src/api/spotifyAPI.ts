@@ -1,6 +1,11 @@
 import axios from "axios";
 import {PlayerBackState} from "../features/Player";
 import {DetailedItemType} from "../features/Details/Details.tsx";
+import {Copyrights, External_Urls, Images, ResponseType, Restrictions} from "./types/common.ts";
+import {SimplifiedTrack, Track} from "./types/track.ts";
+import {Album, SimplifiedAlbum} from "./types/album.ts";
+import {Artist} from "./types/artist.ts";
+import {Playlist, SimplifiedPlaylist} from "./types/playlist.ts";
 
 const spotifyAPIInstance = axios.create({
     baseURL: 'https://api.spotify.com/v1/', // ваш базовый URL для Spotify API
@@ -16,7 +21,7 @@ export interface SpotifyTokenResponse {
     expires_in: number;
     refresh_token: string;
 }
-//todo:  move types to separate files by type
+//todo:  move remaining types to separate files
 
 const tokenServiceInstance = axios.create({
     baseURL: 'https://accounts.spotify.com/'
@@ -65,7 +70,7 @@ export const spotifyAPI = {
         return await spotifyAPIInstance.get<ResponseType<SimplifiedPlaylist[]>>('me/playlists')
     },
     async getSavedAlbums() {
-        return await spotifyAPIInstance.get<ResponseType<{added_at:string; album: SavedAlbumObject}[]>>('me/albums')
+        return await spotifyAPIInstance.get<ResponseType<{added_at:string; album: Album}[]>>('me/albums')
     },
     async getSavedArtists() {
         return await spotifyAPIInstance.get<ResponseType<Artist[]>>('me/following?type=artist')
@@ -86,262 +91,7 @@ export const spotifyAPI = {
     }
 }
 
-type ResponsePaginationUrl = null | string
-export type ResponseType<T> = {
-    href: string
-    items: T
-    limit: number
-    next: ResponsePaginationUrl
-    offset: number
-    previous: ResponsePaginationUrl
-    total: number
-}
-//common
-export type Restrictions = {
-    reason: 'market' | 'product' | 'explicit'
-}
-export type External_Urls = { [key: string]: string };
-export type Images = {
-    height: number
-    url: string
-    width: number
-}[]
-export type Copyrigths = {
-    text: string
-    type: string
-}[]
-export type SimplifiedArtist = {
-    external_urls: External_Urls
-    href: string
-    id: string
-    name: string
-    type: 'artist'
-    uri: string
-}
-export type SimplifiedUser = {
-    display_name: string
-    external_urls: External_Urls
-    href: string
-    id: string
-    type: 'user'
-    uri: string
-}
-export type SimplifiedPlaylist = {
-    collaborative: boolean
-    description: string
-    external_urls: External_Urls
-    href: string
-    id: string
-    images: Images
-    name: string
-    owner: SimplifiedUser
-    primary_color: null
-    public: boolean
-    snapshot_id: string
-    tracks: { href: string; total: number }
-    type: 'playlist'
-    uri: string
-}
-export type SimplifiedTrack = {
-    artists: SimplifiedArtist[]
-    available_markets: string[]
-    disc_number: number
-    duration_ms: number
-    explicit: boolean
-    external_urls: External_Urls
-    href: string
-    id: string
-    is_playable: string
-    linked_from: { external_urls: External_Urls; href: string; id: string; type: string; uri: string }
-    restrictions: Restrictions
-    name: string
-    preview_url: string
-    track_number: number
-    type: 'track'
-    uri: string
-    is_local: boolean
-}
-export interface SimplifiedAlbum {
-    album_type: AlbumType
-    total_tracks: number
-    availableMarkets: string[]
-    external_urls: External_Urls
-    href: string //a link to get full details
-    id: string,
-    images: {
-        url: string
-        height: number
-        width: number
-    }[]
-    name: string
-    release_date: string //"1981-12"
-    release_date_precision: 'day' | 'year' | 'month'
-    restrictions: Restrictions
-    type: 'album'
-    uri: string
-    artists: SimplifiedArtist[]
-}
-export type SimplifiedChapter = {
-    audio_preview_url: string
-    available_markets: string[]
-    chapter_number: number
-    description: string
-    html_description: string
-    duration_ms: number
-    explicit: boolean
-    id: string
-    images: Images
-    is_playable: boolean
-    languages: string[]
-    name: string
-    release_date: string
-    release_date_precision: string
-    resume_point: {
-        fully_played: boolean
-        resume_position_ms: number
-    }
-    type: 'episode'
-    uri: string
-    restrictions: Restrictions
-}
-//track
-export type Track = {
-    album: Album
-    artists: SimplifiedArtist[]
-    availableMarkets: string[]
-    disc_number: number
-    duration_ms: number
-    explicit: boolean
-    external_ids: { [key: string]: string }
-    external_urls: External_Urls
-    href: string
-    id: string
-    is_playable: boolean //is playable in the given market
-    linked_from: { external_urls: External_Urls; href: string; id: string; type: string; uri: string }
-    restrictions: Restrictions
-    name: string
-    popularity: number
-    preview_url: string | null
-    track_number: number
-    type: 'track'
-    uri: string
-    is_local: boolean
-}
 
-//album
-type AlbumType = 'album' | 'single' | 'compilation'
-
-export interface Album {
-    album_type: string
-    artists: SimplifiedArtist[]
-    available_markets: string[]
-    external_urls: External_Urls
-    href: string
-    id: string
-    images: Images
-    name: string
-    release_date: string
-    release_date_precision: string
-    restrictions: Restrictions
-    total_tracks: number
-    type: 'album'
-    uri: string
-    tracks: ResponseType<SimplifiedTrack[]>
-}
-
-export type SavedAlbumObject = {
-    album_type: AlbumType
-    artists: SimplifiedArtist[]
-    available_markets: string[]
-    copyrights: Copyrigths
-    external_ids: {
-        [key: string]: string
-    }
-    external_urls: External_Urls
-    genres: string[]
-    href: string
-    id: string
-    images: Images
-    label: string
-    name: string
-    popularity: number
-    release_date: string
-    release_date_precision: string
-    total_tracks: number
-    tracks: ResponseType<SimplifiedTrack[]>
-    type: 'album'
-    uri: string
-}
-//playlist
-export type Playlist = {
-    collaborative: boolean
-    description: string
-    external_urls: External_Urls
-    followers: {
-        href: string
-        total: number
-    }
-    href: string
-    id: string
-    images: Images
-    name: string
-    owner: {
-        external_urls: External_Urls
-        followers: {
-            href: string
-            total: number
-        }
-        href: string
-        id: string
-        type: 'user'
-        uri: string
-        display_name: string
-    }
-    public: boolean
-    snapshot_id: string
-    tracks: ResponseType<PlaylistTrackObject[]>
-    type: 'playlist'
-    uri: string
-}
-export type PlaylistTrackObject = {
-    added_at: string
-    added_by: {
-        external_urls: External_Urls
-        href: string
-        id: string
-        type: 'user'
-        uri: string
-    }
-    is_local: boolean
-    primary_color: string
-    track: Track | Episode
-}
-//user
-export type User = {
-    country: string
-    display_name: string
-    email: string
-    explicit_content: {
-        filter_enabled: boolean
-        filter_locked: boolean
-    }
-    external_urls: External_Urls
-    followers: {
-        href: string
-        total: number
-    }
-
-    href: string
-    id: string
-    images: {
-        url: string
-        height: number
-        width: number
-    }[]
-    product: string
-    type: 'user'
-    uri: string
-}
 //search
 export type SearchResult = {
     albums?: ResponseType<SimplifiedAlbum[]>
@@ -350,33 +100,74 @@ export type SearchResult = {
     episodes?: ResponseType<Episode[]>
     playlists?: ResponseType<SimplifiedPlaylist[]>
     shows?: ResponseType<Shows[]>
-    tracks?: ResponseType<Track[]>
+    tracks?: ResponseType<SimplifiedTrack[]>
 }
-//artist
-export type Artist = {
-    external_urls: External_Urls
-    followers: {
-        href: string
-        total: number
-    }
-    genres: string[]
-    href: string
-    id: string
-    images: {
-        url: string
-        height: number
-        width: number
-    }[]
-    name: string
-    popularity: number
-    type: 'artist'
-    uri: string
+//common
+
+export type SimplifiedUser = {
+display_name: string
+external_urls: External_Urls
+href: string
+id: string
+type: 'user'
+uri: string
+}
+export type SimplifiedChapter = {
+audio_preview_url: string
+available_markets: string[]
+chapter_number: number
+description: string
+html_description: string
+duration_ms: number
+explicit: boolean
+id: string
+images: Images
+is_playable: boolean
+languages: string[]
+name: string
+release_date: string
+release_date_precision: string
+resume_point: {
+fully_played: boolean
+resume_position_ms: number
+}
+type: 'episode'
+uri: string
+restrictions: Restrictions
+}
+
+
+//user
+export type User = {
+country: string
+display_name: string
+email: string
+explicit_content: {
+filter_enabled: boolean
+filter_locked: boolean
+}
+external_urls: External_Urls
+followers: {
+href: string
+total: number
+}
+
+href: string
+id: string
+images: {
+url: string
+height: number
+width: number
+}[]
+product: string
+type: 'user'
+uri: string
 }
 //audiobooks
 export type Audiobook = {
     authors: { name: string }[]
     available_markets: string[]
-    copyrights: Copyrigths
+    copyrights: Copyrights
     description: string
     html_description: string
     edition: string
@@ -434,7 +225,7 @@ export type Episode = {
 //shows
 export type Shows = {
     available_markets: string[]
-    copyrights: Copyrigths
+    copyrights: Copyrights
     description: string
     explicit: boolean
     external_urls: External_Urls
