@@ -1,10 +1,13 @@
 import {FC} from "react";
 import {useAppSelector} from "../../../features/Application/hooks";
 import styles from '../../../features/Browse/Browse.module.scss'
-import type {Artist, ResponseType, SimplifiedAlbum, SimplifiedPlaylist} from "../../../api/spotifyAPI.ts";
+import type {ResponseType} from "../../../api/spotifyAPI.ts";
 import {AppRootStateType} from "../../../features/Application/types.ts";
 import Card from "./Card/Card.tsx";
 import {useNavigate} from "react-router-dom";
+import {SimplifiedAlbum} from "../../../api/types/album.ts";
+import {Artist} from "../../../api/types/artist.ts";
+import {SimplifiedPlaylist} from "../../../api/types/playlist.ts";
 
 type CardsProps = {
     selector: (state: AppRootStateType) => ResponseType<SimplifiedPlaylist[] | Artist[] | SimplifiedAlbum[]> | undefined
