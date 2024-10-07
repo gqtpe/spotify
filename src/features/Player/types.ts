@@ -1,4 +1,5 @@
-import {Episode, Track} from "../../api/spotifyAPI.ts";
+import {Episode} from "../../api/spotifyAPI.ts";
+import {Track} from "../../api/types/track.ts";
 
 type RepeatState = 'off' | 'track' | 'context';
 interface PlayerBackState {
