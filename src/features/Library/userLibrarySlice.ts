@@ -1,8 +1,10 @@
 import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
-import {SavedAlbumObject, SimplifiedPlaylist, spotifyAPI} from "../../api/spotifyAPI.ts";
+import {spotifyAPI} from "../../api/spotifyAPI.ts";
+import type {Album} from "../../api/types/album.ts";
+import {SimplifiedPlaylist} from "../../api/types/playlist.ts";
 
 
-const fetchUserLibrary = createAsyncThunk<Array<SimplifiedPlaylist | SavedAlbumObject>>('userLibrary/fetchUserLibrary', async (_, thunkAPI) => {
+const fetchUserLibrary = createAsyncThunk<Array<SimplifiedPlaylist | Album>>('userLibrary/fetchUserLibrary', async (_, thunkAPI) => {
     try {
         const [r1, r2] = await Promise.all([
             spotifyAPI.getSavedPlaylists(),
@@ -24,7 +26,7 @@ type Filter = 'all' | 'playlist' | 'album'
 const slice = createSlice({
     name: 'userLibrary',
     initialState: {
-        items: [] as Array<SimplifiedPlaylist | SavedAlbumObject>,
+        items: [] as Array<SimplifiedPlaylist | Album>,
         filter: 'all' as Filter
     },
     reducers: {
