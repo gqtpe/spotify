@@ -1,6 +1,6 @@
 import {FC} from "react";
-import type {Playlist} from "../../../api/spotifyAPI.ts";
-import {PlaylistTrackObject} from "../../../api/spotifyAPI.ts";
+
+import type {Playlist, PlaylistTrackObject} from "../../../api/types/playlist.ts";
 
 
 const Playlist: FC<{ item: Playlist }> = ({item}) => {
