@@ -5,7 +5,7 @@ import {useSearch} from "./Search/useSearch/useSearch.ts";
 import Tracks from "./SearchPages/Tracks/Tracks.tsx";
 import * as browseSelectors from "./selectors.ts"
 import AllPage from "./SearchPages/All/All.tsx";
-import { BrowseStart } from "./BrowseStart.tsx";
+import { BrowseStart } from "./SearchPages/StartPage/BrowseStart.tsx";
 
 
 const browseReducer = slice.reducer
