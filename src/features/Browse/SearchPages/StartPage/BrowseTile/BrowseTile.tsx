@@ -66,30 +66,26 @@ const ImageBackgroundDetector = ({
         const ctx = canvas.getContext("2d");
         const image = new Image();
         image.crossOrigin = "Anonymous"; // Allow CORS for the image
+
+        // Log the image URL to verify it's correct
         console.log("Loading image from URL:", imageUrl);
         image.src = imageUrl;
 
         image.onload = () => {
             ctx.drawImage(image, 0, 0, canvas.width, canvas.height);
-
             const pixelData = ctx.getImageData(0, 0, 1, 1).data; // Change (0, 0) to any other coordinates if needed
-
             const [red, green, blue] = pixelData;
-
             if(red>250 && green>250 || blue>250) return
             const hexCode = rgbToHex(red, green, blue);
-            onColorDetected(hexCode);
+            onColorDetected(hexCode); // Set the detected color in the parent component
             console.log("Background color:", hexCode);
         };
-
-
         image.onerror = () => {
             console.error("Failed to load image:", imageUrl);
-            onColorDetected("#ffffff"); // Set a default color if the image fails to load
+            onColorDetected("#7c6f6f");
         };
     }, [imageUrl, onColorDetected]);
 
-    // Helper function to convert RGB values to hex code
     const rgbToHex = (r: number, g: number, b: number) =>
         `#${((r << 16) | (g << 8) | b).toString(16).padStart(6, "0")}`;
 
