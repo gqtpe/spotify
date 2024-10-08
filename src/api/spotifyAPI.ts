@@ -6,6 +6,7 @@ import {SimplifiedTrack, Track} from "./types/track.ts";
 import {Album, SimplifiedAlbum} from "./types/album.ts";
 import {Artist} from "./types/artist.ts";
 import {Playlist, SimplifiedPlaylist} from "./types/playlist.ts";
+import {CategoryObject} from "./types/browseCategories.ts";
 
 const spotifyAPIInstance = axios.create({
     baseURL: 'https://api.spotify.com/v1/', // ваш базовый URL для Spotify API
@@ -61,8 +62,7 @@ export const spotifyAPI = {
     _setToken(token: string) {
         spotifyAPIInstance.defaults.headers.common['Authorization'] = `Bearer ${token}`
     },
-
-    //==========curr user
+    //==========me
     async getMe() {
         return await spotifyAPIInstance.get<User>('me');
     },
@@ -78,13 +78,17 @@ export const spotifyAPI = {
     async getSavedTracks() {
         return await spotifyAPIInstance.get<ResponseType<{added_at:string; track: Track}[]>>(`me/tracks`)
     },
+    //==========player
     async getPlaybackState() {
         return await spotifyAPIInstance.get<PlayerBackState>('me/player')
     },
     async getDetailedItem(id: string, type: DetailedItemType) {
         return await spotifyAPIInstance.get<Playlist|Artist|Album|Track>(`${type}s/${id}`)
     },
-    //==========
+    //==========browseCategory
+    async getBrowseCategories() {
+        return await spotifyAPIInstance.get<{categories: ResponseType<CategoryObject[]>}>('browse/categories')
+    },
     //==========search
     async search(tab: string, query: string) {
         return await spotifyAPIInstance.get<SearchResult>(`search?q=${query}&type=${tab}`)
