@@ -15,8 +15,10 @@ type PlaylistProps = DetailsHTMLAttributes<HTMLDivElement> & {
 const Card: FC<PlaylistProps> = ({title, subtitle, image, round,variant='default', ...rest}) => {
 
     const cutTitle = title.length > 30 ? title.slice(0, 30) + '...' : title
-
-    return <div className={styles.card} {...rest}>
+    const handleClick = useCallback(() => {
+        navigate(`/${type}/${cardID}`)
+    }, [cardID, type])
+    return <div className={styles.card} onClick={handleClick}>
         <div className={styles.card__image_wp}>
             {image ? <img className={[styles.image, round && styles.round].join(' ')} src={image} alt={'image'}/> :
                 <div className={[styles.image, round && styles.round, styles.icon].join(' ')}><IoMdMusicalNote/></div>}
