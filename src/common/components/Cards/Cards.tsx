@@ -42,8 +42,14 @@ const Cards: FC<CardsProps> = ({selector, preview}) => {
                         subTitle = 'artist'
                         break;
                 }
-                return <Card key={item.id} title={item.name} image={item.images[0].url} round={item.type === 'artist'}
-                             subtitle={subTitle} onClick={() => handleClick(item.type, item.id)}/>
+                return <Card
+                    key={item.id}
+                    cardID={item.id}
+                    type={item.type}
+                    title={item.name}
+                    image={item.images[0] ? item.images[0].url : null}
+                    round={item.type === 'artist'}
+                    subtitle={subTitle}/>
             })}
         </div>
     );
