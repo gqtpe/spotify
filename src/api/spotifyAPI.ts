@@ -85,6 +85,9 @@ export const spotifyAPI = {
     async getDetailedItem(id: string, type: DetailedItemType) {
         return await spotifyAPIInstance.get<Playlist|Artist|Album|Track>(`${type}s/${id}`)
     },
+    async getCategoryPlaylists(id: string) {
+        return await spotifyAPIInstance.get<{message:string, playlists: ResponseType<SimplifiedPlaylist[]>}>('browse/categories/' + id + '/playlists')
+    },
     //==========browseCategory
     async getBrowseCategories() {
         return await spotifyAPIInstance.get<{categories: ResponseType<CategoryObject[]>}>('browse/categories')
