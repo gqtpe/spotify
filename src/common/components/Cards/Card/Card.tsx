@@ -3,6 +3,7 @@ import styles from './Card.module.scss'
 import Typography from "../../Typography/Typography.tsx";
 import {IoMdMusicalNote, IoMdPlay} from "react-icons/io";
 import IconButton from "../../IconButton/IconButton.tsx";
+import {useNavigate} from "react-router-dom";
 
 type PlaylistProps = {
     title: string
@@ -14,7 +15,16 @@ type PlaylistProps = {
     variant?: 'large' | 'default' | 'small'
 }
 //todo: variants
-const Card: FC<PlaylistProps> = ({title, subtitle, image, round,variant='default', ...rest}) => {
+const Card: FC<PlaylistProps> = ({
+                                     title,
+                                     type,
+                                     cardID,
+                                     subtitle,
+                                     image,
+                                     round,
+                                     variant,
+                                 }) => {
+    const navigate = useNavigate()
 
     const cutTitle = title.length > 30 ? title.slice(0, 30) + '...' : title
     const handleClick = useCallback(() => {

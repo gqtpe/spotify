@@ -16,7 +16,7 @@ type CardsProps = {
 const Cards: FC<CardsProps> = ({selector, preview}) => {
     const item = useAppSelector(selector)
     //todo: process a case when the element does not have an image(throws error)
-    const navigate = useNavigate()
+
     if (!item) {
         return <div>loading</div>
     }
