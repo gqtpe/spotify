@@ -16,7 +16,7 @@ import type {Track as TrackType} from "../../api/types/track.ts";
 export type DetailedItemType = 'album' | 'playlist' | 'track' | 'artist';
 const Details: FC = () => {
     const params = useParams<{ id: string, type: DetailedItemType }>();
-    const [item, setItem] = useState<PlaylistType | ArtistType | TrackType | AlbumType | null>(null); // Adjust the type as needed
+    const [item, setItem] = useState<PlaylistType | ArtistType | TrackType | AlbumType | null>(null);
     const [loading, setLoading] = useState<boolean>(true);
     const [error, setError] = useState<string | null>(null);
 
@@ -27,7 +27,6 @@ const Details: FC = () => {
                     const response = await spotifyAPI.getDetailedItem(params.id, params.type);
                     setItem(response.data);
                 }
-
             } catch (err) {
                 const error = err as AxiosError
                 setError(error.message)
@@ -44,12 +43,22 @@ const Details: FC = () => {
     if (error) {
         return <div>{error}</div>;
     }
+    let detailItem;
+    switch (params.type) {
+        case 'playlist':
+            return <Playlist item={item as PlaylistType}/>
+        case 'album':
+            return <Album item={item as AlbumType}/>
+        case 'artist':
+            return <Artist item={item as ArtistType}/>
+        case 'track':
+            return <Track item={item as TrackType}/>
+    }
+
+
     return (
         <div>
-            {params.type === 'playlist' && <Playlist item={item as PlaylistType}/>}
-            {params.type === 'album' && <Album item={item as AlbumType}/>}
-            {params.type === 'artist' && <Artist item={item as ArtistType}/>}
-            {params.type === 'track' && <Track item={item as TrackType}/>}
+            {detailItem}
         </div>
     );
 };
