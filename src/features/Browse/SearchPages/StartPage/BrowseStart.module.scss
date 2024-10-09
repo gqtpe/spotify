@@ -8,13 +8,15 @@
 
   &__header {
     user-select: none;
+    padding-left: 8px;
+    padding-bottom: 12px;
   }
 
   &__tiles {
     flex-grow: 1;
     display: grid;
     gap: 24px;
-    padding: 12px;
+    padding: 8px;
     grid-template-columns: repeat(auto-fill, minmax(192px, 1fr));
     grid-auto-rows: minmax(120px, 148px);
   }
