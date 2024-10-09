@@ -6,10 +6,12 @@ import IconButton from "../../IconButton/IconButton.tsx";
 
 type PlaylistProps = {
     title: string
+    type: string
+    cardID: string
     subtitle: string
-    image: string
+    image: string | null
     round?: boolean
-    variant?: 'large'| 'default'| 'small'
+    variant?: 'large' | 'default' | 'small'
 }
 //todo: variants
 const Card: FC<PlaylistProps> = ({title, subtitle, image, round,variant='default', ...rest}) => {
