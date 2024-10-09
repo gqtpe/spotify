@@ -4,7 +4,7 @@ import Typography from "../../Typography/Typography.tsx";
 import {IoMdMusicalNote, IoMdPlay} from "react-icons/io";
 import IconButton from "../../IconButton/IconButton.tsx";
 
-type PlaylistProps = DetailsHTMLAttributes<HTMLDivElement> & {
+type PlaylistProps = {
     title: string
     subtitle: string
     image: string
