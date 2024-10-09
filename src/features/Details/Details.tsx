@@ -1,8 +1,6 @@
 import {FC, useEffect, useState} from "react";
 import {useParams} from "react-router-dom";
-import {
-    spotifyAPI
-} from "../../api/spotifyAPI.ts";
+import {spotifyAPI} from "../../api/spotifyAPI.ts";
 import {AxiosError} from "axios";
 import Playlist from "./Items/Playlist.tsx";
 import Album from "./Items/Album.tsx";
