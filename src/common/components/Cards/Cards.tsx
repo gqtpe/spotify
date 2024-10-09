@@ -23,9 +23,6 @@ const Cards: FC<CardsProps> = ({selector, preview}) => {
     if (item.items.length === 0) {
         return <div>no result founded</div>
     }
-    const handleClick = (type: string, id: string) => {
-        navigate(`/${type}/${id}`)
-    }
     return (
         <div className={styles.container + ' ' + (preview && styles.preview)}>
             {item.items.map(item => {
