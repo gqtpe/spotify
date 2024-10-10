@@ -3,13 +3,10 @@ import styles from './Card.module.scss'
 import Typography from "../../Typography/Typography.tsx";
 import {IoMdMusicalNote, IoMdPlay} from "react-icons/io";
 import IconButton from "../../IconButton/IconButton.tsx";
-import {useNavigate} from "react-router-dom";
+import {MdExplicit} from "react-icons/md";
 
 type PlaylistProps = {
     title: string
-    type: string
-    cardID: string
-    subtitle: string
     image: string | null
     subtitle: string
     variant?: 'default' | 'small'
