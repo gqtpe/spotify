@@ -51,7 +51,9 @@ const Cards: FC<CardsProps> = ({selector, preview}) => {
                     title={item.name}
                     image={item.images[0] ? item.images[0].url : null}
                     round={item.type === 'artist'}
-                    subtitle={subTitle}/>
+                    onPlay={()=>{}}
+                    onClick={()=>detailsNavigate(item.id, item.type)}
+                />
             })}
         </div>
     );
