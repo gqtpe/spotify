@@ -7,6 +7,7 @@ import Card from "./Card/Card.tsx";
 import {SimplifiedAlbum} from "../../../api/types/album.ts";
 import {Artist} from "../../../api/types/artist.ts";
 import {SimplifiedPlaylist} from "../../../api/types/playlist.ts";
+import {useNavigate} from "react-router-dom";
 
 
 type CardsProps = {
