@@ -26,6 +26,7 @@ export const Primary: Story = {
     args: {
         title: 'Card Title',
         subtitle: 'Artis Title',
+        onPlay: ()=>{},
         image: 'https://picsum.photos/id/237/200/300'
     },
 }
@@ -34,6 +35,7 @@ export const Artist: Story = {
         title: 'Title',
         round: true,
         subtitle: 'Sub Title',
+        onPlay: ()=>{},
         image: 'https://picsum.photos/id/237/200/300'
     },
 }
