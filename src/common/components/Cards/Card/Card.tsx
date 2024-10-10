@@ -20,36 +20,10 @@ type PlaylistProps = {
     link?: string
 }
 //todo: variants
-const Card: FC<PlaylistProps> = ({
-                                     title,
-                                     type,
-                                     cardID,
-                                     subtitle,
-                                     image,
-                                     round,
-                                     variant,
-                                 }) => {
-    const navigate = useNavigate()
+const Card: FC<PlaylistProps> = ({title, subtitle, image, round, onPlay,onClick, variant = 'default', explicit=false}) => {
+    const cutTitle = title.length > 30 ? title.slice(0, 30) + '...' : title;
+    const defaultImageStyles = [styles.image, round && styles.round].join(' ');
 
-    const cutTitle = title.length > 30 ? title.slice(0, 30) + '...' : title
-    const handleClick = useCallback(() => {
-        navigate(`/${type}/${cardID}`)
-    }, [cardID, type])
-    return <div className={styles.card} onClick={handleClick}>
-        <div className={styles.card__image_wp}>
-            {image ? <img className={[styles.image, round && styles.round].join(' ')} src={image} alt={'image'}/> :
-                <div className={[styles.image, round && styles.round, styles.icon].join(' ')}><IoMdMusicalNote/></div>}
-            <IconButton className={styles.popup} fz={24}><IoMdPlay
-                style={{position: 'relative', left: '2px'}}/></IconButton>
-        </div>
-        <div className={styles.card__details}>
-            <Typography className={styles.title}>{cutTitle}</Typography>
-            <Typography variant='caption' className={styles.subtitle}>{subtitle}</Typography>
-        </div>
-    </div>
-                {onPlay && <IconButton variant={iconButtonVariant} className={styles.popup} onClick={onPlay}>
-                    <IoMdPlay  style={{position: 'relative', left: '2px'}}/>
-                </IconButton>}
     const imageElement = image ?
         <img className={defaultImageStyles} src={image} alt={'image'}/>
         :
