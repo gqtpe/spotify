@@ -2,7 +2,7 @@ import axios from "axios";
 import {PlayerBackState} from "../features/Player";
 import {DetailedItemType} from "../features/Details/Details.tsx";
 import {Copyrights, External_Urls, Images, ResponseType, Restrictions} from "./types/common.ts";
-import {SimplifiedTrack, Track} from "./types/track.ts";
+import {Track} from "./types/track.ts";
 import {Album, SimplifiedAlbum} from "./types/album.ts";
 import {Artist} from "./types/artist.ts";
 import {Playlist, SimplifiedPlaylist} from "./types/playlist.ts";
@@ -107,7 +107,7 @@ export type SearchResult = {
     episodes?: ResponseType<Episode[]>
     playlists?: ResponseType<SimplifiedPlaylist[]>
     shows?: ResponseType<Shows[]>
-    tracks?: ResponseType<SimplifiedTrack[]>
+    tracks?: ResponseType<Track[]>
 }
 //common
 
