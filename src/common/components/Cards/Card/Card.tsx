@@ -47,6 +47,9 @@ const Card: FC<PlaylistProps> = ({
             <Typography variant='caption' className={styles.subtitle}>{subtitle}</Typography>
         </div>
     </div>
+                {onPlay && <IconButton variant={iconButtonVariant} className={styles.popup} onClick={onPlay}>
+                    <IoMdPlay  style={{position: 'relative', left: '2px'}}/>
+                </IconButton>}
 }
 
 export default memo(Card)
