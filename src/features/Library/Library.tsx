@@ -6,9 +6,9 @@ import {IoIosArrowForward, IoMdAdd} from "react-icons/io";
 import TabItem from "../../common/components/TabGroup/TabItem/TabItem.tsx";
 import TabGroup from "../../common/components/TabGroup/TabGroup.tsx";
 import {RxCross2} from "react-icons/rx";
-import {SimpleCard} from "../../common/components/Cards/SimpleCard/SimpleCard.tsx";
 import {useActions, useAppSelector} from "../Application/hooks";
 import {userLibraryActions, userLibrarySelectors} from "./index.ts";
+import Card from "../../common/components/Cards/Card/Card.tsx";
 
 
 export const Library = () => {
@@ -31,11 +31,13 @@ export const Library = () => {
         }
 
         return (
-            <SimpleCard
+            <Card
                 key={id}
                 title={name}
                 subtitle={subtitle}
-                img={img}
+                image={img}
+                variant="small"
+                onPlay={()=>{}}
             />
         );
     })
@@ -66,11 +68,7 @@ export const Library = () => {
         </div>
         {/*
         todo:
-            1: made loading data and bind with rtk
-            1.1: load users playlists, albums, artists
-            1.2: add simplified media card component
             1.3: add simple search component
-            1.4: add filtering by tab,
         */}
     </div>
 }
