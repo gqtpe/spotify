@@ -49,6 +49,7 @@ const Cards: FC<CardsProps> = ({selector, preview}) => {
                     cardID={item.id}
                     type={item.type}
                     title={item.name}
+                    subtitle={subTitle}
                     image={item.images[0] ? item.images[0].url : null}
                     round={item.type === 'artist'}
                     onPlay={()=>{}}
