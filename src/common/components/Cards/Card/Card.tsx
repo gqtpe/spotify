@@ -12,7 +12,10 @@ type PlaylistProps = {
     subtitle: string
     image: string | null
     round?: boolean
-    variant?: 'large' | 'default' | 'small'
+    onClick?: () => void
+    onPlay?: () => void
+    explicit?: boolean
+    link?: string
 }
 //todo: variants
 const Card: FC<PlaylistProps> = ({
