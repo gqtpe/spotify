@@ -6,15 +6,23 @@ import Typography from "../../../../common/components/Typography/Typography.tsx"
 
 const GenrePage = () => {
     const {item} = useFetchGenrePlaylists()
-    if(!item){
+    if (!item) {
         return <div>Loading...</div>
     }
     return <div className={styles.page}>
         <Typography variant="h3" className={styles.page__title}>{item.message}</Typography>
         <div className={browseStyles.container}>
-        {
-            item.playlists!.items!.map(playlist => <Card cardID={playlist.id} key={playlist.id} type={playlist.type} variant={'default'} image={playlist.images[0]? playlist.images[0].url : ''} title={playlist.name} subtitle={'By ' + playlist.owner.display_name}/>)
-        }
+            {
+                item.playlists!.items!.map(playlist => {
+                        return <Card
+                            key={playlist.id}
+                            variant={'default'}
+                            image={playlist.images[0] ? playlist.images[0].url : ''}
+                            title={playlist.name} subtitle={'By ' + playlist.owner.display_name}
+                        />
+                    }
+                )
+            }
         </div>
     </div>
 }
