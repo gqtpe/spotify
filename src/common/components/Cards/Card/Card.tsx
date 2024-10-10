@@ -50,6 +50,33 @@ const Card: FC<PlaylistProps> = ({
                 {onPlay && <IconButton variant={iconButtonVariant} className={styles.popup} onClick={onPlay}>
                     <IoMdPlay  style={{position: 'relative', left: '2px'}}/>
                 </IconButton>}
+    const imageElement = image ?
+        <img className={defaultImageStyles} src={image} alt={'image'}/>
+        :
+        <div className={defaultImageStyles}>
+            <IoMdMusicalNote className={styles.emptyImageIcon}/>
+        </div>
+    const iconButtonVariant = variant === 'small' ? 'icon' : 'filled';
+    const handleClick = useCallback(()=>{
+        if(onClick){
+            onClick()
+        }
+    },[onClick])
+
+    return (
+        <div className={[styles.card, styles[variant], (onPlay && styles.hover)].join(' ')} onClick={handleClick}>
+            <div className={styles.card__image_wp}>
+                {imageElement}
+                {onPlay && <IconButton variant={iconButtonVariant} className={styles.popup} onClick={onPlay}>
+                    <IoMdPlay  style={{position: 'relative', left: '2px'}}/>
+                </IconButton>}
+            </div>
+            <div className={styles.card__details}>
+                <Typography className={styles.title}>{cutTitle}</Typography>
+                <Typography variant='caption' className={styles.subtitle}>{explicit ? <MdExplicit className={styles.explicitIcon} /> : ''}{subtitle}</Typography>
+            </div>
+        </div>
+    )
 }
 
 export default memo(Card)
