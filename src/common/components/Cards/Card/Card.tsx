@@ -11,6 +11,8 @@ type PlaylistProps = {
     cardID: string
     subtitle: string
     image: string | null
+    subtitle: string
+    variant?: 'default' | 'small'
     round?: boolean
     onClick?: () => void
     onPlay?: () => void
