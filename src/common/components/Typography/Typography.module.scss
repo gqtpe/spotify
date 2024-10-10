@@ -56,3 +56,9 @@ $text-muted: #999999;
     font-weight: 400;
     color: $text-muted;
 }
+
+.h1,.h2,.h3,.h4,.h5,.h6,.body1,.body2,.caption{
+    svg{
+        font-size: 1rem;
+    }
+}
