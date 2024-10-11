@@ -2,9 +2,8 @@ import {FC, memo} from "react";
 import Typography from "../../../../common/components/Typography/Typography.tsx";
 import {browseSelectors} from "../../";
 import Cards from "../../../../common/components/Cards/Cards.tsx";
-import styles from '../../Browse.module.scss'
 import {Songs} from "./Songs.tsx";
-
+import styles from './All.module.scss'
 
 const AllPage: FC = () => {
     return <div className={styles.all}>
