@@ -86,7 +86,6 @@ $app-footer-height: 80px;
     padding: 1rem;
     text-align: center;
     height: $app-footer-height; // Высота футера по умолчанию
-    @include flex-center;
     @media (max-width: 768px) {
       height: $app-footer-height; // Высота футера на мобильных устройствах
     }
