@@ -41,7 +41,6 @@ const Details: FC = () => {
     if (error) {
         return <div>{error}</div>;
     }
-    let detailItem;
     switch (params.type) {
         case 'playlist':
             return <Playlist item={item as PlaylistType}/>
@@ -53,12 +52,6 @@ const Details: FC = () => {
             return <Track item={item as TrackType}/>
     }
 
-
-    return (
-        <div>
-            {detailItem}
-        </div>
-    );
 };
 
 export default Details;

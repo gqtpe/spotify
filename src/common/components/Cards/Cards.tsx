@@ -7,7 +7,6 @@ import Card from "./Card/Card.tsx";
 import {SimplifiedAlbum} from "../../../api/types/album.ts";
 import {Artist} from "../../../api/types/artist.ts";
 import {SimplifiedPlaylist} from "../../../api/types/playlist.ts";
-import {useNavigate} from "react-router-dom";
 
 
 type CardsProps = {
@@ -16,12 +15,6 @@ type CardsProps = {
 };
 const Cards: FC<CardsProps> = ({selector, preview}) => {
     const item = useAppSelector(selector)
-    const navigate = useNavigate()
-
-    const detailsNavigate = (id: string, type: string) => {
-        navigate(`${type}s/${id}`)
-    }
-
     if (!item) {
         return <div>loading</div>
     }
@@ -46,14 +39,14 @@ const Cards: FC<CardsProps> = ({selector, preview}) => {
                 }
                 return <Card
                     key={item.id}
-                    cardID={item.id}
-                    type={item.type}
                     title={item.name}
                     subtitle={subTitle}
                     image={item.images[0] ? item.images[0].url : null}
                     round={item.type === 'artist'}
-                    onPlay={()=>{}}
-                    onClick={()=>detailsNavigate(item.id, item.type)}
+                    onPlay={() => {
+                        alert('hi')
+                    }}
+                    link={`/${item.type}/${item.id}`}
                 />
             })}
         </div>

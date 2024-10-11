@@ -19,6 +19,10 @@ const GenrePage = () => {
                             variant={'default'}
                             image={playlist.images[0] ? playlist.images[0].url : ''}
                             title={playlist.name} subtitle={'By ' + playlist.owner.display_name}
+                            link={'/playlist/' + playlist.id}
+                            onPlay={() => {
+
+                            }}
                         />
                     }
                 )
