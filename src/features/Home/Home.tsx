@@ -8,7 +8,6 @@ export const Home = () => {
         console.log(data)
     }
     return <div style={{padding: '16px'}}>
-        <h1>Home</h1>
         <Button onClick={handleClick}>get me</Button>
     </div>
 }

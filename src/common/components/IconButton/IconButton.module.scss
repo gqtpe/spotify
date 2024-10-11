@@ -27,6 +27,7 @@
   padding: 8px;
   background-color: transparent;
   transition: background-color 0.2s ease-in-out;
+  color:inherit;
   &:hover{
     background: $background-lighter;
   }
