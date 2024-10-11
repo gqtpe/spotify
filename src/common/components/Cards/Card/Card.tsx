@@ -20,6 +20,22 @@ type PlaylistProps = {
 const Card: FC<PlaylistProps> = ({title, subtitle, image, round, onPlay,onClick, variant = 'default', explicit=false}) => {
     const cutTitle = title.length > 30 ? title.slice(0, 30) + '...' : title;
     const defaultImageStyles = [styles.image, round && styles.round].join(' ');
+    const navigate = useNavigate()
+    const iconButtonVariant = variant === 'small' ? 'icon' : 'filled';
+    const handleClick = useCallback(() => {
+        if (onClick) {
+            onClick()
+        }
+        if (link) {
+            navigate(link)
+        }
+    }, [onClick,navigate])
+    const handlePlayButtonClick = useCallback((event: MouseEvent) => {
+        event.stopPropagation()
+        if (onPlay) {
+            onPlay()
+        }
+    }, [onPlay])
 
     const imageElement = image ?
         <img className={defaultImageStyles} src={image} alt={'image'}/>
