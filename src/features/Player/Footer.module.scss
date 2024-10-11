@@ -1,3 +1,45 @@
 .footer{
+  display: grid;
+  grid-template-columns: 1.2fr 2fr 1.2fr;
+  grid-template-areas: 'current panel actions';
+  &__current{
+    grid-area: current;
+  }
+  &__panel{
+    grid-area: panel;
+  }
+}
+
+.current{
+  display: flex;
+  align-items: center;
+}
+.panel{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 8px;
+  &__actions{
+    .play{
+      margin: 0 8px;
+    }
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+    button{
+      width: 2rem;
+      height: 2rem;
+    }
+    svg{
+      font-size: 1rem;
+    }
+  }
+  &__slider{
+    width: 100%;
+    input{
+      width: 100%;
+    }
+  }
 
 }
