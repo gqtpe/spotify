@@ -1,8 +1,7 @@
 .browse {
   display: flex;
   flex-direction: column;
-  padding: 16px 16px 0 16px;
-  height:100%;
+  padding: 0px 16px 0 16px;
   .tabs {
     position: sticky;
     top: 0;
@@ -12,69 +11,17 @@
 
 }
 
-.tracks, .all {
-}
-.tracks{
-  flex-grow: 1;
-}
-
 .container {
   display: grid;
   grid-auto-rows: min-content;
-  margin-top: 16px;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
 }
 
 .preview {
-  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  height: 300px;
   row-gap: 100px;
-  height: 220px;
   overflow: hidden;
-}
-
-.all {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-
-  .songs {
-    height: 400px;
-    overflow-y: scroll;
-
-    th {
-      top: 0;
-    }
-
-    tb {
-      overflow-y: scroll;
-    }
-  }
-
-  &__songs {
-    display: grid;
-    grid-template-columns: 1fr 1.5fr;
-  }
-
-  &__playlists {
-
-  }
-
-  &__albums {
-
-  }
-
-  &__artists {
-
-  }
-
-  .title {
-    margin-bottom: 8px;
-
-    &:hover {
-      text-decoration: underline;
-      cursor: pointer;
-    }
-  }
-
 }
 
