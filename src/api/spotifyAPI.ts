@@ -12,10 +12,7 @@ import {Device} from "../features/Player/types.ts";
 const spotifyAPIInstance = axios.create({
     baseURL: 'https://api.spotify.com/v1/', // ваш базовый URL для Spotify API
 });
-const clientId = import.meta.env.VITE_CLIENT_ID;
-const clientSecret = import.meta.env.VITE_CLIENT_SECRET;
-const REDIRECT_URI = import.meta.env.VITE_REDIRECT_URI;
-
+const authEndpoint = import.meta.env.VITE_AUTH_ENDPOINT;
 export interface SpotifyTokenResponse {
     access_token: string;
     token_type: string;
@@ -26,7 +23,7 @@ export interface SpotifyTokenResponse {
 //todo:  move remaining types to separate files
 
 const tokenServiceInstance = axios.create({
-    baseURL: 'https://accounts.spotify.com/'
+    baseURL: authEndpoint
 })
 
 
