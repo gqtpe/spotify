@@ -1,6 +1,7 @@
 import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
-import {Episode, spotifyAPI} from "../../api/spotifyAPI.ts";
+import {spotifyAPI} from "../../api/spotifyAPI.ts";
 import {Track} from "../../api/types/track.ts";
+import {PlayerBackState} from "./types.ts";
 
 
 const fetchPlaybackState = createAsyncThunk<PlayerBackState, undefined>('player/fetchPlaybackState', async (_, thunkAPI) => {
@@ -50,14 +51,18 @@ const previous = createAsyncThunk('player/previous', async (_, thunkAPI) => {
 })
 
 export const asyncAction = {
-    fetchPlaybackState
+    fetchPlaybackState,
+    resume,
+    pause,
+    next,
+    previous
 }
 
 
 const slice = createSlice({
     name: 'player',
     initialState: {
-        item: null as null | Track | Episode,
+        playback: {} as PlayerBackState,
         queue: [] as Array<Track>,
     },
     reducers: {
