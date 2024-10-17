@@ -3,10 +3,23 @@ import {Episode, spotifyAPI} from "../../api/spotifyAPI.ts";
 import {Track} from "../../api/types/track.ts";
 
 
-const fetchPlaybackState = createAsyncThunk<Track|Episode|null, undefined>('player/fetchPlaybackState', async (_, thunkAPI) => {
+const fetchPlaybackState = createAsyncThunk<PlayerBackState, undefined>('player/fetchPlaybackState', async (_, thunkAPI) => {
     try {
         const res = await spotifyAPI.getPlaybackState();
-        return res.data.item
+        if(res.status === 200){
+            return res.data
+        }
+        return thunkAPI.rejectWithValue(res.statusText)
+    } catch (e) {
+        return thunkAPI.rejectWithValue(e)
+    }
+})
+
+
+const resume = createAsyncThunk('player/resume', async (_, thunkAPI) => {
+    try {
+        const res = await spotifyAPI.resume();
+        return res.data
     } catch (e) {
         return thunkAPI.rejectWithValue(e)
     }
