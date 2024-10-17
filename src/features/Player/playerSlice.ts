@@ -11,7 +11,30 @@ const fetchPlaybackState = createAsyncThunk<Track|Episode|null, undefined>('play
         return thunkAPI.rejectWithValue(e)
     }
 })
-
+const pause = createAsyncThunk('player/pause', async (_, thunkAPI) => {
+    try {
+        const res = await spotifyAPI.pause();
+        return res.data
+    } catch (e) {
+        return thunkAPI.rejectWithValue(e)
+    }
+})
+const next = createAsyncThunk('player/next', async (_, thunkAPI) => {
+    try {
+        const res = await spotifyAPI.next();
+        return res.data
+    } catch (e) {
+        return thunkAPI.rejectWithValue(e)
+    }
+})
+const previous = createAsyncThunk('player/previous', async (_, thunkAPI) => {
+    try {
+        const res = await spotifyAPI.previous();
+        return res.data
+    } catch (e) {
+        return thunkAPI.rejectWithValue(e)
+    }
+})
 
 export const asyncAction = {
     fetchPlaybackState
