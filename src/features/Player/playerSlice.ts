@@ -60,10 +60,14 @@ const slice = createSlice({
         item: null as null | Track | Episode,
         queue: [] as Array<Track>,
     },
-    reducers: {},
+    reducers: {
+        setIsPlaying(state, action) {
+            if(state.playback) state.playback.is_playing = action.payload
+        }
+    },
     extraReducers: builder => {
         builder.addCase(fetchPlaybackState.fulfilled, (state, action) => {
-            state.item = action.payload
+            state.playback = action.payload
         })
     }
 })
