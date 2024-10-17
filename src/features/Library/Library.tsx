@@ -57,7 +57,7 @@ export const Library = () => {
         </div>
         <div className={styles.library__tabs}>
             {filter !== 'all' && <div className={styles.removeTab}><RxCross2 onClick={() => setFilter('all')}/></div>}
-            <TabGroup value={filter} handleChange={(value) => setFilter(value)}>
+            <TabGroup value={filter} handleChange={(value) => setFilter(value)} style={{padding: 0}}>
                 <TabItem value={'playlist'} label={"Playlists"}/>
                 <TabItem value={'album'} label={"Albums"}/>
                 <TabItem value={'artist'} label={"Artists"} disabled/>
