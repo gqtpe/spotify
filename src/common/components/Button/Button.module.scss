@@ -9,6 +9,8 @@
   padding: 8px 16px;
   border-radius: 24px;
   border: none;
+  display: block;
+  margin: 8px 0;
 
   &:disabled{
     opacity: 0.5;
