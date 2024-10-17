@@ -1,27 +1,24 @@
-import {useEffect} from 'react';
-import {useLocation, useNavigate} from 'react-router-dom';
-import {authActions} from "../Auth";
-import {useActions, useAppSelector} from "../Application/hooks";
+import {Navigate, useSearchParams} from "react-router-dom";
+import {setItem} from "../../common/utils/localStorage.ts";
 
 const Callback = () => {
-    const navigate = useNavigate();
-    const location = useLocation()
-    const fromPage = location.state?.from?.pathname || '/home'
-    const {loggedIn} = useAppSelector(state => state.auth)
-    const {fetchSpotifyToken} = useActions(authActions)
-    useEffect(() => {
-        const query = new URLSearchParams(location.search);
-        const code = query.get('code');
-        console.log(code);
-        if (code) {
-            fetchSpotifyToken(code);
-        }
-    }, [fetchSpotifyToken, location.search]);
-    useEffect(()=>{
-        if(loggedIn){
-            navigate(fromPage)
-        }
-    },[loggedIn, navigate, fromPage])
+    const [URLSearchParams] = useSearchParams()
+    const token = URLSearchParams.get('token')
+    const refreshToken = URLSearchParams.get('refresh_token')
+    const expiredIn = URLSearchParams.get('expired_in')
+    const tokenType = URLSearchParams.get('token_type')
+    const scope = URLSearchParams.get('scope')
+    if (token && refreshToken && expiredIn && tokenType && scope) {
+        const newExpirationTime = (Date.now() + Number(expiredIn) * 1000).toString()
+        setItem('auth_token', token)
+        setItem('refresh_token', refreshToken)
+        setItem('expiration_time', newExpirationTime)
+        setItem('token_type', tokenType)
+        setItem('scope', scope)
+        return <Navigate to="/" replace/>
+    }else{
+        console.warn('no token found')
+    }
 
     return <div>Loading...</div>;
 };
