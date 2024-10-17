@@ -7,6 +7,7 @@ import {Album, SimplifiedAlbum} from "./types/album.ts";
 import {Artist} from "./types/artist.ts";
 import {Playlist, SimplifiedPlaylist} from "./types/playlist.ts";
 import {CategoryObject} from "./types/browseCategories.ts";
+import {Device} from "../features/Player/types.ts";
 
 const spotifyAPIInstance = axios.create({
     baseURL: 'https://api.spotify.com/v1/', // ваш базовый URL для Spotify API
@@ -82,13 +83,35 @@ export const spotifyAPI = {
     async getPlaybackState() {
         return await spotifyAPIInstance.get<PlayerBackState>('me/player')
     },
+    async getCurrentlyPlaying() {
+        return await spotifyAPIInstance.get<PlayerBackState>('me/player/currently-playing')
+    },
+    //device
+    async getAvailableDevices() {
+        return await spotifyAPIInstance.get<Device[]>('me/player/devices')
+    },
+
+    //actions
+    async resume(){
+      return await spotifyAPIInstance.put('me/player/play')
+    },
+    async pause(){
+        return await spotifyAPIInstance.put('me/player/pause')
+    },
+    async next(){
+        return await spotifyAPIInstance.put('me/player/next')
+    },
+    async previous(){
+        return await spotifyAPIInstance.put('me/player/previous')
+    },
+    //==========getDetailedItem
     async getDetailedItem(id: string, type: DetailedItemType) {
         return await spotifyAPIInstance.get<Playlist|Artist|Album|Track>(`${type}s/${id}`)
     },
+    //==========browseCategory
     async getCategoryPlaylists(id: string) {
         return await spotifyAPIInstance.get<{message:string, playlists: ResponseType<SimplifiedPlaylist[]>}>('browse/categories/' + id + '/playlists')
     },
-    //==========browseCategory
     async getBrowseCategories() {
         return await spotifyAPIInstance.get<{categories: ResponseType<CategoryObject[]>}>('browse/categories')
     },
