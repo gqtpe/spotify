@@ -31,31 +31,8 @@ const tokenServiceInstance = axios.create({
 
 
 export const spotifyTokenService = {
-    async getToken(code: string) {
-        return await tokenServiceInstance.post<SpotifyTokenResponse>('api/token', new URLSearchParams({
-            grant_type: 'authorization_code',
-            code: code,
-            redirect_uri: REDIRECT_URI,
-        }), {
-            headers: {
-                'Authorization': `Basic ${btoa(`${clientId}:${clientSecret}`)}`,
-                'Content-Type': 'application/x-www-form-urlencoded',
-            }
-        }).then(res => {
-            spotifyAPIInstance.defaults.headers.common['Authorization'] = `Bearer ${res.data.access_token}`
-            return res
-        })
-    },
     async getRefreshToken(refreshToken: string) {
-        return tokenServiceInstance.post<SpotifyTokenResponse>('api/token', new URLSearchParams({
-            grant_type: 'refresh_token',
-            refresh_token: refreshToken,
-        }), {
-            headers: {
-                'Content-Type': 'application/x-www-form-urlencoded',
-                'Authorization': `Basic ${btoa(`${clientId}:${clientSecret}`)}`,
-            }
-        })
+        return tokenServiceInstance.post<SpotifyTokenResponse>('refresh', {refresh_token: refreshToken})
     }
 }
 
