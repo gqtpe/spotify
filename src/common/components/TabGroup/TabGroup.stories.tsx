@@ -27,7 +27,7 @@ export const Example: Story = {
     },
     render: (args) => {
         const [value, setValue] = useState(args.value)
-        return <TabGroup value={value} onChange={setValue}>
+        return <TabGroup value={value} handleChange={setValue}>
             <TabItem value="1" label="Tab 1" />
             <TabItem value="2" label="Tab 2" />
             <TabItem value="3" label="Tab 3" />
