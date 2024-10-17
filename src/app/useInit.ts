@@ -8,7 +8,6 @@ export const useInit = () => {
     const isInitialized = useAppSelector(state => state.app.isInitialized)
     const user = useAppSelector(state => state.auth.user)
     const {initializeApp} = useActions(appActions)
-
     useEffect(() => {
         document.title = 'Spotify'
         setTimeout(() => {
