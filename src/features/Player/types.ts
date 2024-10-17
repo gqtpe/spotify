@@ -41,5 +41,6 @@ interface Device {
 
 
 export type {
-    PlayerBackState
+    PlayerBackState,
+    Device
 }
