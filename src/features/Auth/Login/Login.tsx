@@ -1,6 +1,6 @@
 import Button from "../../../common/components/Button/Button.tsx";
 
-const authEndpoint = import.meta.env.SPOTIFY_BACK_ENDPOINT;
+const authEndpoint = import.meta.env.VITE_AUTH_ENDPOINT;
 
 const Login = () => {
     const authorize = authEndpoint + '/authorize'
