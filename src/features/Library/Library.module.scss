@@ -24,6 +24,7 @@
     display: flex;
     align-items: center;
     gap: 8px;
+    padding: 0;
     .removeTab{
       padding: 8px 12px;
       border-radius: 20px;
@@ -40,7 +41,6 @@
   &__items {
     display: flex;
     flex-direction: column;
-    padding: 0.5em;
     overflow-y: auto;
     height: 100%;
     @include scrollbar;
