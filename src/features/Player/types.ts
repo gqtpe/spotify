@@ -23,6 +23,7 @@ interface PlayerBackState {
         toggling_repeat_track: boolean
         transferring_playback: boolean
     }
+    currently_playing_type: 'track' | 'episode'
 }
 
 type DeviceType = 'computer' | 'smartphone' | 'speaker';
