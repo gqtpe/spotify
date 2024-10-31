@@ -1,7 +1,6 @@
 import {createAsyncThunk, createSlice, PayloadAction} from "@reduxjs/toolkit";
 import {SearchResult, spotifyAPI} from "../../api/spotifyAPI.ts";
 import {AppRootStateType} from "../Application/types.ts";
-import {tabs} from "./tabs.ts";
 import {CategoryObject} from "../../api/types/browseCategories.ts";
 import {AxiosResponse} from "axios";
 
