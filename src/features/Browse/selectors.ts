@@ -1,6 +1,9 @@
 import {AppRootStateType} from "../Application/types.ts";
 
 
+export const selectActiveTab = (state: AppRootStateType) => state.browse.activeTab
+
+
 export const selectCategories = (state: AppRootStateType) => state.browse.categories
 
 export const selectPlaylists = (state: AppRootStateType) => state.browse.items.playlists
