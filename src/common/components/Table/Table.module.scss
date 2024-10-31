@@ -1,25 +1,24 @@
 @import '../../styles/vars';
 
 .container {
-  display: block;
-  table-layout: fixed;
   width: 100%;
-
+  border-collapse: separate;
+  border-spacing: 8px;
   thead {
-    background-color: $background-lighter;
+    border-bottom: 1px solid hsla(0, 0%, 100%, .1);
+    display: table-header-group;
     tr {
       th {
         text-align: left;
-        padding: 10px; // Adds padding to header cells
+
       }
     }
   }
 
   tbody {
-
     tr {
       td {
-        padding: 10px; // Adds padding to body cells
+        padding-bottom: 8px;
       }
     }
   }
