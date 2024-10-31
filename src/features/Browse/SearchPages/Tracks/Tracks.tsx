@@ -1,5 +1,3 @@
-import {browseSelectors} from "../../"
-import {memo} from "react";
 import {browseActions, browseSelectors} from "../../"
 import {memo, useCallback, useEffect} from "react";
 import styles from '../../Browse.module.scss'
@@ -36,5 +34,4 @@ const Tracks = () => {
         </div>
     );
 };
-
-export default memo(Tracks);
+export default memo(Tracks)
