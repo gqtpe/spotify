@@ -7,7 +7,16 @@ import {trackColumns} from "./trackColumns.tsx";
 
 const Tracks = () => {
     const tracks = useAppSelector(browseSelectors.selectTracks)
-    if(!tracks || !tracks.items) return '...'
+    const {
+        fetchNewPortion,
+        browse
+    } = useActions(browseActions)
+    const query = useAppSelector(browseSelectors.selectQuery)
+    const activeTab = useAppSelector(browseSelectors.selectActiveTab)
+    const getPortion = useCallback(() => {
+        console.log('portion')
+        fetchNewPortion()
+    }, [fetchNewPortion])
     const {triggerRef} = useIntersectionObserver(getPortion, tracks?.items)
     useEffect(() => {
         if (!tracks) {
