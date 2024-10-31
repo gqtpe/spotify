@@ -52,5 +52,7 @@ const Cards: FC<CardsProps> = ({selector, preview}) => {
         </div>
     );
 };
+        const {triggerRef} = useIntersectionObserver(getPortion, item?.items)
+                {item.items.length && <div ref={triggerRef}>trigger</div>}
 
 export default Cards;
