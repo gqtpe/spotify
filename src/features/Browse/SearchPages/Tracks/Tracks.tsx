@@ -9,6 +9,14 @@ const Tracks = () => {
     const tracks = useAppSelector(browseSelectors.selectTracks)
     if(!tracks || !tracks.items) return '...'
     const {triggerRef} = useIntersectionObserver(getPortion, tracks?.items)
+    useEffect(() => {
+        if (!tracks) {
+            if (query) {
+                browse({query, tab: activeTab})
+            }
+        }
+    }, [tracks]);
+
     return (
         <div className={styles.tracks}>
             <Table columns={trackColumns} data={tracks?.items ? tracks.items : []} />
