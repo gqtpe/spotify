@@ -1,56 +1,45 @@
-import {
-    ColumnDef,
-    flexRender,
-    getCoreRowModel,
-    getPaginationRowModel,
-    getSortedRowModel,
-    useReactTable,
-} from '@tanstack/react-table';
+import {flexRender, getCoreRowModel, getSortedRowModel, useReactTable,} from '@tanstack/react-table';
 import {CSSProperties, memo} from "react";
 import styles from "./Table.module.scss"
 import Typography from '../Typography/Typography';
-interface TableProps {
-    columns: ColumnDef<any>[] // Колонки с типом данных
+import {trackColumns} from "../../../features/Browse/SearchPages/Tracks/trackColumns.tsx";
+
+
+interface TableProps {// Колонки с типом данных
     data: any[]
     enableStickyHeader?: boolean
+    enableRowNumbering?: boolean
 }
 
-const Table = memo(({columns, data, enableStickyHeader = true}: TableProps) => {
+const Table = memo(({data, enableRowNumbering = false}: TableProps) => {
     const table = useReactTable({
-        columns,
+        columns: trackColumns,
         data,
         getCoreRowModel: getCoreRowModel(),
         getSortedRowModel: getSortedRowModel(),
-        getPaginationRowModel: getPaginationRowModel(),
+
     });
-    const sticky: CSSProperties = {
-        position: 'sticky',
-        top:  48
-    }
     const defaultStyle: CSSProperties = {
         position: 'static'
     }
-    const style = enableStickyHeader? sticky: defaultStyle
+
+    // const style = enableStickyHeader? sticky: defaultStyle
     return (
         <table className={styles.container}>
-            <thead style={style}>
+            <thead style={defaultStyle}>
+
             {table.getHeaderGroups().map(headerGroup => (
                 <tr key={headerGroup.id}>
                     {enableRowNumbering && <th style={{width: '50px', textAlign: 'center'}}>#</th>}
                     {headerGroup.headers.map(header => (
                         <th
                             key={header.id}
-                            onClick={header.column.getToggleSortingHandler()}
                             style={{cursor: 'pointer'}}
+                            id={header.id}
                         >
-                            <Typography variant={'body1'}>
+                            <Typography variant={'body2'}>
                                 {flexRender(header.column.columnDef.header, header.getContext())}
                             </Typography>
-                            {header.column.getIsSorted()
-                                ? header.column.getIsSorted() === 'desc'
-                                    ? ' 🔽'
-                                    : ' 🔼'
-                                : null}
                         </th>
                     ))}
                 </tr>
@@ -72,7 +61,6 @@ const Table = memo(({columns, data, enableStickyHeader = true}: TableProps) => {
         </table>
     );
 });
-
 
 
 export default memo(Table)
