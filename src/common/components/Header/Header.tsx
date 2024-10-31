@@ -1,22 +1,31 @@
 import Badge from "../Badge/Badge.tsx";
-import {Search, useSearch} from "../../../features/Browse";
+import {Search} from "../../../features/Browse";
 import {useCallback} from "react";
-import {useNavigate} from "react-router-dom";
+import {useLocation, useNavigate} from "react-router-dom";
 import {GoHomeFill} from "react-icons/go";
+import {useSearch} from "../../../features/Browse";
 
 export const Header = () => {
     const navigate = useNavigate()
-    const {value, onChange, onFocus} = useSearch(navigate)
+    const location = useLocation()
+    const {value, onChange} = useSearch(navigate)
+    const onFocus = useCallback(() => {
+        if (!location.pathname.includes('/search')) {
+            console.log('navigate')
+            navigate('/search');
+        }
+    }, [navigate, location.pathname])
     const handleClick = useCallback(() => {
         navigate('/')
     }, [])
+
     return <header className="header">
         <Badge variant="filled" onClick={handleClick}><GoHomeFill/></Badge>
         <Search
             width={25}
             placeholder={'What do you want to play?'}
             onFocus={onFocus}
-            value={value}
+            value={value ? value : undefined}
             onChange={onChange}
         />
     </header>
