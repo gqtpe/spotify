@@ -30,6 +30,22 @@ const fetchBrowseCategories = createAsyncThunk<CategoryObject[], undefined, {
         return thunkAPI.rejectWithValue(e)
     }
 })
+const fetchNewPortion = createAsyncThunk<SearchResult>('browse/fetchNewPortionTracks', async (_, thunkAPI) => {
+    const store = thunkAPI.getState() as AppRootStateType
+    const activeTab = store.browse.activeTab
+    if (activeTab === 'all') {
+        return thunkAPI.rejectWithValue('no active tab')
+    }
+    const link = store.browse.items[activeTab]!.next
+    if (link) {
+        try {
+            const response = await spotifyAPI.getPortionOfItems(link)
+            return response.data
+        } catch (e) {
+            return thunkAPI.rejectWithValue(e)
+        }
+    }
+})
 
 
 export const asyncActions = {
