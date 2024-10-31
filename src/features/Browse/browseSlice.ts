@@ -20,12 +20,14 @@ const browse = createAsyncThunk<SearchResult, { query: string, tab:Tabs }, { sta
         return thunkAPI.rejectWithValue(e)
     }
 })
-const fetchBrowseCategories = createAsyncThunk<CategoryObject[], undefined, {rejectValue: unknown}>('browse/fetchBrowseCategories', async (_, thunkAPI) => {
+const fetchBrowseCategories = createAsyncThunk<CategoryObject[], undefined, {
+    rejectValue: unknown
+}>('browse/fetchBrowseCategories', async (_, thunkAPI) => {
     try {
         const response = await spotifyAPI.getBrowseCategories()
         console.log(response)
         return response.data.categories.items
-    }catch(e){
+    } catch (e) {
         return thunkAPI.rejectWithValue(e)
     }
 })
