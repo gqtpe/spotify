@@ -27,14 +27,11 @@ export const Browse = () => {
         browse({query, tab})
     }, [browse])
     useEffect(() => {
-        //did mount
-        const tab = location.pathname.split('/')[3] as Tabs
-        if (!tab) {
-            setActiveTab('all')
-        } else {
-            setActiveTab(tab)
+        if (query) {
+            clearItems();
+            handleSearch(query, activeTab)
         }
-    }, [])
+    }, [query])
 
     const tabItems = tabs.map((tab, index) => {
         if (tab === 'all') return <TabItem key={tab} value={tab} label={'All'}/>
