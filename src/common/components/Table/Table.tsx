@@ -36,6 +36,7 @@ const Table = memo(({columns, data, enableStickyHeader = true}: TableProps) => {
             <thead style={style}>
             {table.getHeaderGroups().map(headerGroup => (
                 <tr key={headerGroup.id}>
+                    {enableRowNumbering && <th style={{width: '50px', textAlign: 'center'}}>#</th>}
                     {headerGroup.headers.map(header => (
                         <th
                             key={header.id}
