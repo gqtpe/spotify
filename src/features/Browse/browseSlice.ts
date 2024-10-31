@@ -35,7 +35,7 @@ export const asyncActions = {
     browse,
     fetchBrowseCategories
 }
-
+type RequestStatuses = 'idle' | 'loading' | 'succeeded' | 'failed'
 const slice = createSlice(
     {
         name: 'browse',
