@@ -13,7 +13,7 @@ export const Browse = () => {
     const browseLoading = useAppSelector(browseSelectors.selectLoading)
     const query = useAppSelector(browseSelectors.selectQuery)
     const navigate = useNavigate()
-
+    const {setActiveTab, clearItems, browse} = useActions(browseActions)
     const handleChange = useCallback((tab: Tabs) => {
         setActiveTab(tab);
         if (tab === 'all') {
