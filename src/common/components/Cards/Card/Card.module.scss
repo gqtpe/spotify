@@ -8,9 +8,9 @@
   right: $margin;
   font-size: $size;
   transform: translateY(calc(100% + $margin));
-  transition: transform 0.1s ease-in-out;
+  transition: transform 0.1s ease-in-out, filter 0.1s ease-in-out;
   &:active {
-    background-color: $background-dark;
+     filter: brightness(0.8);
   }
 }
 
@@ -67,7 +67,7 @@
     }
   }
   .popup {
-    @include popup(2em, 8px);
+    @include popup(1.8em, 8px);
   }
 
   &:hover {

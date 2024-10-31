@@ -6,11 +6,6 @@ import {Track} from "../../../../api/types/track.ts";
 
 export const trackColumns: ColumnDef<Track>[] = [
     {
-        header: () => <span>#</span>,
-        id: 'rowNumber',
-        cell: (info) => info.row.index + 1,
-    },
-    {
         accessorKey: 'name',
         header: 'Title',
         cell: ({row}) => (
@@ -35,6 +30,9 @@ export const trackColumns: ColumnDef<Track>[] = [
     {
         accessorKey: 'album.name',
         header: 'Album',
+        cell: ({row}) => (
+            <Typography variant={'body2'}>{row.original.album.name}</Typography>
+        )
     },
     {
         cell: (track) => {
