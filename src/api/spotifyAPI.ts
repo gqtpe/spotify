@@ -8,6 +8,8 @@ import {Artist} from "./types/artist.ts";
 import {Playlist, SimplifiedPlaylist} from "./types/playlist.ts";
 import {CategoryObject} from "./types/browseCategories.ts";
 import {Device} from "../features/Player/types.ts";
+import {Tabs} from "../features/Browse/browseSlice.ts";
+import {tabs} from "../features/Browse/tabs.ts";
 
 const spotifyAPIInstance = axios.create({
     baseURL: 'https://api.spotify.com/v1/', // ваш базовый URL для Spotify API
@@ -92,6 +94,15 @@ export const spotifyAPI = {
     //==========search
     async search(tab: string, query: string) {
         return await spotifyAPIInstance.get<SearchResult>(`search?q=${query}&type=${tab}`)
+    async search(tab: Tabs, query: string) {
+        let resultTab;
+        if(tab === 'all'){
+            resultTab = tabs.slice(1).map(t=>t.slice(0,-1)).join(',')
+        }else{
+            resultTab = tab.slice(0, -1)
+        }
+        return await spotifyAPIInstance.get<SearchResult>(`search?q=${query}&type=${resultTab}`)
+    },
     }
 }
 
