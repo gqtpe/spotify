@@ -88,6 +88,18 @@ const slice = createSlice(
             builder.addCase(fetchBrowseCategories.fulfilled, (state, action) => {
                 state.categories = action.payload
             })
+            builder.addCase(fetchNewPortion.fulfilled, (state, action) => {
+                const types = Object.keys(action.payload) as (keyof SearchResult)[]
+                types.forEach(type => {
+                    const payloadData = action.payload[type]!
+                    state.items[type] = {
+                        ...payloadData,
+                        items: [...state.items[type]?.items || [], ...payloadData.items]
+                    }
+                });
+            });
+
+
         }
     }
 )
