@@ -42,6 +42,8 @@ const slice = createSlice(
         initialState: {
             activeTab: 'all' as Tabs,
             items: {} as SearchResult,
+            query: null as string|null,
+            loading: 'idle' as RequestStatuses,
             categories: [] as CategoryObject[],
         },
         reducers: {
