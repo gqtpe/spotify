@@ -29,7 +29,7 @@ const Tracks = () => {
 
     return (
         <div className={styles.tracks}>
-            <Table columns={trackColumns} data={tracks?.items ? tracks.items : []} />
+            <Table enableRowNumbering data={tracks?.items ? tracks.items : []}/>
             <div ref={triggerRef}>trigger</div>
         </div>
     );
