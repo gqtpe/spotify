@@ -42,6 +42,7 @@ export const Browse = () => {
         <TabGroup value={activeTab} handleChange={handleChange} className={styles.tabs}>
             {tabItems}
         </TabGroup>
-        <Outlet/>
+        {browseLoading === 'succeeded' ? <Outlet/> : <div className="loader"/>}
+
     </div>
 }
