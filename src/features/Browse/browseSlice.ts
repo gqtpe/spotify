@@ -54,7 +54,10 @@ const slice = createSlice(
             },
             clearItems(state) {
                 state.items = {}
-            }
+            },
+            setQuery(state, action: PayloadAction<string>) {
+                state.query = action.payload
+            },
         },
         extraReducers: (builder) => {
             builder.addCase(browse.pending, (state) => {
