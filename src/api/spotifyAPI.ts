@@ -92,8 +92,6 @@ export const spotifyAPI = {
         return await spotifyAPIInstance.get<{categories: ResponseType<CategoryObject[]>}>('browse/categories')
     },
     //==========search
-    async search(tab: string, query: string) {
-        return await spotifyAPIInstance.get<SearchResult>(`search?q=${query}&type=${tab}`)
     async search(tab: Tabs, query: string) {
         let resultTab;
         if(tab === 'all'){
@@ -103,6 +101,8 @@ export const spotifyAPI = {
         }
         return await spotifyAPIInstance.get<SearchResult>(`search?q=${query}&type=${resultTab}`)
     },
+    async getPortionOfItems(link: string) {
+        return await spotifyAPIInstance.get(link)
     }
 }
 
