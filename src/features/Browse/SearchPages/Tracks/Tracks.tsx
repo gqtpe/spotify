@@ -8,9 +8,11 @@ import {trackColumns} from "./trackColumns.tsx";
 const Tracks = () => {
     const tracks = useAppSelector(browseSelectors.selectTracks)
     if(!tracks || !tracks.items) return '...'
+    const {triggerRef} = useIntersectionObserver(getPortion, tracks?.items)
     return (
         <div className={styles.tracks}>
             <Table columns={trackColumns} data={tracks?.items ? tracks.items : []} />
+            <div ref={triggerRef}>trigger</div>
         </div>
     );
 };

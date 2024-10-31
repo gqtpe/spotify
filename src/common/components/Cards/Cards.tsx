@@ -14,45 +14,56 @@ type CardsProps = {
     preview?: boolean
 };
 const Cards: FC<CardsProps> = ({selector, preview}) => {
-    const item = useAppSelector(selector)
-    if (!item) {
-        return <div>loading</div>
-    }
-    if (item.items.length === 0) {
-        return <div>no result founded</div>
-    }
-    return (
-        <div className={styles.container + ' ' + (preview && styles.preview)}>
-            {item.items.map(item => {
-
-                let subTitle = ''
-                switch (item.type) {
-                    case 'playlist':
-                        subTitle = 'By ' + item.owner.display_name;
-                        break;
-                    case "album":
-                        subTitle = item.release_date.slice(0, 4) + ' - ' + item.artists.map(artist => artist.name).join(', ')
-                        break;
-                    case "artist":
-                        subTitle = 'Artist'
-                        break;
-                }
-                return <Card
-                    key={item.id}
-                    title={item.name}
-                    subtitle={subTitle}
-                    image={item.images[0] ? item.images[0].url : null}
-                    round={item.type === 'artist'}
-                    onPlay={() => {
-                        alert('hi')
-                    }}
-                    link={`/${item.type}/${item.id}`}
-                />
-            })}
-        </div>
-    );
-};
+        const item = useAppSelector(selector)
+        const activeTab = useAppSelector(browseSelectors.selectActiveTab)
+        const query = useParams().query
+        const {fetchNewPortion, browse} = useActions(browseActions)
+        const getPortion = useCallback(() => {
+            fetchNewPortion()
+        }, [fetchNewPortion])
         const {triggerRef} = useIntersectionObserver(getPortion, item?.items)
+        useEffect(() => {
+            if (!item) {
+                if (query) {
+                    browse({query, tab: activeTab})
+                }
+            }
+        }, [item]);
+        if (!item) {
+            return null
+        }
+        const cardItems = item.items ? item.items.map(item => {
+            let subTitle = ''
+            switch (item.type) {
+                case 'playlist':
+                    subTitle = 'By ' + item.owner.display_name;
+                    break;
+                case "album":
+                    subTitle = item.release_date.slice(0, 4) + ' - ' + item.artists.map(artist => artist.name).join(', ')
+                    break;
+                case "artist":
+                    subTitle = 'Artist'
+                    break;
+            }
+            return <Card
+                key={item.id}
+                title={item.name}
+                subtitle={subTitle}
+                image={item.images[0] ? item.images[0].url : null}
+                round={item.type === 'artist'}
+                onPlay={() => {
+                    alert('hi')
+                }}
+                link={`/${item.type}/${item.id}`}
+            />
+        }) : null
+        return (
+            <div className={styles.container + ' ' + (preview && styles.preview)}>
+                {cardItems}
                 {item.items.length && <div ref={triggerRef}>trigger</div>}
+            </div>
+        );
+    }
+;
 
 export default Cards;
