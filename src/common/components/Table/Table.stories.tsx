@@ -4,7 +4,15 @@ import Table from "./Table.tsx";
 
 const meta: Meta<typeof Table> = {
     title: 'common/Table',
-    component: Table
+    component: Table,
+    parameters: {
+        backgrounds: {
+            values: [
+                {name: 'Dark', value: '#121212'},
+            ],
+            default: 'Dark'
+        }
+    },
 }
 export default meta
 
@@ -82,7 +90,7 @@ const columns = [
         header: () => <span>#</span>,
         id: 'rowNumber',
         width: 30,
-        cell: (info: any) => info.row.index + 1,
+        cell: info => info.row.index + 1,
     },
     {
         accessorKey: 'firstName',
@@ -100,6 +108,9 @@ const columns = [
 export const Example: Story = {
     args: {
         columns: columns,
-        data: defaultData
+        data: defaultData,
+    },
+    render: (args) =>{
+        return <Table {...args}/>
     }
 }
