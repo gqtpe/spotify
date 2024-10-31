@@ -17,7 +17,7 @@ export const GenreTile: FC<Props> = memo(({ item }) => {
     const navigate = useNavigate();
     const [color, setColor] = useState<string>("#ffffff");
     const { icons, name, id } = item;
-
+    //todo: fix rerender on color change(remove imageColorThief bc bad practice)
     const handleClick = () => {
         navigate(`/genre/${id}`);
     };
