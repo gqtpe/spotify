@@ -1,5 +1,6 @@
 import {AppRootStateType} from "../Application/types.ts";
 
+export const selectQuery = (state: AppRootStateType) => state.browse.query
 
 export const selectActiveTab = (state: AppRootStateType) => state.browse.activeTab
 
