@@ -4,6 +4,7 @@ export const selectQuery = (state: AppRootStateType) => state.browse.query
 
 export const selectActiveTab = (state: AppRootStateType) => state.browse.activeTab
 
+export const selectLoading = (state: AppRootStateType) => state.browse.loading
 
 export const selectCategories = (state: AppRootStateType) => state.browse.categories
 
