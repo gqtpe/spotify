@@ -1,10 +1,10 @@
-import {Outlet, useLocation, useNavigate} from "react-router-dom";
+import {Outlet, useNavigate} from "react-router-dom";
 import {useCallback, useEffect} from "react";
 import {Tabs} from "./browseSlice.ts";
 import {tabs} from "./tabs.ts";
 import TabItem from "../../common/components/TabGroup/TabItem/TabItem.tsx";
 import TabGroup from "../../common/components/TabGroup/TabGroup.tsx";
-import {browseActions} from "./index.ts";
+import {browseActions, browseSelectors} from "./index.ts";
 import styles from './Browse.module.scss';
 import {useActions, useAppSelector} from "../Application/hooks";
 
