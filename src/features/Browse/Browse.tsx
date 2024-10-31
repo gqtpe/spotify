@@ -9,9 +9,9 @@ import styles from './Browse.module.scss';
 import {useActions, useAppSelector} from "../Application/hooks";
 
 export const Browse = () => {
-    const activeTab = useAppSelector(state => state.browse.activeTab)
-    const {setActiveTab} = useActions(browseActions)
-    const location = useLocation()
+    const activeTab = useAppSelector(browseSelectors.selectActiveTab)
+    const browseLoading = useAppSelector(browseSelectors.selectLoading)
+    const query = useAppSelector(browseSelectors.selectQuery)
     const navigate = useNavigate()
 
     const handleChange = useCallback((tab: Tabs) => {
@@ -40,6 +40,11 @@ export const Browse = () => {
             setActiveTab(tab)
         }
     }, [])
+
+    const tabItems = tabs.map((tab, index) => {
+        if (tab === 'all') return <TabItem key={tab} value={tab} label={'All'}/>
+        return <TabItem key={tab} value={tab} label={tab[0].toUpperCase() + tab.slice(1)} disabled={index>4}/>
+    })
 
     return <div className={styles.browse}>
         <TabGroup value={activeTab} handleChange={handleChange} className={styles.tabs}>
