@@ -58,6 +58,8 @@ const Table = memo(({columns, data, enableStickyHeader = true}: TableProps) => {
             <tbody>
             {table.getRowModel().rows.map(row => (
                 <tr key={row.id}>
+
+                    {enableRowNumbering && <td style={{width: '50px', textAlign: 'center'}}>{row.index + 1}</td>}
                     {row.getVisibleCells().map(cell => (
                         <td key={cell.id}>
                             {flexRender(cell.column.columnDef.cell, cell.getContext())}
