@@ -56,10 +56,15 @@ const slice = createSlice(
             }
         },
         extraReducers: (builder) => {
+            builder.addCase(browse.pending, (state) => {
+                state.loading = 'loading'
+            })
             builder
                 .addCase(browse.fulfilled, (state, action) => {
+                    state.loading = 'succeeded'
                     state.items = {...state.items, ...action.payload}
                 })
+
             builder.addCase(fetchBrowseCategories.fulfilled, (state, action) => {
                 state.categories = action.payload
             })
