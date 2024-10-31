@@ -29,46 +29,46 @@ export const router = createBrowserRouter([
               element: <RequireAuth><GenrePage/></RequireAuth>,
             },
             {
-                path: '/:type/:id',
-                element: <RequireAuth><Details/></RequireAuth>,
-            },
-            {
                 path: '/search',
-                element: <RequireAuth><Outlet/></RequireAuth>,
+                element: <RequireAuth><Outlet /></RequireAuth>,
                 children: [
                     {
                         index: true,
-                        element: <BrowseStart/>
+                        element: <BrowseStart />
                     },
                     {
-                        path: '/search/:query',
-                        element: <RequireAuth><Browse/></RequireAuth>,
+                        path: ':query/:tab?',
+                        element: <RequireAuth><Browse /></RequireAuth>,
                         children: [
                             {
                                 index: true,
-                                element: <AllPage/>
+                                element: <AllPage />
                             },
                             {
-                                path: '/search/:query/track',
-                                element: <Tracks/>
+                                path: 'tracks',
+                                element: <Tracks />
                             },
                             {
-                                path: '/search/:query/artist',
-                                element: <Cards selector={browseSelectors.selectArtists}/>
+                                path: 'artists',
+                                element: <Cards selector={browseSelectors.selectArtists} />
                             },
                             {
-                                path: '/search/:query/album',
-                                element: <Cards selector={browseSelectors.selectAlbums}/>
+                                path: 'albums',
+                                element: <Cards selector={browseSelectors.selectAlbums} />
                             },
                             {
-                                path: '/search/:query/playlist',
-                                element: <Cards selector={browseSelectors.selectPlaylists}/>
+                                path: 'playlists',
+                                element: <Cards selector={browseSelectors.selectPlaylists} />
                             }
                         ]
                     }
-
                 ]
-            }
+            },
+            {
+                path: '/:type/:id',
+                element: <RequireAuth><Details/></RequireAuth>,
+            },
+
         ]
     },
     {
