@@ -5,15 +5,14 @@ import {tabs} from "./tabs.ts";
 import {CategoryObject} from "../../api/types/browseCategories.ts";
 import {AxiosResponse} from "axios";
 
-export type Tabs = 'all' | 'track' | 'playlist' | 'album' | 'artist' | 'show' | 'episode' | 'audiobook'
+export type Tabs = keyof SearchResult | 'all'
 
-const browse = createAsyncThunk<SearchResult, { query: string, tab:Tabs }, { state: AppRootStateType, rejectValue: unknown}>('browse', async ({query, tab}, thunkAPI) => {
-    let activeTab:string = tab
-    if(activeTab === 'all') {
-        activeTab = tabs.slice(1).join('%2C')
-    }
+const browse = createAsyncThunk<SearchResult, { query: string, tab: Tabs }, {
+    state: AppRootStateType,
+    rejectValue: unknown
+}>('browse', async ({query, tab}, thunkAPI) => {
     try {
-        const response: AxiosResponse<SearchResult> = await spotifyAPI.search(activeTab, query)
+        const response: AxiosResponse<SearchResult> = await spotifyAPI.search(tab, query)
         console.log(response)
         return response.data
     } catch (e) {
