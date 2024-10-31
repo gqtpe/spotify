@@ -23,14 +23,9 @@ export const Browse = () => {
         }
     }, [setActiveTab, navigate])
 
-
-    const tabItems = tabs.map((tab) => {
-        if (tab === 'all') return <TabItem key={tab} value={tab} label={'All'}/>
-
-        return <TabItem key={tab} value={tab} label={tab[0].toUpperCase() + tab.slice(1) + 's'}/>
-    })
-
-
+    const handleSearch = useCallback((query: string, tab: Tabs) => {
+        browse({query, tab})
+    }, [browse])
     useEffect(() => {
         //did mount
         const tab = location.pathname.split('/')[3] as Tabs
