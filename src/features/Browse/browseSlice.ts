@@ -34,7 +34,8 @@ const fetchBrowseCategories = createAsyncThunk<CategoryObject[], undefined, {
 
 export const asyncActions = {
     browse,
-    fetchBrowseCategories
+    fetchBrowseCategories,
+    fetchNewPortion,
 }
 type RequestStatuses = 'idle' | 'loading' | 'succeeded' | 'failed'
 const slice = createSlice(
