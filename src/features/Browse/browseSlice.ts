@@ -53,7 +53,7 @@ export const asyncActions = {
     fetchNewPortion,
 }
 type RequestStatuses = 'idle' | 'loading' | 'succeeded' | 'failed'
-const slice = createSlice(
+const slice = createSlice/**/(
     {
         name: 'browse',
         initialState: {
@@ -88,14 +88,17 @@ const slice = createSlice(
                 state.categories = action.payload
             })
             builder.addCase(fetchNewPortion.fulfilled, (state, action) => {
-                const types = Object.keys(action.payload) as (keyof SearchResult)[]
-                types.forEach(type => {
-                    const payloadData = action.payload[type]!
-                    state.items[type] = {
-                        ...payloadData,
-                        items: [...state.items[type]?.items || [], ...payloadData.items]
+                const activeTab = state.activeTab
+                if(activeTab !== 'all'){
+                    state.items = {
+                        ...state.items,
+                        [activeTab]: {
+                            ...state.items[activeTab],
+                            next: action.payload[activeTab]!.next,
+                            items: [...state.items[activeTab]!.items, ...action.payload[activeTab]!.items]
+                        }
                     }
-                });
+                }
             });
 
 
