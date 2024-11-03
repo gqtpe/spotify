@@ -1,5 +1,7 @@
 import {Meta, StoryObj} from "@storybook/react";
 import Table from "./Table.tsx";
+import {Track} from "../../../api/types/track.ts";
+import {SimplifiedAlbum} from "../../../api/types/album.ts";
 
 
 const meta: Meta<typeof Table> = {
@@ -18,99 +20,72 @@ export default meta
 
 type Story = StoryObj<typeof Table>
 
-//todo: adjust styles
-type Person = {
-    firstName: string
-    lastName: string
-    age: number
-    visits: number
-    status: string
-    progress: number
+const album: SimplifiedAlbum = {
+    id: '1',
+    name: 'Album 1',
+    album_type: 'album',
+    artists: [],
+    type: 'album',
+    images: [{
+        url: 'https://picsum.photos/id/237/200/300',
+        width: 200,
+        height: 300
+    }],
+    release_date: '2022-01-01',
+    total_tracks: 1,
+    external_urls: {
+        spotify: 'https://open.spotify.com/album/1'
+    },
+    href: 'https://open.spotify.com/album/1',
+    uri: 'https://open.spotify.com/album/1',
+    available_markets:[],
+    restrictions: {
+        reason: 'market'
+    },
+    release_date_precision: 'day',
 }
-const defaultData: Person[] = [
+const tracks: Track[] = [
     {
-        firstName: 'tanner',
-        lastName: 'linsley',
-        age: 24,
-        visits: 100,
-        status: 'In Relationship',
-        progress: 50,
-    },
-    {
-        firstName: 'tandy',
-        lastName: 'miller',
-        age: 40,
-        visits: 40,
-        status: 'Single',
-        progress: 80,
-    },
-    {
-        firstName: 'joe',
-        lastName: 'dirte',
-        age: 45,
-        visits: 20,
-        status: 'Complicated',
-        progress: 10,
-    },
-    {
-        firstName: 'tanner',
-        lastName: 'linsley',
-        age: 24,
-        visits: 100,
-        status: 'In Relationship',
-        progress: 50,
-    },
-    {
-        firstName: 'tandy',
-        lastName: 'miller',
-        age: 40,
-        visits: 40,
-        status: 'Single',
-        progress: 80,
-    },
-    {
-        firstName: 'tandy',
-        lastName: 'miller',
-        age: 40,
-        visits: 40,
-        status: 'Single',
-        progress: 80,
-    },
-    {
-        firstName: 'tandy',
-        lastName: 'miller',
-        age: 40,
-        visits: 40,
-        status: 'Single',
-        progress: 80,
-    },
-]
-const columns = [
-    {
-        header: () => <span>#</span>,
-        id: 'rowNumber',
-        width: 30,
-        cell: info => info.row.index + 1,
-    },
-    {
-        accessorKey: 'firstName',
-        header: 'Title',
-    },
-    {
-        accessorKey: 'lastName',
-        header: 'Album',
-    },
-    {
-        accessorKey: 'age',
-        header: 'duration',
+        id: '1',
+        album: album,
+        name: 'Track 1',
+        type: 'track',
+        artists: [],
+        duration_ms: 1000,
+        external_urls: {
+            spotify: 'https://open.spotify.com/track/1'
+        },
+        href: 'https://open.spotify.com/track/1',
+        is_playable: true,
+        preview_url: 'https://open.spotify.com/track/1',
+        uri: 'https://open.spotify.com/track/1',
+        explicit: false,
+        available_markets: [],
+        disc_number: 1,
+        track_number: 1,
+        restrictions: {
+            reason: 'market'
+        },
+        is_local: false,
+        external_ids: {},
+        linked_from: {
+            external_urls: {
+                spotify: 'https://open.spotify.com/track/1'
+            },
+            href: 'https://open.spotify.com/track/1',
+            id: '1',
+            type: 'track',
+            uri: 'https://open.spotify.com/track/1'
+        },
+        popularity: 0
     },
 ]
 export const Example: Story = {
     args: {
-        columns: columns,
-        data: defaultData,
+        data: tracks,
+        enableRowNumbering: true
     },
-    render: (args) =>{
+    render: (args) => {
         return <Table {...args}/>
     }
 }
