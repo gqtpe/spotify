@@ -116,6 +116,10 @@ const slice = createSlice({
         })
     }
 })
+export type ActiveDevice = {
+    id: string
+    name: string
+}
 
 
 export default slice
