@@ -108,6 +108,9 @@ const slice = createSlice({
                 }
             }
         })
+        builder.addCase(setShuffle.fulfilled, (state, action) => {
+            state.shuffleState = action.payload.state
+        })
     }
 })
 
