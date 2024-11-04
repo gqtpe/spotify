@@ -129,63 +129,63 @@ export type SearchResult = {
 //common
 
 export type SimplifiedUser = {
-display_name: string
-external_urls: External_Urls
-href: string
-id: string
-type: 'user'
-uri: string
+    display_name: string
+    external_urls: External_Urls
+    href: string
+    id: string
+    type: 'user'
+    uri: string
 }
 export type SimplifiedChapter = {
-audio_preview_url: string
-available_markets: string[]
-chapter_number: number
-description: string
-html_description: string
-duration_ms: number
-explicit: boolean
-id: string
-images: Images
-is_playable: boolean
-languages: string[]
-name: string
-release_date: string
-release_date_precision: string
-resume_point: {
-fully_played: boolean
-resume_position_ms: number
-}
-type: 'episode'
-uri: string
-restrictions: Restrictions
+    audio_preview_url: string
+    available_markets: string[]
+    chapter_number: number
+    description: string
+    html_description: string
+    duration_ms: number
+    explicit: boolean
+    id: string
+    images: Images
+    is_playable: boolean
+    languages: string[]
+    name: string
+    release_date: string
+    release_date_precision: string
+    resume_point: {
+        fully_played: boolean
+        resume_position_ms: number
+    }
+    type: 'episode'
+    uri: string
+    restrictions: Restrictions
 }
 
 
 //user
 export type User = {
-country: string
-display_name: string
-email: string
-explicit_content: {
-filter_enabled: boolean
-filter_locked: boolean
-}
-external_urls: External_Urls
-followers: {
-href: string
-total: number
-}
+    country: string
+    display_name: string
+    email: string
+    explicit_content: {
+        filter_enabled: boolean
+        filter_locked: boolean
+    }
+    external_urls: External_Urls
+    followers: {
+        href: string
+        total: number
+    }
 
-href: string
-id: string
-images: {
-url: string
-height: number
-width: number
-}[]
-product: string
-type: 'user'
-uri: string
+    href: string
+    id: string
+    images: {
+        url: string
+        height: number
+        width: number
+    }[]
+    product: string
+    type: 'user'
+    uri: string
 }
 //audiobooks
 export type Audiobook = {
