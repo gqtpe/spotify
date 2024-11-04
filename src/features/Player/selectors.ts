@@ -9,3 +9,5 @@ export const selectQueue = (state: AppRootStateType) => state.player.queue
 export const selectShuffleState = (state: AppRootStateType) => state.player.shuffleState
 
 export const selectActiveDevice = (state: AppRootStateType) => state.player.activeDevice
+
+export const selectRepeatState = (state: AppRootStateType) => state.player.repeatState
