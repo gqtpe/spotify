@@ -1,7 +1,7 @@
 import {Episode} from "../../api/spotifyAPI.ts";
 import {Track} from "../../api/types/track.ts";
 
-type RepeatState = 'off' | 'track' | 'context';
+export type RepeatState = 'off' | 'track' | 'context';
 interface PlayerBackState {
     device: Device
     repeat_state: RepeatState
