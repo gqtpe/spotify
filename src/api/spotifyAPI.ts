@@ -7,7 +7,7 @@ import {Album, SimplifiedAlbum} from "./types/album.ts";
 import {Artist} from "./types/artist.ts";
 import {Playlist, SimplifiedPlaylist} from "./types/playlist.ts";
 import {CategoryObject} from "./types/browseCategories.ts";
-import {Device} from "../features/Player/types.ts";
+import {Device, RepeatState} from "../features/Player/types.ts";
 import {Tabs} from "../features/Browse/browseSlice.ts";
 import {tabs} from "../features/Browse/tabs.ts";
 
