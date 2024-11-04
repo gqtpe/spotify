@@ -1,7 +1,5 @@
 import Button from "../../common/components/Button/Button.tsx";
 import {spotifyAPI} from "../../api/spotifyAPI.ts";
-import {useAppSelector} from "../Application/hooks";
-import {playerSelectors} from "../Player";
 import {getItem} from "../../common/utils/localStorage.ts";
 import axios from "axios";
 
@@ -16,18 +14,14 @@ const fetchAvailableDevices = async () => {
 const refreshToken = async () => {
     const refreshToken = getItem('refresh_token')
     console.log(refreshToken)
-    const response = await axios.post('https://spotify-back-lovat.vercel.app/refresh', { refresh_token: refreshToken });
+    const response = await axios.post('https://spotify-back-lovat.vercel.app/refresh', {refresh_token: refreshToken});
     console.log('refresh Response:', response.data)
 }
 export const Home = () => {
-    const playback = useAppSelector(playerSelectors.selectPlayback)
-    const showPlayback = () => {
-        console.log('playback:', playback)
-    }
+
     return <div style={{padding: '16px'}}>
         <Button onClick={handleClick}>get me</Button>
         <Button onClick={fetchAvailableDevices}>get devices</Button>
-        <Button onClick={showPlayback}>show Playback</Button>
         <Button onClick={refreshToken}>refreshToken</Button>
     </div>
 }
