@@ -31,6 +31,15 @@ const usePanelActions = (is_playing?: boolean) => {
     const next = useCallback(() => {
 
     }, [])
+        if (device) {
+            if (is_playing) {
+                pause(device.id)
+            } else {
+                resume(device.id)
+            }
+            setIsPlaying(!is_playing)
+        }
+    }, [is_playing, device])
     const repeat = useCallback(() => {
 
     }, [])
