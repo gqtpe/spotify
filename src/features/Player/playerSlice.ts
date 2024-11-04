@@ -96,7 +96,17 @@ const slice = createSlice({
     },
     extraReducers: builder => {
         builder.addCase(fetchPlaybackState.fulfilled, (state, action) => {
-            state.playback = action.payload
+            if(action.payload) {
+                if (action.payload.device.is_active) {
+                    state.activeDevice = {id: action.payload.device.id, name: action.payload.device.name}
+                }
+                state.isPlaying = action.payload.is_playing
+                state.shuffleState = action.payload.shuffle_state
+                state.repeatState = action.payload.repeat_state
+                if(action.payload.item.type === 'track') {
+                    state.item = action.payload.item
+                }
+            }
         })
     }
 })
