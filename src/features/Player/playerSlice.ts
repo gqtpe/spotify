@@ -91,7 +91,7 @@ const slice = createSlice({
     },
     reducers: {
         setIsPlaying(state, action) {
-            if(state.playback) state.playback.is_playing = action.payload
+            state.isPlaying = action.payload
         }
     },
     extraReducers: builder => {
