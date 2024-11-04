@@ -1,7 +1,7 @@
 import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
 import {spotifyAPI} from "../../api/spotifyAPI.ts";
 import {Track} from "../../api/types/track.ts";
-import {PlayerBackState} from "./types.ts";
+import type {PlayerBackState, RepeatState} from "./types.ts";
 
 
 const fetchPlaybackState = createAsyncThunk<PlayerBackState, undefined>('player/fetchPlaybackState', async (_, thunkAPI) => {
