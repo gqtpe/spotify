@@ -49,6 +49,15 @@ const previous = createAsyncThunk<string, string>('player/previous', async (devi
         return thunkAPI.rejectWithValue(e)
     }
 })
+const setRepeat = createAsyncThunk<{repeat_state: RepeatState, id: string}, {repeat_state: RepeatState, deviceID: string}>('player/setRepeat', async ({repeat_state, deviceID}, thunkAPI) => {
+    try{
+        const res = await spotifyAPI.setRepeat(repeat_state, deviceID);
+        return {repeat_state, id: res.data}
+    } catch(e){
+        return thunkAPI.rejectWithValue(e)
+    }
+})
+
 
 export const asyncAction = {
     fetchPlaybackState,
@@ -56,6 +65,7 @@ export const asyncAction = {
     pause,
     next,
     previous
+    setRepeat
 }
 
 
