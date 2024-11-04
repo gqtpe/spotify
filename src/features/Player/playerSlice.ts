@@ -7,7 +7,7 @@ import {PlayerBackState} from "./types.ts";
 const fetchPlaybackState = createAsyncThunk<PlayerBackState, undefined>('player/fetchPlaybackState', async (_, thunkAPI) => {
     try {
         const res = await spotifyAPI.getPlaybackState();
-        if(res.status === 200){
+        if (res.status === 200) {
             return res.data
         }
         return thunkAPI.rejectWithValue(res.statusText)
