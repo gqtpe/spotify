@@ -77,8 +77,8 @@ export const spotifyAPI = {
     async next(deviceID:string) {
         return await spotifyAPIInstance.post(`me/player/next?device_id=${deviceID}`)
     },
-    async previous(){
-        return await spotifyAPIInstance.put('me/player/previous')
+    async previous(deviceID:string) {
+        return await spotifyAPIInstance.post('me/player/previous', {deviceID})
     },
     async setShuffle(state: boolean, deviceID:string) {
         return await spotifyAPIInstance.put(`me/player/shuffle?state=${state}&device_id=${deviceID}`)
