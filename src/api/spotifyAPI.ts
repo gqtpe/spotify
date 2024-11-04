@@ -88,7 +88,7 @@ export const spotifyAPI = {
     },
     //==========getDetailedItem
     async getDetailedItem(id: string, type: DetailedItemType) {
-        return await spotifyAPIInstance.get<Playlist|Artist|Album|Track>(`${type}s/${id}`)
+        return await spotifyAPIInstance.get<Playlist | Artist | Album | Track>(`${type}s/${id}`)
     },
     //==========browseCategory
     async getCategoryPlaylists(id: string) {
