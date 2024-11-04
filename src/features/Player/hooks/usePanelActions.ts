@@ -16,8 +16,10 @@ const usePanelActions = (is_playing?: boolean) => {
         }
     }, [device, setShuffle, shuffleState])
     const prev = useCallback(() => {
-
-    }, [])
+        if(device){
+            previous(device.id)
+        }
+    }, [previous, device])
     const togglePlay = useCallback(() => {
         if (is_playing) {
             pause()
