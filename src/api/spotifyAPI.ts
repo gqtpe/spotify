@@ -71,8 +71,8 @@ export const spotifyAPI = {
     async resume(deviceID:string) {
         return await spotifyAPIInstance.put(`me/player/play?device_id=${deviceID}`)
     },
-    async pause(){
-        return await spotifyAPIInstance.put('me/player/pause')
+    async pause(deviceID:string) {
+        return await spotifyAPIInstance.put(`me/player/pause?device_id=${deviceID}`)
     },
     async next(){
         return await spotifyAPIInstance.put('me/player/next')
