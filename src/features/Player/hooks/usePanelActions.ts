@@ -36,9 +36,17 @@ const usePanelActions = (is_playing?: boolean) => {
         }
     }, [next, device])
     const repeat = useCallback(() => {
-
-    }, [])
-    return { togglePlay, shuffle, prev, next, repeat}
+        if(device){
+            if(repeatState === "off"){
+                setRepeat({repeat_state: "context", deviceID: device.id})
+            }else if(repeatState === "context"){
+                setRepeat({repeat_state: "track", deviceID: device.id})
+            }else{
+                setRepeat({repeat_state: "off", deviceID: device.id})
+            }
+        }
+    }, [device, repeatState, setRepeat])
+    return {togglePlay, shuffle, prev, next: skip, repeat}
 }
 
 export default usePanelActions;
