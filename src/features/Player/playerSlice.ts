@@ -17,33 +17,33 @@ const fetchPlaybackState = createAsyncThunk<PlayerBackState, undefined>('player/
 })
 
 
-const resume = createAsyncThunk('player/resume', async (_, thunkAPI) => {
+const resume = createAsyncThunk<string, string>('player/resume', async (deviceID, thunkAPI) => {
     try {
-        const res = await spotifyAPI.resume();
+        const res = await spotifyAPI.resume(deviceID);
         return res.data
     } catch (e) {
         return thunkAPI.rejectWithValue(e)
     }
 })
-const pause = createAsyncThunk('player/pause', async (_, thunkAPI) => {
+const pause = createAsyncThunk<string, string>('player/pause', async (deviceID, thunkAPI) => {
     try {
-        const res = await spotifyAPI.pause();
+        const res = await spotifyAPI.pause(deviceID);
         return res.data
     } catch (e) {
         return thunkAPI.rejectWithValue(e)
     }
 })
-const next = createAsyncThunk('player/next', async (_, thunkAPI) => {
+const next = createAsyncThunk<string, string>('player/next', async (deviceID, thunkAPI) => {
     try {
-        const res = await spotifyAPI.next();
+        const res = await spotifyAPI.next(deviceID);
         return res.data
     } catch (e) {
         return thunkAPI.rejectWithValue(e)
     }
 })
-const previous = createAsyncThunk('player/previous', async (_, thunkAPI) => {
+const previous = createAsyncThunk<string, string>('player/previous', async (deviceID, thunkAPI) => {
     try {
-        const res = await spotifyAPI.previous();
+        const res = await spotifyAPI.previous(deviceID);
         return res.data
     } catch (e) {
         return thunkAPI.rejectWithValue(e)
