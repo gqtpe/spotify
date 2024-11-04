@@ -1,43 +1,61 @@
-.footer{
+@import "../../common/styles/vars.scss";
+
+.footer {
   display: grid;
   grid-template-columns: 1.2fr 2fr 1.2fr;
   grid-template-areas: 'current panel actions';
-  &__current{
+
+  &__current {
     grid-area: current;
   }
-  &__panel{
+
+  &__panel {
     grid-area: panel;
   }
 }
 
-.current{
+.current {
   display: flex;
   align-items: center;
 }
-.panel{
+
+.panel {
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
   gap: 8px;
-  &__actions{
-    .play{
-      margin: 0 8px;
-    }
+
+  &__actions {
+
     display: flex;
     gap: 8px;
     justify-content: center;
-    button{
+
+    button {
       width: 2rem;
       height: 2rem;
+
+      .play {
+        margin: 0 8px;
+      }
+
+      .active {
+        color: $primary-500;
+      }
+
     }
-    svg{
+
+    svg {
       font-size: 1rem;
     }
+
   }
-  &__slider{
+
+  &__slider {
     width: 100%;
-    input{
+
+    input {
       width: 100%;
     }
   }
