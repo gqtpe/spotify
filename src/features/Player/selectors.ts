@@ -6,3 +6,5 @@ export const selectPlayback = (state:AppRootStateType) => state.player.playback
 export const selectIsPlaying = (state: AppRootStateType) => state.player.isPlaying
 
 export const selectPlaybackItem = (state: AppRootStateType) =>state.player.item
+
+export const selectQueue = (state: AppRootStateType) => state.player.queue
