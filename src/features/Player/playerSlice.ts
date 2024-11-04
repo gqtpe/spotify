@@ -111,6 +111,9 @@ const slice = createSlice({
         builder.addCase(setShuffle.fulfilled, (state, action) => {
             state.shuffleState = action.payload.state
         })
+        builder.addCase(setRepeat.fulfilled, (state, action)=>{
+            state.repeatState = action.payload.repeat_state
+        })
     }
 })
 
