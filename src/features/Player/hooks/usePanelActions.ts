@@ -1,10 +1,12 @@
 import {useCallback} from "react";
 import {useActions} from "../../Application/hooks";
 import {playerActions} from "../index.ts";
+import {ActiveDevice} from "../playerSlice.ts";
+import {RepeatState} from "../types.ts";
 
 
-const usePanelActions = (is_playing?: boolean) => {
-    const {pause, resume, setIsPlaying} = useActions(playerActions)
+const usePanelActions = (device: ActiveDevice | null, shuffleState: boolean, is_playing: boolean, repeatState: RepeatState) => {
+    const {pause, resume, setIsPlaying, setRepeat, next, previous, setShuffle} = useActions(playerActions)
 
     const shuffle = useCallback(() => {
         if (device) {
