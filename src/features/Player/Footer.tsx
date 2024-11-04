@@ -7,6 +7,7 @@ import {FaPause, FaPlay, FaRepeat, FaShuffle} from "react-icons/fa6";
 import {FaStepBackward, FaStepForward} from "react-icons/fa";
 import usePanelActions from "./hooks/usePanelActions.ts";
 import {playerSelectors} from "./index.ts";
+import Repeat from "./components/Repeat/Repeat.tsx";
 
 export const Footer: FC = () => {
     const is_playing = useAppSelector(playerSelectors.selectIsPlaying)
