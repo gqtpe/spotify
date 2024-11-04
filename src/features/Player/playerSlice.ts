@@ -62,8 +62,12 @@ export const asyncAction = {
 const slice = createSlice({
     name: 'player',
     initialState: {
-        playback: {} as PlayerBackState,
+        item: null as Track | null,
         queue: [] as Array<Track>,
+        activeDevice: null as ActiveDevice | null,
+        isPlaying: false as boolean,
+        shuffleState: false as boolean,
+        repeatState: 'off' as RepeatState
     },
     reducers: {
         setIsPlaying(state, action) {
