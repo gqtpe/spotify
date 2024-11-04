@@ -8,3 +8,5 @@ export const selectIsPlaying = (state: AppRootStateType) => state.player.isPlayi
 export const selectPlaybackItem = (state: AppRootStateType) =>state.player.item
 
 export const selectQueue = (state: AppRootStateType) => state.player.queue
+
+export const selectShuffleState = (state: AppRootStateType) => state.player.shuffleState
