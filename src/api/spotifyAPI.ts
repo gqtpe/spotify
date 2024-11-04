@@ -47,13 +47,13 @@ export const spotifyAPI = {
         return await spotifyAPIInstance.get<ResponseType<SimplifiedPlaylist[]>>('me/playlists')
     },
     async getSavedAlbums() {
-        return await spotifyAPIInstance.get<ResponseType<{added_at:string; album: Album}[]>>('me/albums')
+        return await spotifyAPIInstance.get<ResponseType<{ added_at: string; album: Album }[]>>('me/albums')
     },
     async getSavedArtists() {
         return await spotifyAPIInstance.get<ResponseType<Artist[]>>('me/following?type=artist')
     },
     async getSavedTracks() {
-        return await spotifyAPIInstance.get<ResponseType<{added_at:string; track: Track}[]>>(`me/tracks`)
+        return await spotifyAPIInstance.get<ResponseType<{ added_at: string; track: Track }[]>>(`me/tracks`)
     },
     //==========player
     async getPlaybackState() {
@@ -92,17 +92,20 @@ export const spotifyAPI = {
     },
     //==========browseCategory
     async getCategoryPlaylists(id: string) {
-        return await spotifyAPIInstance.get<{message:string, playlists: ResponseType<SimplifiedPlaylist[]>}>('browse/categories/' + id + '/playlists')
+        return await spotifyAPIInstance.get<{
+            message: string,
+            playlists: ResponseType<SimplifiedPlaylist[]>
+        }>('browse/categories/' + id + '/playlists')
     },
     async getBrowseCategories() {
-        return await spotifyAPIInstance.get<{categories: ResponseType<CategoryObject[]>}>('browse/categories')
+        return await spotifyAPIInstance.get<{ categories: ResponseType<CategoryObject[]> }>('browse/categories')
     },
     //==========search
     async search(tab: Tabs, query: string) {
         let resultTab;
-        if(tab === 'all'){
-            resultTab = tabs.slice(1).map(t=>t.slice(0,-1)).join(',')
-        }else{
+        if (tab === 'all') {
+            resultTab = tabs.slice(1).map(t => t.slice(0, -1)).join(',')
+        } else {
             resultTab = tab.slice(0, -1)
         }
         return await spotifyAPIInstance.get<SearchResult>(`search?q=${query}&type=${resultTab}`)
