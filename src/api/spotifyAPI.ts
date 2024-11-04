@@ -80,6 +80,9 @@ export const spotifyAPI = {
     async previous(){
         return await spotifyAPIInstance.put('me/player/previous')
     },
+    async setShuffle(state: boolean, deviceID:string) {
+        return await spotifyAPIInstance.put(`me/player/shuffle?state=${state}&device_id=${deviceID}`)
+    },
     //==========getDetailedItem
     async getDetailedItem(id: string, type: DetailedItemType) {
         return await spotifyAPIInstance.get<Playlist|Artist|Album|Track>(`${type}s/${id}`)
