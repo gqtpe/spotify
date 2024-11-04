@@ -7,8 +7,14 @@ const usePanelActions = (is_playing?: boolean) => {
     const {pause, resume, setIsPlaying} = useActions(playerActions)
 
     const shuffle = useCallback(() => {
-
-    }, [])
+        if (device) {
+            if (shuffleState) {
+                setShuffle({state: false, deviceID: device.id})
+            } else {
+                setShuffle({state: true, deviceID: device.id})
+            }
+        }
+    }, [device, setShuffle, shuffleState])
     const prev = useCallback(() => {
 
     }, [])
