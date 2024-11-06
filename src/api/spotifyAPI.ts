@@ -67,7 +67,7 @@ export const spotifyAPI = {
         return await spotifyAPIInstance.get<Device[]>('me/player/devices')
     },
 
-    //actions
+    //player actions
     async resume(deviceID:string) {
         return await spotifyAPIInstance.put(`me/player/play?device_id=${deviceID}`)
     },
@@ -85,6 +85,9 @@ export const spotifyAPI = {
     },
     async setRepeat(repeat_state: RepeatState, device: string) {
         return await spotifyAPIInstance.put(`me/player/repeat?state=${repeat_state}&device_id=${device}`)
+    },
+    async seekPosition(position_ms: number, deviceID:string) {
+        return await spotifyAPIInstance.put(`me/player/seek?position_ms=${position_ms}&device_id=${deviceID}`)
     },
     //==========getDetailedItem
     async getDetailedItem(id: string, type: DetailedItemType) {
