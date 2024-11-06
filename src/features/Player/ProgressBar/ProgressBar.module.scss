@@ -1,16 +1,32 @@
+
+@import 'src/common/styles/input-range';
+
+
 .progressBar {
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 8px;
+  width: 75%;
+
+  @include input-range();
   &__range {
+    display: block;
+    flex-grow: 1;
 
   }
-}
-.range{
+  &__progress, &__duration {
+    flex-shrink: 0;
+    font-size: 8px;
+  }
 
 }
 
-.label{
+.range {
+
+
+}
+
+.label {
 
 }
