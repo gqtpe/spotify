@@ -82,7 +82,9 @@ export const asyncAction = {
     next,
     previous,
     setShuffle,
-    setRepeat
+    setRepeat,
+    seekPosition
+
 }
 
 
