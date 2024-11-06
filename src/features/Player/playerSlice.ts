@@ -87,7 +87,8 @@ const slice = createSlice({
         activeDevice: null as ActiveDevice | null,
         isPlaying: false as boolean,
         shuffleState: false as boolean,
-        repeatState: 'off' as RepeatState
+        repeatState: 'off' as RepeatState,
+        progress: null as null | number,
     },
     reducers: {
         setIsPlaying(state, action) {
