@@ -27,31 +27,3 @@ $accent-purple: #9B59B6;
 $gradient-primary: linear-gradient(135deg, #61C86A 0%, #4CAF56 100%);
 $gradient-accent: linear-gradient(135deg, #509BF5 0%, #9B59B6 100%);
 
-$scrollbar-bg: #333; // Цвет фона скроллбара
-$scrollbar-thumb: #61C86A; // Цвет ползунка
-@mixin scrollbar {
-  #element::-webkit-scrollbar {
-    width: 10px;
-    background-color: #f9f9fd;
-  }
-
-  #element::-webkit-scrollbar-thumb {
-    border-radius: 10px;
-    background-color: #18aaaa;
-  }
-  ::-webkit-scrollbar-button {
-    display: none;
-  }
-  #element::-webkit-scrollbar-track {
-    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.2);
-    border-radius: 10px;
-    background-color: #f9f9fd;
-  }
-  ::-webkit-scrollbar {
-    height: 10px;
-    width: 8px;
-    background: $scrollbar-bg;
-  }
-scrollbar-color:$scrollbar-thumb $scrollbar-bg;
-
-}
