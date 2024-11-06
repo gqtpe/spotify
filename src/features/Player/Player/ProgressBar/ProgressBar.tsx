@@ -1,8 +1,8 @@
 import {ChangeEvent, FC, memo, useState} from "react";
 import styles from './ProgressBar.module.scss';
-import Typography from "../../../common/components/Typography/Typography.tsx";
-import {timeHelpers} from "../";
-import {blankTime} from "../Player/Player.tsx";
+import Typography from "../../../../common/components/Typography/Typography.tsx";
+import {timeHelpers} from "../../index.ts";
+import {blankTime} from "../Player.tsx";
 
 type blankTime = typeof blankTime
 type Props = {
