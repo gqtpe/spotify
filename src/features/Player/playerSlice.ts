@@ -104,6 +104,7 @@ const slice = createSlice({
                 state.isPlaying = action.payload.is_playing
                 state.shuffleState = action.payload.shuffle_state
                 state.repeatState = action.payload.repeat_state
+                state.progress = action.payload.progress_ms
                 if(action.payload.item.type === 'track') {
                     state.item = action.payload.item
                 }
