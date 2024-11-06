@@ -11,3 +11,5 @@ export const selectShuffleState = (state: AppRootStateType) => state.player.shuf
 export const selectActiveDevice = (state: AppRootStateType) => state.player.activeDevice
 
 export const selectRepeatState = (state: AppRootStateType) => state.player.repeatState
+
+export const selectProgress = (state: AppRootStateType) => state.player.progress
