@@ -1,8 +1,6 @@
 export const msToTime = (ms: number) => {
-    let secondsPlayed: number;
-    let minutesPlayed: number;
-    secondsPlayed = Math.floor(ms / 1000);
-    minutesPlayed = Math.floor(secondsPlayed / 60);
+    let secondsPlayed = Math.floor(ms / 1000);
+    const minutesPlayed = Math.floor(secondsPlayed / 60);
     secondsPlayed = secondsPlayed % 60;
     return {sec: secondsPlayed, min: minutesPlayed}
 }
