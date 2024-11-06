@@ -5,7 +5,7 @@ import {ActiveDevice} from "../playerSlice.ts";
 import {RepeatState} from "../types.ts";
 
 
-const usePanelActions = (device: ActiveDevice | null, shuffleState: boolean, is_playing: boolean, repeatState: RepeatState) => {
+const usePlayerActions = (device: ActiveDevice | null, shuffleState: boolean, is_playing: boolean, repeatState: RepeatState) => {
     const {pause, resume, setIsPlaying, setRepeat, next, previous, setShuffle} = useActions(playerActions)
 
     const shuffle = useCallback(() => {
@@ -51,4 +51,4 @@ const usePanelActions = (device: ActiveDevice | null, shuffleState: boolean, is_
     return {togglePlay, shuffle, prev, next: skip, repeat}
 }
 
-export default usePanelActions;
+export default usePlayerActions;
