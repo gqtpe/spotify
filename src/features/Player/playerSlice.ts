@@ -1,4 +1,4 @@
-import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
+import {createAsyncThunk, createSlice, PayloadAction} from "@reduxjs/toolkit";
 import {spotifyAPI} from "../../api/spotifyAPI.ts";
 import {Track} from "../../api/types/track.ts";
 import type {PlayerBackState, RepeatState} from "./types.ts";
@@ -124,6 +124,9 @@ const slice = createSlice({
         })
         builder.addCase(setRepeat.fulfilled, (state, action)=>{
             state.repeatState = action.payload.repeat_state
+        })
+        builder.addCase(seekPosition.fulfilled, (state, action: PayloadAction<{position_ms: number, response: string}>)=>{
+            state.progress = action.payload.position_ms
         })
     }
 })
