@@ -66,7 +66,14 @@ const setRepeat = createAsyncThunk<{repeat_state: RepeatState, id: string}, {rep
         return thunkAPI.rejectWithValue(e)
     }
 })
-
+const seekPosition = createAsyncThunk<{position_ms: number, response: string}, {position_ms: number, deviceID: string}>('player/seekPosition', async ({position_ms, deviceID}, thunkAPI) => {
+    try{
+        const res = await spotifyAPI.seekPosition(position_ms, deviceID);
+        return {response: res.data, position_ms}
+    } catch(e){
+        return thunkAPI.rejectWithValue(e)
+    }
+})
 
 export const asyncAction = {
     fetchPlaybackState,
