@@ -1,31 +1,16 @@
-import {FC, useMemo} from "react";
+import {FC, useEffect} from "react";
 import styles from "./Footer.module.scss";
-import Card from "../../common/components/Cards/Card/Card.tsx";
-import {useAppSelector} from "../Application/hooks";
-import {Panel, Player, playerSelectors} from "./";
+import {CurrentlyPlaying, Panel, Player, playerActions} from "./";
+import {useActions} from "../Application/hooks";
 
 
 export const Footer: FC = () => {
-    //--
-    const item = useAppSelector(playerSelectors.selectPlaybackItem)
-    //--
-
-    const subTitle = useMemo(() => {
-        if (item) return item.album.artists.map(artist => artist.name).join(', ')
-    }, [item])
-
-
+    const {fetchPlaybackState} = useActions(playerActions)
+    useEffect(() => {
+       fetchPlaybackState()
+    }, [])
     return <footer className={styles.footer}>
-        <div className={[styles.footer__current, styles.current].join(' ')}>
-            {item ?
-                <Card image={item.album.images[0]!.url}
-                      subtitle={subTitle!}
-                      title={item.name}
-                      explicit={item.explicit}
-                      variant="small"
-                /> : 'no item'
-            }
-        </div>
+        <CurrentlyPlaying/>
         <Player/>
         <Panel/>
     </footer>
