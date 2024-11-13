@@ -6,7 +6,7 @@ import {RepeatState} from "../types.ts";
 
 
 const usePlayerActions = (device: ActiveDevice | null, shuffleState: boolean, is_playing: boolean, repeatState: RepeatState) => {
-    const {pause, resume, setIsPlaying, setRepeat, next, previous, setShuffle} = useActions(playerActions)
+    const {pause, resume, setRepeat, next, fetchCurrentlyPlaying, previous, setShuffle} = useActions(playerActions)
 
     const shuffle = useCallback(() => {
         if (device) {
@@ -17,9 +17,10 @@ const usePlayerActions = (device: ActiveDevice | null, shuffleState: boolean, is
             }
         }
     }, [device, setShuffle, shuffleState])
-    const prev = useCallback(() => {
+    const prev = useCallback(async () => {
         if(device){
-            previous(device.id)
+            await previous(device.id)
+            await fetchCurrentlyPlaying()
         }
     }, [previous, device])
     const togglePlay = useCallback(() => {
@@ -29,12 +30,13 @@ const usePlayerActions = (device: ActiveDevice | null, shuffleState: boolean, is
             } else {
                 resume(device.id)
             }
-            setIsPlaying(!is_playing)
+            fetchCurrentlyPlaying()
         }
     }, [is_playing, device])
-    const skip = useCallback(() => {
+    const skip = useCallback(async () => {
         if(device){
-            next(device.id)
+            await next(device.id)
+            await fetchCurrentlyPlaying()
         }
     }, [next, device])
     const repeat = useCallback(() => {
