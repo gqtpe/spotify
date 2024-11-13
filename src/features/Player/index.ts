@@ -9,6 +9,7 @@ import Repeat from "./Player/Repeat/Repeat.tsx";
 import ProgressBar from "./Player/ProgressBar/ProgressBar.tsx";
 import Player from "./Player/Player.tsx";
 import Panel from "./Panel/Panel.tsx";
+import CurrentlyPlaying from "./CurrentlyPlaying.tsx";
 
 const playerReducer = slice.reducer
 const playerActions = {
@@ -29,5 +30,6 @@ export {
     Repeat,
     ProgressBar,
     Player,
-    Panel
+    Panel,
+    CurrentlyPlaying
 }
