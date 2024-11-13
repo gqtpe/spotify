@@ -158,8 +158,6 @@ const slice = createSlice({
         builder.addCase(setShuffle.fulfilled, (state, action) => {
             state.playback.shuffleState = action.payload.state
         })
-        builder.addCase(setRepeat.fulfilled, (state, action)=>{
-            state.repeatState = action.payload.repeat_state
         builder.addCase(setRepeat.fulfilled, (state, action) => {
             state.playback.repeatState = action.payload.repeat_state
         })
