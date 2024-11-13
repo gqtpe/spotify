@@ -2,6 +2,7 @@ import {createAsyncThunk, createSlice, PayloadAction} from "@reduxjs/toolkit";
 import {spotifyAPI} from "../../api/spotifyAPI.ts";
 import {Track} from "../../api/types/track.ts";
 import type {PlayerBackState, RepeatState} from "./types.ts";
+import {RequestStatuses} from "../../api/types/common.ts";
 
 
 const fetchPlaybackState = createAsyncThunk<PlayerBackState, undefined>('player/fetchPlaybackState', async (_, thunkAPI) => {
@@ -115,8 +116,12 @@ const slice = createSlice({
         setIsPlaying(state, action) {
             state.isPlaying = action.payload
         }
+        playbackLoading: 'idle' as RequestStatuses
     },
     extraReducers: builder => {
+        builder.addCase(fetchPlaybackState.pending, state => {
+            state.playbackLoading = 'loading'
+        })
         builder.addCase(fetchPlaybackState.fulfilled, (state, action) => {
             if(action.payload) {
                 if (action.payload.device.is_active) {
@@ -129,6 +134,7 @@ const slice = createSlice({
                 if(action.payload.item.type === 'track') {
                     state.item = action.payload.item
                 }
+                state.playbackLoading = 'succeeded'
             }
         })
         builder.addCase(setShuffle.fulfilled, (state, action) => {
