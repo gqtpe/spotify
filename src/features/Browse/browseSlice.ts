@@ -3,6 +3,7 @@ import {SearchResult, spotifyAPI} from "../../api/spotifyAPI.ts";
 import {AppRootStateType} from "../Application/types.ts";
 import {CategoryObject} from "../../api/types/browseCategories.ts";
 import {AxiosResponse} from "axios";
+import type {RequestStatuses} from "../../api/types/common.ts";
 
 export type Tabs = keyof SearchResult | 'all'
 
@@ -52,7 +53,6 @@ export const asyncActions = {
     fetchBrowseCategories,
     fetchNewPortion,
 }
-type RequestStatuses = 'idle' | 'loading' | 'succeeded' | 'failed'
 const slice = createSlice/**/(
     {
         name: 'browse',
