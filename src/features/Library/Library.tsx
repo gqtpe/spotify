@@ -43,17 +43,19 @@ export const Library = () => {
     })
 
     return <div className={styles.library}>
-        <div className={styles.library__header}>
-            <BiLibrary fontSize={24}/>
-            <Typography className={styles.title}>
+        <div className={styles.library__header + ' ' + styles.header}>
+            <BiLibrary fontSize={24} className={styles.header__logo}/>
+            <Typography variant="subtitle1" className={styles.header__title}>
                 Your Library
             </Typography>
-            <IconButton variant="icon" fz={18}>
+            <div className={styles.header__actions}>
+            <IconButton variant="icon" fz={18} >
                 <IoMdAdd/>
             </IconButton>
-            <IconButton variant="icon" fz={18}>
+            <IconButton variant="icon" fz={18} >
                 <IoIosArrowForward/>
             </IconButton>
+            </div>
         </div>
         <div className={styles.library__tabs}>
             {filter !== 'all' && <div className={styles.removeTab}><RxCross2 onClick={() => setFilter('all')}/></div>}

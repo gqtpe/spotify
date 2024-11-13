@@ -28,7 +28,7 @@ export const GenreTile: FC<Props> = memo(({ item }) => {
             onClick={handleClick}
             style={{ background: color }}
         >
-            <Typography variant="h5">{name}</Typography>
+            <Typography variant="h4" sx={{fontWeight: 'bolder'}}>{name}</Typography>
             <img
                 className={styles.tile__img}
                 src={icons[0].url}

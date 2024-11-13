@@ -1,7 +1,6 @@
-@import './vars';
 $thumb-width: 0.5em;
 $thumb-height: 0.5em;
-$accent-color: $text-primary;
+$accent-color: var(--text-primary);
 $focusSpacing: 2px;
 @mixin thumb {
   appearance: none;
@@ -19,7 +18,7 @@ $focusSpacing: 2px;
 @mixin input-range {
   input[type="range"] {
     appearance: none;
-    background-color: $background-lighter;
+    background-color: var(--background-lighter);
     height: 0.5em;
     border-radius: 0.25em;
   }

@@ -1,64 +1,65 @@
-$white: #FFFFFF;
-$text-primary: $white;
-$text-secondary: #B3B3B3;
-$text-muted: #999999;
+
+.h1, .h2, .h3, .h4, .h5, .h6 {
+  font-weight: bold;
+  color: var(--text-100)
+}
 
 .h1 {
-    font-size: 2.5rem;
-    font-weight: 700;
-    color: $text-primary;
+  font-size: 2.5rem;
 }
 
 .h2 {
-    font-size: 2rem;
-    font-weight: 600;
-    color: $text-primary;
+  font-size: 2rem;
 }
 
 .h3 {
-    font-size: 1.75rem;
-    font-weight: 600;
-    color: $text-primary;
+  font-size: 1.75rem;
 }
 
 .h4 {
-    font-size: 1.5rem;
-    font-weight: 500;
-    color: $text-primary;
+  font-size: 1.5rem;
 }
 
 .h5 {
-    font-size: 1.25rem;
-    font-weight: 500;
-    color: $text-primary;
+  font-size: 1.25rem;
 }
 
 .h6 {
-    font-size: 1rem;
-    font-weight: 500;
-    color: $text-primary;
+  font-size: 1rem;
 }
 
-.body1 {
-    font-size: 1rem;
-    font-weight: 400;
-    color: $text-primary;
-}
-
-.body2 {
-    font-size: 0.875rem;
-    font-weight: 400;
-    color: $text-secondary;
-}
 
 .caption {
-    font-size: 0.75rem;
-    font-weight: 400;
-    color: $text-muted;
+  font-size: 0.75rem;
+  color: var(--text-500);
 }
 
-.h1,.h2,.h3,.h4,.h5,.h6,.body1,.body2,.caption{
-    svg{
-        font-size: 1rem;
-    }
+.overline {
+  font-size: 0.75rem;
+  color: var(--text-300);
+  text-transform: uppercase;
+}
+
+.subtitle1 {
+  font-size: 1rem;
+  color: var(--text-200);
+  font-weight: 500;
+}
+
+.subtitle2 {
+  font-size: 0.875rem;
+  color: var(--text-400);
+  font-weight: 500;
+}
+
+.h1, .h2, .h3, .h4, .h5, .h6, .overline, .subtitle1, .subtitle2, .caption {
+  svg {
+    font-size: 1rem;
+  }
+}
+.h6, .h5, .h4{
+  font-weight: 400;
+}
+.div{
+  font-weight: 400;
 }

@@ -1,29 +1,40 @@
-// Primary Color Palette
-$primary-600: #4CAF56; // Darker than the original primary
-$primary-500: #61C86A; // Original Primary
-$primary-400: #76D381; // Slightly lighter
-$primary-300: #8BDD98; // Lighter
-$primary-200: #A2E8B0; // Even lighter
-$primary-100: #BAF2C7; // Lightest
+:root {
+  // Primary Color Palette
+  --primary-600: #4CAF56; // Darker than the original primary
+  --primary-500: #61C86A; // Original Primary
+  --primary-400: #76D381; // Slightly lighter
+  --primary-300: #8BDD98; // Lighter
+  --primary-200: #A2E8B0; // Even lighter
+  --primary-100: #BAF2C7; // Lightest
 
-// Background Colors
-$background-dark: #000000; // Pure black background
-$background-darker: #121212;
-$background-lighter: #1f1f1f;
-$background-light: #2a2a2a;
+  // Background Colors
+  --background-dark: #000000; // Pure black background
+  --background-darker: #121212;
+  --background-lighter: #1f1f1f;
+  --background-light: #2a2a2a;
+  --white: #FFFFFF;
+  // Text Colors
+  --text-100: #FFFFFF; // Pure white
+  --text-200: #E0E0E0; // Very light gray
+  --text-300: #B3B3B3; // Light gray, similar to text-secondary
+  --text-400: #808080; // Medium gray
+  --text-500: #4D4D4D; // Darker gray
 
-// Text Colors
-$white: #FFFFFF;
-$text-primary: $white;
-$text-secondary: #B3B3B3;
-$text-muted: #999999;
+  // Accent Colors
+  --accent-red: #E22134;
+  --accent-blue: #509BF5;
+  --accent-purple: #9B59B6;
 
-// Accent Colors
-$accent-red: #E22134;
-$accent-blue: #509BF5;
-$accent-purple: #9B59B6;
+  // Gradient Backgrounds
+  --gradient-primary: linear-gradient(135deg, #61C86A 0%, #4CAF56 100%);
+  --gradient-accent: linear-gradient(135deg, #509BF5 0%, #9B59B6 100%);
 
-// Gradient Backgrounds
-$gradient-primary: linear-gradient(135deg, #61C86A 0%, #4CAF56 100%);
-$gradient-accent: linear-gradient(135deg, #509BF5 0%, #9B59B6 100%);
+  //
+  --p1: 4px;
+  --p2: 8px;
+  --p3: 12px;
+  --p4: 16px;
+  --p5: 20px;
+  --p6: 24px;
 
+}

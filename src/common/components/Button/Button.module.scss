@@ -23,15 +23,15 @@
   }
 }
 .filled{
-  background-color: $primary-500;
-  color: $background-dark;
+  background-color: var(--primary-500);
+  color: var(--background-dark);
   transition: filter 0.2s ease-in-out;
 
 }
 .outlined{
   background-color: transparent;
-  color: $white;
-  border: 1px solid $white;
+  color: var(--white);
+  border: 1px solid var(--white);
   transition: scale 0.2s ease-in-out;
 
   &:hover{
@@ -39,19 +39,19 @@
   }
   &:active{
     scale: 0.98;
-    color: $text-secondary;
+    color: var(--text-secondary);
   }
 }
 .text{
   background-color: transparent;
   border: none;
-  color: $text-secondary;
+  color: var(--text-secondary);
   transition: color 0.2s ease-in-out;
   &:hover{
-    color: $text-primary;
+    color: var(--text-primary);
   }
   &:active{
-    color: $text-secondary;
+    color: var(--text-secondary);
   }
 }
 

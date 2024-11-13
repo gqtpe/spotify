@@ -30,14 +30,14 @@ const Table = memo(({data, enableRowNumbering = false}: TableProps) => {
 
             {table.getHeaderGroups().map(headerGroup => (
                 <tr key={headerGroup.id}>
-                    {enableRowNumbering && <th style={{width: '50px', textAlign: 'center'}}>#</th>}
+                    {enableRowNumbering && <th style={{width: '50px', textAlign: 'center'}}><Typography variant="subtitle1">#</Typography></th>}
                     {headerGroup.headers.map(header => (
                         <th
                             key={header.id}
                             style={{cursor: 'pointer'}}
                             id={header.id}
                         >
-                            <Typography variant={'body2'}>
+                            <Typography variant='subtitle2'>
                                 {flexRender(header.column.columnDef.header, header.getContext())}
                             </Typography>
                         </th>
@@ -49,7 +49,7 @@ const Table = memo(({data, enableRowNumbering = false}: TableProps) => {
             {table.getRowModel().rows.map(row => (
                 <tr key={row.id}>
 
-                    {enableRowNumbering && <td style={{width: '50px', textAlign: 'center'}}>{row.index + 1}</td>}
+                    {enableRowNumbering && <td style={{width: '50px', textAlign: 'center'}}><Typography variant="subtitle1">{row.index + 1}</Typography></td>}
                     {row.getVisibleCells().map(cell => (
                         <td key={cell.id}>
                             {flexRender(cell.column.columnDef.cell, cell.getContext())}

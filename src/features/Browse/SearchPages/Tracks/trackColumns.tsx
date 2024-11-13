@@ -16,8 +16,8 @@ export const trackColumns: ColumnDef<Track>[] = [
                     style={{borderRadius: '5px'}}
                 />
                 <div style={{display: 'flex', flexDirection: 'column'}}>
-                    <Typography>{row.original.name}</Typography>
-                    <Typography variant={'caption'} sx={{
+                    <Typography variant='subtitle1'>{row.original.name}</Typography>
+                    <Typography variant='subtitle2' sx={{
                         display: 'flex',
                         gap: '4px',
                         alignItems: 'center'
@@ -31,7 +31,7 @@ export const trackColumns: ColumnDef<Track>[] = [
         accessorKey: 'album.name',
         header: 'Album',
         cell: ({row}) => (
-            <Typography variant={'body2'}>{row.original.album.name}</Typography>
+            <Typography variant='subtitle2' sx={{fontWeight: 'bold'}}>{row.original.album.name}</Typography>
         )
     },
     {

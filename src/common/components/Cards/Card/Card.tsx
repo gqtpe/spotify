@@ -57,13 +57,13 @@ const Card: FC<PlaylistProps> = ({
     const imageElement = image ?
         <img className={defaultImageStyles} src={image} alt={'image'}/>
         :
-        <div className={defaultImageStyles}>
-            <IoMdMusicalNote className={styles.emptyImageIcon}/>
+        <div className={defaultImageStyles + ' ' + styles.emptyImage}>
+            <IoMdMusicalNote />
         </div>
 
     const classNames = [styles.card, styles[variant], (onPlay && styles.hover)].join(' ')
     return (
-        <div className={classNames} onClick={handleClick}>
+        <div className={classNames} onClick={handleClick} id='card'>
             <div className={styles.card__image_wp}>
                 {imageElement}
                 {onPlay &&
@@ -71,9 +71,9 @@ const Card: FC<PlaylistProps> = ({
                         <IoMdPlay style={{position: 'relative', left: '2px'}}/>
                     </IconButton>}
             </div>
-            <div className={styles.card__details}>
-                <Typography className={styles.title}>{cutFrom30(title)}</Typography>
-                <Typography variant='caption' className={styles.subtitle}>
+            <div className={styles.card__details} id='card-details'>
+                <Typography variant='subtitle1' className={styles.title}>{cutFrom30(title)}</Typography>
+                <Typography variant='subtitle2' className={styles.subtitle}>
                     {explicit ? <MdExplicit className={styles.explicitIcon}/> : ''}
                     {subtitle}
                 </Typography>
