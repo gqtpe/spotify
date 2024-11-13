@@ -156,13 +156,24 @@ const slice = createSlice({
 
 
         builder.addCase(setShuffle.fulfilled, (state, action) => {
-            state.shuffleState = action.payload.state
+            state.playback.shuffleState = action.payload.state
         })
         builder.addCase(setRepeat.fulfilled, (state, action)=>{
             state.repeatState = action.payload.repeat_state
+        builder.addCase(setRepeat.fulfilled, (state, action) => {
+            state.playback.repeatState = action.payload.repeat_state
         })
-        builder.addCase(seekPosition.fulfilled, (state, action: PayloadAction<{position_ms: number, response: string}>)=>{
-            state.progress = action.payload.position_ms
+        builder.addCase(seekPosition.fulfilled, (state, action: PayloadAction<{
+            position_ms: number,
+            response: string
+        }>) => {
+            state.playback.progress = action.payload.position_ms
+        })
+        builder.addCase(pause.fulfilled, (state) => {
+            state.playback.isPlaying = false
+        })
+        builder.addCase(resume.fulfilled, (state) => {
+            state.playback.isPlaying = true
         })
     }
 })
