@@ -98,13 +98,14 @@ const seekPosition = createAsyncThunk<{ position_ms: number, response: string },
 
 export const asyncAction = {
     fetchPlaybackState,
+    fetchCurrentlyPlaying,
     resume,
     pause,
     next,
     previous,
     setShuffle,
     setRepeat,
-    seekPosition
+    seekPosition,
 
 }
 
