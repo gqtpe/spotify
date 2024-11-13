@@ -73,17 +73,36 @@ const setShuffle = createAsyncThunk<{state: boolean, id: string}, {state: boolea
 )
 const setRepeat = createAsyncThunk<{repeat_state: RepeatState, id: string}, {repeat_state: RepeatState, deviceID: string}>('player/setRepeat', async ({repeat_state, deviceID}, thunkAPI) => {
     try{
-        const res = await spotifyAPI.setRepeat(repeat_state, deviceID);
-        return {repeat_state, id: res.data}
-    } catch(e){
+const setShuffle = createAsyncThunk<{ state: boolean, id: string }, {
+    state: boolean,
+    deviceID: string
+}>('player/setShuffle', async ({state, deviceID}, thunkAPI) => {
+    try {
+        const res = await spotifyAPI.setShuffle(state, deviceID);
+        return {state, id: res.data}
+    } catch (e) {
         return thunkAPI.rejectWithValue(e)
     }
 })
-const seekPosition = createAsyncThunk<{position_ms: number, response: string}, {position_ms: number, deviceID: string}>('player/seekPosition', async ({position_ms, deviceID}, thunkAPI) => {
-    try{
+const setRepeat = createAsyncThunk<{ repeat_state: RepeatState, id: string }, {
+    repeat_state: RepeatState,
+    deviceID: string
+}>('player/setRepeat', async ({repeat_state, deviceID}, thunkAPI) => {
+    try {
+        const res = await spotifyAPI.setRepeat(repeat_state, deviceID);
+        return {repeat_state, id: res.data}
+    } catch (e) {
+        return thunkAPI.rejectWithValue(e)
+    }
+})
+const seekPosition = createAsyncThunk<{ position_ms: number, response: string }, {
+    position_ms: number,
+    deviceID: string
+}>('player/seekPosition', async ({position_ms, deviceID}, thunkAPI) => {
+    try {
         const res = await spotifyAPI.seekPosition(position_ms, deviceID);
         return {response: res.data, position_ms}
-    } catch(e){
+    } catch (e) {
         return thunkAPI.rejectWithValue(e)
     }
 })
