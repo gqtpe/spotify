@@ -8,7 +8,7 @@ import {useNavigate} from "react-router-dom";
 
 type PlaylistProps = {
     title: string
-    image: string | null
+    image?: string
     subtitle: string
     variant?: 'default' | 'small' | 'large'
     round?: boolean
@@ -17,7 +17,14 @@ type PlaylistProps = {
     explicit?: boolean
     link?: string
 }
-//todo: variants
+
+const cutFrom30 = (text: string) => {
+    if (text.length > 30) {
+        return text.slice(0, 30) + '...'
+    }
+    return text
+}
+
 const Card: FC<PlaylistProps> = ({
                                      title,
                                      subtitle,
@@ -27,9 +34,8 @@ const Card: FC<PlaylistProps> = ({
                                      onClick,
                                      variant = 'default',
                                      explicit = false,
-                                     link
+                                     link,
                                  }) => {
-    const cutTitle = title.length > 30 ? title.slice(0, 30) + '...' : title;
     const defaultImageStyles = [styles.image, round && styles.round].join(' ');
     const navigate = useNavigate()
     const iconButtonVariant = variant === 'small' ? 'icon' : 'filled';
@@ -40,7 +46,7 @@ const Card: FC<PlaylistProps> = ({
         if (link) {
             navigate(link)
         }
-    }, [onClick,navigate])
+    }, [onClick, navigate])
     const handlePlayButtonClick = useCallback((event: MouseEvent) => {
         event.stopPropagation()
         if (onPlay) {
@@ -56,7 +62,6 @@ const Card: FC<PlaylistProps> = ({
         </div>
 
     const classNames = [styles.card, styles[variant], (onPlay && styles.hover)].join(' ')
-
     return (
         <div className={classNames} onClick={handleClick}>
             <div className={styles.card__image_wp}>
@@ -67,7 +72,7 @@ const Card: FC<PlaylistProps> = ({
                     </IconButton>}
             </div>
             <div className={styles.card__details}>
-                <Typography className={styles.title}>{cutTitle}</Typography>
+                <Typography className={styles.title}>{cutFrom30(title)}</Typography>
                 <Typography variant='caption' className={styles.subtitle}>
                     {explicit ? <MdExplicit className={styles.explicitIcon}/> : ''}
                     {subtitle}
