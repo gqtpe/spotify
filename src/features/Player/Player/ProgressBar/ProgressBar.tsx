@@ -1,46 +1,78 @@
-import {ChangeEvent, FC, memo, useState} from "react";
+import {ChangeEvent, FC, memo, useCallback, useEffect, useState} from "react";
 import styles from './ProgressBar.module.scss';
 import Typography from "../../../../common/components/Typography/Typography.tsx";
 import {timeHelpers} from "../../index.ts";
-import {blankTime} from "../Player.tsx";
+
+export const blankTime = "-:--" as const
 
 type blankTime = typeof blankTime
 type Props = {
-    progress: number | blankTime
-    duration: number | blankTime
+    progress: number
+    duration: number
     onSeek: (position_ms: number) => void
+    onSeekEnd?: () => void
+    loading?: boolean
+    isPlaying: boolean
 }
 
 
-const ProgressBar: FC<Props> = ({progress, duration, onSeek}) => {
+const ProgressBar: FC<Props> = ({progress, duration, onSeek, loading, onSeekEnd, isPlaying}) => {
+    //todo: need to make
+
     const [value, setValue] = useState(progress)
-    const [timeoutID, setTimeoutID] = useState<NodeJS.Timeout | null>(null)
-    const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-        if (timeoutID) {
-            clearTimeout(timeoutID)
+    const [debounceTimeout, setDebounceTimeout] = useState<NodeJS.Timeout | null>(null)
+    const [intervalID, setIntervalID] = useState<NodeJS.Timeout | null>(null)
+    const handleChange = useCallback((e: ChangeEvent<HTMLInputElement>) => {
+        if (!loading) {
+            setValue(e.target.valueAsNumber)
+            if (debounceTimeout) {
+                clearTimeout(debounceTimeout)
+            }
+            const timeOutID = setTimeout(() => {
+                onSeek(e.target.valueAsNumber)
+            }, 300)
+            setDebounceTimeout(timeOutID)
         }
-        setValue(e.target.valueAsNumber)
-        const curr = setTimeout(() => {
-            onSeek(e.target.valueAsNumber)
-        }, 300)
-        setTimeoutID(curr)
-    }
-    let resultProgress;
-    let resultDuration;
-    const isBlankTime = value === blankTime ? 0 : value;
-    if (progress === blankTime || duration === blankTime) {
-        resultProgress = blankTime
-        resultDuration = blankTime
-    } else {
-        const progressTime = timeHelpers.msToTime(isBlankTime)
-        const durationTime = timeHelpers.msToTime(duration)
-        resultProgress = `${progressTime.min}:${timeHelpers.formatWithLeadingZero(progressTime.sec)}`
-        resultDuration = `${durationTime.min}:${timeHelpers.formatWithLeadingZero(durationTime.sec)}`
-    }
+    }, [onSeek, loading])
+
+    useEffect(() => {
+        if (!loading) {
+            if (isPlaying) {
+                if (!intervalID) {
+                    const curr = setInterval(() => {
+                        if(value+1000<duration){
+                            setValue(value => value + 1000)
+                        }
+                    }, 1000)
+                    setIntervalID(curr)
+                }
+            } else {
+                if (intervalID) {
+                    clearInterval(intervalID)
+                    setIntervalID(null)
+                }
+            }
+        }
+    }, [duration, progress, isPlaying])
+
+    useEffect(()=>{
+        if(!loading){
+            if(isPlaying){
+                if(value+1000>duration){
+                    onSeekEnd?.()
+                }
+            }
+        }
+    },[value])
+    useEffect(()=>{
+        if(!loading){
+            setValue(progress)
+        }
+    },[progress])
 
     return <div className={styles.progressBar}>
-        <label htmlFor="progress" className={[styles.progressBar__progress, styles.progress].join(' ')}><Typography
-            variant='caption'>{resultProgress}</Typography></label>
+        <label htmlFor="progress" className={styles.progressBar__progress}><Typography
+            variant='caption'>{loading ? blankTime : timeHelpers.msToTime(value)}</Typography></label>
         <input
             name="progress"
             className={[styles.progressBar__range, styles.range].join(' ')}
@@ -48,11 +80,11 @@ const ProgressBar: FC<Props> = ({progress, duration, onSeek}) => {
             min={0}
             step={1}
             max={duration}
-            value={isBlankTime}
+            value={value}
             onChange={handleChange}
         />
-        <label htmlFor="progress" className={[styles.progressBar__duration, styles.duration].join(' ')}><Typography
-            variant='caption'>{resultDuration}</Typography></label>
+        <label htmlFor="progress" className={styles.progressBar__duration}><Typography
+            variant='caption'>{loading ? blankTime : timeHelpers.msToTime(duration)}</Typography></label>
     </div>
 }
 export default memo(ProgressBar)
