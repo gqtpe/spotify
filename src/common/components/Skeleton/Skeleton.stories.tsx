@@ -42,9 +42,10 @@ export const Text: Story = {
         <div style={{color: 'white'}}>H4: <Typography variant="h4"><Skeleton {...args}/></Typography></div>
         <div style={{color: 'white'}}>H5: <Typography variant="h5"><Skeleton {...args}/></Typography></div>
         <div style={{color: 'white'}}>H6: <Typography variant="h6"><Skeleton {...args}/></Typography></div>
-        <div style={{color: 'white'}}>BODY1: <Typography variant="body1"><Skeleton {...args}/></Typography></div>
-        <div style={{color: 'white'}}>BODY2: <Typography variant="body2"><Skeleton {...args}/></Typography></div>
+        <div style={{color: 'white'}}>BODY1: <Typography variant="subtitle1"><Skeleton {...args}/></Typography></div>
+        <div style={{color: 'white'}}>BODY2: <Typography variant="subtitle2"><Skeleton {...args}/></Typography></div>
         <div style={{color: 'white'}}>Caption: <Typography variant="caption"><Skeleton {...args}/></Typography></div>
+        <div style={{color: 'white'}}>Caption: <Typography variant="overline"><Skeleton {...args}/></Typography></div>
     </div>
 }
 export const Image: Story = {
