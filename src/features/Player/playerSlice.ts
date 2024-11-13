@@ -124,6 +124,7 @@ const slice = createSlice({
         queue: [] as Array<Track>,
         playbackLoading: 'idle' as RequestStatuses
     },
+    reducers: {},
     extraReducers: builder => {
         builder.addCase(fetchPlaybackState.pending, state => {
             state.playbackLoading = 'loading'
