@@ -40,6 +40,7 @@ type AvailableMarkets = string[]
 
 type ReleaseDatePrecision = 'year' | 'month' | 'day'
 
+type RequestStatuses = 'idle' | 'loading' | 'succeeded' | 'failed'
 export type {
     External_Urls,
     Restrictions,
@@ -49,5 +50,6 @@ export type {
     ResponseType,
     AvailableMarkets,
     ReleaseDatePrecision,
-    External_Ids
+    External_Ids,
+    RequestStatuses
 }
