@@ -1,4 +1,4 @@
-import {FC} from "react";
+import {FC, memo} from "react";
 import styles from "../Footer.module.scss";
 import IconButton from "../../../common/components/IconButton/IconButton.tsx";
 import {FaPause, FaPlay, FaShuffle} from "react-icons/fa6";
@@ -7,16 +7,17 @@ import {playerSelectors, ProgressBar, Repeat, usePlayerActions, useProgress} fro
 import {useAppSelector} from "../../Application/hooks";
 
 
-export const blankTime = "-:--" as const
-
 const Player: FC = () => {
     const device = useAppSelector(playerSelectors.selectActiveDevice)
     const shuffleState = useAppSelector(playerSelectors.selectShuffleState)
     const is_playing = useAppSelector(playerSelectors.selectIsPlaying)
     const item = useAppSelector(playerSelectors.selectPlaybackItem)
     const repeatState = useAppSelector(playerSelectors.selectRepeatState)
+    const playbackLoading = useAppSelector(playerSelectors.selectPlaybackLoading)
+
     const {togglePlay, shuffle, next, prev, repeat} = usePlayerActions(device, shuffleState, is_playing, repeatState)
-    const {progress, seekPosition} = useProgress(device)
+
+    const {progress, seekPosition, fetchCurrentlyPlaying} = useProgress(device)
 
 
     return <div className={[styles.footer__player, styles.player].join(' ')}>
@@ -35,7 +36,25 @@ const Player: FC = () => {
             </IconButton>
             <Repeat variant={repeatState} onClick={repeat}/>
         </div>
-        <ProgressBar progress={progress ? progress:blankTime} duration={item?.duration_ms? item.duration_ms: blankTime} onSeek={seekPosition}/>
+        {(playbackLoading === 'succeeded') &&
+            <ProgressBar
+                progress={progress!}
+                duration={item!.duration_ms}
+                onSeek={seekPosition}
+                onSeekEnd={fetchCurrentlyPlaying}
+                loading={false}
+                isPlaying={is_playing}
+            /> }
+        {playbackLoading !== 'succeeded' &&
+            <ProgressBar
+                progress={0}
+                duration={0}
+                onSeek={seekPosition}
+                loading={true}
+                isPlaying={false}
+            />
+        }
+
     </div>
 }
-export default Player;
+export default memo(Player);
