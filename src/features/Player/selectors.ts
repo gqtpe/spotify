@@ -1,15 +1,17 @@
 import {AppRootStateType} from "../Application/types.ts";
 
-export const selectIsPlaying = (state: AppRootStateType) => state.player.isPlaying
+export const selectIsPlaying = (state: AppRootStateType) => state.player.playback.isPlaying
 
 export const selectPlaybackItem = (state: AppRootStateType) =>state.player.item
 
 export const selectQueue = (state: AppRootStateType) => state.player.queue
 
-export const selectShuffleState = (state: AppRootStateType) => state.player.shuffleState
+export const selectPlaybackLoading = (state: AppRootStateType) =>state.player.playbackLoading
 
-export const selectActiveDevice = (state: AppRootStateType) => state.player.activeDevice
+export const selectShuffleState = (state: AppRootStateType) => state.player.playback.shuffleState
 
-export const selectRepeatState = (state: AppRootStateType) => state.player.repeatState
+export const selectActiveDevice = (state: AppRootStateType) => state.player.playback.activeDevice
 
-export const selectProgress = (state: AppRootStateType) => state.player.progress
+export const selectRepeatState = (state: AppRootStateType) => state.player.playback.repeatState
+
+export const selectProgress = (state: AppRootStateType) => state.player.playback.progress
