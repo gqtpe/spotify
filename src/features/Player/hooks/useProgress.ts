@@ -5,13 +5,13 @@ import {ActiveDevice} from "../playerSlice.ts";
 
 
 const useProgress = (device: ActiveDevice | null) => {
-    const {seekPosition} = useActions(playerActions)
+    const {seekPosition, fetchCurrentlyPlaying} = useActions(playerActions)
     const progress = useAppSelector(playerSelectors.selectProgress)
     const callback = useCallback((position_ms: number) => {
         if (device) {
             seekPosition({position_ms: position_ms, deviceID: device.id})
         }
     }, [device, seekPosition])
-    return {progress, seekPosition: callback}
+    return {progress, seekPosition: callback, fetchCurrentlyPlaying}
 }
 export default useProgress
