@@ -15,7 +15,19 @@ const fetchPlaybackState = createAsyncThunk<PlayerBackState, undefined>('player/
         return thunkAPI.rejectWithValue(e)
     }
 })
-
+const fetchCurrentlyPlaying = createAsyncThunk<PlayerBackState, undefined, {
+    rejectValue: unknown
+}>('player/fetchCurrentlyPlaying', async (_, thunkAPI) => {
+    try {
+        const response = await spotifyAPI.getCurrentlyPlaying()
+        if (response.status === 200) {
+            return response.data
+        }
+        return thunkAPI.rejectWithValue(response.statusText)
+    } catch (e) {
+        return thunkAPI.rejectWithValue(e)
+    }
+})
 
 const resume = createAsyncThunk<string, string>('player/resume', async (deviceID, thunkAPI) => {
     try {
