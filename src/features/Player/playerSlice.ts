@@ -62,17 +62,6 @@ const previous = createAsyncThunk<string, string>('player/previous', async (devi
         return thunkAPI.rejectWithValue(e)
     }
 })
-const setShuffle = createAsyncThunk<{state: boolean, id: string}, {state: boolean, deviceID: string}>('player/setShuffle', async ({state, deviceID}, thunkAPI) => {
-        try {
-            const res = await spotifyAPI.setShuffle(state, deviceID);
-            return {state, id: res.data}
-        } catch (e) {
-            return thunkAPI.rejectWithValue(e)
-        }
-    }
-)
-const setRepeat = createAsyncThunk<{repeat_state: RepeatState, id: string}, {repeat_state: RepeatState, deviceID: string}>('player/setRepeat', async ({repeat_state, deviceID}, thunkAPI) => {
-    try{
 const setShuffle = createAsyncThunk<{ state: boolean, id: string }, {
     state: boolean,
     deviceID: string
