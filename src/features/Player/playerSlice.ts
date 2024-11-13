@@ -104,18 +104,15 @@ export const asyncAction = {
 const slice = createSlice({
     name: 'player',
     initialState: {
+        playback: {
+            activeDevice: null as ActiveDevice | null,
+            isPlaying: false as boolean,
+            shuffleState: false as boolean,
+            repeatState: 'off' as RepeatState,
+            progress: null as null | number,
+        },
         item: null as Track | null,
         queue: [] as Array<Track>,
-        activeDevice: null as ActiveDevice | null,
-        isPlaying: false as boolean,
-        shuffleState: false as boolean,
-        repeatState: 'off' as RepeatState,
-        progress: null as null | number,
-    },
-    reducers: {
-        setIsPlaying(state, action) {
-            state.isPlaying = action.payload
-        }
         playbackLoading: 'idle' as RequestStatuses
     },
     extraReducers: builder => {
@@ -137,6 +134,17 @@ const slice = createSlice({
                 state.playbackLoading = 'succeeded'
             }
         })
+        builder.addCase(fetchCurrentlyPlaying.fulfilled, (state, action: PayloadAction<PlayerBackState>) => {
+            if (action.payload) {
+                if (action.payload.item.type === 'track') {
+                    state.item = action.payload.item
+                    state.playback.progress = action.payload.progress_ms
+                    state.playback.isPlaying = action.payload.is_playing
+                }
+            }
+        })
+
+
         builder.addCase(setShuffle.fulfilled, (state, action) => {
             state.shuffleState = action.payload.state
         })
