@@ -209,6 +209,23 @@ export type ActiveDevice = {
     id: string
     name: string
 }
-
+export type PlayParamTypes =
+    | {
+    type: 'playlist' | 'album'
+    deviceID?: string
+    context_uri: string
+    offset?: {
+        position: number
+    }
+} | {
+    deviceID?: string
+    type: 'track' | 'episode'
+    uris?: string[]
+    position?: number
+} | {
+    deviceID?: string
+    type: 'artist' | 'show'
+    context_uri: string
+}
 
 export default slice

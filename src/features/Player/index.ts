@@ -5,6 +5,7 @@ import * as playerSelectors from "./selectors.ts";
 import * as timeHelpers from "./utils/helpers.ts";
 import useProgress from "./hooks/useProgress.ts";
 import usePlayerActions from "./hooks/usePlayerActions.ts";
+import usePlayAction from "./hooks/usePlayAction.ts";
 import Repeat from "./Player/Repeat/Repeat.tsx";
 import ProgressBar from "./Player/ProgressBar/ProgressBar.tsx";
 import Player from "./Player/Player.tsx";
@@ -26,6 +27,7 @@ export {
     timeHelpers,
     usePlayerActions,
     useProgress,
+    usePlayAction,
     Footer,
     Repeat,
     ProgressBar,
