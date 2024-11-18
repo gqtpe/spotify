@@ -10,6 +10,7 @@ import {SimplifiedPlaylist} from "../../../api/types/playlist.ts";
 import useIntersectionObserver from "../../../features/Application/hooks/useIntersectionObserver.tsx";
 import {browseActions, browseSelectors} from "../../../features/Browse";
 import {useParams} from "react-router-dom";
+import {usePlayAction} from "../../../features/Player";
 
 
 type CardsProps = {
@@ -24,6 +25,7 @@ const Cards: FC<CardsProps> = ({selector, preview}) => {
         const getPortion = useCallback(() => {
             fetchNewPortion()
         }, [fetchNewPortion])
+        const play = usePlayAction()
         const {triggerRef} = useIntersectionObserver(getPortion, item?.items)
         useEffect(() => {
             if (!item) {
