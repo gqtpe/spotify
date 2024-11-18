@@ -3,10 +3,12 @@ import {useAppSelector} from "../../../Application/hooks";
 import {browseSelectors} from "../../index.ts";
 import Card from "../../../../common/components/Cards/Card/Card.tsx";
 import Typography from "../../../../common/components/Typography/Typography.tsx";
+import {usePlayAction} from "../../../Player";
 
 
 export const Songs = () => {
     const tracks = useAppSelector(browseSelectors.selectTracks)
+    const play = usePlayAction()
     if (!tracks) {
         return <div>...</div>
     }
