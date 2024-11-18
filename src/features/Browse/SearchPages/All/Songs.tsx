@@ -21,9 +21,7 @@ export const Songs = () => {
                     title={topResult?.name}
                     subtitle={topResult?.artists[0].name}
                     explicit={topResult?.explicit}
-                    onPlay={() => {
-                        alert('play')
-                    }}
+                    onPlay={() => play({type: 'track', uris: [topResult.uri], position:0})}
                     link={`/track/${topResult?.id}`}
                     variant="large"
                 />
