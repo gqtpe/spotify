@@ -9,13 +9,14 @@ import {RxCross2} from "react-icons/rx";
 import {useActions, useAppSelector} from "../Application/hooks";
 import {userLibraryActions, userLibrarySelectors} from "./index.ts";
 import Card from "../../common/components/Cards/Card/Card.tsx";
+import {usePlayAction} from "../Player";
 
 
 export const Library = () => {
     const items = useAppSelector(userLibrarySelectors.selectFilteredItems)
     const filter = useAppSelector(userLibrarySelectors.selectFilter)
     const {setFilter} = useActions(userLibraryActions)
-
+    const play = usePlayAction()
 
     const cardItems = items.map(item => {
         const {id, name, type, images} = item;
