@@ -136,7 +136,7 @@ export const asyncAction = {
     setShuffle,
     setRepeat,
     seekPosition,
-
+    play,
 }
 
 
