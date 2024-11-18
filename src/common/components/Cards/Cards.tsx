@@ -37,6 +37,7 @@ const Cards: FC<CardsProps> = ({selector, preview}) => {
         if (!item) {
             return null
         }
+
         const cardItems = item.items ? item.items.map(item => {
             let subTitle = ''
             switch (item.type) {
@@ -50,15 +51,20 @@ const Cards: FC<CardsProps> = ({selector, preview}) => {
                     subTitle = 'Artist'
                     break;
             }
+            const callback = ()=>{
+                if(item.type === 'artist'){
+                    play({type: 'artist', context_uri: item.uri})
+                }else{
+                    play({type: item.type, context_uri: item.uri})
+                }
+            }
             return <Card
                 key={item.id}
                 title={item.name}
                 subtitle={subTitle}
                 image={item.images[0]?.url || undefined}
                 round={item.type === 'artist'}
-                onPlay={() => {
-                    alert('hi')
-                }}
+                onPlay={callback}
                 link={`/${item.type}/${item.id}`}
             />
         }) : null

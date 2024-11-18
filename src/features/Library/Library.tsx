@@ -23,7 +23,6 @@ export const Library = () => {
         const img = images && images.length > 0 ? images[0].url : '';
 
         const capitalizedType = type.charAt(0).toUpperCase() + type.slice(1);
-
         let subtitle = '';
         if (type === 'playlist') {
             subtitle = `${capitalizedType} - ${item.owner.display_name}`;
@@ -38,7 +37,7 @@ export const Library = () => {
                 subtitle={subtitle}
                 image={img}
                 variant="small"
-                onPlay={()=>{}}
+                onPlay={()=>play({type: item.type, context_uri: item.uri, offset: {position: 0}})}
             />
         );
     })
