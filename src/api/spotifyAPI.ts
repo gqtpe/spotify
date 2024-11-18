@@ -40,6 +40,10 @@ export const spotifyAPI = {
         spotifyAPIInstance.defaults.headers.common['Authorization'] = `Bearer ${token}`
     },
     //==========me
+
+    async play({deviceID, ...params}: {deviceID: string, context_uri?: string,uris?: string[], offset?:{position: number},position_ms?:number}) {
+      return await spotifyAPIInstance.put(`me/player/play?device_id=${deviceID}`, params)
+    },
     async getMe() {
         return await spotifyAPIInstance.get<User>('me');
     },
