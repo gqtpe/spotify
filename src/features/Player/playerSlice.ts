@@ -96,6 +96,36 @@ const seekPosition = createAsyncThunk<{ position_ms: number, response: string },
     }
 })
 
+const play = createAsyncThunk<unknown, PlayParamTypes>('player/play', async (params, thunkAPI) => {
+    try {
+        if (params.deviceID === undefined) {
+            return thunkAPI.rejectWithValue({message: 'deviceID is undefined'})
+        }
+        let curr;
+        if (params.type === "track" || params.type === "episode") {
+            curr = {
+                deviceID: params.deviceID,
+                uris: params.uris,
+                position: params.position ? params.position : undefined,
+            }
+        } else {
+            curr = {
+                deviceID: params.deviceID,
+                ...params,
+            }
+            if (params.type === 'album' || params.type === 'playlist') {
+                curr = {
+                    ...curr,
+                    offset: params.offset
+                }
+            }
+        }
+        const res = await spotifyAPI.play({...curr});
+        return res.data
+    } catch (e) {
+        return thunkAPI.rejectWithValue(e)
+    }
+})
 export const asyncAction = {
     fetchPlaybackState,
     fetchCurrentlyPlaying,
