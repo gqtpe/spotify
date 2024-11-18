@@ -31,6 +31,9 @@ export const Songs = () => {
             <div className={styles.songs__items}>
                 <Typography variant="h4" className={styles.title}>Songs</Typography>
                 {tracks.items.map((t, i) => {
+                    function callback(){
+                        play({type: 'track', uris: [t.uri]})
+                    }
                     if (i > 3) return;
                     return <Card
                         key={t.id}
@@ -39,7 +42,7 @@ export const Songs = () => {
                         subtitle={t.artists[0].name}
                         explicit={t.explicit}
                         link={`/track/${t.id}`}
-                        onPlay={()=>{}}
+                        onPlay={callback}
                         variant="small"
                     />
                 })}
