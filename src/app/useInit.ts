@@ -16,7 +16,6 @@ export const useInit = () => {
 
 
     useEffect(() => {
-        document.title = 'Spotify'
         setTimeout(() => {
             initializeApp();
         }, 500)
