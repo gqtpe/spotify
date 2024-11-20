@@ -126,6 +126,16 @@ const play = createAsyncThunk<unknown, PlayParamTypes>('player/play', async (par
         return thunkAPI.rejectWithValue(e)
     }
 })
+const fetchDevices = createAsyncThunk<Device[], undefined>('player/fetchDevices', async (_, thunkAPI) => {
+    try{
+        const res = await spotifyAPI.getAvailableDevices();
+        return res.data.devices
+    } catch (e){
+        return thunkAPI.rejectWithValue(e)
+    }
+})
+
+
 export const asyncAction = {
     fetchPlaybackState,
     fetchCurrentlyPlaying,
