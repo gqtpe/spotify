@@ -61,3 +61,30 @@
   }
 
 }
+
+.actions {
+  grid-area: actions;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &__availableDevices {
+    padding: 8px;
+    margin-bottom: 8px;
+    border-radius: 8px;
+    background-color: var(--background-light);
+    position: relative;
+    .device{
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+    .active {
+      content: '';
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background-color: var(--primary-500);
+    }
+  }
+}
