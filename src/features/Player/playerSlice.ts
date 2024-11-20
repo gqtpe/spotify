@@ -164,6 +164,10 @@ const slice = createSlice({
         },
         item: null as Track | null,
         queue: [] as Array<Track>,
+        availableDevices: {
+            items: [] as Device[],
+            loading: 'idle' as RequestStatuses
+        },
         playbackLoading: 'idle' as RequestStatuses
     },
     reducers: {},
