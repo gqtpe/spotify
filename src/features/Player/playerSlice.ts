@@ -147,7 +147,9 @@ export const asyncAction = {
     setRepeat,
     seekPosition,
     play,
+    fetchDevices
 }
+
 
 
 const slice = createSlice({
