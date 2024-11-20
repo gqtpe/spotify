@@ -1,7 +1,7 @@
 import {createAsyncThunk, createSlice, PayloadAction} from "@reduxjs/toolkit";
 import {spotifyAPI} from "../../api/spotifyAPI.ts";
 import {Track} from "../../api/types/track.ts";
-import type {PlayerBackState, RepeatState} from "./types.ts";
+import type {Device, PlayerBackState, RepeatState} from "./types.ts";
 import {RequestStatuses} from "../../api/types/common.ts";
 
 
