@@ -19,7 +19,22 @@ export const useInit = () => {
         setTimeout(() => {
             initializeApp();
         }, 500)
+        //disable context menu from all elements
+        const disableContextMenu = (e: MouseEvent) => {
+            const target = e.target as Element;
+            if (target) {
+                if (!target.closest(".allow-context-menu")) {
+                    e.preventDefault();
+                }
+            }
 
+        };
+
+        document.addEventListener("contextmenu", disableContextMenu);
+
+        return () => {
+            document.removeEventListener("contextmenu", disableContextMenu);
+        };
     }, [initializeApp])
     useEffect(() => {
         if (location.pathname.includes('/search')) {
