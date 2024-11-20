@@ -68,9 +68,8 @@ export const spotifyAPI = {
     },
     //device
     async getAvailableDevices() {
-        return await spotifyAPIInstance.get<Device[]>('me/player/devices')
+        return await spotifyAPIInstance.get<{devices: Device[]}>('me/player/devices')
     },
-
     //player actions
     async resume(deviceID:string) {
         return await spotifyAPIInstance.put(`me/player/play?device_id=${deviceID}`)
