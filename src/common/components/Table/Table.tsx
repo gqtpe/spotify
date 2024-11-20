@@ -3,15 +3,17 @@ import {CSSProperties, memo} from "react";
 import styles from "./Table.module.scss"
 import Typography from '../Typography/Typography';
 import {trackColumns} from "../../../features/Browse/SearchPages/Tracks/trackColumns.tsx";
+import {usePlayAction} from "../../../features/Player";
+import {Track} from "../../../api/types/track.ts";
 
 
 interface TableProps {// Колонки с типом данных
-    data: any[]
+    data: Track[]
     enableStickyHeader?: boolean
     enableRowNumbering?: boolean
 }
 
-const Table = memo(({data, enableRowNumbering = false}: TableProps) => {
+const TracksTable = memo(({data, enableRowNumbering = false}: TableProps) => {
     const table = useReactTable({
         columns: trackColumns,
         data,
@@ -22,7 +24,7 @@ const Table = memo(({data, enableRowNumbering = false}: TableProps) => {
     const defaultStyle: CSSProperties = {
         position: 'static'
     }
-
+    const play = usePlayAction()
     // const style = enableStickyHeader? sticky: defaultStyle
     return (
         <table className={styles.container}>
@@ -30,7 +32,9 @@ const Table = memo(({data, enableRowNumbering = false}: TableProps) => {
 
             {table.getHeaderGroups().map(headerGroup => (
                 <tr key={headerGroup.id}>
-                    {enableRowNumbering && <th style={{width: '50px', textAlign: 'center'}}><Typography variant="subtitle1">#</Typography></th>}
+                    {enableRowNumbering &&
+                        <th style={{width: '50px', textAlign: 'center'}}><Typography variant="subtitle1">#</Typography>
+                        </th>}
                     {headerGroup.headers.map(header => (
                         <th
                             key={header.id}
@@ -46,21 +50,23 @@ const Table = memo(({data, enableRowNumbering = false}: TableProps) => {
             ))}
             </thead>
             <tbody>
-            {table.getRowModel().rows.map(row => (
-                <tr key={row.id}>
+            {table.getRowModel().rows.map(row => {
 
-                    {enableRowNumbering && <td style={{width: '50px', textAlign: 'center'}}><Typography variant="subtitle1">{row.index + 1}</Typography></td>}
+                return <tr key={row.id} onClick={() => play({type: 'track', uris: [row.original.uri]})}>
+
+                    {enableRowNumbering && <td style={{width: '50px', textAlign: 'center'}}><Typography
+                        variant="subtitle1">{row.index + 1}</Typography></td>}
                     {row.getVisibleCells().map(cell => (
                         <td key={cell.id}>
                             {flexRender(cell.column.columnDef.cell, cell.getContext())}
                         </td>
                     ))}
                 </tr>
-            ))}
+            })}
             </tbody>
         </table>
     );
 });
 
 
-export default memo(Table)
+export default memo(TracksTable)

@@ -1,24 +1,33 @@
-@import '../../styles/vars';
-
 .container {
   width: 100%;
-  border-collapse: separate;
-  border-spacing: 8px;
+  border-collapse: collapse;
+  background-color: transparent;
+
   thead {
-    border-bottom: 1px solid hsla(0, 0%, 100%, .1);
+    border-bottom: 1px solid hsla(0, 0%, 100%, 0.1);
     display: table-header-group;
+
     tr {
       th {
         text-align: left;
-
+        padding: 8px;
       }
     }
   }
 
   tbody {
     tr {
+
+      transition: background-color 0.1s ease-in-out;
+      &:hover {
+        background: var(--background-light);
+      }
+      &:active{
+        background: var(--background-lighter)
+      }
+
       td {
-        padding-bottom: 8px;
+        padding: 8px;
       }
     }
   }
