@@ -219,6 +219,9 @@ const slice = createSlice({
         builder.addCase(resume.fulfilled, (state) => {
             state.playback.isPlaying = true
         })
+        builder.addCase(fetchDevices.pending, state => {
+            state.availableDevices.loading = 'loading'
+        })
     }
 })
 export type ActiveDevice = {
