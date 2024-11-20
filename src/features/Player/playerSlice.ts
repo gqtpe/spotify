@@ -222,6 +222,10 @@ const slice = createSlice({
         builder.addCase(fetchDevices.pending, state => {
             state.availableDevices.loading = 'loading'
         })
+        builder.addCase(fetchDevices.fulfilled, (state, action)=>{
+            state.availableDevices.items = action.payload
+            state.availableDevices.loading = 'succeeded'
+        })
     }
 })
 export type ActiveDevice = {
