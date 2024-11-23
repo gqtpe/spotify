@@ -40,6 +40,7 @@ const Cards: FC<CardsProps> = ({selector, preview}) => {
 
         const cardItems = item.items ? item.items.map(item => {
             let subTitle = ''
+            if(!item){return null}
             switch (item.type) {
                 case 'playlist':
                     subTitle = 'By ' + item.owner.display_name;
