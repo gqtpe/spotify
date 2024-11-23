@@ -2,6 +2,7 @@ import styles from "../../Footer.module.scss";
 import {useEffect} from "react";
 import {useActions, useAppSelector} from "../../../Application/hooks";
 import {playerActions, playerSelectors} from "../../index.ts";
+import Typography from "../../../../common/components/Typography/Typography.tsx";
 
 
 const AvailableDevices = ({...rest}) => {
@@ -15,8 +16,12 @@ const AvailableDevices = ({...rest}) => {
     if(loading !== 'succeeded') return null
     return (
         <div {...rest} className={styles.actions__availableDevices}>
-            {items.map(item => <div className={styles.device}><div key={item.id}>{item.name}</div>{item.is_active&& <div className={styles.active}></div>}</div>)}{}
-          </div>
+            <Typography variant="h5" >
+                Available Devices
+            </Typography>
+            {items.map(item => <div className={styles.device} key={item.id}><div>{item.name}</div>{item.is_active&& <div className={styles.active}></div>}</div>)}
+
+        </div>
     );
 };
 
