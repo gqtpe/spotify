@@ -10,8 +10,9 @@ const AvailableDevices = ({...rest}) => {
     const items = useAppSelector(playerSelectors.selectAvailableDevices)
     const {fetchDevices} = useActions(playerActions)
     useEffect(()=>{
-        if(loading === 'idle'){}
-        fetchDevices()
+        if(loading === 'idle'){
+            fetchDevices()
+        }
     },[])
     if(loading !== 'succeeded') return null
     return (
