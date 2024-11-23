@@ -8,7 +8,6 @@ import {browseActions} from "../features/Browse";
 
 export const useInit = () => {
     const isInitialized = useAppSelector(state => state.app.isInitialized)
-    const user = useAppSelector(state => state.auth.user)
     const {initializeApp} = useActions(appActions)
     //browse
     const location = useLocation()
@@ -49,5 +48,5 @@ export const useInit = () => {
         }
     }, [])
 
-    return {isInitialized, user}
+    return {isInitialized}
 }
