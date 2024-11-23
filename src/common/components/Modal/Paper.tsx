@@ -1,7 +1,7 @@
-import {HTMLAttributes, useRef} from "react";
+import {HTMLAttributes} from "react";
 
 type Props = & HTMLAttributes<HTMLDivElement>
-const Paper = ({style,children, ...rest}: Props) => {
+const Paper = ({style, children, ...rest}: Props) => {
     const styles = {
         ...style,
         borderRadius: '8px',
@@ -11,7 +11,7 @@ const Paper = ({style,children, ...rest}: Props) => {
     return (
         <div style={styles} {...rest}>
             <div style={{padding: '8px'}}>
-            {children}
+                {children}
             </div>
         </div>
     );
