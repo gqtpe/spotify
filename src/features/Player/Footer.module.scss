@@ -70,14 +70,9 @@
   grid-area: actions;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
 
   &__availableDevices {
-    padding: 8px;
-    margin-bottom: 8px;
-    border-radius: 8px;
-    background-color: var(--background-light);
-    position: relative;
     .device{
       display: flex;
       align-items: center;
