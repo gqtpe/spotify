@@ -1,35 +1,34 @@
-import { FC, useCallback, useRef, useState } from "react";
+import {FC, useCallback, useRef, useState} from "react";
 import styles from "../Footer.module.scss";
-import { MdDevices } from "react-icons/md";
+import {MdDevices} from "react-icons/md";
 import IconButton from "../../../common/components/IconButton/IconButton.tsx";
-import { createPortal } from "react-dom";
-import AvailableDevices from "./Devices/AvailableDevices.tsx";
+import {createPortal} from "react-dom";
 import Modal from "../../../common/components/Modal/Modal.tsx";
+import Paper from "../../../common/components/Modal/Paper.tsx";
+import AvailableDevices from "./Devices/AvailableDevices.tsx";
 
 
-const availableDevicesWidth = 16
+const availableDevicesWidth = '10rem'
 const Panel: FC = () => {
     const [showPopup, setShowPopup] = useState<boolean>(false);
-    const devices = useRef<HTMLDivElement>(null);
+    const anchorEl = useRef<HTMLButtonElement>(null);
     const togglePopup = useCallback(() => {
         setShowPopup(prev => !prev);
-        console.log(devices.current!.offsetParent!.clientHeight - devices.current!.offsetTop)
     }, []);
-
     return (
         <div className={[styles.footer__actions, styles.actions].join(' ')}>
-            <div ref={devices}>
-            <IconButton variant="icon" onClick={togglePopup}>
+            <IconButton variant="icon" onClick={togglePopup} ref={anchorEl}>
                 <MdDevices/>
             </IconButton>
-            </div>
-            {showPopup && devices.current && createPortal(
+            {showPopup && anchorEl && createPortal(
                 <Modal
-                   bottom={devices.current!.offsetParent!.clientHeight - devices.current.offsetTop + 24}
-                   right={devices.current!.offsetParent!.clientWidth - devices.current.offsetLeft - 16}
-                   popupWidth={availableDevicesWidth}
+                    anchorEl={anchorEl.current}
+                    placement="top"
+                    margin={24}
                 >
-                    <AvailableDevices style={{maxWidth: availableDevicesWidth + 'rem'}}/>
+                    <Paper style={{maxWidth: availableDevicesWidth, minWidth: availableDevicesWidth}}>
+                       <AvailableDevices/>
+                    </Paper>
                 </Modal>,
                 document.getElementById('portal')!
             )}
