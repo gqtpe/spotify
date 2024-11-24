@@ -6,6 +6,7 @@ import {createPortal} from "react-dom";
 import Modal from "../../../common/components/Modal/Modal.tsx";
 import Paper from "../../../common/components/Modal/Paper.tsx";
 import AvailableDevices from "./Devices/AvailableDevices.tsx";
+import {HiMiniQueueList} from "react-icons/hi2";
 
 
 const availableDevicesWidth = '10rem'
@@ -15,11 +16,18 @@ const Panel: FC = () => {
     const togglePopup = useCallback(() => {
         setShowPopup(prev => !prev);
     }, []);
+
     return (
         <div className={[styles.footer__actions, styles.actions].join(' ')}>
             <IconButton variant="icon" onClick={togglePopup} ref={anchorEl}>
                 <MdDevices/>
             </IconButton>
+            <IconButton variant="icon" onClick={togglePopup} ref={anchorEl}>
+                <HiMiniQueueList />
+            </IconButton>
+
+
+            {/*popup*/}
             {showPopup && anchorEl && createPortal(
                 <Modal
                     anchorEl={anchorEl.current}
@@ -27,11 +35,12 @@ const Panel: FC = () => {
                     margin={24}
                 >
                     <Paper style={{maxWidth: availableDevicesWidth, minWidth: availableDevicesWidth}}>
-                       <AvailableDevices/>
+                        <AvailableDevices/>
                     </Paper>
                 </Modal>,
                 document.getElementById('portal')!
             )}
+            {/*popup*/}
         </div>
     );
 };
