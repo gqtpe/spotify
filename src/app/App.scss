@@ -82,7 +82,6 @@ $app-footer-height: 80px;
     grid-area: footer;
     background-color: var(--background-dark);
     color: #fff;
-    text-align: center;
     height: $app-footer-height; // Высота футера по умолчанию
     @media (max-width: 768px) {
       height: $app-footer-height; // Высота футера на мобильных устройствах
