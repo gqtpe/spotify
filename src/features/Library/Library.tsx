@@ -1,6 +1,6 @@
 import {BiLibrary} from "react-icons/bi";
 import Typography from "../../common/components/Typography/Typography.tsx";
-import styles from "./Library.module.scss";
+import "./Library.scss";
 import IconButton from "../../common/components/IconButton/IconButton.tsx";
 import {IoIosArrowForward, IoMdAdd} from "react-icons/io";
 import TabItem from "../../common/components/TabGroup/TabItem/TabItem.tsx";
@@ -37,35 +37,35 @@ export const Library = () => {
                 subtitle={subtitle}
                 image={img}
                 variant="small"
-                onPlay={()=>play({type: item.type, context_uri: item.uri, offset: {position: 0}})}
+                onPlay={() => play({type: item.type, context_uri: item.uri, offset: {position: 0}})}
             />
         );
     })
-
-    return <div className={styles.library}>
-        <div className={styles.library__header + ' ' + styles.header}>
-            <BiLibrary fontSize={24} className={styles.header__logo}/>
-            <Typography variant="subtitle1" className={styles.header__title}>
+//todo fix library header logo disappearing
+    return <div className="library">
+        <div className="library__header">
+            <BiLibrary fontSize={24} className="library__logo"/>
+            <Typography variant="subtitle1" className="library__title">
                 Your Library
             </Typography>
-            <div className={styles.header__actions}>
-            <IconButton variant="icon" fz={18} >
-                <IoMdAdd/>
-            </IconButton>
-            <IconButton variant="icon" fz={18} >
-                <IoIosArrowForward/>
-            </IconButton>
+            <div className="library__actions">
+                <IconButton variant="icon" fz={18}>
+                    <IoMdAdd/>
+                </IconButton>
+                <IconButton variant="icon" fz={18}>
+                    <IoIosArrowForward/>
+                </IconButton>
             </div>
         </div>
-        <div className={styles.library__tabs}>
-            {filter !== 'all' && <div className={styles.removeTab}><RxCross2 onClick={() => setFilter('all')}/></div>}
+        <div className="library__tabs">
+            {filter !== 'all' && <div className="tabs__close"><RxCross2 onClick={() => setFilter('all')}/></div>}
             <TabGroup value={filter} handleChange={(value) => setFilter(value)} style={{padding: 0}}>
                 <TabItem value={'playlist'} label={"Playlists"}/>
                 <TabItem value={'album'} label={"Albums"}/>
                 <TabItem value={'artist'} label={"Artists"} disabled/>
             </TabGroup>
         </div>
-        <div className={styles.library__items}>
+        <div className="library__items">
             {cardItems}
         </div>
         {/*
