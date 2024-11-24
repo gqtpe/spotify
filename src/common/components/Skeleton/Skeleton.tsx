@@ -10,7 +10,7 @@ type Props =  HTMLAttributes<HTMLDivElement> &{
     round?: boolean
     animation?: Animations
 }
-const Skeleton = ({width,height,round, animation = 'pulsate'}:Props) =>{
+const Skeleton = ({width,height,round, animation = 'pulsate',style, ...rest}:Props) =>{
     const styles: CSSProperties = {
         display: 'block',
         width: width?width:'100%',
@@ -20,9 +20,9 @@ const Skeleton = ({width,height,round, animation = 'pulsate'}:Props) =>{
         background:  animation === 'wave'?'linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%)':'#baaeae',
         backgroundSize:  animation === 'wave'? '200% 100%' : '100% 100%',
         animation: animation === 'wave'?'wave 2.5s infinite linear': 'pulsate 2.5s ease-in-out infinite',
-
+        ...style
     }
-    return <span style={styles}>
+    return <span style={styles} {...rest}>
         'blank''blank''blank'
     </span>
 }
