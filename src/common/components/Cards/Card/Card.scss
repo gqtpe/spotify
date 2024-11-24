@@ -1,0 +1,159 @@
+@import '../../../styles/vars';
+
+
+@mixin popup($size, $margin) {
+  display: block;
+  position: absolute;
+  bottom: $margin;
+  right: $margin;
+  font-size: $size;
+  transform: translateY(calc(110% + $margin));
+  transition: transform 0.1s ease-in-out, filter 0.1s ease-in-out;
+  &:active {
+    filter: brightness(0.8);
+  }
+}
+
+.card {
+  padding: 0.75rem;
+  transition: background-color 0.2s ease-in-out;
+  border-radius: 8px;
+
+  &__image-container {
+    position: relative;
+    aspect-ratio: 1/1;
+    border-radius: 8px;
+    overflow: hidden;
+
+    .card__image-round {
+      border-radius: 50%;
+    }
+  }
+
+  &:hover {
+    background-color: var(--background-lighter);
+  }
+}
+
+.card__image {
+  width: 100%;
+  height: 100%;
+}
+
+.card--default {
+  &__details {
+    margin-right: 8px;
+
+    .card__title {
+      margin: 0 0 4px 0;
+    }
+
+    .card__subtitle {
+      .card__explicit {
+      }
+    }
+  }
+
+  .card__button {
+    @include popup(1.8rem, 8px)
+  }
+}
+
+.card--small, .card--small- {
+  max-height: 100%;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem;
+  position: relative;
+
+  .card__image-container {
+    height: 100%;
+    margin: 0;
+
+    .card__image {
+      max-width: 2.5rem;
+      max-height: 2.5rem;
+      transition: opacity 0.2s ease-in-out;
+      position: static;
+    }
+  }
+}
+
+.card--small {
+  .card__button {
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    font-size: 1.5rem;
+  }
+
+  .card__image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  &:hover {
+    .card__image {
+      opacity: 0.5;
+    }
+
+    .card__button {
+      position: absolute;
+      opacity: 1;
+
+      &:hover {
+        background: transparent;
+        scale: none
+      }
+    }
+  }
+}
+
+.card--small- {
+  &:hover {
+    background-color: transparent;
+  }
+}
+
+.card--large {
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  justify-content: space-between;
+  .card__image-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 5rem;
+    height: 5rem;
+    position: static;
+  }
+
+  .card__button {
+    @include popup(1.8rem, 16px)
+  }
+
+  &:hover {
+    .card__button {
+      transform: translateY(0);
+    }
+
+  }
+
+  .card__details {
+    .card__title {
+      font-size: 2rem;
+    }
+  }
+}
