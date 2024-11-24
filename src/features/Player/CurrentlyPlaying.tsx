@@ -1,7 +1,7 @@
 import {FC, useMemo} from "react";
 import footerStyles from "./Footer.module.scss";
 import Card from "../../common/components/Cards/Card/Card.tsx";
-import styles from "../../common/components/Cards/Card/Card.module.scss";
+import "../../common/components/Cards/Card/Card.scss";
 import {useAppSelector} from "../Application/hooks";
 import {playerSelectors} from "./index.ts";
 import Skeleton from "../../common/components/Skeleton/Skeleton.tsx";
@@ -20,14 +20,14 @@ const CurrentlyPlaying: FC = () => {
                       subtitle={subTitle ? subTitle : 'blank'}
                       title={item ? item.name : 'blank'}
                       explicit={item ? item.explicit : false}
-                      variant="small"
-        /> : <div className={[styles.card, styles.small].join(' ')}>
-            <div className={styles.card__image_wp}>
-                <Skeleton className={styles.image}/>
+                      variant="small-"
+        /> : <div className="card card--small">
+            <div className="card__image-container">
+                <Skeleton className="card__image"/>
             </div>
-            <div className={styles.card__details}>
-                <Typography className={styles.title}><Skeleton/></Typography>
-                <Typography className={styles.subtitle}><Skeleton/></Typography>
+            <div className="card__details">
+                <Typography className="card__title"><Skeleton/></Typography>
+                <Typography className="card__subtitle"><Skeleton/></Typography>
             </div>
         </div>}
 
