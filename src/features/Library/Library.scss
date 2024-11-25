@@ -5,13 +5,19 @@
 .library {
   display: flex;
   flex-direction: column;
-  padding: 8px;
+  padding: 8px 0 8px 8px ;
   gap: 8px;
   height: 100%;
   @media (max-width: 992px) {
     .library {
       padding: 0;
-
+      &__header{
+        display: flex;
+        justify-content: center;
+        .library__actions{
+          display: none;
+        }
+      }
       &__tabs {
         display: none;
       }
@@ -23,9 +29,6 @@
     &__title{
       display: none;
     }
-    &__actions{
-        display: none;
-    }
     .library__items{
       .card__details{
         display: none;
@@ -36,16 +39,10 @@
           max-height: 4rem;
         }
       }
-      .card:hover{
-        background: transparent;
-      }
     }
   }
 
-  &__logo{
-    color: var(--text-300);
 
-  }
   &__header {
     display: flex;
     align-items: center;
@@ -53,13 +50,15 @@
     font-weight: 900;
     color: var(--text-100);
     transition: color 0.3s ease-in-out;
-    padding: 12px 16px;
+    padding: 0.5rem 0.75rem;
+    .library__actions{
+      display: flex;
+      gap: 0.5rem;
+    }
+    .library__logo{
+      color: var(--text-300);
 
-
-  }
-  &__actions {
-    display: flex;
-    gap: 8px;
+    }
   }
   &__tabs {
     display: flex;
@@ -80,7 +79,6 @@
       }
     }
   }
-
   &__items {
     display: flex;
     flex-direction: column;
