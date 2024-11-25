@@ -17,8 +17,6 @@ type Props = {
 
 
 const ProgressBar: FC<Props> = ({progress, duration, onSeek, loading, onSeekEnd, isPlaying}) => {
-    //todo: need to make
-
     const [value, setValue] = useState(progress)
     const [debounceTimeout, setDebounceTimeout] = useState<NodeJS.Timeout | null>(null)
     const [intervalID, setIntervalID] = useState<NodeJS.Timeout | null>(null)

@@ -22,7 +22,6 @@ export interface SpotifyTokenResponse {
     expires_in: number;
     refresh_token: string;
 }
-//todo:  move remaining types to separate files
 
 const tokenServiceInstance = axios.create({
     baseURL: authEndpoint
