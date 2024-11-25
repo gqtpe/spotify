@@ -3,6 +3,7 @@ import {Search, useSearch} from "../Browse";
 import {useCallback} from "react";
 import {useLocation, useNavigate} from "react-router-dom";
 import {GoHomeFill} from "react-icons/go";
+import UserPanel from "./UserPanel.tsx";
 
 export const Header = () => {
     const navigate = useNavigate()
@@ -29,7 +30,7 @@ export const Header = () => {
                 onChange={onChange}
             />
         </header>
-
+        <UserPanel/>
     </>
 }
 
