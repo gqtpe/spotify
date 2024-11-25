@@ -1,8 +1,10 @@
+@import 'src/common/styles/scrollbar';
+
 .browse {
   display: flex;
   flex-direction: column;
-  padding: 0 16px 0 16px;
-
+  padding: 0 0 0 16px;
+  height: 100%;
   .tabs {
     position: sticky;
     top: 0;
@@ -17,6 +19,11 @@
   display: grid;
   grid-auto-rows: min-content;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+}
+.items{
+  height: 100%;
+  overflow-y: scroll;
+  @include scrollbar;
 }
 
 .preview {
