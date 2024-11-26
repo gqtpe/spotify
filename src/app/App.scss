@@ -37,7 +37,21 @@ $app-footer-height: 80px;
             "footer footer footer";
 
   }
-
+  .content{
+    height: calc(100vh - $app-footer-height - 48px - 16px);
+    grid-area: main;
+    overflow-y: hidden;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    grid-gap: 8px;
+    main{
+      @include paper;
+    }
+    aside{
+      width: 20rem;
+      @include paper;
+    }
+  }
   header {
     grid-area: header;
     margin: 8px 0;
