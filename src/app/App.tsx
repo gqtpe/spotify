@@ -22,9 +22,14 @@ function App() {
             <nav>
                 <Library/>
             </nav>
-            <main>
-                <Outlet/>
-            </main>
+
+            <div className="content">
+                <main>
+                    <Outlet/>
+                </main>
+                {open && <Aside state={sidebarContentType!}/>}
+            </div>
+
             <Footer/>
         </div>
     )
