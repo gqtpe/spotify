@@ -30,7 +30,7 @@ const Panel: FC = () => {
             <IconButton variant="icon" onClick={togglePopup} ref={anchorEl}>
                 <MdDevices/>
             </IconButton>
-            <IconButton variant="icon" ref={anchorEl} onClick={toggleSidebar}>
+            <IconButton variant="icon" onClick={toggleSidebar}>
                 <HiMiniQueueList />
             </IconButton>
 
