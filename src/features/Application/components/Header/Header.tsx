@@ -1,5 +1,5 @@
-import Badge from "../../common/components/Badge/Badge.tsx";
-import {Search, useSearch} from "../Browse";
+import Badge from "../../../../common/components/Badge/Badge.tsx";
+import {Search, useSearch} from "../../../Browse";
 import {useCallback} from "react";
 import {useLocation, useNavigate} from "react-router-dom";
 import {GoHomeFill} from "react-icons/go";
