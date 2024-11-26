@@ -59,8 +59,8 @@ $app-footer-height: 80px;
   }
 
   .user-panel {
-    grid-area: user-panel;
     display: flex;
+    grid-area: user-panel;
     align-items: center;
     gap: 8px;
     justify-content: flex-end;
@@ -72,6 +72,7 @@ $app-footer-height: 80px;
     @include paper;
     margin: 0 8px;
     overflow: hidden;
+    max-width: 20rem;
     height: calc(100vh - 80px - 48px - 16px);
     @media (max-width: 992px) {
 
