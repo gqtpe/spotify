@@ -1,7 +1,7 @@
 import './App.scss'
 import {Outlet} from "react-router-dom";
 import {useInit} from './useInit.ts';
-import {Header} from "../features/Header/Header.tsx";
+import {Header} from "../features/Application/components/Header/Header.tsx";
 import {Footer} from "../features/Player";
 import {Library} from "../features/Library";
 import {useSidebar} from "../features/Application/hooks/useSidebar.ts";
