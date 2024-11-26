@@ -2,7 +2,7 @@
 
 .footer {
   display: grid;
-  grid-template-columns: 1.2fr 2fr 1.2fr;
+  grid-template-columns: 20rem 1fr 20rem;
   grid-template-areas: 'current panel actions';
 
   &__current {
@@ -70,7 +70,7 @@
   grid-area: actions;
   display: flex;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: center;
 
   &__availableDevices {
     .device{
