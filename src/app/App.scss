@@ -79,16 +79,6 @@ $app-footer-height: 80px;
     }
   }
 
-  main {
-
-    height: calc(100vh - $app-footer-height - 48px - 16px);
-    grid-area: main;
-    overflow-y: hidden;
-    background: var(--background-darker);
-    @include paper;
-    //
-    //transition: height 0.5s ease-in-out;
-  }
 
   footer {
     grid-area: footer;
