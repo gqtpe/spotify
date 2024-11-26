@@ -1,10 +1,10 @@
-import Badge from "../../common/components/Badge/Badge.tsx";
+import Badge from "../../../../common/components/Badge/Badge.tsx";
 import {IoIosNotificationsOutline} from "react-icons/io";
 import {createPortal} from "react-dom";
-import Modal from "../../common/components/Modal/Modal.tsx";
-import Paper from "../../common/components/Modal/Paper.tsx";
+import Modal from "../../../../common/components/Modal/Modal.tsx";
+import Paper from "../../../../common/components/Modal/Paper.tsx";
 import {useRef, useState} from "react";
-import {useAppSelector} from "../Application/hooks";
+import {useAppSelector} from "../../hooks";
 
 const UserPanel = () => {
     const [open, setOpen] = useState<boolean>(false)
