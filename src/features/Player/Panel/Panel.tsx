@@ -7,22 +7,30 @@ import Modal from "../../../common/components/Modal/Modal.tsx";
 import Paper from "../../../common/components/Modal/Paper.tsx";
 import AvailableDevices from "./Devices/AvailableDevices.tsx";
 import {HiMiniQueueList} from "react-icons/hi2";
+import {useSidebar} from "../../Application/hooks/useSidebar.ts";
 
 
 const availableDevicesWidth = '10rem'
 const Panel: FC = () => {
     const [showPopup, setShowPopup] = useState<boolean>(false);
     const anchorEl = useRef<HTMLButtonElement>(null);
+    const {open, openSidebar, closeSidebar} = useSidebar()
     const togglePopup = useCallback(() => {
         setShowPopup(prev => !prev);
     }, []);
-
+    const toggleSidebar = useCallback(() => {
+        if(open){
+            closeSidebar()
+        }else{
+            openSidebar({type: 'queue'})
+        }
+    },[open, closeSidebar, openSidebar])
     return (
         <div className={[styles.footer__actions, styles.actions].join(' ')}>
             <IconButton variant="icon" onClick={togglePopup} ref={anchorEl}>
                 <MdDevices/>
             </IconButton>
-            <IconButton variant="icon" onClick={togglePopup} ref={anchorEl}>
+            <IconButton variant="icon" ref={anchorEl} onClick={toggleSidebar}>
                 <HiMiniQueueList />
             </IconButton>
 
