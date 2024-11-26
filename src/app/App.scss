@@ -38,13 +38,14 @@ $app-footer-height: 80px;
 
   }
   .content{
-    height: calc(100vh - $app-footer-height - 48px - 16px);
     grid-area: main;
-    overflow-y: hidden;
+
     display: grid;
     grid-template-columns: 1fr auto;
     grid-gap: 8px;
     main{
+      overflow-y: hidden;
+      height: calc(100vh - $app-footer-height - 48px - 16px);
       @include paper;
     }
     aside{
