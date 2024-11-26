@@ -1,11 +1,14 @@
-import {asyncActions, slice} from "./appSlice.ts";
+import {slice} from "./appSlice.ts";
+import * as appSelectors from "./selectors.ts";
+import asyncAction from "./appThunks.ts";
 
 const appActions = {
     ...slice.actions,
-    ...asyncActions
+    ...asyncAction
 }
 const appReducer = slice.reducer
 export {
     appReducer,
-    appActions
+    appActions,
+    appSelectors
 }
