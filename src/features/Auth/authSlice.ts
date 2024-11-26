@@ -1,6 +1,6 @@
 import {createAsyncThunk, createSlice, PayloadAction} from "@reduxjs/toolkit";
 import {spotifyAPI, SpotifyTokenResponse, User} from "../../api/spotifyAPI.ts";
-import {initializeApp} from "../Application/appSlice.ts";
+import {appActions} from "../Application";
 
 export type Token = string
 
@@ -29,7 +29,7 @@ export const slice = createSlice({
     },
     reducers: {},
     extraReducers: builder => {
-        builder.addCase(initializeApp.fulfilled, (state, action: PayloadAction<SpotifyTokenResponse | null>) => {
+        builder.addCase(appActions.initializeApp.fulfilled, (state, action: PayloadAction<SpotifyTokenResponse | null>) => {
             if (action.payload?.access_token) {
                 state.authToken = action.payload!.access_token
                 state.refreshToken = action.payload!.refresh_token
