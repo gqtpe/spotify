@@ -1,9 +1,9 @@
-import { FC, memo, MouseEvent, useCallback } from "react";
-import { IoMdMusicalNote, IoMdPlay } from "react-icons/io";
+import {FC, memo, MouseEvent, useCallback} from "react";
+import {IoMdMusicalNote, IoMdPlay} from "react-icons/io";
 import IconButton from "../../IconButton/IconButton.tsx";
 import "./Card.scss";
 import Typography from "../../Typography/Typography.tsx";
-import { MdExplicit } from "react-icons/md";
+import {MdExplicit} from "react-icons/md";
 
 type PlaylistProps = {
     title: string;
@@ -15,6 +15,7 @@ type PlaylistProps = {
     onPlay?: () => void;
     explicit?: boolean;
     link?: string;
+    navigate?: (link: string) => void
 };
 
 const cutFrom30 = (text: string) => {
@@ -31,6 +32,7 @@ const Card: FC<PlaylistProps> = ({
                                      variant = "default",
                                      explicit = false,
                                      link,
+                                     navigate
                                  }) => {
     const iconButtonVariant = variant === "small" ? "icon" : "filled";
 
@@ -38,11 +40,10 @@ const Card: FC<PlaylistProps> = ({
         if (onClick) {
             onClick();
         }
-        if (link) {
-            // Uncomment and use navigation logic when ready
-            // navigate(link);
+        if (link && navigate) {
+            navigate(link)
         }
-    }, [onClick, link]);
+    }, [onClick, link, navigate]);
 
     const handlePlayButtonClick = useCallback(
         (event: MouseEvent<HTMLButtonElement>) => {
@@ -60,10 +61,10 @@ const Card: FC<PlaylistProps> = ({
         <div className={`card card--${variant}`} onClick={handleClick}>
             <div className="card__image-container">
                 {image ? (
-                    <img className={imageClassName} src={image} alt="image" />
+                    <img className={imageClassName} src={image} alt="image"/>
                 ) : (
                     <div className={imageClassName}>
-                        <IoMdMusicalNote />
+                        <IoMdMusicalNote/>
                     </div>
                 )}
                 {onPlay && (
@@ -72,7 +73,7 @@ const Card: FC<PlaylistProps> = ({
                         className="card__button"
                         onClick={handlePlayButtonClick}
                     >
-                        <IoMdPlay />
+                        <IoMdPlay/>
                     </IconButton>
                 )}
             </div>
@@ -81,7 +82,7 @@ const Card: FC<PlaylistProps> = ({
                     {cutFrom30(title)}
                 </Typography>
                 <Typography variant="subtitle2" className="card__subtitle">
-                    {explicit && <MdExplicit className="card__explicit" />}
+                    {explicit && <MdExplicit className="card__explicit"/>}
                     {subtitle}
                 </Typography>
             </div>

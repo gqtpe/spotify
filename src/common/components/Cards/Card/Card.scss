@@ -38,6 +38,7 @@
   &:hover {
     background-color: var(--background-lighter);
   }
+
 }
 
 .card__image {
@@ -51,7 +52,12 @@
     margin-right: 8px;
 
   }
+  &:hover {
+    .card__button {
+      transform: translateY(0);
+    }
 
+  }
   .card__button {
     @include popup(1.8rem, 8px)
   }
