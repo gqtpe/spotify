@@ -25,7 +25,7 @@ const UserPanel = () => {
                     obcaecati temporibus totam.
                 </Paper>
             </Modal>, document.getElementById('portal')!)}
-            <Badge variant="filled"><img src={user?.images[0].url} alt="user-avatar"/></Badge>
+            <Badge variant="filled">{user?.images[0]?.url && <img src={user.images[0].url}/>}</Badge>
         </div>
     );
 };
