@@ -1,5 +1,5 @@
-import {createAsyncThunk, createSlice, PayloadAction} from "@reduxjs/toolkit";
-import {spotifyAPI, SpotifyTokenResponse, User} from "../../api/spotifyAPI.ts";
+import {createSlice, PayloadAction} from "@reduxjs/toolkit";
+import {SpotifyTokenResponse, User} from "../../api/spotifyAPI.ts";
 import {appActions} from "../Application";
 import {asyncActions} from "./authThunks.ts";
 
