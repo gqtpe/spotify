@@ -4,6 +4,7 @@ import IconButton from "../../IconButton/IconButton.tsx";
 import "./Card.scss";
 import Typography from "../../Typography/Typography.tsx";
 import {MdExplicit} from "react-icons/md";
+import {cutFrom30} from "../../../../features/Browse/utils/cutFrom30.ts";
 
 type PlaylistProps = {
     title: string;
@@ -16,10 +17,6 @@ type PlaylistProps = {
     explicit?: boolean;
     link?: string;
     navigate?: (link: string) => void
-};
-
-const cutFrom30 = (text: string) => {
-    return text.length > 30 ? `${text.slice(0, 30)}...` : text;
 };
 
 const Card: FC<PlaylistProps> = ({
