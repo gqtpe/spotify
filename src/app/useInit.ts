@@ -38,13 +38,15 @@ export const useInit = () => {
         }
     }, [initializeApp, isInitialized])
     useEffect(() => {
-        if (location.pathname.includes('/search')) {
-            if (location.pathname.split('/')[2]) {
-                setQuery(location.pathname.split('/')[2])
-                if (location.pathname.split('/')[3]) {
-                    setActiveTab(location.pathname.split('/')[3] as Tabs)
-                } else {
-                    setActiveTab('all')
+        if(isInitialized) {
+            if (location.pathname.includes('/search')) {
+                if (location.pathname.split('/')[2]) {
+                    setQuery(location.pathname.split('/')[2])
+                    if (location.pathname.split('/')[3]) {
+                        setActiveTab(location.pathname.split('/')[3] as Tabs)
+                    } else {
+                        setActiveTab('all')
+                    }
                 }
             }
         }
