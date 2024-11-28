@@ -4,7 +4,7 @@ import styles from '../../Browse.module.scss'
 import {useActions, useAppSelector} from "../../../Application/hooks";
 import Table from "../../../../common/components/Table/Table.tsx";
 import useIntersectionObserver from "../../../Application/hooks/useIntersectionObserver.tsx";
-
+import {trackColumns} from "./trackColumns.tsx";
 
 const Tracks = () => {
     const tracks = useAppSelector(browseSelectors.selectTracks)
@@ -29,7 +29,7 @@ const Tracks = () => {
 
     return (
         <div className={styles.tracks}>
-            <Table enableRowNumbering data={tracks?.items ? tracks.items : []}/>
+            <Table enableRowNumbering data={tracks?.items ? tracks.items : []} columns={trackColumns}/>
             <div ref={triggerRef}>trigger</div>
         </div>
     );
