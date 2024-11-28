@@ -50,7 +50,7 @@ export const useInit = () => {
                 }
             }
         }
-    }, [])
+    }, [isInitialized])
 
     return {isInitialized}
 }
