@@ -34,6 +34,7 @@ export const useInit = () => {
         return () => {
             document.removeEventListener("contextmenu", disableContextMenu);
         };
+        }
     }, [initializeApp, isInitialized])
     useEffect(() => {
         if (location.pathname.includes('/search')) {
