@@ -1,6 +1,6 @@
 import {External_Urls, Images, ResponseType} from "./common.ts";
 import {Track} from "./track.ts";
-import {Episode, SimplifiedUser} from "../spotifyAPI.ts";
+import {SimplifiedUser} from "../spotifyAPI.ts";
 
 interface BasePlaylist {
     collaborative: boolean
@@ -20,12 +20,13 @@ interface BasePlaylist {
 }
 
 
-interface SimplifiedPlaylist extends BasePlaylist{
-    tracks:{
+interface SimplifiedPlaylist extends BasePlaylist {
+    tracks: {
         href: string
         total: number
     }
 }
+
 //playlist
 interface Playlist extends BasePlaylist {
     external_urls: External_Urls
@@ -36,6 +37,7 @@ interface Playlist extends BasePlaylist {
     snapshot_id: string
     tracks: ResponseType<PlaylistTrackObject[]>
 }
+
 export type PlaylistTrackObject = {
     added_at: string
     added_by: {
@@ -47,7 +49,8 @@ export type PlaylistTrackObject = {
     }
     is_local: boolean
     primary_color: string
-    track: Track | Episode
+    // track: Track | Episode
+    track: Track,
 }
 
 
