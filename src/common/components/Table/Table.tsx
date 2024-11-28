@@ -1,21 +1,20 @@
-import {flexRender, getCoreRowModel, getSortedRowModel, useReactTable,} from '@tanstack/react-table';
+import {ColumnDef, flexRender, getCoreRowModel, getSortedRowModel, useReactTable,} from '@tanstack/react-table';
 import {CSSProperties, memo} from "react";
 import styles from "./Table.module.scss"
 import Typography from '../Typography/Typography';
-import {trackColumns} from "../../../features/Browse/SearchPages/Tracks/trackColumns.tsx";
 import {usePlayAction} from "../../../features/Player";
-import {Track} from "../../../api/types/track.ts";
 
 
 interface TableProps {// Колонки с типом данных
-    data: Track[]
+    data: any[],
+    columns: ColumnDef<any>[]
     enableStickyHeader?: boolean
     enableRowNumbering?: boolean
 }
 
-const TracksTable = memo(({data, enableRowNumbering = false}: TableProps) => {
+const TracksTable = memo(({data, columns, enableRowNumbering = false,}: TableProps) => {
     const table = useReactTable({
-        columns: trackColumns,
+        columns,
         data,
         getCoreRowModel: getCoreRowModel(),
         getSortedRowModel: getSortedRowModel(),
@@ -29,7 +28,6 @@ const TracksTable = memo(({data, enableRowNumbering = false}: TableProps) => {
     return (
         <table className={styles.container}>
             <thead style={defaultStyle}>
-
             {table.getHeaderGroups().map(headerGroup => (
                 <tr key={headerGroup.id}>
                     {enableRowNumbering &&
