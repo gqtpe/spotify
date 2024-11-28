@@ -9,6 +9,7 @@ const calculatePosition = (
 ): CSSProperties => {
     const baseStyle: CSSProperties = {
         position: "absolute",
+        zIndex: 11,
     };
 
     const offsetLeft = anchorEl.offsetLeft;
