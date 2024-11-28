@@ -17,11 +17,12 @@ export const Library = () => {
     const filter = useAppSelector(userLibrarySelectors.selectFilter)
     const {setFilter} = useActions(userLibraryActions)
     const play = usePlayAction()
-
     const cardItems = items.map(item => {
+        if(!item){
+            return
+        }
         const {id, name, type, images} = item;
         const img = images && images.length > 0 ? images[0].url : '';
-
         const capitalizedType = type.charAt(0).toUpperCase() + type.slice(1);
         let subtitle = '';
         if (type === 'playlist') {
