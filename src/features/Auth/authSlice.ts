@@ -25,7 +25,7 @@ export const slice = createSlice({
                 state.loggedIn = true
             }
         })
-        builder.addCase(getMe.fulfilled, (state, action: PayloadAction<User>) => {
+        builder.addCase(asyncActions.getMe.fulfilled, (state, action: PayloadAction<User>) => {
             state.user = action.payload
         })
     }
