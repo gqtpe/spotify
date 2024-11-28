@@ -31,9 +31,9 @@ export const useInit = () => {
 
         document.addEventListener("contextmenu", disableContextMenu);
 
-        return () => {
-            document.removeEventListener("contextmenu", disableContextMenu);
-        };
+            return () => {
+                document.removeEventListener("contextmenu", disableContextMenu);
+            };
         }
     }, [initializeApp, isInitialized])
     useEffect(() => {
