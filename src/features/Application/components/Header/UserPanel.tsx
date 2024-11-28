@@ -3,29 +3,38 @@ import {IoIosNotificationsOutline} from "react-icons/io";
 import {createPortal} from "react-dom";
 import Modal from "../../../../common/components/Modal/Modal.tsx";
 import Paper from "../../../../common/components/Modal/Paper.tsx";
-import {useRef, useState} from "react";
+import {useCallback, useRef, useState} from "react";
 import {useAppSelector} from "../../hooks";
+import Button from "../../../../common/components/Button/Button.tsx";
+import {useDispatch} from "react-redux";
 
 const UserPanel = () => {
     const [open, setOpen] = useState<boolean>(false)
     const user = useAppSelector(state => state.auth.user)
+    const dispatch = useDispatch()
     const anchorEl = useRef<HTMLDivElement>(null)
+    const onClick = () =>{
+        setOpen(prev =>!prev)
+    }
+    const logout = useCallback(() =>{
+        setOpen(false)
+        localStorage.clear()
+        dispatch({type: 'auth/logout'})
+    },[])
     return (
         <div className="user-panel">
-            <Badge variant="icon" onClick={() => setOpen((prev: boolean) => !prev)}
-                   ref={anchorEl}><IoIosNotificationsOutline/></Badge>
+            <Badge variant="icon"
+                   ><IoIosNotificationsOutline/></Badge>
             {open && anchorEl.current && createPortal(<Modal
                 anchorEl={anchorEl.current}
                 placement="bottom-end"
-                margin={24}
+                margin={8}
             >
                 <Paper>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet, deserunt doloribus et libero magni
-                    nulla rem sed voluptas voluptatibus. Consequatur dolor excepturi laborum nam, nisi nobis nulla
-                    obcaecati temporibus totam.
+                    <Button onClick={logout}>Log Out</Button>
                 </Paper>
             </Modal>, document.getElementById('portal')!)}
-            <Badge variant="filled">{user?.images[0]?.url && <img src={user.images[0].url}/>}</Badge>
+            <Badge variant="filled" onClick={onClick} ref={anchorEl}>{user?.images[0]?.url && <img src={user.images[0].url}/>}</Badge>
         </div>
     );
 };
