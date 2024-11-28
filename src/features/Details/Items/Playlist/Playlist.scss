@@ -1,0 +1,69 @@
+@import 'src/common/styles/scrollbar';
+
+.playlist {
+  display: flex;
+  flex-direction: column;
+  max-height: 100%;
+
+  &__header {
+    display: flex;
+    padding: 1rem;
+    gap: 1rem;
+    align-items: flex-end;
+
+
+    .playlist__description {
+      flex-grow: 1;
+    }
+  }
+
+  &__title {
+    margin: 1rem 0 0.5rem 0;
+  }
+
+  &__description {
+    font-weight: bold;
+  }
+
+  &__stats {
+    display: flex;
+    align-items: center;
+    margin-top: 1rem;
+  }
+
+  &__image {
+    width: 10rem;
+    height: 10rem;
+    overflow: hidden;
+    border-radius: 0.5rem;
+
+    img {
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+
+  &__actions {
+  }
+
+  &__table {
+    padding: 0 1rem 1rem 1rem;
+    overflow-y: scroll;
+    @include scrollbar();
+
+    thead {
+      tr {
+        background: var(--background-darker);
+        position: sticky;
+        top: 0;
+      }
+    }
+
+  }
+}
