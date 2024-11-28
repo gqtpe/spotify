@@ -1,5 +1,6 @@
 import Login from "./Login/Login";
-import {asyncActions, slice} from "./authSlice.ts";
+import {slice} from "./authSlice.ts";
+import { asyncActions } from "./authThunks.ts";
 
 const authActions = {
     ...slice.actions,
