@@ -49,9 +49,7 @@ const TracksTable = memo(({data, columns, enableRowNumbering = false,}: TablePro
             </thead>
             <tbody>
             {table.getRowModel().rows.map(row => {
-
                 return <tr key={row.id} onClick={() => play({type: 'track', uris: [row.original.uri]})}>
-
                     {enableRowNumbering && <td style={{width: '50px', textAlign: 'center'}}><Typography
                         variant="subtitle1">{row.index + 1}</Typography></td>}
                     {row.getVisibleCells().map(cell => (
