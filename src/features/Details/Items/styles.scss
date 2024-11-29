@@ -1,0 +1,42 @@
+@import 'src/common/styles/scrollbar';
+
+
+.detailed-actions {
+
+}
+.detailed-page-header{
+  display: flex;
+  padding: 1rem;
+  gap: 1rem;
+  align-items: flex-end;
+
+
+  .detailed-page-description{
+    flex-grow: 1;
+  }
+}
+.detailed-page-image{
+  width: 10rem;
+  height: 10rem;
+  overflow: hidden;
+  border-radius: 0.5rem;
+
+  img {
+    width: 100%;
+    height: 100%;
+  }
+}
+.detailed-page-table{
+  padding: 0 1rem 1rem 1rem;
+  overflow-y: scroll;
+  @include scrollbar();
+
+  thead {
+    tr {
+      background: var(--background-darker);
+      position: sticky;
+      top: 0;
+    }
+  }
+
+}
