@@ -12,8 +12,8 @@ const Playlist: FC<{ item: Playlist }> = ({item}) => {
             {/*<h1>{item?.name}</h1>*/}
             {/*<p>owner: {item?.owner.display_name}</p>*/}
             {/*<p>{item?.description}</p>*/}
-            <div className="playlist__header">
-                <div className="playlist__image">
+            <div className="playlist__header detailed-page-header">
+                <div className="playlist__image detailed-page-image">
                     <img src={item?.images[0]?.url} alt={item?.name}/>
                 </div>
                 <div className="playlist__description">
@@ -31,11 +31,11 @@ const Playlist: FC<{ item: Playlist }> = ({item}) => {
                 </div>
             </div>
             <div className="playlist__content">
-                <div className="playlist__actions">
+                <div className="playlist__actions detailed-actions">
                     ...actions
                 </div>
-                <div className="playlist__table">
-                    <TracksTable columns={columns} data={item?.tracks.items}/>
+                <div className="playlist__table detailed-page-table">
+                    <TracksTable columns={columns} data={item?.tracks.items} enableRowNumbering/>
 
                 </div>
             </div>
