@@ -29,14 +29,6 @@ const Album: FC<{ item: Album }> = ({item}) => {
                         </Typography>
 
                     </div>
-                    {/*<div className="playlist__stats">*/}
-                    {/*    <Typography variant='subtitle1'*/}
-                    {/*                sx={{color: 'var(--text-100)'}}>{item?.owner.display_name}</Typography>•*/}
-                    {/*    <Typography variant='subtitle1'*/}
-                    {/*                sx={{color: 'var(--text-400)'}}>{item?.followers.total} saves</Typography>•*/}
-                    {/*    <Typography variant='subtitle1'*/}
-                    {/*                sx={{color: 'var(--text-400)'}}>{item?.tracks.total} tracks</Typography>*/}
-                    {/*</div>*/}
                 </div>
             </div>
             <div className="album__content">
