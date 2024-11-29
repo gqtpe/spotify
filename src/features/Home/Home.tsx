@@ -19,6 +19,14 @@ const refreshToken = async () => {
     const response = await axios.post('https://spotify-back-lovat.vercel.app/refresh', {refresh_token: refreshToken});
     console.log('refresh Response:', response.data)
 }
+const fetchBrowseCategories = async () => {
+    const response = await spotifyAPI.getBrowseCategories()
+    console.log('categories:', response.data)
+}
+const fetchBrowseCategoryPlaylist = async () => {
+    const response = await spotifyAPI.getCategoryPlaylists('0JQ5DAqbMKFCWjUTdzaG0e')
+    console.log('playlists:', response.data)
+}
 
 export const Home = () => {
     const {fetchPlaybackState} = useActions(playerActions)
@@ -30,5 +38,7 @@ export const Home = () => {
         <Button onClick={fetchAvailableDevices}>get devices</Button>
         <Button onClick={refreshToken}>refreshToken</Button>
         <Button onClick={fetch}>playbackState</Button>
+        <Button onClick={fetchBrowseCategories}>fetch categories</Button>
+        <Button onClick={fetchBrowseCategoryPlaylist}>fetch category playlists</Button>
     </div>
 }
