@@ -3,13 +3,15 @@ import {useParams} from "react-router-dom";
 import {spotifyAPI} from "../../api/spotifyAPI.ts";
 import {AxiosError} from "axios";
 import Playlist from "./Items/Playlist/Playlist.tsx";
-import Album from "./Items/Album.tsx";
+import Album from "./Items/Album/Album.tsx";
 import Artist from "./Items/Artist.tsx";
 import Track from "./Items/Track.tsx"
 import type {Album as AlbumType} from "../../api/types/album.ts";
 import type {Artist as ArtistType} from "../../api/types/artist.ts";
 import type {Playlist as PlaylistType} from "../../api/types/playlist.ts";
 import type {Track as TrackType} from "../../api/types/track.ts";
+import './Items/styles.scss'
+
 
 export type DetailedItemType = 'album' | 'playlist' | 'track' | 'artist';
 const Details: FC = () => {
