@@ -31,9 +31,6 @@ const Playlist: FC<{ item: Playlist }> = ({item}) => {
     }, []);
     return (
         <div className="playlist">
-            {/*<h1>{item?.name}</h1>*/}
-            {/*<p>owner: {item?.owner.display_name}</p>*/}
-            {/*<p>{item?.description}</p>*/}
             <div className="playlist__header detailed-page-header">
                 <div className="playlist__image detailed-page-image">
                     <img src={item?.images[0]?.url} alt={item?.name}/>
