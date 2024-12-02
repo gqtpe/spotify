@@ -1,7 +1,7 @@
 import { Library } from "./Library";
 import slice from './userLibrarySlice'
-import {asyncActions} from "./userLibrarySlice";
 import * as userLibrarySelectors from "./selector.ts";
+import {asyncActions} from "./libraryThunks.ts";
 
 
 const userLibraryReducer = slice.reducer
