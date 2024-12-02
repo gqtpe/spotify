@@ -32,7 +32,12 @@ const Playlist: FC<{ item: Playlist }> = ({item}) => {
             </div>
             <div className="playlist__content">
                 <div className="playlist__actions detailed-actions">
-                    ...actions
+                    <IconButton fz={24} onClick={() => play({type: 'playlist', context_uri: item?.uri})}>
+                        <FaPlay/>
+                    </IconButton>
+                    <IconButton fz={24} variant="icon" onClick={handleClick}>
+                        {isSaved ? <IoIosCheckmarkCircle/> : <IoIosAddCircleOutline/>}
+                    </IconButton>
                 </div>
                 <div className="playlist__table detailed-page-table">
                     <TracksTable columns={columns} data={item?.tracks.items} enableRowNumbering/>
