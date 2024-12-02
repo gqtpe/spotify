@@ -58,6 +58,9 @@ export const spotifyAPI = {
     async getSavedTracks() {
         return await spotifyAPIInstance.get<ResponseType<{ added_at: string; track: Track }[]>>(`me/tracks`)
     },
+    async savePlaylist(playlistID: string) {//follow can be user, artist or playlist
+        return await spotifyAPIInstance.put(`playlists/${playlistID}/followers`)
+    },
     //==========player
     async getPlaybackState() {
         return await spotifyAPIInstance.get<PlayerBackState>('me/player')
