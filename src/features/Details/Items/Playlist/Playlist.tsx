@@ -8,6 +8,21 @@ import Typography from "../../../../common/components/Typography/Typography.tsx"
 
 const Playlist: FC<{ item: Playlist }> = ({item}) => {
     const play = usePlayAction()
+    const [isSaved, setIsSaved] = useState(false)
+    const save = useSave('playlist')
+    console.log(item)
+    const handleClick = async () => {
+        const state = await save(item.id)
+        console.log(state)
+        setIsSaved(state);
+    }
+    useEffect(() => {
+        const fetchIsSaved = async () => {
+            const response = await spotifyAPI.isSavedPlaylist(item.id)
+            setIsSaved(response.data[0])
+        }
+        fetchIsSaved()
+    }, []);
     return (
         <div className="playlist">
             {/*<h1>{item?.name}</h1>*/}
