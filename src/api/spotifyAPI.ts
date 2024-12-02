@@ -61,6 +61,9 @@ export const spotifyAPI = {
     async savePlaylist(playlistID: string) {//follow can be user, artist or playlist
         return await spotifyAPIInstance.put(`playlists/${playlistID}/followers`)
     },
+    async removePlaylist(playlistID: string) {
+        return await spotifyAPIInstance.delete(`playlists/${playlistID}/followers`)
+    },
     //==========player
     async getPlaybackState() {
         return await spotifyAPIInstance.get<PlayerBackState>('me/player')
