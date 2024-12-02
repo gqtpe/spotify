@@ -27,7 +27,10 @@ const fetchBrowseCategoryPlaylist = async () => {
     const response = await spotifyAPI.getCategoryPlaylists('0JQ5DAqbMKFCWjUTdzaG0e')
     console.log('playlists:', response.data)
 }
-
+const fetchIsSaved = async () => {
+    const response = await spotifyAPI.isSavedPlaylist('68JXTKfqFZEWO1DQRdVndh')
+    console.log('playlists:', response.data)
+}
 export const Home = () => {
     const {fetchPlaybackState} = useActions(playerActions)
     const fetch = async () => {
@@ -40,5 +43,6 @@ export const Home = () => {
         <Button onClick={fetch}>playbackState</Button>
         <Button onClick={fetchBrowseCategories}>fetch categories</Button>
         <Button onClick={fetchBrowseCategoryPlaylist}>fetch category playlists</Button>
+        <Button onClick={fetchIsSaved}> fetch is 68JXTKfqFZEWO1DQRdVndh saved</Button>
     </div>
 }
