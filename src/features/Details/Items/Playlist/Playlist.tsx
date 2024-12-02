@@ -1,9 +1,15 @@
-import {FC} from "react";
+import {FC, useEffect, useState} from "react";
 import type {Playlist} from "../../../../api/types/playlist.ts";
 import TracksTable from "../../../../common/components/Table/Table.tsx";
 import {columns} from "./columns.tsx";
 import "./Playlist.scss";
 import Typography from "../../../../common/components/Typography/Typography.tsx";
+import {usePlayAction} from "../../../Player";
+import {FaPlay} from "react-icons/fa6";
+import IconButton from "../../../../common/components/IconButton/IconButton.tsx";
+import {IoIosAddCircleOutline, IoIosCheckmarkCircle} from "react-icons/io";
+import useSave from "../../../Library/useSave/useSave.ts";
+import {spotifyAPI} from "../../../../api/spotifyAPI.ts";
 
 
 const Playlist: FC<{ item: Playlist }> = ({item}) => {
