@@ -7,6 +7,7 @@ import Typography from "../../../../common/components/Typography/Typography.tsx"
 
 
 const Playlist: FC<{ item: Playlist }> = ({item}) => {
+    const play = usePlayAction()
     return (
         <div className="playlist">
             {/*<h1>{item?.name}</h1>*/}
