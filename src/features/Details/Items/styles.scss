@@ -16,8 +16,10 @@
   }
 }
 .detailed-page-image{
-  width: 10rem;
-  height: 10rem;
+  min-width: 12rem;
+  min-height: 12rem;
+  width: 12rem;
+  height: 12rem;
   overflow: hidden;
   border-radius: 0.5rem;
 
