@@ -1,8 +1,7 @@
-import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
-import {spotifyAPI} from "../../api/spotifyAPI.ts";
+import {createSlice} from "@reduxjs/toolkit";
 import type {Album} from "../../api/types/album.ts";
 import {SimplifiedPlaylist} from "../../api/types/playlist.ts";
-
+import {fetchUserLibrary} from "./libraryThunks.ts";
 
 type Filter = 'all' | 'playlist' | 'album'
 const slice = createSlice({
