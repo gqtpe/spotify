@@ -1,8 +1,9 @@
 import {ColumnDef} from "@tanstack/react-table";
 import Typography from "../../../../common/components/Typography/Typography.tsx";
-import {MdExplicit} from "react-icons/md";
 import {FaRegClock} from "react-icons/fa";
 import {Track} from "../../../../api/types/track.ts";
+import {MdExplicit} from "react-icons/md";
+
 
 export const trackColumns: ColumnDef<Track>[] = [
     {
@@ -25,6 +26,9 @@ export const trackColumns: ColumnDef<Track>[] = [
                         <MdExplicit fontSize={20}/>} {row.original.artists[0].name}</Typography>
                 </div>
             </div>
+            // <Card variant="small" image={row.original.album.images[2].url} link={`tracks/${row.original.id}`}
+            //       explicit={row.original.explicit} subtitle={row.original.artists.map(t=>t.name).join(', ')}
+            //       title={row.original.name}/>
         ),
     },
     {
@@ -44,7 +48,7 @@ export const trackColumns: ColumnDef<Track>[] = [
             }
             return <Typography variant={'caption'}>{minute + ':' + second}</Typography>;
         },
-        header: () => <FaRegClock />,
+        header: () => <FaRegClock/>,
         id: 'duration',
         enableSorting: false,
     },
