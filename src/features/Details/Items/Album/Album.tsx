@@ -4,6 +4,7 @@ import type {Album} from "../../../../api/types/album.ts";
 import Typography from "../../../../common/components/Typography/Typography.tsx";
 import TracksTable from "../../../../common/components/Table/Table.tsx";
 import {columns} from "./columns.tsx";
+import {IoIosAddCircleOutline, IoIosCheckmarkCircle} from "react-icons/io";
 
 
 const Album: FC<{ item: Album }> = ({item}) => {
