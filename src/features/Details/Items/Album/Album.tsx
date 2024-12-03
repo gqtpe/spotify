@@ -1,11 +1,15 @@
-import {FC} from "react";
+import {FC, useCallback, useEffect, useState} from "react";
 import "./Album.scss";
 import type {Album} from "../../../../api/types/album.ts";
 import Typography from "../../../../common/components/Typography/Typography.tsx";
 import TracksTable from "../../../../common/components/Table/Table.tsx";
 import {columns} from "./columns.tsx";
+import {usePlayAction} from "../../../Player";
+import IconButton from "../../../../common/components/IconButton/IconButton.tsx";
+import {FaPlay} from "react-icons/fa6";
 import {IoIosAddCircleOutline, IoIosCheckmarkCircle} from "react-icons/io";
 import useSave from "../../../Library/useSave/useSave.ts";
+import {spotifyAPI} from "../../../../api/spotifyAPI.ts";
 
 
 const Album: FC<{ item: Album }> = ({item}) => {
@@ -53,7 +57,6 @@ const Album: FC<{ item: Album }> = ({item}) => {
             </div>
             <div className="album__content">
                 <div className="album__actions detailed-actions">
-                    ...actions
                     <IconButton fz={24} onClick={() => play({type: 'album', context_uri: item?.uri})}>
                         <FaPlay/>
                     </IconButton>
