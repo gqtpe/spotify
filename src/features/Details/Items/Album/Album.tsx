@@ -7,6 +7,8 @@ import {columns} from "./columns.tsx";
 
 
 const Album: FC<{ item: Album }> = ({item}) => {
+    const play = usePlayAction()
+    //save
     return (
         <div className="album">
             <div className="album__header detailed-page-header">
