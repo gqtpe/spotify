@@ -42,6 +42,23 @@ const removeItem = createAsyncThunk<undefined, {
     }
 })
 
+const toggleItemSave = createAsyncThunk<{ saved: boolean }, {
+    type: 'track' | 'album' | 'artist',
+    ids: string[]
+},{rejectValue: unknown}>('userLibrary/toggleItemSave', async (params, thunkAPI) => {
+    try{
+        const isSaved = await spotifyAPI.checkIsItemSaved(params.type, params.ids)
+        if(isSaved.data[0]){
+            await spotifyAPI.removeItem(params.type, params.ids)
+        }else{
+            await spotifyAPI.saveItem(params.type, params.ids)
+        }
+        return {saved: !isSaved.data[0]}
+    }catch (e) {
+        return thunkAPI.rejectWithValue(e)
+    }
+})
+
 const toggleSavePlaylist = createAsyncThunk<{ saved: boolean }, {
     playlist_id: string
 }>('userLibrary/toggleSavePlaylist', async (params, thunkAPI) => {
