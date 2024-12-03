@@ -5,10 +5,9 @@ type SaveTypes = 'playlist' | 'album' | 'track' | 'artist';
 
 type ReturnType<T extends SaveTypes> = T extends 'playlist'
     ? (playlist_id: string) => Promise<boolean>
-    : (ids: string[]) => void;
-//todo: album track artist saving logic
+    : (ids: string[]) => Promise<boolean>;
 const useSave = <T extends SaveTypes>(type: T): ReturnType<T> => {
-    const {saveItem, toggleSavePlaylist, fetchUserLibrary} = useActions(userLibraryActions);
+    const {toggleSavePlaylist, toggleItemSave, fetchUserLibrary} = useActions(userLibraryActions);
     if (type === 'playlist') {
         return (async (playlist_id: string) => {
             const action = await toggleSavePlaylist({playlist_id})
@@ -21,8 +20,14 @@ const useSave = <T extends SaveTypes>(type: T): ReturnType<T> => {
         }) as ReturnType<T>;
     }
 
-    return ((ids: string[]) => {
-        saveItem({type, ids});
+    return (async (ids: string[]) => {
+        const action = await toggleItemSave({type, ids})
+        if(userLibraryActions.toggleItemSave.fulfilled.match(action)){
+            await fetchUserLibrary();
+            return action.payload.saved
+        }else{
+            throw new Error('failed to toggle save item')
+        }
     }) as ReturnType<T>;
 };
 
