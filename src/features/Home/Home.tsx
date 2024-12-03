@@ -28,9 +28,18 @@ const fetchBrowseCategoryPlaylist = async () => {
     console.log('playlists:', response.data)
 }
 const fetchIsSaved = async () => {
-    const response = await spotifyAPI.isSavedPlaylist('68JXTKfqFZEWO1DQRdVndh')
-    console.log('playlists:', response.data)
+    const response = await spotifyAPI.checkIsItemSaved('album', ['3iPSVi54hsacKKl1xIR2eH'])
+    console.log('fetchIsSaved:', response.data)
 }
+const save = async () =>{
+    const response = await spotifyAPI.saveItem('album', ['3iPSVi54hsacKKl1xIR2eH'])
+    console.log('save:', response.data)
+}
+const remove = async () =>{
+    const response = await spotifyAPI.removeItem('album', ['3iPSVi54hsacKKl1xIR2eH'])
+    console.log('remove:', response.data)
+}
+
 export const Home = () => {
     const {fetchPlaybackState} = useActions(playerActions)
     const fetch = async () => {
@@ -43,6 +52,8 @@ export const Home = () => {
         <Button onClick={fetch}>playbackState</Button>
         <Button onClick={fetchBrowseCategories}>fetch categories</Button>
         <Button onClick={fetchBrowseCategoryPlaylist}>fetch category playlists</Button>
-        <Button onClick={fetchIsSaved}> fetch is 68JXTKfqFZEWO1DQRdVndh saved</Button>
+        <Button onClick={fetchIsSaved}> fetch is 3iPSVi54hsacKKl1xIR2eH saved</Button>
+        <Button onClick={save}>saveItem</Button>
+        <Button onClick={remove}>removeItem</Button>
     </div>
 }
