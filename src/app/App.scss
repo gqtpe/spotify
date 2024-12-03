@@ -17,6 +17,9 @@
 $app-footer-height: 80px;
 
 .app {
+  *{
+    user-select: none;
+  }
   display: grid;
   grid-template-columns: auto 1fr 20rem;
   grid-template-rows: auto 1fr $app-footer-height;
