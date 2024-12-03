@@ -79,5 +79,6 @@ export const asyncActions = {
     fetchUserLibrary,
     saveItem,
     removeItem,
-    toggleSavePlaylist
+    toggleSavePlaylist,
+    toggleItemSave
 }
