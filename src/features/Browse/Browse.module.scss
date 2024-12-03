@@ -12,7 +12,12 @@
     background: #121212;
     margin: 12px 0;
   }
-
+  .trigger{
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+  }
 }
 
 .container {
