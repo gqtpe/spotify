@@ -55,6 +55,9 @@ const Album: FC<{ item: Album }> = ({item}) => {
                     <IconButton fz={24} onClick={() => play({type: 'album', context_uri: item?.uri})}>
                         <FaPlay/>
                     </IconButton>
+                    <IconButton fz={24} variant="icon" onClick={toggleSave}>
+                        {isSaved ? <IoIosCheckmarkCircle/> : <IoIosAddCircleOutline/>}
+                    </IconButton>
                 </div>
                 <div className="album__table detailed-page-table">
                     <TracksTable columns={columns} data={item?.tracks.items} enableRowNumbering/>
