@@ -38,7 +38,7 @@ export const useInit = () => {
         }
     }, [initializeApp, isInitialized])
     useEffect(() => {
-        if(isInitialized) {
+        if(!isInitialized) {
             if (location.pathname.includes('/search')) {
                 if (location.pathname.split('/')[2]) {
                     setQuery(location.pathname.split('/')[2])
