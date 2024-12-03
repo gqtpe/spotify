@@ -67,6 +67,20 @@ export const spotifyAPI = {
     async isSavedPlaylist(playlistID: string) {
         return await spotifyAPIInstance.get(`playlists/${playlistID}/followers/contains`)
     },
+    async removeItem  (type: 'track' | 'album' | 'artist', ids: string[]){
+        if(type === 'artist'){
+            return await spotifyAPIInstance.delete(`me/following?type=artist`, {
+                data:{
+                    ids
+                }
+            })
+        }
+        return await spotifyAPIInstance.delete(`me/${type}s`, {
+            data: {
+                ids
+            }
+        })
+    },
     //==========player
     async getPlaybackState() {
         return await spotifyAPIInstance.get<PlayerBackState>('me/player')
