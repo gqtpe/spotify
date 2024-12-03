@@ -76,11 +76,12 @@ const Cards: FC<CardsProps> = ({selector, preview}) => {
                 navigate={onClick}
             />
         }) : null
-        return (
+        return (<>
             <div className={styles.container + ' ' + (preview && styles.preview)}>
                 {cardItems}
-                {item.items.length && <div ref={triggerRef}>trigger</div>}
             </div>
+                {item.items.length && <div className={styles.trigger} ref={triggerRef}>trigger</div>}
+            </>
         );
     }
 ;
