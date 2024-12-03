@@ -9,6 +9,22 @@ import {columns} from "./columns.tsx";
 const Album: FC<{ item: Album }> = ({item}) => {
     const play = usePlayAction()
     //save
+    const save = useSave(item.type)
+    const toggleSave = useCallback( async () => {
+        const saved = await save([item.id])
+        setIsSaved(saved)
+    },[save])
+    const [isSaved, setIsSaved] = useState(false)
+    useEffect(() => {
+        const fetchIsSaved = async () => {
+            const response = await spotifyAPI.checkIsItemSaved(item.type, [item.id])
+            debugger;
+            setIsSaved(response.data[0])
+        }
+        fetchIsSaved()
+    }, []);
+
+
     return (
         <div className="album">
             <div className="album__header detailed-page-header">
@@ -36,6 +52,9 @@ const Album: FC<{ item: Album }> = ({item}) => {
             <div className="album__content">
                 <div className="album__actions detailed-actions">
                     ...actions
+                    <IconButton fz={24} onClick={() => play({type: 'album', context_uri: item?.uri})}>
+                        <FaPlay/>
+                    </IconButton>
                 </div>
                 <div className="album__table detailed-page-table">
                     <TracksTable columns={columns} data={item?.tracks.items} enableRowNumbering/>
