@@ -46,6 +46,7 @@ export const spotifyAPI = {
     async getMe() {
         return await spotifyAPIInstance.get<User>('me');
     },
+    //==========library
     async getSavedPlaylists() {
         return await spotifyAPIInstance.get<ResponseType<SimplifiedPlaylist[]>>('me/playlists')
     },
@@ -66,6 +67,21 @@ export const spotifyAPI = {
     },
     async isSavedPlaylist(playlistID: string) {
         return await spotifyAPIInstance.get(`playlists/${playlistID}/followers/contains`)
+    },
+    // async addItemToLibrary(type: 'tracks' | 'album', ids: string[]) { // can be track or album
+    //     return await spotifyAPIInstance.put(`me/${type}s`, {
+    //         ids: ids
+    //     })
+    // },
+    // async removeAlbumFromLibrary(type: 'tracks' | 'album', ids: string[]) {
+    //     return await spotifyAPIInstance.delete(`me/${type}s`,{
+    //         data:{
+    //             ids: ids,
+    //         }
+    //     })
+    // },
+    async checkIsItemSaved(type: 'track' | 'album' | 'artist', ids: string[]) {
+        return await spotifyAPIInstance.get(`me/${type}s/contains?ids=${ids.join(',')}`)
     },
     async saveItem (type: 'track' | 'album' | 'artist', ids: string[]){
         if(type === 'artist'){
