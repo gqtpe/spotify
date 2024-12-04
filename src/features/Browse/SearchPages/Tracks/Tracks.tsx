@@ -30,7 +30,7 @@ const Tracks = () => {
     return (
         <div className={styles.tracks}>
             <Table enableRowNumbering data={tracks?.items ? tracks.items : []} columns={trackColumns}/>
-            <div ref={triggerRef}>trigger</div>
+            <div ref={triggerRef} className={styles.trigger}><div className="loader"></div></div>
         </div>
     );
 };
