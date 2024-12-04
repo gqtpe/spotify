@@ -1,47 +1,52 @@
 @import 'src/common/styles/scrollbar';
 
-
-.detailed-actions {
-  display: flex;
-  gap: 1rem;
-  padding: 0.5rem 2rem;
-
-}
-.detailed-page-header{
-  display: flex;
-  padding: 1rem;
-  gap: 1rem;
-  align-items: flex-end;
-
-
-  .detailed-page-description{
-    flex-grow: 1;
-  }
-}
-.detailed-page-image{
-  min-width: 12rem;
-  min-height: 12rem;
-  width: 12rem;
-  height: 12rem;
-  overflow: hidden;
-  border-radius: 0.5rem;
-
-  img {
-    width: 100%;
-    height: 100%;
-  }
-}
-.detailed-page-table{
-  padding: 0 1rem 1rem 1rem;
+.detailed-page{
+  background: inherit;
+  max-height: 100%;
+  height: 100%;
   overflow-y: scroll;
-  @include scrollbar();
+  @include scrollbar;
+  &__actions{
+    display: flex;
+    gap: 1rem;
+    padding: 0.5rem 2rem;
+    position: sticky;
+    top: 0;
+    background: inherit;
+  }
+  &__header {
+    display: flex;
+    padding: 1rem;
+    gap: 1rem;
+    align-tems: flex-end;
 
-  thead {
-    tr {
-      background: var(--background-darker);
-      position: sticky;
-      top: 0;
+    .detailed-page-description {
+      flex-grow: 1;
     }
   }
+  &__image{
+    min-width: 12rem;
+    min-height: 12rem;
+    width: 12rem;
+    height: 12rem;
+    overflow: hidden;
+    border-radius: 0.5rem;
 
+    img {
+      width: 100%;
+      height: 100%;
+    }
+    &__table{
+      padding: 0 1rem 1rem 1rem;
+
+      thead {
+        tr {
+          background: var(--background-darker);
+          position: sticky;
+          top: 0;
+        }
+      }
+
+    }
+  }
 }
