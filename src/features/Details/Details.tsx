@@ -4,7 +4,7 @@ import {spotifyAPI} from "../../api/spotifyAPI.ts";
 import {AxiosError} from "axios";
 import Playlist from "./Items/Playlist/Playlist.tsx";
 import Album from "./Items/Album/Album.tsx";
-import Artist from "./Items/Artist.tsx";
+import Artist from "./Items/Artist/Artist.tsx";
 import Track from "./Items/Track.tsx"
 import type {Album as AlbumType} from "../../api/types/album.ts";
 import type {Artist as ArtistType} from "../../api/types/artist.ts";
