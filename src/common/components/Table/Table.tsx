@@ -11,6 +11,8 @@ interface TableProps {// Колонки с типом данных
     enableStickyHeader?: boolean
     enableRowNumbering?: boolean
     enableHeaderHiding?:boolean
+    enableHidingFromOverflow?:boolean
+    overflow?: number
 }
 
 const TracksTable = memo(({data, columns, enableRowNumbering = false,}: TableProps) => {
@@ -29,7 +31,7 @@ const TracksTable = memo(({data, columns, enableRowNumbering = false,}: TablePro
     return (
         <table className={styles.container}>
             <thead style={defaultStyle}>
-            {table.getHeaderGroups().map(headerGroup => (
+            {!enableHeaderHiding && table.getHeaderGroups().map(headerGroup => (
                 <tr key={headerGroup.id}>
                     {enableRowNumbering &&
                         <th style={{width: '50px', textAlign: 'center'}}><Typography variant="subtitle1">#</Typography>
