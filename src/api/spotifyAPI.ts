@@ -156,12 +156,12 @@ export const spotifyAPI = {
         return await spotifyAPIInstance.get<Playlist | Artist | Album | Track>(`${type}s/${id}`)
     },
     //==========browseCategory
-    async getCategoryPlaylists(id: string) {
-        return await spotifyAPIInstance.get<{
-            message: string,
-            playlists: ResponseType<SimplifiedPlaylist[]>
-        }>('browse/categories/' + id + '/playlists')
-    },
+    // async getCategoryPlaylists(id: string) {
+    //     return await spotifyAPIInstance.get<{
+    //         message: string,
+    //         playlists: ResponseType<SimplifiedPlaylist[]>
+    //     }>('browse/categories/' + id + '/playlists')
+    // }, deprecated (not working because of)
     async getBrowseCategories() {
         return await spotifyAPIInstance.get<{ categories: ResponseType<CategoryObject[]> }>('browse/categories')
     },
