@@ -10,6 +10,7 @@ interface TableProps {// Колонки с типом данных
     columns: ColumnDef<any>[]
     enableStickyHeader?: boolean
     enableRowNumbering?: boolean
+    enableHeaderHiding?:boolean
 }
 
 const TracksTable = memo(({data, columns, enableRowNumbering = false,}: TableProps) => {
