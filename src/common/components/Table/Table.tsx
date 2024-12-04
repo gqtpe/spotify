@@ -1,5 +1,5 @@
 import {ColumnDef, flexRender, getCoreRowModel, getSortedRowModel, useReactTable,} from '@tanstack/react-table';
-import {CSSProperties, memo} from "react";
+import {CSSProperties, memo, useState} from "react";
 import styles from "./Table.module.scss"
 import Typography from '../Typography/Typography';
 import {usePlayAction} from "../../../features/Player";
@@ -20,8 +20,8 @@ const TracksTable = memo(({data, columns, enableRowNumbering = false, enableHead
         data,
         getCoreRowModel: getCoreRowModel(),
         getSortedRowModel: getSortedRowModel(),
-
     });
+
     const defaultStyle: CSSProperties = {
         position: 'static'
     };
