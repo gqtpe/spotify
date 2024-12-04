@@ -24,7 +24,6 @@ const Album: FC<{ item: Album }> = ({item}) => {
     useEffect(() => {
         const fetchIsSaved = async () => {
             const response = await spotifyAPI.checkIsItemSaved(item.type, [item.id])
-            debugger;
             setIsSaved(response.data[0])
         }
         fetchIsSaved()
@@ -32,9 +31,9 @@ const Album: FC<{ item: Album }> = ({item}) => {
 
 
     return (
-        <div className="album">
-            <div className="album__header detailed-page-header">
-                <div className="album__image detailed-page-image">
+        <div className="album detailed-page">
+            <div className="detailed-page__header album__header">
+                <div className="detailed-page__image album__image">
                     <img src={item?.images[0].url} alt={item?.name}/>
                 </div>
                 <div className="album__description">
@@ -55,16 +54,16 @@ const Album: FC<{ item: Album }> = ({item}) => {
                     </div>
                 </div>
             </div>
+            <div className="detailed-page__actions album__actions">
+                <IconButton fz={24} onClick={() => play({type: 'album', context_uri: item?.uri})}>
+                    <FaPlay/>
+                </IconButton>
+                <IconButton fz={24} variant="icon" onClick={toggleSave}>
+                    {isSaved ? <IoIosCheckmarkCircle/> : <IoIosAddCircleOutline/>}
+                </IconButton>
+            </div>
             <div className="album__content">
-                <div className="album__actions detailed-actions">
-                    <IconButton fz={24} onClick={() => play({type: 'album', context_uri: item?.uri})}>
-                        <FaPlay/>
-                    </IconButton>
-                    <IconButton fz={24} variant="icon" onClick={toggleSave}>
-                        {isSaved ? <IoIosCheckmarkCircle/> : <IoIosAddCircleOutline/>}
-                    </IconButton>
-                </div>
-                <div className="album__table detailed-page-table">
+                <div className="detailed-page__table album__table ">
                     <TracksTable columns={columns} data={item?.tracks.items} enableRowNumbering/>
 
                 </div>

@@ -30,9 +30,9 @@ const Playlist: FC<{ item: Playlist }> = ({item}) => {
         fetchIsSaved()
     }, []);
     return (
-        <div className="playlist">
-            <div className="playlist__header detailed-page-header">
-                <div className="playlist__image detailed-page-image">
+        <div className="detailed-page playlist">
+            <div className="detailed-page__header playlist__header">
+                <div className="detailed-page__image playlist__image">
                     <img src={item?.images[0]?.url} alt={item?.name}/>
                 </div>
                 <div className="playlist__description">
@@ -49,18 +49,17 @@ const Playlist: FC<{ item: Playlist }> = ({item}) => {
                     </div>
                 </div>
             </div>
+            <div className="detailed-page__actions playlist__actions">
+                <IconButton fz={24} onClick={() => play({type: 'playlist', context_uri: item?.uri})}>
+                    <FaPlay/>
+                </IconButton>
+                <IconButton fz={24} variant="icon" onClick={handleClick}>
+                    {isSaved ? <IoIosCheckmarkCircle/> : <IoIosAddCircleOutline/>}
+                </IconButton>
+            </div>
             <div className="playlist__content">
-                <div className="playlist__actions detailed-actions">
-                    <IconButton fz={24} onClick={() => play({type: 'playlist', context_uri: item?.uri})}>
-                        <FaPlay/>
-                    </IconButton>
-                    <IconButton fz={24} variant="icon" onClick={handleClick}>
-                        {isSaved ? <IoIosCheckmarkCircle/> : <IoIosAddCircleOutline/>}
-                    </IconButton>
-                </div>
-                <div className="playlist__table detailed-page-table">
+                <div className="detailed-page__table playlist__table ">
                     <TracksTable columns={columns} data={item?.tracks.items} enableRowNumbering/>
-
                 </div>
             </div>
 
