@@ -80,7 +80,7 @@ const Cards: FC<CardsProps> = ({selector, preview}) => {
             <div className={styles.container + ' ' + (preview && styles.preview)}>
                 {cardItems}
             </div>
-                {item.items.length && <div className={styles.trigger} ref={triggerRef}>trigger</div>}
+                {item.items.length && <div className={styles.trigger} ref={triggerRef}><div className="loader"></div></div>}
             </>
         );
     }
