@@ -27,5 +27,6 @@ interface Artist extends BaseArtist{
 
 export type {
     SimplifiedArtist,
-    Artist
+    Artist,
+    ArtistAlbumIncludeGroupValues
 }
