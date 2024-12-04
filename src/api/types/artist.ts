@@ -11,7 +11,7 @@ interface BaseArtist {
 }
 
 type SimplifiedArtist = BaseArtist
-
+type ArtistAlbumIncludeGroupValues = 'album' | 'single' | 'appears_on' | 'compilation'
 interface Artist extends BaseArtist{
     followers: {
         href: string
