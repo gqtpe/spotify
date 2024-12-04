@@ -107,6 +107,9 @@ export const spotifyAPI = {
             }
         })
     },
+    async getArtistTopTracks(id: string) {
+        return await spotifyAPIInstance.get<{tracks: Track[]}>(`/artists/${id}/top-tracks`)
+    },
     //==========player
     async getPlaybackState() {
         return await spotifyAPIInstance.get<PlayerBackState>('me/player')
