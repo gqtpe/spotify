@@ -107,9 +107,17 @@ export const spotifyAPI = {
             }
         })
     },
+
+    //==========artist
     async getArtistTopTracks(id: string) {
         return await spotifyAPIInstance.get<{tracks: Track[]}>(`/artists/${id}/top-tracks`)
     },
+    async getArtistAlbums(id: string, includeGroups: ArtistAlbumIncludeGroupValues) {
+        return await spotifyAPIInstance.get<ResponseType<SimplifiedAlbum[]>>(`artists/${id}/albums?include_groups=${includeGroups}`)
+    },
+    // async relatedArtists(id: string){
+    //     return await spotifyAPIInstance.get<{artists: Artist[]}>(`artists/${id}/related-artists`)
+    // },
     //==========player
     async getPlaybackState() {
         return await spotifyAPIInstance.get<PlayerBackState>('me/player')
