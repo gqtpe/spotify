@@ -14,8 +14,7 @@ interface TableProps {// Колонки с типом данных
     enableHidingFromOverflow?:boolean
     overflow?: number
 }
-
-const TracksTable = memo(({data, columns, enableRowNumbering = false,}: TableProps) => {
+const TracksTable = memo(({data, columns, enableRowNumbering = false, enableHeaderHiding, overflow, enableHidingFromOverflow}: TableProps) => {
     const table = useReactTable({
         columns,
         data,
@@ -25,16 +24,24 @@ const TracksTable = memo(({data, columns, enableRowNumbering = false,}: TablePro
     });
     const defaultStyle: CSSProperties = {
         position: 'static'
-    }
-    const play = usePlayAction()
-    // const style = enableStickyHeader? sticky: defaultStyle
+    };
+
+    const play = usePlayAction();
+    const [hidingFromOverflow, setHidingFromOverflow] = useState(enableHidingFromOverflow);
+
+    // Фильтруем строки, исключая скрытые
+    const visibleRows = hidingFromOverflow && overflow
+        ? table.getRowModel().rows.slice(0, overflow)
+        : table.getRowModel().rows;
+
     return (
         <table className={styles.container}>
             <thead style={defaultStyle}>
             {!enableHeaderHiding && table.getHeaderGroups().map(headerGroup => (
                 <tr key={headerGroup.id}>
                     {enableRowNumbering &&
-                        <th style={{width: '50px', textAlign: 'center'}}><Typography variant="subtitle1">#</Typography>
+                        <th style={{width: '50px', textAlign: 'center'}}>
+                            <Typography variant="subtitle1">#</Typography>
                         </th>}
                     {headerGroup.headers.map(header => (
                         <th
@@ -51,17 +58,27 @@ const TracksTable = memo(({data, columns, enableRowNumbering = false,}: TablePro
             ))}
             </thead>
             <tbody>
-            {table.getRowModel().rows.map(row => {
-                return <tr key={row.id} onClick={() => play({type: 'track', uris: [row.original.uri]})}>
-                    {enableRowNumbering && <td style={{width: '50px', textAlign: 'center'}}><Typography
-                        variant="subtitle1">{row.index + 1}</Typography></td>}
+            {visibleRows.map((row, visibleIndex) => (
+                <tr key={row.id} onClick={() => play({type: 'track', uris: [row.original.uri]})}>
+                    {enableRowNumbering &&
+                        <td style={{width: '50px', textAlign: 'center'}}>
+                            <Typography variant="subtitle1">{visibleIndex + 1}</Typography>
+                        </td>
+                    }
                     {row.getVisibleCells().map(cell => (
                         <td key={cell.id}>
                             {flexRender(cell.column.columnDef.cell, cell.getContext())}
                         </td>
                     ))}
                 </tr>
-            })}
+            ))}
+            {overflow && (
+                <tr>
+                    <td colSpan={columns.length + (enableRowNumbering ? 1 : 0)} style={{textAlign: 'center'}}>
+                        <div onClick={() => setHidingFromOverflow(state => !state)}>Show {hidingFromOverflow?'more':'less'}</div>
+                    </td>
+                </tr>
+            )}
             </tbody>
         </table>
     );
