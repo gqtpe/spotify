@@ -2,8 +2,6 @@
 .playlist {
   display: flex;
   flex-direction: column;
-  max-height: 100%;
-
   &__title {
     margin: 1rem 0 0.5rem 0;
   }
@@ -11,25 +9,14 @@
   &__description {
     font-weight: bold;
   }
-
   &__stats {
     display: flex;
     align-items: center;
     margin-top: 1rem;
   }
-
-
-
   &__content {
     display: flex;
     flex-direction: column;
-    overflow: hidden;
   }
 
-  &__actions {
-  }
-
-  &__table {
-
-  }
 }

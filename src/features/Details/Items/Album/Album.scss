@@ -1,11 +1,9 @@
 .album {
   display: flex;
   flex-direction: column;
-  max-height: 100%;
   &__title {
     margin: 1rem 0 2rem 0;
   }
-
   &__artist {
     .album__artist-image {
       width: 2rem;
@@ -18,11 +16,6 @@
         max-height: 100%;
       }
     }
-  }
-  &__content {
-    display: flex;
-    flex-direction: column;
-    overflow: hidden;
   }
   &__details{
     display: flex;
