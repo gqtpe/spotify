@@ -4,7 +4,7 @@ import {DetailedItemType} from "../features/Details/Details.tsx";
 import {Copyrights, External_Urls, Images, ResponseType, Restrictions} from "./types/common.ts";
 import {Track} from "./types/track.ts";
 import {Album, SimplifiedAlbum} from "./types/album.ts";
-import {Artist} from "./types/artist.ts";
+import {Artist, ArtistAlbumIncludeGroupValues} from "./types/artist.ts";
 import {Playlist, SimplifiedPlaylist} from "./types/playlist.ts";
 import {CategoryObject} from "./types/browseCategories.ts";
 import {Device, RepeatState} from "../features/Player/types.ts";
