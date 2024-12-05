@@ -81,7 +81,7 @@ export const spotifyAPI = {
     //     })
     // },
     async checkIsItemSaved(type: 'track' | 'album' | 'artist', ids: string[]) {
-        return await spotifyAPIInstance.get(`me/${type}s/contains?ids=${ids.join(',')}`)
+        return await spotifyAPIInstance.get<boolean[]>(`me/${type!='artist'?type+'s':'following'}/contains?ids=${ids.join(',')}${type === 'artist' ? '&type=artist' : ''}`)
     },
     async saveItem (type: 'track' | 'album' | 'artist', ids: string[]){
         if(type === 'artist'){
