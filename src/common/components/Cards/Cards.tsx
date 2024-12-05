@@ -11,6 +11,7 @@ import useIntersectionObserver from "../../../features/Application/hooks/useInte
 import {browseActions, browseSelectors} from "../../../features/Browse";
 import {useNavigate, useParams} from "react-router-dom";
 import {usePlayAction} from "../../../features/Player";
+import getSubtitleForCard from "../../utils/getSubtitleForCard.ts";
 
 
 type CardsProps = {
@@ -43,27 +44,13 @@ const Cards: FC<CardsProps> = ({selector, preview}) => {
         }
 
         const cardItems = item.items ? item.items.map(item => {
-            let subTitle = ''
             if (!item) {
                 return null
             }
-            switch (item.type) {
-                case 'playlist':
-                    subTitle = 'By ' + item.owner.display_name;
-                    break;
-                case "album":
-                    subTitle = item.release_date.slice(0, 4) + ' - ' + item.artists.map(artist => artist.name).join(', ')
-                    break;
-                case "artist":
-                    subTitle = 'Artist'
-                    break;
-            }
+            let subTitle = getSubtitleForCard({item})
+
             const callback = () => {
-                if (item.type === 'artist') {
                     play({type: 'artist', context_uri: item.uri})
-                } else {
-                    play({type: item.type, context_uri: item.uri})
-                }
             }
             return <Card
                 key={item.id}
@@ -80,7 +67,7 @@ const Cards: FC<CardsProps> = ({selector, preview}) => {
             <div className={styles.container + ' ' + (preview && styles.preview)}>
                 {cardItems}
             </div>
-                {item.items.length && <div className={styles.trigger} ref={triggerRef}><div className="loader"></div></div>}
+                {!preview && item.items.length && <div className={styles.trigger} ref={triggerRef}><div className="loader"></div></div>}
             </>
         );
     }
