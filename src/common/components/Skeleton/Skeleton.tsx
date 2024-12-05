@@ -9,8 +9,9 @@ type Props =  HTMLAttributes<HTMLDivElement> &{
     height?: number
     round?: boolean
     animation?: Animations
+    children?: React.ReactNode
 }
-const Skeleton = ({width,height,round, animation = 'pulsate',style, ...rest}:Props) =>{
+const Skeleton = ({children, width,height,round, animation = 'pulsate',style, ...rest}:Props) =>{
     const styles: CSSProperties = {
         display: 'block',
         width: width?width:'100%',
@@ -23,7 +24,7 @@ const Skeleton = ({width,height,round, animation = 'pulsate',style, ...rest}:Pro
         ...style
     }
     return <span style={styles} {...rest}>
-        'blank''blank''blank'
+        {children?children:'blank blank blank'}
     </span>
 }
 export default Skeleton
