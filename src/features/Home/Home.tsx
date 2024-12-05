@@ -23,10 +23,10 @@ const fetchBrowseCategories = async () => {
     const response = await spotifyAPI.getBrowseCategories()
     console.log('categories:', response.data)
 }
-const fetchBrowseCategoryPlaylist = async () => {
-    const response = await spotifyAPI.getCategoryPlaylists('0JQ5DAqbMKFCWjUTdzaG0e')
-    console.log('playlists:', response.data)
-}
+// const fetchBrowseCategoryPlaylist = async () => {
+//     const response = await spotifyAPI.getCategoryPlaylists('0JQ5DAqbMKFCWjUTdzaG0e')
+//     console.log('playlists:', response.data)
+// }
 const fetchIsSaved = async () => {
     const response = await spotifyAPI.checkIsItemSaved('album', ['3iPSVi54hsacKKl1xIR2eH'])
     console.log('fetchIsSaved:', response.data)
@@ -51,7 +51,7 @@ export const Home = () => {
         <Button onClick={refreshToken}>refreshToken</Button>
         <Button onClick={fetch}>playbackState</Button>
         <Button onClick={fetchBrowseCategories}>fetch categories</Button>
-        <Button onClick={fetchBrowseCategoryPlaylist}>fetch category playlists</Button>
+        {/*<Button onClick={fetchBrowseCategoryPlaylist}>fetch category playlists</Button>*/}
         <Button onClick={fetchIsSaved}> fetch is 3iPSVi54hsacKKl1xIR2eH saved</Button>
         <Button onClick={save}>saveItem</Button>
         <Button onClick={remove}>removeItem</Button>
