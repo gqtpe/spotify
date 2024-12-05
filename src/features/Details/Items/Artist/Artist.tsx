@@ -17,13 +17,13 @@ const Artist: FC<{ item: Artist }> = ({item}) => {
         const play = usePlayAction()
         const {loading, artistDetails} = useArtistDetails(item.id);
         const save = useSave('artist')
-    const [followState, setFollowState] = useState<boolean|null>(null)
+        const [followState, setFollowState] = useState<boolean | null>(null)
 
-    const handleClick = useCallback(async()=>{
-        const response = await save([item.id])
-        setFollowState(response)
-    },[])
-    useEffect(() => {
+        const handleClick = useCallback(async () => {
+            const response = await save([item.id])
+            setFollowState(response)
+        }, [])
+        useEffect(() => {
             const fetchFollowState = async () => {
                 const response = await spotifyAPI.checkIsItemSaved('artist', [item.id])
                 setFollowState(response.data[0])
@@ -46,7 +46,12 @@ const Artist: FC<{ item: Artist }> = ({item}) => {
                     <IconButton fz={24} onClick={() => play({type: 'artist', context_uri: item?.uri})}>
                         <FaPlay/>
                     </IconButton>
-                    {followState === null ? <Button variant="outlined"><Skeleton>Following</Skeleton></Button> :<Button variant="outlined" onClick={handleClick}>{followState?'Following':'Follow'}</Button>}
+                    {followState === null ?
+                        <Button density="none" variant="outlined"><Skeleton>Following</Skeleton></Button>
+                        :
+                        <Button density="none" variant="outlined"
+                                onClick={handleClick}>{followState ? 'Following' : 'Follow'}</Button>
+                    }
                 </div>
                 {loading === 'succeeded' && artistDetails ?
                     <div className="artist__content">
