@@ -1,5 +1,6 @@
 import {FC, useEffect, useState} from "react";
 import {useParams} from "react-router-dom";
+import type {User as UserType} from "../../api/spotifyAPI.ts";
 import {spotifyAPI} from "../../api/spotifyAPI.ts";
 import {AxiosError} from "axios";
 import Playlist from "./Items/Playlist/Playlist.tsx";
@@ -11,17 +12,21 @@ import type {Artist as ArtistType} from "../../api/types/artist.ts";
 import type {Playlist as PlaylistType} from "../../api/types/playlist.ts";
 import type {Track as TrackType} from "../../api/types/track.ts";
 import './Items/styles.scss'
+import User from "./Items/User/User.tsx";
 
 
-export type DetailedItemType = 'album' | 'playlist' | 'track' | 'artist';
+export type DetailedItemType = 'album' | 'playlist' | 'track' | 'artist' | 'user';
+type ItemType = PlaylistType | ArtistType | TrackType | AlbumType | UserType
 const Details: FC = () => {
+    console.log('details ')
     const params = useParams<{ id: string, type: DetailedItemType }>();
-    const [item, setItem] = useState<PlaylistType | ArtistType | TrackType | AlbumType | null>(null);
+    const [item, setItem] = useState<ItemType | null>(null);
     const [loading, setLoading] = useState<boolean>(true);
     const [error, setError] = useState<string | null>(null);
 
     useEffect(() => {
         const fetchItem = async () => {
+            console.log(item)
             try {
                 if (params.type && params.id) {
                     const response = await spotifyAPI.getDetailedItem(params.id, params.type);
@@ -36,14 +41,15 @@ const Details: FC = () => {
         };
         fetchItem();
     }, [params.id, params.type]);
-    if (loading) {
+
+    if (loading && !item) {
         return <div>Loading...</div>;
     }
 
     if (error) {
         return <div>{error}</div>;
     }
-    switch (params.type) {
+    switch (item!.type) {
         case 'playlist':
             return <Playlist item={item as PlaylistType}/>
         case 'album':
@@ -52,6 +58,8 @@ const Details: FC = () => {
             return <Artist item={item as ArtistType}/>
         case 'track':
             return <Track item={item as TrackType}/>
+        case 'user':
+            return <User item={item as UserType}/>
     }
 
 };
