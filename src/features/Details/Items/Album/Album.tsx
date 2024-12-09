@@ -10,16 +10,18 @@ import {FaPlay} from "react-icons/fa6";
 import {IoIosAddCircleOutline, IoIosCheckmarkCircle} from "react-icons/io";
 import useSave from "../../../Library/useSave/useSave.ts";
 import {spotifyAPI} from "../../../../api/spotifyAPI.ts";
+import {useNavigate} from "react-router-dom";
 
 
 const Album: FC<{ item: Album }> = ({item}) => {
     const play = usePlayAction()
     //save
-    const save = useSave(item.type)
+    const save = useSave('album')
     const toggleSave = useCallback( async () => {
         const saved = await save([item.id])
         setIsSaved(saved)
     },[save])
+    const navigate = useNavigate()
     const [isSaved, setIsSaved] = useState(false)
     useEffect(() => {
         const fetchIsSaved = async () => {
@@ -40,9 +42,11 @@ const Album: FC<{ item: Album }> = ({item}) => {
                     <Typography variant='subtitle1'>Album</Typography>
                     <Typography className="album__title" variant='h1'>{item.name}</Typography>
                     <div className="album__details">
-                        <Typography variant='subtitle1'>
-                            {item.artists[0].name}
-                        </Typography>•
+                        {item.artists.map(artist=>{
+                            return <><Typography variant='subtitle1' onClick={()=>navigate(`/${artist.type}/${artist.id}`)}>
+                                {artist.name}
+                            </Typography>•</>
+                        })}
                         <Typography variant='subtitle1' sx={{color: 'var(--text400)'}}>
                             {item.release_date.slice(0, 4)}
                         </Typography>
