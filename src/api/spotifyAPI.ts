@@ -95,9 +95,9 @@ export const spotifyAPI = {
         }
         return await spotifyAPIInstance.get<boolean[]>(`me/${endpoint}`)
     },
-    async saveItem (type: 'track' | 'album' | 'artist', ids: string[]){
-        if(type === 'artist'){
-            return await spotifyAPIInstance.put(`me/following?type=artist`, {
+    async saveItem(type: saveOrFollowItemType, ids: string[]) {
+        if (type === 'artist' || type === 'user') {
+            return await spotifyAPIInstance.put(`me/following?type=${type}`, {
                 ids
             })
         }
