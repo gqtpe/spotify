@@ -38,11 +38,11 @@ export const Library = () => {
                 subtitle={subtitle}
                 image={img}
                 variant="small"
+                link={`/${type}/${id}`}
                 onPlay={() => play({type: item.type, context_uri: item.uri, offset: {position: 0}})}
             />
         );
     })
-//todo fix library header logo disappearing
     return <div className="library">
         <div className="library__header">
             <BiLibrary fontSize={24} className="library__logo"/>
