@@ -105,10 +105,10 @@ export const spotifyAPI = {
             ids
         })
     },
-    async removeItem  (type: 'track' | 'album' | 'artist', ids: string[]){
-        if(type === 'artist'){
-            return await spotifyAPIInstance.delete(`me/following?type=artist`, {
-                data:{
+    async removeItem(type: saveOrFollowItemType, ids: string[]) {
+        if (type === 'artist' || type === 'user') {
+            return await spotifyAPIInstance.delete(`me/following?type=${type}`, {
+                data: {
                     ids
                 }
             })
