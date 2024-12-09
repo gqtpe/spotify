@@ -192,7 +192,7 @@ export const spotifyAPI = {
     }
 }
 
-
+export type saveOrFollowItemType = 'track' | 'album' | 'artist' | 'user'
 //search
 export type SearchResult = {
     albums?: ResponseType<SimplifiedAlbum[]>
