@@ -57,12 +57,9 @@ const Artist: FC<{ item: Artist }> = ({item}) => {
                     <div className="artist__content">
                         <Typography className="title" variant="h3">Popular</Typography>
                         <TopTracks topTracks={artistDetails.topTracks}/>
-                        <Typography className="title" variant="h3">Discography</Typography>
-                        <Discography albums={artistDetails.albums}/>
-                        <Typography className="title" variant="h3">Appears On</Typography>
-                        <Discography albums={artistDetails.appears_on}/>
-                        <Typography className="title" variant="h3">Singles</Typography>
-                        <Discography albums={artistDetails.singles}/>
+                        {artistDetails.albums && <Discography title="Discography" albums={artistDetails.albums}/>}
+                        {artistDetails.appears_on && <Discography title="Appears On" albums={artistDetails.appears_on}/>}
+                        {artistDetails.singles && <Discography title="Singles" albums={artistDetails.singles}/>}
                     </div> :
                     <div className="loader"></div>
                 }
