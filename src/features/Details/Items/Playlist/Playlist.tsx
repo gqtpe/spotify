@@ -10,12 +10,14 @@ import IconButton from "../../../../common/components/IconButton/IconButton.tsx"
 import {IoIosAddCircleOutline, IoIosCheckmarkCircle} from "react-icons/io";
 import useSave from "../../../Library/useSave/useSave.ts";
 import {spotifyAPI} from "../../../../api/spotifyAPI.ts";
+import {useNavigate} from "react-router-dom";
 
 
 const Playlist: FC<{ item: Playlist }> = ({item}) => {
     const play = usePlayAction()
     const [isSaved, setIsSaved] = useState(false)
     const save = useSave('playlist')
+    const navigate = useNavigate()
     console.log(item)
     const handleClick = async () => {
         const state = await save(item.id)
@@ -41,7 +43,11 @@ const Playlist: FC<{ item: Playlist }> = ({item}) => {
                     <Typography variant='subtitle1' sx={{color: 'var(--text400)'}}>{item?.description}</Typography>
                     <div className="playlist__stats">
                         <Typography variant='subtitle1'
-                                    sx={{color: 'var(--text-100)'}}>{item?.owner.display_name}</Typography>•
+                                    sx={{color: 'var(--text-100)'}}
+                                    onClick={()=>navigate(`/user/${item.owner.id}`)}
+                        >
+                            {item?.owner.display_name}
+                        </Typography>•
                         <Typography variant='subtitle1'
                                     sx={{color: 'var(--text-400)'}}>{item?.followers.total} saves</Typography>•
                         <Typography variant='subtitle1'
