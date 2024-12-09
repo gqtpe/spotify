@@ -12,7 +12,6 @@ import useSave from "../../../Library/useSave/useSave.ts";
 import Button from "../../../../common/components/Button/Button.tsx";
 import {spotifyAPI} from "../../../../api/spotifyAPI.ts";
 import Skeleton from "../../../../common/components/Skeleton/Skeleton.tsx";
-//todo: move checkIsItemSaved inside useSave
 const Artist: FC<{ item: Artist }> = ({item}) => {
         const play = usePlayAction()
         const {loading, artistDetails} = useArtistDetails(item.id);
