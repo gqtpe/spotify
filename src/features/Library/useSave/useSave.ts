@@ -1,7 +1,7 @@
 import {userLibraryActions} from "../";
 import {useActions} from "../../Application/hooks";
 
-type SaveTypes = 'playlist' | 'album' | 'track' | 'artist';
+type SaveTypes = 'playlist' | 'album' | 'track' | 'artist' | 'user';
 
 type ReturnType<T extends SaveTypes> = T extends 'playlist'
     ? (playlist_id: string) => Promise<boolean>
