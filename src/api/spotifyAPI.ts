@@ -40,8 +40,14 @@ export const spotifyAPI = {
     },
     //==========me
 
-    async play({deviceID, ...params}: {deviceID: string, context_uri?: string,uris?: string[], offset?:{position: number},position_ms?:number}) {
-      return await spotifyAPIInstance.put(`me/player/play?device_id=${deviceID}`, params)
+    async play({deviceID, ...params}: {
+        deviceID: string,
+        context_uri?: string,
+        uris?: string[],
+        offset?: { position: number },
+        position_ms?: number
+    }) {
+        return await spotifyAPIInstance.put(`me/player/play?device_id=${deviceID}`, params)
     },
     async getMe() {
         return await spotifyAPIInstance.get<User>('me');
@@ -80,8 +86,14 @@ export const spotifyAPI = {
     //         }
     //     })
     // },
-    async checkIsItemSaved(type: 'track' | 'album' | 'artist', ids: string[]) {
-        return await spotifyAPIInstance.get<boolean[]>(`me/${type!='artist'?type+'s':'following'}/contains?ids=${ids.join(',')}${type === 'artist' ? '&type=artist' : ''}`)
+    async checkIsItemSaved(type: saveOrFollowItemType, ids: string[]) {
+        let endpoint;
+        if (type === 'artist' || type === 'user') {
+            endpoint = `following/contains?ids=${ids.join(',')}&type=${type}`
+        } else {
+            endpoint = `${type}s/contains?ids=${ids.join(',')}`
+        }
+        return await spotifyAPIInstance.get<boolean[]>(`me/${endpoint}`)
     },
     async saveItem (type: 'track' | 'album' | 'artist', ids: string[]){
         if(type === 'artist'){
