@@ -23,10 +23,6 @@ const fetchBrowseCategories = async () => {
     const response = await spotifyAPI.getBrowseCategories()
     console.log('categories:', response.data)
 }
-// const fetchBrowseCategoryPlaylist = async () => {
-//     const response = await spotifyAPI.getCategoryPlaylists('0JQ5DAqbMKFCWjUTdzaG0e')
-//     console.log('playlists:', response.data)
-// }
 const fetchIsSaved = async () => {
     const response = await spotifyAPI.checkIsItemSaved('album', ['3iPSVi54hsacKKl1xIR2eH'])
     console.log('fetchIsSaved:', response.data)
