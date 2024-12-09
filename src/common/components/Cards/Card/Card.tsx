@@ -5,6 +5,7 @@ import "./Card.scss";
 import Typography from "../../Typography/Typography.tsx";
 import {MdExplicit} from "react-icons/md";
 import {cutFrom30} from "../../../../features/Browse/utils/cutFrom30.ts";
+import {useNavigate} from "react-router-dom";
 
 type PlaylistProps = {
     title: string;
@@ -12,11 +13,11 @@ type PlaylistProps = {
     subtitle: string;
     variant?: "default" | "small" | "large" | "small-";
     round?: boolean;
-    onClick?: () => void;
     onPlay?: () => void;
     explicit?: boolean;
     link?: string;
-    navigate?: (link: string) => void
+    titleLink?: string;
+    subtitleLink?: string;
 };
 
 const Card: FC<PlaylistProps> = ({
@@ -25,22 +26,20 @@ const Card: FC<PlaylistProps> = ({
                                      image,
                                      round,
                                      onPlay,
-                                     onClick,
                                      variant = "default",
                                      explicit = false,
                                      link,
-                                     navigate
+                                     subtitleLink,
+                                     titleLink,
+
                                  }) => {
     const iconButtonVariant = variant === "small" ? "icon" : "filled";
-
+    const navigate = useNavigate();
     const handleClick = useCallback(() => {
-        if (onClick) {
-            onClick();
-        }
-        if (link && navigate) {
+        if (link) {
             navigate(link)
         }
-    }, [onClick, link, navigate]);
+    }, [link, navigate]);
 
     const handlePlayButtonClick = useCallback(
         (event: MouseEvent<HTMLButtonElement>) => {
@@ -51,6 +50,18 @@ const Card: FC<PlaylistProps> = ({
         },
         [onPlay]
     );
+    const handleSubtitleClick = useCallback((e:MouseEvent) => {
+        if(subtitleLink){
+            e.stopPropagation()
+            navigate(subtitleLink)
+        }
+    }, [subtitleLink])
+    const handleTitleClick = useCallback((e:MouseEvent) => {
+        if(titleLink){
+            e.stopPropagation()
+            navigate(titleLink)
+        }
+    }, [titleLink])
 
     const imageClassName = `card__image ${round ? "card__image-round" : ""}`;
 
@@ -75,10 +86,10 @@ const Card: FC<PlaylistProps> = ({
                 )}
             </div>
             <div className="card__details">
-                <Typography variant="subtitle1" className="card__title">
+                <Typography variant="subtitle1" className="card__title" onClick={handleTitleClick}>
                     {cutFrom30(title)}
                 </Typography>
-                <Typography variant="subtitle2" className="card__subtitle">
+                <Typography variant="subtitle2" className="card__subtitle" onClick={handleSubtitleClick}>
                     {explicit && <MdExplicit className="card__explicit"/>}
                     {subtitle}
                 </Typography>
