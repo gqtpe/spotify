@@ -1,5 +1,6 @@
-import {CSSProperties, FC, memo, ReactNode, useCallback} from 'react';
+import {CSSProperties, FC, memo, ReactNode} from 'react';
 import styles from './Typography.module.scss';
+import {Link} from "react-router-dom";
 
 interface TypographyProps {
     variant?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'overline' | 'subtitle1' | 'subtitle2' | 'caption' | 'div';
@@ -7,8 +8,8 @@ interface TypographyProps {
     children: ReactNode;
     className?: string;
     userSelect?: boolean
-    sx?: CSSProperties
-    onClick?: (e: any) => void;
+    sx?: CSSProperties;
+    link?: string;
 }
 
 export const Typography: FC<TypographyProps> = ({
@@ -17,18 +18,16 @@ export const Typography: FC<TypographyProps> = ({
                                                     children,
                                                     sx,
                                                     className = '',
-                                                    onClick
-
+                                                    link
                                                 }) => {
-    const Component = component || variantMap[variant] || 'p';
-    const handleClick = useCallback((e:any) => {
-        if (onClick) {
-            onClick(e)
-        }
-    }, [onClick])
+    const Component = (component || variantMap[variant] || 'p');
+    if(link){
+        return <Link to={link} className={[styles[variant], className].join(' ')}>
+            {children}
+        </Link>
+    }
     return (
-        <Component className={[styles[variant], className, onClick && styles.underline].join(' ')} onClick={handleClick}
-                   style={sx}>
+        <Component className={[styles[variant], className,].join(' ')} style={sx}>
             {children}
         </Component>
     );
