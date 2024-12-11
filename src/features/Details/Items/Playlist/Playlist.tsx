@@ -10,14 +10,12 @@ import IconButton from "../../../../common/components/IconButton/IconButton.tsx"
 import {IoIosAddCircleOutline, IoIosCheckmarkCircle} from "react-icons/io";
 import useSave from "../../../Library/useSave/useSave.ts";
 import {spotifyAPI} from "../../../../api/spotifyAPI.ts";
-import {useNavigate} from "react-router-dom";
 
 
 const Playlist: FC<{ item: Playlist }> = ({item}) => {
     const play = usePlayAction()
     const [isSaved, setIsSaved] = useState(false)
     const save = useSave('playlist')
-    const navigate = useNavigate()
     console.log(item)
     const handleClick = async () => {
         const state = await save(item.id)
