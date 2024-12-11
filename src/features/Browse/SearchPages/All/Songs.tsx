@@ -43,6 +43,7 @@ export const Songs = () => {
                         explicit={t.explicit}
                         link={`/track/${t.id}`}
                         onPlay={callback}
+                        subtitleLink={`/artist/${t.artists[0].id}`}
                         variant="small"
                     />
                 })}
