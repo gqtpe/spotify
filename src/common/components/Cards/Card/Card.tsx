@@ -17,6 +17,7 @@ type PlaylistProps = {
     explicit?: boolean;
     link?: string;
     subtitleLink?: string;
+    dense?: 'dense'|'none';
 };
 
 const Card: FC<PlaylistProps> = ({
@@ -29,7 +30,7 @@ const Card: FC<PlaylistProps> = ({
                                      explicit = false,
                                      link,
                                      subtitleLink,
-
+                                     dense = 'dense'
                                  }) => {
     const iconButtonVariant = variant === "small" ? "icon" : "filled";
     const handlePlayButtonClick = useCallback(
@@ -46,7 +47,7 @@ const Card: FC<PlaylistProps> = ({
 
     return (
         <Component to={link!}>
-            <div className={`card card--${variant}`}>
+            <div className={`card card--${variant}`} style={dense === 'none' ? {padding: '0px'} : {}}>
                 <div className="card__image-container">
                     {image ? (
                         <img className={imageClassName} src={image} alt="image"/>
