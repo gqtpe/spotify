@@ -52,9 +52,9 @@ const Card: FC<PlaylistProps> = ({
                     {image ? (
                         <img className={imageClassName} src={image} alt="image"/>
                     ) : (
-                        <div className={imageClassName}>
+                        ((variant !== 'small-') || (variant !== 'small-'))?<div className={imageClassName}>
                             <IoMdMusicalNote/>
-                        </div>
+                        </div>:null
                     )}
                     {onPlay && (
                         <IconButton
