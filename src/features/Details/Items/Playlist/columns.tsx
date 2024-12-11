@@ -1,41 +1,35 @@
 import {ColumnDef} from "@tanstack/react-table";
 import type {PlaylistTrackObject} from "../../../../api/types/playlist.ts";
 import Typography from "../../../../common/components/Typography/Typography.tsx";
-import {MdExplicit} from "react-icons/md";
 import {formatTime} from "../../utils/formatTime.ts";
 import {msToTime} from "../../../Player/utils/helpers.ts";
 import {FaRegClock} from "react-icons/fa";
 import {cutFrom30} from "../../../Browse/utils/cutFrom30.ts";
+import Card from "../../../../common/components/Cards/Card/Card.tsx";
 
 export const columns: ColumnDef<PlaylistTrackObject>[] = [
     {
         accessorKey: 'track.name',
         header: 'Title',
         cell: ({row}) => {
-            return <div style={{display: 'flex', alignItems: 'center', gap: '8px'}}>
-                <img
-                    height={40}
-                    src={row.original.track.album.images[0].url}
-                    style={{borderRadius: '5px'}}
-                />
-                <div style={{display: 'flex', flexDirection: 'column'}}>
-                    <Typography variant='subtitle1'>{cutFrom30(row.original.track.name)}</Typography>
-                    <Typography variant='subtitle2' sx={{
-                        display: 'flex',
-                        gap: '4px',
-                        alignItems: 'center'
-                    }}>{row.original.track.explicit &&
-                        <MdExplicit
-                            fontSize={20}/>} {row.original.track.explicit}{row.original.track.artists[0].name}</Typography>
-                </div>
-            </div>
+            return <Card
+                image={row.original.track.album.images[0].url}
+                title={row.original.track.name}
+                subtitle={row.original.track.artists.map(artist => artist.name).join(', ')}
+                explicit={row.original.track.explicit}
+                variant="small-"
+                link={`/track/${row.original.track.id}`}
+                subtitleLink={`/artist/${row.original.track.artists[0].id}`}
+                dense="none"
+            />
         },
     },
 
     {
         header: 'Album',
         cell: ({row}) => (
-            <Typography variant='subtitle2' sx={{fontWeight: 'bold'}}>{cutFrom30(row.original.track.album.name)}</Typography>
+            <Typography variant='subtitle2'
+                        sx={{fontWeight: 'bold'}}>{cutFrom30(row.original.track.album.name)}</Typography>
         )
     },
     {
