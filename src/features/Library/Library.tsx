@@ -41,7 +41,6 @@ export const Library = () => {
                 variant="small"
                 link={`/${type}/${id}`}
                 onPlay={() => play({type: item.type, context_uri: item.uri, offset: {position: 0}})}
-                titleLink={`/${type}/${id}`}
                 subtitleLink={getSubtitleLink({item})}
             />
         );

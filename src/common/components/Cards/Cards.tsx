@@ -58,7 +58,6 @@ const Cards: FC<CardsProps> = ({selector, preview}) => {
                 round={item.type === 'artist'}
                 onPlay={callback}
                 link={`/${item.type}/${item.id}`}
-                titleLink={`/${item.type}/${item.id}`}
                 subtitleLink={subtitleLink}
             />
         }) : null

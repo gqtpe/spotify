@@ -16,20 +16,25 @@ const CurrentlyPlaying: FC = () => {
         if (item) return item.album.artists.map(artist => artist.name).join(', ')
     }, [item])
     return <div className={[footerStyles.footer__current, footerStyles.current].join(' ')}>
-        {playbackLoading === 'succeeded' ? <Card image={item ? item.album.images[0].url : 'blank'}
-                      subtitle={subTitle ? subTitle : 'blank'}
-                      title={item ? item.name : 'blank'}
-                      explicit={item ? item.explicit : false}
-                      variant="small-"
-        /> : <div className="card card--small">
-            <div className="card__image-container">
-                <Skeleton className="card__image"/>
-            </div>
-            <div className="card__details">
-                <Typography className="card__title"><Skeleton/></Typography>
-                <Typography className="card__subtitle"><Skeleton/></Typography>
-            </div>
-        </div>}
+        {playbackLoading === 'succeeded' ?
+            <Card image={item ? item.album.images[0].url : 'blank'}
+                  subtitle={subTitle ? subTitle : 'blank'}
+                  title={item ? item.name : 'blank'}
+                  explicit={item ? item.explicit : false}
+                  variant="small-"
+                  link={`/track/${item?.id}`}
+                  subtitleLink={`/artist/${item?.album.artists[0].id}`}
+            />
+            :
+            <div className="card card--small">
+                <div className="card__image-container">
+                    <Skeleton className="card__image"/>
+                </div>
+                <div className="card__details">
+                    <Typography className="card__title"><Skeleton/></Typography>
+                    <Typography className="card__subtitle"><Skeleton/></Typography>
+                </div>
+            </div>}
 
     </div>
 }
