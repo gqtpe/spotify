@@ -42,7 +42,7 @@ const Playlist: FC<{ item: Playlist }> = ({item}) => {
                     <div className="playlist__stats">
                         <Typography variant='subtitle1'
                                     sx={{color: 'var(--text-100)'}}
-                                    onClick={()=>navigate(`/user/${item.owner.id}`)}
+                                    link={`/user/${item.owner.id}`}
                         >
                             {item?.owner.display_name}
                         </Typography>•
