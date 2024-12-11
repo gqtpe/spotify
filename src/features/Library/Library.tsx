@@ -10,6 +10,7 @@ import {useActions, useAppSelector} from "../Application/hooks";
 import {userLibraryActions, userLibrarySelectors} from "./index.ts";
 import Card from "../../common/components/Cards/Card/Card.tsx";
 import {usePlayAction} from "../Player";
+import getSubtitleLink from "../../common/utils/getSubtitleLink.ts";
 
 
 export const Library = () => {
