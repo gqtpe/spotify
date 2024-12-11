@@ -10,7 +10,6 @@ import {FaPlay} from "react-icons/fa6";
 import {IoIosAddCircleOutline, IoIosCheckmarkCircle} from "react-icons/io";
 import useSave from "../../../Library/useSave/useSave.ts";
 import {spotifyAPI} from "../../../../api/spotifyAPI.ts";
-import {useNavigate} from "react-router-dom";
 
 
 const Album: FC<{ item: Album }> = ({item}) => {
@@ -21,7 +20,6 @@ const Album: FC<{ item: Album }> = ({item}) => {
         const saved = await save([item.id])
         setIsSaved(saved)
     },[save])
-    const navigate = useNavigate()
     const [isSaved, setIsSaved] = useState(false)
     useEffect(() => {
         const fetchIsSaved = async () => {
@@ -43,7 +41,7 @@ const Album: FC<{ item: Album }> = ({item}) => {
                     <Typography className="album__title" variant='h1'>{item.name}</Typography>
                     <div className="album__details">
                         {item.artists.map(artist=>{
-                            return <><Typography variant='subtitle1' onClick={()=>navigate(`/${artist.type}/${artist.id}`)}>
+                            return <><Typography variant='subtitle1' link={'/artist/' + artist.id}>
                                 {artist.name}
                             </Typography>•</>
                         })}
