@@ -22,7 +22,7 @@ export const Typography: FC<TypographyProps> = ({
                                                 }) => {
     const Component = (component || variantMap[variant] || 'p');
     if(link){
-        return <Link to={link} className={[styles[variant], className].join(' ')}>
+        return <Link to={link} className={[styles[variant], className, styles.link].join(' ')}>
             {children}
         </Link>
     }
