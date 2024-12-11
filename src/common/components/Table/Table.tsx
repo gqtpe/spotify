@@ -14,6 +14,7 @@ interface TableProps {// Колонки с типом данных
     enableHidingFromOverflow?:boolean
     overflow?: number
 }
+//todo: need to centralize columns(there is
 const TracksTable = memo(({data, columns, enableRowNumbering = false, enableHeaderHiding, overflow, enableHidingFromOverflow}: TableProps) => {
     const table = useReactTable({
         columns,
