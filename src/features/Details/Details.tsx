@@ -13,41 +13,42 @@ import type {Playlist as PlaylistType} from "../../api/types/playlist.ts";
 import type {Track as TrackType} from "../../api/types/track.ts";
 import './Items/styles.scss'
 import User from "./Items/User/User.tsx";
+import {RequestStatuses} from "../../api/types/common.ts";
 
 
 export type DetailedItemType = 'album' | 'playlist' | 'track' | 'artist' | 'user';
 type ItemType = PlaylistType | ArtistType | TrackType | AlbumType | UserType
+//todo: replace loader with skeleton(create slice for detailed page)
 const Details: FC = () => {
     console.log('details ')
     const params = useParams<{ id: string, type: DetailedItemType }>();
     const [item, setItem] = useState<ItemType | null>(null);
-    const [loading, setLoading] = useState<boolean>(true);
+    const [loading, setLoading] = useState<RequestStatuses>('idle');
     const [error, setError] = useState<string | null>(null);
-
     useEffect(() => {
         const fetchItem = async () => {
-            console.log(item)
+            setLoading('loading')
             try {
                 if (params.type && params.id) {
                     const response = await spotifyAPI.getDetailedItem(params.id, params.type);
                     setItem(response.data);
+                    setLoading('succeeded')
                 }
             } catch (err) {
                 const error = err as AxiosError
                 setError(error.message)
-            } finally {
-                setLoading(false);
+                setLoading('failed')
             }
         };
         fetchItem();
     }, [params.id, params.type]);
 
-    if (loading && !item) {
-        return <div>Loading...</div>;
-    }
-
     if (error) {
         return <div>{error}</div>;
+    }
+    if (loading !== 'succeeded') {
+        return <div className="loader"/>
+
     }
     switch (item!.type) {
         case 'playlist':
