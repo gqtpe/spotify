@@ -18,7 +18,7 @@ type PlaylistProps = {
     link?: string;
     titleLink?: string;
     subtitleLink?: string;
-    dense?: 'dense'|'none';
+    dense?: 'dense' | 'none';
 };
 
 const Card: FC<PlaylistProps> = ({
