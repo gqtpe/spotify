@@ -48,37 +48,50 @@ const Card: FC<PlaylistProps> = ({
     const imageClassName = `card__image ${round ? "card__image-round" : ""}`;
 
     return (
-        <Component to={link!}>
-            <div className={`card card--${variant}`} style={dense === 'none' ? {padding: '0px'} : {}}>
-                <div className="card__image-container">
-                    {image ? (
-                        <img className={imageClassName} src={image} alt="image"/>
-                    ) : (
-                        ((variant !== 'small-') || (variant !== 'small-'))?<div className={imageClassName}>
-                            <IoMdMusicalNote/>
-                        </div>:null
-                    )}
-                    {onPlay && (
-                        <IconButton
-                            variant={iconButtonVariant}
-                            className="card__button"
-                            onClick={handlePlayButtonClick}
-                        >
-                            <IoMdPlay/>
-                        </IconButton>
-                    )}
-                </div>
-                <div className="card__details">
-                    <Typography variant="subtitle1" className="card__title" link={link}>
-                        {cutFrom30(title)}
-                    </Typography>
-                    <Typography variant="subtitle2" className="card__subtitle" link={subtitleLink}>
-                        {explicit && <MdExplicit className="card__explicit"/>}
-                        {subtitle}
-                    </Typography>
-                </div>
+        <div
+            onClick={(e) => {
+                if (e.button === 0) {
+                    // LMC
+                    window.open(link || '')
+                }
+            }}
+            onAuxClick={(e) => {
+                if (e.button === 1) {
+                    // MMC
+                    window.open(link, '_blank');
+                }
+            }}
+            className={`card card--${variant}`}
+            style={dense === 'none' ? {padding: '0px'} : {}}
+        >
+            <div className="card__image-container">
+                {image ? (
+                    <img className={imageClassName} src={image} alt="image"/>
+                ) : (
+                    ((variant !== 'small-') || (variant !== 'small-')) ? <div className={imageClassName}>
+                        <IoMdMusicalNote/>
+                    </div> : null
+                )}
+                {onPlay && (
+                    <IconButton
+                        variant={iconButtonVariant}
+                        className="card__button"
+                        onClick={handlePlayButtonClick}
+                    >
+                        <IoMdPlay/>
+                    </IconButton>
+                )}
             </div>
-        </Component>
+            <div className="card__details">
+                <Typography variant="subtitle1" className="card__title" link={titleLink}>
+                    {cutFrom30(title)}
+                </Typography>
+                <Typography variant="subtitle2" className="card__subtitle" link={subtitleLink}>
+                    {explicit && <MdExplicit className="card__explicit"/>}
+                    {subtitle}
+                </Typography>
+            </div>
+        </div>
     );
 };
 
