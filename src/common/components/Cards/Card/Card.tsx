@@ -16,6 +16,7 @@ type PlaylistProps = {
     onPlay?: () => void;
     explicit?: boolean;
     link?: string;
+    titleLink?: string;
     subtitleLink?: string;
     dense?: 'dense'|'none';
 };
