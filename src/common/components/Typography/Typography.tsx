@@ -21,8 +21,12 @@ export const Typography: FC<TypographyProps> = ({
                                                     link
                                                 }) => {
     const Component = (component || variantMap[variant] || 'p');
-    if(link){
-        return <Link to={link} className={[styles[variant], className, styles.link].join(' ')}>
+    const stopPropagation = (e: React.MouseEvent<HTMLAnchorElement>) => {
+        e.stopPropagation();
+    };
+    if (link) {
+        return <Link to={link} className={[styles[variant], className, styles.link].join(' ')}
+                     onClick={stopPropagation}>
             {children}
         </Link>
     }
