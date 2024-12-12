@@ -30,6 +30,7 @@ const Card: FC<PlaylistProps> = ({
                                      variant = "default",
                                      explicit = false,
                                      link,
+                                     titleLink = link,
                                      subtitleLink,
                                      dense = 'dense'
                                  }) => {
