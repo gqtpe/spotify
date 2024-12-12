@@ -25,6 +25,7 @@ export const Songs = () => {
                     explicit={topResult?.explicit}
                     onPlay={() => play({type: 'track', uris: [topResult.uri], position:0})}
                     link={`/track/${topResult?.id}`}
+                    subtitleLink={`/artist/${topResult?.artists[0].id}`}
                     variant="large"
                 />
             </div>
