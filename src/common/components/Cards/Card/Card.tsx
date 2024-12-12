@@ -43,7 +43,6 @@ const Card: FC<PlaylistProps> = ({
         },
         [onPlay]
     );
-    const Component = link ? Link : Fragment
     const imageClassName = `card__image ${round ? "card__image-round" : ""}`;
 
     return (
