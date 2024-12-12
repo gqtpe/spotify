@@ -1,25 +1,25 @@
 import {ColumnDef} from "@tanstack/react-table";
-import type {PlaylistTrackObject} from "../../../../api/types/playlist.ts";
 import Typography from "../../../../common/components/Typography/Typography.tsx";
 import {formatTime} from "../../utils/formatTime.ts";
 import {msToTime} from "../../../Player/utils/helpers.ts";
 import {FaRegClock} from "react-icons/fa";
 import {cutFrom30} from "../../../Browse/utils/cutFrom30.ts";
 import Card from "../../../../common/components/Cards/Card/Card.tsx";
+import {Track} from "../../../../api/types/track.ts";
 
-export const columns: ColumnDef<PlaylistTrackObject>[] = [
+export const columns: ColumnDef<Track & { added_at: string }>[] = [
     {
         accessorKey: 'track.name',
         header: 'Title',
         cell: ({row}) => {
             return <Card
-                image={row.original.track.album.images[0].url}
-                title={row.original.track.name}
-                subtitle={row.original.track.artists.map(artist => artist.name).join(', ')}
-                explicit={row.original.track.explicit}
+                image={row.original.album.images[0].url}
+                title={row.original.name}
+                subtitle={row.original.artists.map(artist => artist.name).join(', ')}
+                explicit={row.original.explicit}
                 variant="small-"
-                link={`/track/${row.original.track.id}`}
-                subtitleLink={`/artist/${row.original.track.artists[0].id}`}
+                titleLink={`/track/${row.original.id}`}
+                subtitleLink={`/artist/${row.original.artists[0].id}`}
                 dense="none"
             />
         },
@@ -29,7 +29,7 @@ export const columns: ColumnDef<PlaylistTrackObject>[] = [
         header: 'Album',
         cell: ({row}) => (
             <Typography variant='subtitle2'
-                        sx={{fontWeight: 'bold'}}>{cutFrom30(row.original.track.album.name)}</Typography>
+                        sx={{fontWeight: 'bold'}}>{cutFrom30(row.original.album.name)}</Typography>
         )
     },
     {
@@ -44,7 +44,7 @@ export const columns: ColumnDef<PlaylistTrackObject>[] = [
     },
     {
         cell: (track) => {
-            const duration = track.row.original.track.duration_ms;
+            const duration = track.row.original.duration_ms;
             const time = msToTime(duration)
             return <Typography variant='subtitle2' sx={{fontWeight: 400}}>{time}</Typography>;
         },

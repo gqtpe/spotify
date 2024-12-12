@@ -16,7 +16,7 @@ export const columns: ColumnDef<Track>[] = [
                 subtitle={row.original.artists.map(artist=>artist.name).join(', ')}
                 explicit={row.original.explicit}
                 variant="small-"
-                link={`/track/${row.original.id}`}
+                titleLink={`/track/${row.original.id}`}
                 dense="none"
             />
         },
