@@ -1,6 +1,6 @@
 import {FC} from "react";
 
-import type {Track} from "../../../api/types/track.ts";
+import type {Track} from "../../../../api/types/track.ts";
 
 const Track: FC<{ item: Track }> = ({item}) => {
     return (
