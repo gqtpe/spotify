@@ -11,6 +11,7 @@ import {userLibraryActions, userLibrarySelectors} from "./index.ts";
 import Card from "../../common/components/Cards/Card/Card.tsx";
 import {usePlayAction} from "../Player";
 import getSubtitleLink from "../../common/utils/getSubtitleLink.ts";
+import getSubtitleForCard from "../../common/utils/getSubtitleForCard.ts";
 
 
 export const Library = () => {
@@ -24,19 +25,12 @@ export const Library = () => {
         }
         const {id, name, type, images} = item;
         const img = images && images.length > 0 ? images[0].url : '';
-        const capitalizedType = type.charAt(0).toUpperCase() + type.slice(1);
-        let subtitle = '';
-        if (type === 'playlist') {
-            subtitle = `${capitalizedType} - ${item.owner.display_name}`;
-        } else if (type === 'album') {
-            subtitle = `${capitalizedType} - ${item.artists.map(artist => artist.name).join(', ')}`;
-        }
 
         return (
             <Card
                 key={id}
                 title={name}
-                subtitle={subtitle}
+                subtitle={getSubtitleForCard({item})}
                 image={img}
                 variant="small"
                 link={`/${type}/${id}`}
