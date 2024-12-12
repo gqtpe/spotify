@@ -63,7 +63,7 @@ const Playlist: FC<{ item: Playlist }> = ({item}) => {
             </div>
             <div className="playlist__content">
                 <div className="detailed-page__table playlist__table ">
-                    <TracksTable columns={columns} data={item?.tracks.items} enableRowNumbering/>
+                    <TracksTable columns={columns} data={item?.tracks.items.map(t=>({...t.track, added_at: t.added_at}))} enableRowNumbering/>
                 </div>
             </div>
 
