@@ -1,11 +1,10 @@
-import {FC, Fragment, memo, MouseEvent, useCallback} from "react";
+import {FC, memo, MouseEvent, useCallback} from "react";
 import {IoMdMusicalNote, IoMdPlay} from "react-icons/io";
 import IconButton from "../../IconButton/IconButton.tsx";
 import "./Card.scss";
 import Typography from "../../Typography/Typography.tsx";
 import {MdExplicit} from "react-icons/md";
 import {cutFrom30} from "../../../../features/Browse/utils/cutFrom30.ts";
-import {Link} from "react-router-dom";
 
 type PlaylistProps = {
     title: string;
