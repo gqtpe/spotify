@@ -30,9 +30,9 @@ const Details: FC = () => {
         const fetchItem = async () => {
             setLoading('loading')
             try {
-                if (params.type && params.id) {
                 if (params.type == 'collection') {
                     const response = await spotifyAPI.getSavedTracks();
+                    const playlist: PlaylistType = converter1(response.data)
                     setItem(playlist)
                     setLoading('succeeded')
                 } else if (params.type && params.id) {
