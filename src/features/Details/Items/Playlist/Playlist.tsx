@@ -35,11 +35,11 @@ const Playlist: FC<{ item: Playlist }> = ({item}) => {
                 <div className="detailed-page__image playlist__image">
                     <img src={item?.images[0]?.url} alt={item?.name}/>
                 </div>
-                <div className="playlist__description">
+                <div className="detailed-page-description playlist__description">
                     <Typography variant='subtitle1'>Playlist</Typography>
                     <Typography className="playlist__title" variant='h1'>{item?.name}</Typography>
                     <Typography variant='subtitle1' sx={{color: 'var(--text400)'}}>{item?.description}</Typography>
-                    <div className="playlist__stats">
+                    <div className="detailed-page__stats">
                         <Typography variant='subtitle1'
                                     sx={{color: 'var(--text-100)'}}
                                     link={`/user/${item.owner.id}`}
