@@ -1,29 +1,48 @@
 @import 'src/common/styles/scrollbar';
 
 .detailed-page{
+  //background: linear-gradient(to top, rgba(0, 0, 0, 0) 50%, #a5957b 100%);
+  //&__header{
+  //  background: transparent;
+  //
+  //}
   background: inherit;
   max-height: 100%;
   height: 100%;
   overflow-y: scroll;
   @include scrollbar;
   &__actions{
+    //background: transparent;
+    background: inherit;
     display: flex;
     gap: 1rem;
     padding: 0.5rem 2rem;
     position: sticky;
     top: 0;
     z-index: 12;
-    background: inherit;
   }
   &__header {
     display: flex;
     padding: 1rem;
     gap: 1rem;
-    align-tems: flex-end;
+    align-items: flex-end;
 
     .detailed-page-description {
       flex-grow: 1;
+
     }
+    .detailed-page__stats{
+        display: flex;
+        align-items: center;
+        gap: 0.2rem;
+    }
+  }
+  &__content{
+    background: inherit;
+    //background: rgba(255, 255, 255, 0.1);
+    //backdrop-filter: blur(10px);
+    //-webkit-backdrop-filter: blur(10px);
+    //box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* Лёгкая тень */
   }
   &__image{
     min-width: 12rem;
@@ -32,7 +51,7 @@
     height: 12rem;
     overflow: hidden;
     border-radius: 0.5rem;
-
+    box-shadow: rgba(0, 0, 0, 0.5) 0 4px 60px 0;
     img {
       width: 100%;
       height: 100%;
