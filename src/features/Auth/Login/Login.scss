@@ -1,0 +1,33 @@
+
+.login{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    &__button{
+        margin: 12px 0;
+    }
+    &__hint{
+        span{
+            color: var(--text-100);
+            background: var(--primary-500);
+            margin-right: 0.5rem;
+            padding:2px 4px;
+            border-radius: 1px;
+        }
+        b{
+            padding:2px 4px;
+            border-radius: 3px;
+            &:hover{
+                background: var(--background-light);
+            }
+            &:active{
+                background: var(--background-lighter);
+            }
+        }
+        &-login, &-password{
+            margin: 12px 0;
+        }
+
+    }
+}
