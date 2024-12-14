@@ -7,6 +7,7 @@ import {useCallback, useRef, useState} from "react";
 import {useAppSelector} from "../../hooks";
 import Button from "../../../../common/components/Button/Button.tsx";
 import {useDispatch} from "react-redux";
+import {useNavigate} from "react-router-dom";
 
 const UserPanel = () => {
     const [open, setOpen] = useState<boolean>(false)
@@ -16,10 +17,12 @@ const UserPanel = () => {
     const onClick = () =>{
         setOpen(prev =>!prev)
     }
+    const navigate = useNavigate()
     const logout = useCallback(() =>{
         setOpen(false)
         localStorage.clear()
         dispatch({type: 'auth/logout'})
+        navigate('/login')
     },[])
     return (
         <div className="user-panel">
