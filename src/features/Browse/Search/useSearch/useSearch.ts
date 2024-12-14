@@ -21,9 +21,16 @@ export const useSearch = (navigate: (path: string) => void) => {
 
     useEffect(() => {
         if (value) {
-            clearTimeout(timeoutID)
             const currID = setTimeout(() => {
                 handleSubmit(value)
+            }, 500)
+            setTimeoutID(currID)
+            return () => clearTimeout(timeoutID)
+        }else{
+            const currID = setTimeout(() => {
+                setValue('')
+                setQuery('')
+                navigate('/search')
             }, 500)
             setTimeoutID(currID)
             return () => clearTimeout(timeoutID)
