@@ -20,6 +20,9 @@ export const useSearch = (navigate: (path: string) => void) => {
     },[activeTab, navigate, setQuery])
 
     useEffect(() => {
+        if(timeoutID){
+            clearTimeout(timeoutID)
+        }
         if (value) {
             const currID = setTimeout(() => {
                 handleSubmit(value)
