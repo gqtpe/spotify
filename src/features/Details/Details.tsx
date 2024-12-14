@@ -9,14 +9,15 @@ import Artist from "./Items/Artist/Artist.tsx";
 import Track from "./Items/Track/Track.tsx"
 import type {Album as AlbumType} from "../../api/types/album.ts";
 import type {Artist as ArtistType} from "../../api/types/artist.ts";
-import type {Playlist as PlaylistType} from "../../api/types/playlist.ts";
+import {Playlist as PlaylistType} from "../../api/types/playlist.ts";
 import type {Track as TrackType} from "../../api/types/track.ts";
+import {RequestStatuses} from "../../api/types/common.ts";
 import './Items/styles.scss'
 import User from "./Items/User/User.tsx";
 import {converter1} from "./utils/converter.ts";
 
 
-export type DetailedItemType = 'album' | 'playlist' | 'track' | 'artist' | 'user';
+export type DetailedItemType = 'album' | 'playlist' | 'track' | 'artist' | 'user' | 'collection';
 type ItemType = PlaylistType | ArtistType | TrackType | AlbumType | UserType
 //todo: replace loader with skeleton(create slice for detailed page)
 const Details: FC = () => {
