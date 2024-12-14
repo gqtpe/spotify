@@ -1,10 +1,13 @@
 import Button from "../../../common/components/Button/Button.tsx";
+import "./Login.scss";
+import {CSSProperties, useState} from "react";
 
 const authEndpoint = import.meta.env.VITE_AUTH_ENDPOINT;
 
 const Login = () => {
     const authorize = authEndpoint + '/authorize'
-    console.log(authorize)
+    const [isCopied, setIsCopied] = useState(false)
+
     const handleClick = (str: string) =>{
         if(isCopied){
             setIsCopied(false)
@@ -29,6 +32,7 @@ const Login = () => {
                     <span>password</span>
                     <b onClick={()=>handleClick('access-free-gqtpe')}>access-free-gqtpe</b>
                 </div>
+                <div className="login__hint-copied" style={style}>copied!</div>
             </div>
         </div>
     );
