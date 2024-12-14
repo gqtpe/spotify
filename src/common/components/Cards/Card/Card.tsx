@@ -5,7 +5,7 @@ import "./Card.scss";
 import Typography from "../../Typography/Typography.tsx";
 import {MdExplicit} from "react-icons/md";
 import {cutFrom30} from "../../../../features/Browse/utils/cutFrom30.ts";
-import {Link} from "react-router-dom";
+import {useNavigate} from "react-router-dom";
 
 type PlaylistProps = {
     title: string;
@@ -45,10 +45,12 @@ const Card: FC<PlaylistProps> = ({
         [onPlay]
     );
     const imageClassName = `card__image ${round ? "card__image-round" : ""}`;
-
+    const navigate = useNavigate()
     return (
-        <Link
-            to={link || ''}
+        <div
+            onClick={() => {
+                navigate(link || '')
+            }}
             className={`card card--${variant}`}
             style={dense === 'none' ? {padding: '0px'} : {}}
         >
@@ -79,7 +81,7 @@ const Card: FC<PlaylistProps> = ({
                     {subtitle}
                 </Typography>
             </div>
-        </Link>
+        </div>
     );
 };
 
