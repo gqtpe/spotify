@@ -36,10 +36,10 @@ const Album: FC<{ item: Album }> = ({item}) => {
                 <div className="detailed-page__image album__image">
                     <img src={item?.images[0].url} alt={item?.name}/>
                 </div>
-                <div className="album__description">
+                <div className="detailed-page-description album__description">
                     <Typography variant='subtitle1'>Album</Typography>
                     <Typography className="album__title" variant='h1'>{item.name}</Typography>
-                    <div className="album__details">
+                    <div className="detailed-page__stats">
                         {item.artists.map(artist=>{
                             return <><Typography variant='subtitle1' link={'/artist/' + artist.id}>
                                 {artist.name}
@@ -56,6 +56,7 @@ const Album: FC<{ item: Album }> = ({item}) => {
                     </div>
                 </div>
             </div>
+            <div className="detailed-page__content">
             <div className="detailed-page__actions album__actions">
                 <IconButton fz={24} onClick={() => play({type: 'album', context_uri: item?.uri})}>
                     <FaPlay/>
@@ -70,7 +71,7 @@ const Album: FC<{ item: Album }> = ({item}) => {
 
                 </div>
             </div>
-
+            </div>
         </div>
     );
 };
