@@ -25,11 +25,17 @@ const Details: FC = () => {
     const [item, setItem] = useState<ItemType | null>(null);
     const [loading, setLoading] = useState<RequestStatuses>('idle');
     const [error, setError] = useState<string | null>(null);
+
     useEffect(() => {
         const fetchItem = async () => {
             setLoading('loading')
             try {
                 if (params.type && params.id) {
+                if (params.type == 'collection') {
+                    const response = await spotifyAPI.getSavedTracks();
+                    setItem(playlist)
+                    setLoading('succeeded')
+                } else if (params.type && params.id) {
                     const response = await spotifyAPI.getDetailedItem(params.id, params.type);
                     setItem(response.data);
                     setLoading('succeeded')
