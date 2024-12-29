@@ -38,7 +38,8 @@ export const useInit = () => {
         }
     }, [initializeApp, isInitialized])
     useEffect(() => {
-        if(!isInitialized) {
+        //todo:remove this logic from this or
+        if(isInitialized && isLoggedIn) {
             if (location.pathname.includes('/search')) {
                 if (location.pathname.split('/')[2]) {
                     setQuery(location.pathname.split('/')[2])
@@ -50,7 +51,7 @@ export const useInit = () => {
                 }
             }
         }
-    }, [isInitialized])
+    }, [isInitialized, isLoggedIn])
 
     return {isInitialized}
 }
