@@ -12,7 +12,7 @@ export const useInit = () => {
     //browse
     const location = useLocation()
     const {setActiveTab, setQuery} = useActions(browseActions)
-
+    const isLoggedIn = useAppSelector(authSelectors.selectIsLoggedIn)
 
     useEffect(() => {
         if(!isInitialized) {
