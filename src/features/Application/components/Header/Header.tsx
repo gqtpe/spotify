@@ -16,7 +16,7 @@ export const Header = () => {
         if (!location.pathname.includes('/search/')) {
             navigate(`/search${query?'/' + query : ''}`);
         }
-    }, [navigate, location.pathname])
+    }, [navigate, location.pathname, query])
     const handleClick = useCallback(() => {
         navigate('/')
     }, [])
