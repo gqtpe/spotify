@@ -1,4 +1,4 @@
-@import 'src/common/styles/scrollbar';
+@use "/src/common/styles/scrollbar.scss";
 
 .browse {
   display: flex;
