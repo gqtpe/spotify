@@ -4,6 +4,7 @@ import {appActions} from "../features/Application";
 import {Tabs} from "../features/Browse/browseSlice.ts";
 import {useLocation} from "react-router-dom";
 import {browseActions} from "../features/Browse";
+import {authSelectors} from "../features/Auth";
 
 
 export const useInit = () => {
