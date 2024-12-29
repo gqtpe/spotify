@@ -28,7 +28,7 @@
 .items{
   height: 100%;
   overflow-y: scroll;
-  @include scrollbar;
+  @include scrollbar.scrollbar();
 }
 
 .preview {
