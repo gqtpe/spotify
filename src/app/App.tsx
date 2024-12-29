@@ -6,6 +6,7 @@ import {Footer} from "../features/Player";
 import {Library} from "../features/Library";
 import {useSidebar} from "../features/Application/hooks/useSidebar.ts";
 import Aside from "../features/Application/components/Aside/Aside.tsx";
+import {RequireAuth} from "../common/hoc/RequireAuth.tsx";
 
 function App() {
     console.log('APP')
@@ -17,7 +18,7 @@ function App() {
 
     return (
         <div className="app">
-            <Header/>
+            <RequireAuth><Header/></RequireAuth>
 
             <nav>
                 <Library/>
