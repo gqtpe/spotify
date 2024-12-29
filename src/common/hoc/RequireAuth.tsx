@@ -1,6 +1,7 @@
 import {Navigate, useLocation} from "react-router-dom";
 import {memo, ReactNode} from "react";
 import {useAppSelector} from "../../features/Application/hooks";
+import {authSelectors} from "../../features/Auth";
 
 
 type Props = {
@@ -8,7 +9,7 @@ type Props = {
 }
 export const RequireAuth = memo(({children}: Props) => {
     const location = useLocation();
-    const loggedIn = useAppSelector((state) => state.auth.loggedIn);
+    const loggedIn = useAppSelector(authSelectors.selectIsLoggedIn);
     if (!loggedIn) {
         return <Navigate to="/login" state={{from: location}}/>
     }
