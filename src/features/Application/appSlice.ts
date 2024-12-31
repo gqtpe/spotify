@@ -15,7 +15,7 @@ export const slice = createSlice(
             }
         },
         reducers: {
-            setAppLoading: (state, action: PayloadAction<boolean>) => {
+            setAppInitialized: (state, action: PayloadAction<boolean>) => {
                 state.isInitialized = action.payload
             },
             setAppError: (state, action: PayloadAction<string | null>) => {
