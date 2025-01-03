@@ -3,6 +3,7 @@ import {browseActions, browseSelectors} from "../../index.ts";
 import {ChangeEvent, useCallback, useEffect, useState} from "react";
 
 export const useSearch = (navigate: (path: string) => void) => {
+    // console.log('useSearch')
     const query = useAppSelector(browseSelectors.selectQuery)
     const activeTab = useAppSelector(browseSelectors.selectActiveTab)
     const {setQuery} = useActions(browseActions)
@@ -20,6 +21,7 @@ export const useSearch = (navigate: (path: string) => void) => {
     },[activeTab, navigate, setQuery])
 
     useEffect(() => {
+        // console.log('value changed')
         if(timeoutID){
             clearTimeout(timeoutID)
         }
@@ -31,9 +33,10 @@ export const useSearch = (navigate: (path: string) => void) => {
             return () => clearTimeout(timeoutID)
         }else{
             const currID = setTimeout(() => {
-                setValue('')
-                setQuery('')
-                navigate('/search')
+                // console.log('v1')
+                // setValue('')
+                // setQuery('')
+                // navigate('/search')
             }, 500)
             setTimeoutID(currID)
             return () => clearTimeout(timeoutID)

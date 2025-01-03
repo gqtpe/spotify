@@ -4,7 +4,6 @@ import {appActions} from "../features/Application";
 import {Tabs} from "../features/Browse/browseSlice.ts";
 import {useLocation} from "react-router-dom";
 import {browseActions} from "../features/Browse";
-import {authSelectors} from "../features/Auth";
 
 
 export const useInit = () => {
@@ -13,8 +12,9 @@ export const useInit = () => {
     //browse
     const location = useLocation()
     const {setActiveTab, setQuery} = useActions(browseActions)
-    const isLoggedIn = useAppSelector(authSelectors.selectIsLoggedIn)
-
+    // const isLoggedIn = useAppSelector(authSelectors.selectIsLoggedIn)
+    // console.log('APP: init:', String(isInitialized))
+    // console.log('APP: loggedIn:', String(isLoggedIn))
     useEffect(() => {
         if(!isInitialized) {
             setTimeout(() => {
@@ -37,22 +37,20 @@ export const useInit = () => {
                 document.removeEventListener("contextmenu", disableContextMenu);
             };
         }
-    }, [initializeApp, isInitialized])
+    }, [initializeApp])
     useEffect(() => {
-        //todo:remove this logic from this or
-        if(isInitialized && isLoggedIn) {
-            if (location.pathname.includes('/search')) {
-                if (location.pathname.split('/')[2]) {
-                    setQuery(location.pathname.split('/')[2])
-                    if (location.pathname.split('/')[3]) {
-                        setActiveTab(location.pathname.split('/')[3] as Tabs)
-                    } else {
-                        setActiveTab('all')
-                    }
+        // console.log('query settled')
+        if (location.pathname.includes('/search')) {
+            if (location.pathname.split('/')[2]) {
+                setQuery(location.pathname.split('/')[2])
+                if (location.pathname.split('/')[3]) {
+                    setActiveTab(location.pathname.split('/')[3] as Tabs)
+                } else {
+                    setActiveTab('all')
                 }
             }
         }
-    }, [isInitialized, isLoggedIn])
+    }, [])
 
     return {isInitialized}
 }
