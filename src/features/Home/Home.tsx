@@ -5,6 +5,8 @@ import axios from "axios";
 import {useActions} from "../Application/hooks";
 import {playerActions} from "../Player";
 import {appActions} from "../Application";
+import {Alert} from "../Application/components/Snackbar/Alert/Alert.tsx";
+import toast from "react-hot-toast";
 
 const handleClick = async () => {
     const response = await spotifyAPI.getMe()
@@ -39,13 +41,10 @@ const remove = async () =>{
 
 export const Home = () => {
     const {fetchPlaybackState} = useActions(playerActions)
-    const {setAppError} = useActions(appActions)
     const fetch = async () => {
         fetchPlaybackState()
     }
-    const createAlertError = () =>{
-        setAppError('alert')
-    }
+    const notify = () => toast.success('Here is your toast.');
     return <div style={{padding: '16px'}}>
         <Button onClick={handleClick}>get me</Button>
         <Button onClick={fetchAvailableDevices}>get devices</Button>
@@ -56,6 +55,6 @@ export const Home = () => {
         <Button onClick={fetchIsSaved}> fetch is 3iPSVi54hsacKKl1xIR2eH saved</Button>
         <Button onClick={save}>saveItem</Button>
         <Button onClick={remove}>removeItem</Button>
-        <Button onClick={createAlertError}>alert</Button>
+        <Button onClick={notify}>add toast</Button>
     </div>
 }
