@@ -7,6 +7,8 @@ import {Library} from "../features/Library";
 import {useSidebar} from "../features/Application/hooks/useSidebar.ts";
 import Aside from "../features/Application/components/Aside/Aside.tsx";
 import {RequireAuth} from "../common/hoc/RequireAuth.tsx";
+import {Toaster} from "react-hot-toast";
+
 
 function App() {
     console.log('APP')
@@ -18,12 +20,17 @@ function App() {
 
     return (
         <div className="app">
+            <Toaster
+                position="bottom-center"
+                reverseOrder={false}
+                containerStyle={{
+                    bottom: `calc(0.5rem + 80px)`
+                }}
+            />
             <RequireAuth><Header/></RequireAuth>
-
             <nav>
                 <Library/>
             </nav>
-
             <div className="content">
                 <main>
                     <Outlet/>
@@ -35,5 +42,4 @@ function App() {
         </div>
     )
 }
-
 export default App
