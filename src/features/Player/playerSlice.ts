@@ -170,7 +170,11 @@ const slice = createSlice({
         },
         playbackLoading: 'idle' as RequestStatuses
     },
-    reducers: {},
+    reducers: {
+        setDeviceID(state, action: PayloadAction<{deviceID: ActiveDevice}>){
+            state.playback.activeDevice = action.payload.deviceID
+        }
+    },
     extraReducers: builder => {
         builder.addCase(fetchPlaybackState.pending, state => {
             state.playbackLoading = 'loading'
