@@ -25,6 +25,7 @@ const saveItem = createAsyncThunk<undefined, {
     const {type, ids} = params
     try {
         const response = await spotifyAPI.saveItem(type, ids)
+        throwMessage('Item saved', true)
         return response.data
     } catch (e) {
         return handleError(e as AxiosError,thunkAPI.rejectWithValue)
@@ -38,6 +39,7 @@ const removeItem = createAsyncThunk<undefined, {
     const {type, ids} = params
     try {
         const response = await spotifyAPI.removeItem(type, ids)
+        throwMessage('Item removed', true)
         return response.data
     } catch (e) {
         return handleError(e as AxiosError,thunkAPI.rejectWithValue)
