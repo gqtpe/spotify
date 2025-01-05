@@ -22,19 +22,19 @@ const Player: FC = () => {
 
     return <div className={[styles.footer__player, styles.player].join(' ')}>
         <div className={styles.player__actions}>
-            <IconButton variant="icon" className={styles.shuffle} onClick={shuffle}>
+            <IconButton variant="icon" className={styles.shuffle} onClick={shuffle} disabled={!device}>
                 {shuffleState ? <FaShuffle className={styles.active}/> : <FaShuffle/>}
             </IconButton>
-            <IconButton variant="icon" onClick={prev}>
+            <IconButton variant="icon" onClick={prev} disabled={!device}>
                 <FaStepBackward/>
             </IconButton>
-            <IconButton variant="outlined" className={styles.play} onClick={togglePlay}>
+            <IconButton variant="outlined" className={styles.play} onClick={togglePlay} disabled={!device}>
                 {is_playing ? <FaPause/> : <FaPlay/>}
             </IconButton>
-            <IconButton variant="icon" onClick={next}>
+            <IconButton variant="icon" onClick={next} disabled={!device}>
                 <FaStepForward/>
             </IconButton>
-            <Repeat variant={repeatState} onClick={repeat}/>
+            <Repeat variant={repeatState} onClick={repeat} disabled={!device}/>
         </div>
         {(playbackLoading === 'succeeded') &&
             <ProgressBar
