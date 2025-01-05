@@ -7,9 +7,10 @@ import styles from "../../Footer.module.scss";
 type Props = {
     variant: RepeatState
     onClick: ()=>void
+    disabled?: boolean
 }
 
-const Repeat: FC<Props> = ({variant, onClick}) =>{
+const Repeat: FC<Props> = ({variant, onClick, disabled = false}) =>{
     let item = null
     switch(variant){
         case "context":{
@@ -26,7 +27,7 @@ const Repeat: FC<Props> = ({variant, onClick}) =>{
         }
     }
 
-    return <IconButton variant="icon" onClick={onClick}>
+    return <IconButton variant="icon" onClick={onClick} disabled={disabled}>
         {item}
     </IconButton>
 }
