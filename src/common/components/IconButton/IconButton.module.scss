@@ -31,3 +31,11 @@
     background: var(--background-lighter);
   }
 }
+.disabled{
+  opacity: 50%;
+  &:hover{
+    filter: brightness(1);
+
+    scale: none;
+  }
+}
