@@ -24,7 +24,14 @@ function App() {
                 position="bottom-center"
                 reverseOrder={false}
                 containerStyle={{
-                    bottom: `calc(0.5rem + 80px)`
+                    bottom: `calc(0.5rem + 80px)`,
+                }}
+                toastOptions={{
+                    style: {
+                        padding: '0.3rem',
+                        fontSize: '0.90rem',
+                    },
+                    duration: 5000,
                 }}
             />
             <RequireAuth><Header/></RequireAuth>
