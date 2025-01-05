@@ -99,8 +99,9 @@ const seekPosition = createAsyncThunk<{ position_ms: number, response: string },
 
 const play = createAsyncThunk<unknown, PlayParamTypes>('player/play', async (params, thunkAPI) => {
     try {
-        if (params.deviceID === undefined) {
-            return thunkAPI.rejectWithValue({message: 'deviceID is undefined'})
+        if (!params.deviceID) {
+            const message = 'Device not found'
+            return throwMessage(message,false, thunkAPI.rejectWithValue)
         }
         let curr;
         if (params.type === "track" || params.type === "episode") {
