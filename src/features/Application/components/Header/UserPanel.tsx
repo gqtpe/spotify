@@ -34,7 +34,7 @@ const UserPanel = () => {
                 margin={8}
             >
                 <Paper>
-                    <Button onClick={logout}>Log Out</Button>
+                    <Button variant="outlined" onClick={logout}>Log Out</Button>
                 </Paper>
             </Modal>, document.getElementById('portal')!)}
             <Badge variant="filled" onClick={onClick} ref={anchorEl}>{user?.images[0]?.url && <img src={user.images[0].url}/>}</Badge>
