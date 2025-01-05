@@ -2,8 +2,9 @@ import {createAsyncThunk, createSlice, PayloadAction} from "@reduxjs/toolkit";
 import {SearchResult, spotifyAPI} from "../../api/spotifyAPI.ts";
 import {AppRootStateType} from "../Application/types.ts";
 import {CategoryObject} from "../../api/types/browseCategories.ts";
-import {AxiosResponse} from "axios";
+import {AxiosError, AxiosResponse} from "axios";
 import type {RequestStatuses} from "../../api/types/common.ts";
+import {handleError} from "../../common/utils/error-utils.ts";
 
 export type Tabs = keyof SearchResult | 'all'
 
@@ -16,7 +17,7 @@ const browse = createAsyncThunk<SearchResult, { query: string, tab: Tabs }, {
         console.log(response)
         return response.data
     } catch (e) {
-        return thunkAPI.rejectWithValue(e)
+        return handleError(e as AxiosError,thunkAPI.rejectWithValue)
     }
 })
 const fetchBrowseCategories = createAsyncThunk<CategoryObject[], undefined, {
@@ -27,7 +28,7 @@ const fetchBrowseCategories = createAsyncThunk<CategoryObject[], undefined, {
         console.log(response)
         return response.data.categories.items
     } catch (e) {
-        return thunkAPI.rejectWithValue(e)
+        return handleError(e as AxiosError,thunkAPI.rejectWithValue)
     }
 })
 const fetchNewPortion = createAsyncThunk<SearchResult>('browse/fetchNewPortionTracks', async (_, thunkAPI) => {
@@ -42,7 +43,7 @@ const fetchNewPortion = createAsyncThunk<SearchResult>('browse/fetchNewPortionTr
             const response = await spotifyAPI.getPortionOfItems(link)
             return response.data
         } catch (e) {
-            return thunkAPI.rejectWithValue(e)
+            return handleError(e as AxiosError,thunkAPI.rejectWithValue)
         }
     }
 })
