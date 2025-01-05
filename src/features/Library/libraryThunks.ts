@@ -2,6 +2,8 @@ import {createAsyncThunk} from "@reduxjs/toolkit";
 import {spotifyAPI} from "../../api/spotifyAPI.ts";
 import {SimplifiedPlaylist} from "../../api/types/playlist.ts";
 import type {Album} from "../../api/types/album.ts";
+import {handleError, throwMessage} from "../../common/utils/error-utils.ts";
+import {AxiosError} from "axios";
 
 export const fetchUserLibrary = createAsyncThunk<Array<SimplifiedPlaylist | Album>>('userLibrary/fetchUserLibrary', async (_, thunkAPI) => {
     try {
@@ -13,7 +15,7 @@ export const fetchUserLibrary = createAsyncThunk<Array<SimplifiedPlaylist | Albu
         const albums = r2.data.items.map(album => album.album) || [];
         return [...playlists, ...albums]
     } catch (e) {
-        return thunkAPI.rejectWithValue(e)
+        return handleError(e as AxiosError,thunkAPI.rejectWithValue)
     }
 })
 const saveItem = createAsyncThunk<undefined, {
@@ -25,7 +27,7 @@ const saveItem = createAsyncThunk<undefined, {
         const response = await spotifyAPI.saveItem(type, ids)
         return response.data
     } catch (e) {
-        return thunkAPI.rejectWithValue(e)
+        return handleError(e as AxiosError,thunkAPI.rejectWithValue)
     }
 })
 
@@ -38,7 +40,7 @@ const removeItem = createAsyncThunk<undefined, {
         const response = await spotifyAPI.removeItem(type, ids)
         return response.data
     } catch (e) {
-        return thunkAPI.rejectWithValue(e)
+        return handleError(e as AxiosError,thunkAPI.rejectWithValue)
     }
 })
 type ToggleSaveItemTypes = 'track' | 'album' | 'artist' | 'user'
@@ -55,7 +57,7 @@ const toggleItemSave = createAsyncThunk<{ saved: boolean }, {
         }
         return {saved: !isSaved.data[0]}
     }catch (e) {
-        return thunkAPI.rejectWithValue(e)
+        return handleError(e as AxiosError,thunkAPI.rejectWithValue)
     }
 })
 
@@ -71,7 +73,7 @@ const toggleSavePlaylist = createAsyncThunk<{ saved: boolean }, {
         }
         return {saved: !isSaved.data[0]}
     } catch (e) {
-        return thunkAPI.rejectWithValue(e)
+        return handleError(e as AxiosError,thunkAPI.rejectWithValue)
     }
 })
 
