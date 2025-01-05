@@ -17,7 +17,7 @@ export const fetchUserLibrary = createAsyncThunk<Array<SimplifiedPlaylist | Albu
     }
 })
 const saveItem = createAsyncThunk<undefined, {
-    type: 'track' | 'album' | 'artist'| 'user',
+    type: ToggleSaveItemTypes,
     ids: string[]
 }>('userLibrary/saveItem', async (params, thunkAPI) => {
     const {type, ids} = params
@@ -30,7 +30,7 @@ const saveItem = createAsyncThunk<undefined, {
 })
 
 const removeItem = createAsyncThunk<undefined, {
-    type: 'track' | 'album' | 'artist',
+    type:ToggleSaveItemTypes,
     ids: string[]
 }>('userLibrary/saveItem', async (params, thunkAPI) => {
     const {type, ids} = params
@@ -41,9 +41,9 @@ const removeItem = createAsyncThunk<undefined, {
         return thunkAPI.rejectWithValue(e)
     }
 })
-
+type ToggleSaveItemTypes = 'track' | 'album' | 'artist' | 'user'
 const toggleItemSave = createAsyncThunk<{ saved: boolean }, {
-    type: 'track' | 'album' | 'artist' | 'user',
+    type: ToggleSaveItemTypes,
     ids: string[]
 },{rejectValue: unknown}>('userLibrary/toggleItemSave', async (params, thunkAPI) => {
     try{
