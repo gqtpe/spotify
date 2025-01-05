@@ -4,6 +4,8 @@ import {Track} from "../../api/types/track.ts";
 import type {Device, PlayerBackState, RepeatState} from "./types.ts";
 import {RequestStatuses} from "../../api/types/common.ts";
 
+import {handleError, throwMessage} from "../../common/utils/error-utils.ts";
+import {AxiosError} from "axios";
 
 const fetchPlaybackState = createAsyncThunk<PlayerBackState, undefined>('player/fetchPlaybackState', async (_, thunkAPI) => {
     try {
@@ -11,9 +13,8 @@ const fetchPlaybackState = createAsyncThunk<PlayerBackState, undefined>('player/
         if (res.status === 200) {
             return res.data
         }
-        return thunkAPI.rejectWithValue(res.statusText)
     } catch (e) {
-        return thunkAPI.rejectWithValue(e)
+        return handleError(e as AxiosError,thunkAPI.rejectWithValue)
     }
 })
 const fetchCurrentlyPlaying = createAsyncThunk<PlayerBackState, undefined, {
@@ -26,7 +27,7 @@ const fetchCurrentlyPlaying = createAsyncThunk<PlayerBackState, undefined, {
         }
         return thunkAPI.rejectWithValue(response.statusText)
     } catch (e) {
-        return thunkAPI.rejectWithValue(e)
+        return handleError(e as AxiosError,thunkAPI.rejectWithValue)
     }
 })
 
@@ -35,7 +36,7 @@ const resume = createAsyncThunk<string, string>('player/resume', async (deviceID
         const res = await spotifyAPI.resume(deviceID);
         return res.data
     } catch (e) {
-        return thunkAPI.rejectWithValue(e)
+        return handleError(e as AxiosError,thunkAPI.rejectWithValue)
     }
 })
 const pause = createAsyncThunk<string, string>('player/pause', async (deviceID, thunkAPI) => {
@@ -43,7 +44,7 @@ const pause = createAsyncThunk<string, string>('player/pause', async (deviceID, 
         const res = await spotifyAPI.pause(deviceID);
         return res.data
     } catch (e) {
-        return thunkAPI.rejectWithValue(e)
+        return handleError(e as AxiosError,thunkAPI.rejectWithValue)
     }
 })
 const next = createAsyncThunk<string, string>('player/next', async (deviceID, thunkAPI) => {
@@ -51,7 +52,7 @@ const next = createAsyncThunk<string, string>('player/next', async (deviceID, th
         const res = await spotifyAPI.next(deviceID);
         return res.data
     } catch (e) {
-        return thunkAPI.rejectWithValue(e)
+        return handleError(e as AxiosError,thunkAPI.rejectWithValue)
     }
 })
 const previous = createAsyncThunk<string, string>('player/previous', async (deviceID, thunkAPI) => {
@@ -59,7 +60,7 @@ const previous = createAsyncThunk<string, string>('player/previous', async (devi
         const res = await spotifyAPI.previous(deviceID);
         return res.data
     } catch (e) {
-        return thunkAPI.rejectWithValue(e)
+        return handleError(e as AxiosError,thunkAPI.rejectWithValue)
     }
 })
 const setShuffle = createAsyncThunk<{ state: boolean, id: string }, {
@@ -70,7 +71,7 @@ const setShuffle = createAsyncThunk<{ state: boolean, id: string }, {
         const res = await spotifyAPI.setShuffle(state, deviceID);
         return {state, id: res.data}
     } catch (e) {
-        return thunkAPI.rejectWithValue(e)
+        return handleError(e as AxiosError,thunkAPI.rejectWithValue)
     }
 })
 const setRepeat = createAsyncThunk<{ repeat_state: RepeatState, id: string }, {
@@ -81,7 +82,7 @@ const setRepeat = createAsyncThunk<{ repeat_state: RepeatState, id: string }, {
         const res = await spotifyAPI.setRepeat(repeat_state, deviceID);
         return {repeat_state, id: res.data}
     } catch (e) {
-        return thunkAPI.rejectWithValue(e)
+        return handleError(e as AxiosError,thunkAPI.rejectWithValue)
     }
 })
 const seekPosition = createAsyncThunk<{ position_ms: number, response: string }, {
@@ -92,7 +93,7 @@ const seekPosition = createAsyncThunk<{ position_ms: number, response: string },
         const res = await spotifyAPI.seekPosition(position_ms, deviceID);
         return {response: res.data, position_ms}
     } catch (e) {
-        return thunkAPI.rejectWithValue(e)
+        return handleError(e as AxiosError,thunkAPI.rejectWithValue)
     }
 })
 
@@ -123,15 +124,15 @@ const play = createAsyncThunk<unknown, PlayParamTypes>('player/play', async (par
         const res = await spotifyAPI.play({...curr});
         return res.data
     } catch (e) {
-        return thunkAPI.rejectWithValue(e)
+        return handleError(e as AxiosError,thunkAPI.rejectWithValue)
     }
 })
 const fetchDevices = createAsyncThunk<Device[], undefined>('player/fetchDevices', async (_, thunkAPI) => {
-    try{
+    try {
         const res = await spotifyAPI.getAvailableDevices();
         return res.data.devices
-    } catch (e){
-        return thunkAPI.rejectWithValue(e)
+    } catch (e) {
+        return handleError(e as AxiosError,thunkAPI.rejectWithValue)
     }
 })
 
