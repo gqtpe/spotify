@@ -4,9 +4,8 @@ import {getItem} from "../../common/utils/localStorage.ts";
 import axios from "axios";
 import {useActions} from "../Application/hooks";
 import {playerActions} from "../Player";
-import {appActions} from "../Application";
-import {Alert} from "../Application/components/Snackbar/Alert/Alert.tsx";
 import toast from "react-hot-toast";
+import {ActiveDevice} from "../Player/playerSlice.ts";
 
 const handleClick = async () => {
     const response = await spotifyAPI.getMe()
@@ -30,20 +29,29 @@ const fetchIsSaved = async () => {
     const response = await spotifyAPI.checkIsItemSaved('album', ['3iPSVi54hsacKKl1xIR2eH'])
     console.log('fetchIsSaved:', response.data)
 }
-const save = async () =>{
+const save = async () => {
     const response = await spotifyAPI.saveItem('album', ['3iPSVi54hsacKKl1xIR2eH'])
     console.log('save:', response.data)
 }
-const remove = async () =>{
+const remove = async () => {
     const response = await spotifyAPI.removeItem('album', ['3iPSVi54hsacKKl1xIR2eH'])
     console.log('remove:', response.data)
 }
 
 export const Home = () => {
+    const {setDeviceID} = useActions(playerActions)
     const {fetchPlaybackState} = useActions(playerActions)
     const fetch = async () => {
         fetchPlaybackState()
     }
+    const errorHandleHelper1 = () =>{
+        const helper: ActiveDevice = {
+            name: 'helper',
+            id: 'helper',
+        }
+        setDeviceID({deviceID: helper})
+    }
+
     const notify = () => toast.success('Here is your toast.');
     return <div style={{padding: '16px'}}>
         <Button onClick={handleClick}>get me</Button>
@@ -56,5 +64,6 @@ export const Home = () => {
         <Button onClick={save}>saveItem</Button>
         <Button onClick={remove}>removeItem</Button>
         <Button onClick={notify}>add toast</Button>
+        <Button onClick={errorHandleHelper1}>errorHandleHelper1</Button>
     </div>
 }
