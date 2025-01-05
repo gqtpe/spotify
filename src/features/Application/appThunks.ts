@@ -3,6 +3,8 @@ import {spotifyAPI, SpotifyTokenResponse, spotifyTokenService} from "../../api/s
 import {getItem, setItem} from "../../common/utils/localStorage.ts";
 import {authActions} from "../Auth";
 import {userLibraryActions} from "../Library";
+import {handleError} from "../../common/utils/error-utils.ts";
+import {AxiosError} from "axios";
 
 export const initializeApp = createAsyncThunk<SpotifyTokenResponse | null>(
     'app/initializeApp',
@@ -32,7 +34,7 @@ export const initializeApp = createAsyncThunk<SpotifyTokenResponse | null>(
                     setItem('token_type', tokenType)
                     setItem('scope', scopes)
                 } catch (e) {
-                    return thunkAPI.rejectWithValue(e)
+                    return handleError(e as AxiosError,thunkAPI.rejectWithValue)
                 }
             }
         }
@@ -42,7 +44,7 @@ export const initializeApp = createAsyncThunk<SpotifyTokenResponse | null>(
                 await thunkAPI.dispatch(authActions.getMe())
                 await thunkAPI.dispatch(userLibraryActions.fetchUserLibrary())
             } catch (e) {
-                return thunkAPI.rejectWithValue(e)
+                return handleError(e as AxiosError,thunkAPI.rejectWithValue)
             }
             return {
                 access_token: authToken,
