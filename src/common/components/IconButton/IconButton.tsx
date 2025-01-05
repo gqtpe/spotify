@@ -7,11 +7,12 @@ type IconButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
 };
 //todo:add disabled property
 const IconButton = forwardRef<HTMLButtonElement, IconButtonProps>(
-    ({variant = 'filled', children, className, fz, ...rest}, ref) => {
+    ({variant = 'filled', children, className, disabled, fz, ...rest}, ref) => {
+
         return (
             <button
                 ref={ref}
-                className={[className, styles.button, styles[variant]].join(' ')}
+                className={[className, styles.button, styles[variant], (disabled && styles.disabled)].join(' ')}
                 style={{fontSize: fz, ...rest.style}}
                 {...rest}
             >
