@@ -63,7 +63,12 @@ export const Library = () => {
             </TabGroup>
         </div>
         <div className="library__items">
-            <Card image='https://misc.scdn.co/liked-songs/liked-songs-300.png' subtitle="By t4sya" variant="small" title="Liked Songs" link="/collection/tracks"/>
+            <Card image='https://misc.scdn.co/liked-songs/liked-songs-300.png'
+                  subtitle="By t4sya"
+                  variant="small"
+                  title="Liked Songs"
+                  link="/collection/tracks"
+            />
             {cardItems}
         </div>
         {/*
