@@ -1,5 +1,7 @@
 import {createAsyncThunk} from "@reduxjs/toolkit";
 import {spotifyAPI, User} from "../../api/spotifyAPI.ts";
+import {handleError} from "../../common/utils/error-utils.ts";
+import {AxiosError} from "axios";
 
 const getMe = createAsyncThunk<User, void>('auth/getMe', async (_, {rejectWithValue}) => {
     try {
@@ -7,7 +9,7 @@ const getMe = createAsyncThunk<User, void>('auth/getMe', async (_, {rejectWithVa
         console.log('me:', response.data)
         return response.data
     } catch (e) {
-        return rejectWithValue(e)
+        return handleError(e as AxiosError, rejectWithValue)
     }
 })
 
