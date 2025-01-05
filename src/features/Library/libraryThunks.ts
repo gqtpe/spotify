@@ -68,8 +68,10 @@ const toggleSavePlaylist = createAsyncThunk<{ saved: boolean }, {
         const isSaved = await spotifyAPI.isSavedPlaylist(params.playlist_id)
         if (isSaved.data[0]) {
             await spotifyAPI.removePlaylist(params.playlist_id)
+            throwMessage('Item removed', true)
         } else {
             await spotifyAPI.savePlaylist(params.playlist_id)
+            throwMessage('Item saved', true)
         }
         return {saved: !isSaved.data[0]}
     } catch (e) {
