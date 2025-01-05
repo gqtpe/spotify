@@ -26,7 +26,7 @@ const CurrentlyPlaying: FC = () => {
                   subtitleLink={`/artist/${item?.album.artists[0].id}`}
             />
             :
-            <div className="card card--small">
+            <div className="card card--small-">
                 <div className="card__image-container">
                     <Skeleton className="card__image"/>
                 </div>
