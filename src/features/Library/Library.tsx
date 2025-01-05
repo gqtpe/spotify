@@ -20,7 +20,7 @@ export const Library = () => {
     const {setFilter} = useActions(userLibraryActions)
     const play = usePlayAction()
     const cardItems = items.map(item => {
-        if(!item){
+        if (!item) {
             return
         }
         const {id, name, type, images} = item;
