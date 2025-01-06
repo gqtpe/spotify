@@ -1,4 +1,3 @@
-@import '../../common/styles/vars';
 @import '../../common/styles/scrollbar';
 
 
@@ -84,7 +83,6 @@
     flex-direction: column;
     overflow-y: auto;
     height: 100%;
-
-    @include scrollbar;
+    @include scrollbar
   }
 }
