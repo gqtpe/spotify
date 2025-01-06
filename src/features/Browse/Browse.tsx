@@ -1,5 +1,5 @@
 import {Outlet, useNavigate} from "react-router-dom";
-import {useCallback, useEffect} from "react";
+import {useCallback, useEffect, useRef} from "react";
 import {Tabs} from "./browseSlice.ts";
 import {tabs} from "./tabs.ts";
 import TabItem from "../../common/components/TabGroup/TabItem/TabItem.tsx";
@@ -13,8 +13,10 @@ export const Browse = () => {
     const browseLoading = useAppSelector(browseSelectors.selectLoading)
     const query = useAppSelector(browseSelectors.selectQuery)
     const navigate = useNavigate()
+    const items = useRef<HTMLDivElement>()
     const {setActiveTab, clearItems, browse} = useActions(browseActions)
     const handleChange = useCallback((tab: Tabs) => {
+        if(items.current) items.current.scrollTo({top:0})
         setActiveTab(tab);
         if (tab === 'all') {
             navigate('')
@@ -42,7 +44,7 @@ export const Browse = () => {
         <TabGroup value={activeTab} handleChange={handleChange} className={styles.tabs}>
             {tabItems}
         </TabGroup>
-        <div className={styles.items}>
+        <div className={styles.items} ref={items}>
         {browseLoading === 'succeeded' ? <Outlet/> : <div className="loader"/>}
         </div>
     </div>
