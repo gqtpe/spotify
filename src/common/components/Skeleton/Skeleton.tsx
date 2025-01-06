@@ -1,6 +1,4 @@
 import {CSSProperties, HTMLAttributes} from "react";
-import '../../styles/animations.scss';
-import '../../styles/vars.scss';
 
 
 type Animations = 'pulsate' | 'wave'
