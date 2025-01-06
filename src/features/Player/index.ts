@@ -1,5 +1,5 @@
 import { Footer } from "./Footer";
-import slice, {asyncAction} from "./playerSlice";
+import slice from "./playerSlice";
 import type {PlayerBackState} from "./types.ts";
 import * as playerSelectors from "./selectors.ts";
 import * as timeHelpers from "./utils/helpers.ts";
@@ -11,6 +11,7 @@ import ProgressBar from "./Player/ProgressBar/ProgressBar.tsx";
 import Player from "./Player/Player.tsx";
 import Panel from "./Panel/Panel.tsx";
 import CurrentlyPlaying from "./CurrentlyPlaying.tsx";
+import {asyncAction} from "./playerThunks.ts";
 
 const playerReducer = slice.reducer
 const playerActions = {
