@@ -18,6 +18,9 @@ const Panel: FC = () => {
     const togglePopup = useCallback(() => {
         setShowPopup(prev => !prev);
     }, []);
+    const closePopup = useCallback(()=>{
+        setShowPopup(false)
+    },[])
     const toggleSidebar = useCallback(() => {
         if(open){
             closeSidebar()
