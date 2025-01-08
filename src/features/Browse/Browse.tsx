@@ -37,7 +37,7 @@ export const Browse = () => {
 
     const tabItems = tabs.map((tab, index) => {
         if (tab === 'all') return <TabItem key={tab} value={tab} label={'All'}/>
-        return <TabItem key={tab} value={tab} label={tab[0].toUpperCase() + tab.slice(1)} disabled={index>4}/>
+        return <TabItem key={tab} value={tab} label={firstToUpper(tab)} disabled={index > 4}/>
     })
 
     return <div className={styles.browse}>
@@ -45,7 +45,7 @@ export const Browse = () => {
             {tabItems}
         </TabGroup>
         <div className={styles.items} ref={items}>
-        {browseLoading === 'succeeded' ? <Outlet/> : <div className="loader"/>}
+            {browseLoading === 'succeeded' ? <Outlet/> : <div className="loader"/>}
         </div>
     </div>
 }
