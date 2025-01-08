@@ -1,0 +1,15 @@
+.aside{
+    transition: height 0.3s ease-in-out;
+    //padding: 1rem;
+    &__header{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0.5rem;
+    }
+    &__close-btn{
+        justify-self: flex-end;
+        font-size: 1.2rem;
+    }
+
+}
