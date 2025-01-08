@@ -21,12 +21,8 @@ const Panel: FC = () => {
     const closePopup = useCallback(()=>{
         setShowPopup(false)
     },[])
-    const toggleSidebar = useCallback(() => {
-        if(open){
-            closeSidebar()
-        }else{
-            openSidebar({type: 'queue'})
-        }
+    const openQueue = useCallback(() => {
+        openSidebar({type: 'queue'})
     },[open, closeSidebar, openSidebar])
     return (
         <div className={[styles.footer__actions, styles.actions].join(' ')}>
