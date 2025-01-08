@@ -20,6 +20,9 @@ const AvailableDevices = ({...rest}) => {
             </Typography>
             {items.map(item => <div className={styles.device} key={item.id}><div>{item.name}</div>{item.is_active&& <div className={styles.active}></div>}</div>)}
             {items.length === 0 && <div>(device not found)</div>}
+            </div>
+
+            <Button variant="filled" density="compact" onClick={handleClick}>Transfer Playback</Button>
         </div>
     );
 };
