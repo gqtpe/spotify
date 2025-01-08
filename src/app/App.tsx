@@ -5,19 +5,40 @@ import {Header} from "../features/Application/components/Header/Header.tsx";
 import {Footer} from "../features/Player";
 import {Library} from "../features/Library";
 import {useSidebar} from "../features/Application/hooks/useSidebar.ts";
-import Aside from "../features/Application/components/Aside/Aside.tsx";
 import {RequireAuth} from "../common/hoc/RequireAuth.tsx";
 import {Toaster} from "react-hot-toast";
+import {useCallback, useEffect, useState} from "react";
+import {SidebarContent} from "../features/Application/appSlice.ts";
+import Sidebar from "../features/Application/components/Sidebar/Sidebar.tsx";
 
-
+export type StackItem = {
+    id: string
+    name: SidebarContent
+}
 function App() {
     console.log('APP')
     const {isInitialized} = useInit()
     const {open, sidebarContentType} = useSidebar()
+    const [stack, setStack] = useState<StackItem[]>([])
+
+    const unshift = useCallback((item: StackItem) =>{
+        debugger;
+        setStack([item, ...stack])
+    },[setStack,stack])
+
+    const removeItem = useCallback((id: string) =>{
+        const filteredItems = stack.filter(item =>item.id !== id)
+        setStack(filteredItems)
+    },[setStack,stack])
+    useEffect(() => {
+        if(sidebarContentType){
+            const item: StackItem = {id: `${Date.now()}`, name: sidebarContentType}
+            unshift(item)
+        }
+    }, [sidebarContentType]);
     if (!isInitialized) {
         return <div className="loader"/>
     }
-
     return (
         <div className="app">
             <Toaster
@@ -42,11 +63,15 @@ function App() {
                 <main>
                     <Outlet/>
                 </main>
-                {open && <Aside state={sidebarContentType!}/>}
+                {/*{(sidebarContentType === 'devices') && <Aside state={sidebarContentType} close={closeSidebar}>devices</Aside>}*/}
+                {/*{(sidebarContentType === 'queue') && <Aside state={sidebarContentType} close={closeSidebar}>queue</Aside>}*/}
+                {/*{(sidebarContentType === 'lyrics') && <Aside state={sidebarContentType} close={closeSidebar}>lyrics</Aside>}*/}
+                <Sidebar stackArray={stack} removeItem={removeItem} unshift={unshift}/>
             </div>
 
             <Footer/>
         </div>
     )
 }
+
 export default App
