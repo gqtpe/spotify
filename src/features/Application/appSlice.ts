@@ -1,7 +1,7 @@
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
 import {initializeApp} from "./appThunks.ts";
 
-export type SidebarContent = 'queue' | 'lyrics'
+export type SidebarContent = 'queue' | 'lyrics' | 'devices'
 
 export const slice = createSlice(
     {
