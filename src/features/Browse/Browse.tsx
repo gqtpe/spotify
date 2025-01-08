@@ -7,6 +7,7 @@ import TabGroup from "../../common/components/TabGroup/TabGroup.tsx";
 import {browseActions, browseSelectors} from "./index.ts";
 import styles from './Browse.module.scss';
 import {useActions, useAppSelector} from "../Application/hooks";
+import {firstToUpper} from "./utils/firstToUpper.ts";
 
 export const Browse = () => {
     const activeTab = useAppSelector(browseSelectors.selectActiveTab)
@@ -16,7 +17,7 @@ export const Browse = () => {
     const items = useRef<HTMLDivElement>()
     const {setActiveTab, clearItems, browse} = useActions(browseActions)
     const handleChange = useCallback((tab: Tabs) => {
-        if(items.current) items.current.scrollTo({top:0})
+        if (items.current) items.current.scrollTo({top: 0})
         setActiveTab(tab);
         if (tab === 'all') {
             navigate('')
