@@ -43,7 +43,7 @@ const Panel: FC = () => {
                     margin={24}
                 >
                     <Paper style={{maxWidth: availableDevicesWidth, minWidth: availableDevicesWidth}}>
-                        <AvailableDevices/>
+                        <AvailableDevices close={closePopup}/>
                     </Paper>
                 </Modal>,
                 document.getElementById('portal')!
