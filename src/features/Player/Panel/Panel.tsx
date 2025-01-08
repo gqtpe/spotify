@@ -14,7 +14,7 @@ const availableDevicesWidth = '12rem'
 const Panel: FC = () => {
     const [showPopup, setShowPopup] = useState<boolean>(false);
     const anchorEl = useRef<HTMLButtonElement>(null);
-    const {open, openSidebar, closeSidebar} = useSidebar()
+    const {open, content, openSidebar, closeSidebar} = useSidebar()
     const togglePopup = useCallback(() => {
         setShowPopup(prev => !prev);
     }, []);
