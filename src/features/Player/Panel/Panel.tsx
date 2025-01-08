@@ -10,7 +10,7 @@ import {HiMiniQueueList} from "react-icons/hi2";
 import {useSidebar} from "../../Application/hooks/useSidebar.ts";
 
 
-const availableDevicesWidth = '10rem'
+const availableDevicesWidth = '12rem'
 const Panel: FC = () => {
     const [showPopup, setShowPopup] = useState<boolean>(false);
     const anchorEl = useRef<HTMLButtonElement>(null);
