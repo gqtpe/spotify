@@ -26,10 +26,10 @@ const Panel: FC = () => {
     },[open, closeSidebar, openSidebar])
     return (
         <div className={[styles.footer__actions, styles.actions].join(' ')}>
-            <IconButton variant="icon" onClick={togglePopup} ref={anchorEl}>
+            <IconButton variant="icon" onClick={togglePopup} ref={anchorEl} disabled={content === 'devices'}>
                 <MdDevices/>
             </IconButton>
-            <IconButton variant="icon" onClick={toggleSidebar}>
+            <IconButton variant="icon" onClick={openQueue}  disabled={content === 'queue'}>
                 <HiMiniQueueList />
             </IconButton>
 
