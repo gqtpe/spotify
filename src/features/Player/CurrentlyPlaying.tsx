@@ -1,4 +1,4 @@
-import {FC, useMemo} from "react";
+import {FC, useCallback, useEffect, useState} from "react";
 import footerStyles from "./Footer.module.scss";
 import Card from "../../common/components/Cards/Card/Card.tsx";
 import "../../common/components/Cards/Card/Card.scss";
@@ -6,14 +6,17 @@ import {useAppSelector} from "../Application/hooks";
 import {playerSelectors} from "./index.ts";
 import Skeleton from "../../common/components/Skeleton/Skeleton.tsx";
 import Typography from "../../common/components/Typography/Typography.tsx";
+import IconButton from "../../common/components/IconButton/IconButton.tsx";
+import {IoIosAddCircleOutline, IoIosCheckmarkCircle} from "react-icons/io";
+import useSave from "../Library/useSave/useSave.ts";
+import {spotifyAPI} from "../../api/spotifyAPI.ts";
+import {cutFrom30} from "../Browse/utils/cutFrom30.ts";
 
 
 const CurrentlyPlaying: FC = () => {
 
     const item = useAppSelector(playerSelectors.selectPlaybackItem)
     const playbackLoading = useAppSelector(playerSelectors.selectPlaybackLoading)
-    const subTitle = useMemo(() => {
-        if (item) return item.album.artists.map(artist => artist.name).join(', ')
 
     const save = useSave('track')
     const [isSaved, setIsSaved] = useState<boolean>(false)
@@ -34,15 +37,17 @@ const CurrentlyPlaying: FC = () => {
         }
     }, [item])
     return <div className={[footerStyles.footer__current, footerStyles.current].join(' ')}>
-        {playbackLoading === 'succeeded' ?
-            <Card image={item ? item.album.images[0].url : 'blank'}
-                  subtitle={subTitle ? subTitle : 'blank'}
-                  title={item ? item.name : 'blank'}
-                  explicit={item ? item.explicit : false}
-                  variant="small-"
-                  link={`/track/${item?.id}`}
-                  subtitleLink={`/artist/${item?.album.artists[0].id}`}
-            />
+        {(playbackLoading === 'succeeded' && item) ?
+            <>
+                <Card image={item.album.images[0].url}
+                      title={cutFrom30(item.name, 25)}
+                      subtitle={item.album.artists.map(artist => artist.name).join(', ')}
+                      explicit={item.explicit}
+                      variant="small-"
+                      link={`/track/${item?.id}`}
+                      subtitleLink={`/artist/${item?.album.artists[0].id}`}
+                />
+            </>
             :
             <div className="card card--small-">
                 <div className="card__image-container">
