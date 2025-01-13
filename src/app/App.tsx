@@ -15,22 +15,25 @@ export type StackItem = {
     id: string
     name: SidebarContent
 }
+
 function App() {
     console.log('APP')
     const {isInitialized} = useInit()
     const {sidebarContentType, open, closeSidebar} = useSidebar()
     const [stack, setStack] = useState<StackItem[]>([])
-
-    const unshift = useCallback((item: StackItem) =>{
+    const unshift = useCallback((item: StackItem) => {
         setStack([item, ...stack])
-    },[setStack,stack])
+    }, [setStack, stack])
 
-    const removeItem = useCallback((id: string) =>{
-        const filteredItems = stack.filter(item =>item.id !== id)
+    const removeItem = useCallback((id: string) => {
+        const filteredItems = stack.filter(item => item.id !== id)
         setStack(filteredItems)
-    },[setStack,stack])
+        if (stack.length === 1) {
+            closeSidebar()
+        }
+    }, [setStack, stack, closeSidebar, stack.length])
     useEffect(() => {
-        if(sidebarContentType){
+        if (sidebarContentType) {
             const item: StackItem = {id: `${Date.now()}`, name: sidebarContentType}
             unshift(item)
         }
@@ -67,7 +70,6 @@ function App() {
                 {/*{(sidebarContentType === 'lyrics') && <Aside state={sidebarContentType} close={closeSidebar}>lyrics</Aside>}*/}
                 {open && <Sidebar stackArray={stack} removeItem={removeItem}/>}
             </div>
-
             <Footer/>
         </div>
     )
