@@ -55,17 +55,16 @@ $app-footer-height: 80px;
       width: 20rem;
       display: flex;
       position:relative;
-      @include paper;
       .sidebar__item{
+        width: 100%;
+        height: 100%;
+        @include paper;
         z-index: auto;
         position: absolute;
         top: 0;
-        lef: 0;
+        left: 0;
         @include paper();
-        width: 200px;
-        height: 100px;
-        padding: 0;
-        border: 1px solid white;
+
       }
     }
   }
