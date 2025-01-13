@@ -10,5 +10,4 @@ export const useSidebar = () => {
     const sidebarState = useAppSelector(appSelectors.selectAppSidebarState)
     const sidebarContentType = useAppSelector(appSelectors.selectSidebarContent)
     return {open, sidebarState, content, openSidebar, closeSidebar, sidebarContentType}
-
 }
