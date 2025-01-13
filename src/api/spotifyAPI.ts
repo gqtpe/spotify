@@ -87,6 +87,7 @@ export const spotifyAPI = {
     //     })
     // },
     async checkIsItemSaved(type: saveOrFollowItemType, ids: string[]) {
+        //not support checking is playlist saved
         let endpoint;
         if (type === 'artist' || type === 'user') {
             endpoint = `following/contains?ids=${ids.join(',')}&type=${type}`
