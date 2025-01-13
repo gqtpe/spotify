@@ -5,15 +5,15 @@ import Aside from "../Aside/Aside.tsx";
 
 type Props = {
     stackArray: Array<StackItem>
-    unshift: (item: StackItem) => void;
     removeItem: (id: string) => void
 }
 const Sidebar: FC<Props> = ({stackArray, removeItem}) => {
 
     return <div className="sidebar">
-        {stackArray.reverse().map((item,index) => {
+        {stackArray.reverse().map((item) => {
             const close = () => removeItem(item.id)
-            return <div className="sidebar__item" key={item.id} style={{top:`calc(${index}*1rem`}}>
+            return <div className="sidebar__item" key={item.id} >
+            {/*return <div className="sidebar__item" key={item.id} style={{top:`calc(${index}*1rem`}}>*/}
                 <Aside state={item.name} close={close}>
                     {item.name}
                 </Aside>
