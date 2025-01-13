@@ -18,7 +18,7 @@ export type StackItem = {
 function App() {
     console.log('APP')
     const {isInitialized} = useInit()
-    const { sidebarContentType} = useSidebar()
+    const {sidebarContentType, open, closeSidebar} = useSidebar()
     const [stack, setStack] = useState<StackItem[]>([])
 
     const unshift = useCallback((item: StackItem) =>{
