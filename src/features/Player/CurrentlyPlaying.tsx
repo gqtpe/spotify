@@ -14,6 +14,18 @@ const CurrentlyPlaying: FC = () => {
     const playbackLoading = useAppSelector(playerSelectors.selectPlaybackLoading)
     const subTitle = useMemo(() => {
         if (item) return item.album.artists.map(artist => artist.name).join(', ')
+
+    const save = useSave('track')
+    const [isSaved, setIsSaved] = useState<boolean>(false)
+            setIsSaved(prevState => !prevState)
+    useEffect(() => {
+        if (item) {
+            const fetchIsSaved = async () => {
+                const response = await spotifyAPI.checkIsItemSaved(item.type, [item.id])
+                setIsSaved(response.data[0])
+            }
+            fetchIsSaved()
+        }
     }, [item])
     return <div className={[footerStyles.footer__current, footerStyles.current].join(' ')}>
         {playbackLoading === 'succeeded' ?
@@ -35,7 +47,9 @@ const CurrentlyPlaying: FC = () => {
                     <Typography className="card__subtitle"><Skeleton/></Typography>
                 </div>
             </div>}
-
+        <IconButton onClick={handleClick} variant="icon" fz={'1.2rem'}>
+            {isSaved ? <IoIosCheckmarkCircle color={"var(--primary-500)"}/> : <IoIosAddCircleOutline/>}
+        </IconButton>
     </div>
 }
 
