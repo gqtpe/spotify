@@ -17,7 +17,13 @@ const CurrentlyPlaying: FC = () => {
 
     const save = useSave('track')
     const [isSaved, setIsSaved] = useState<boolean>(false)
+    const handleClick = useCallback(() => {
+        if (item) {
+            save([item.id])
             setIsSaved(prevState => !prevState)
+        }
+    }, [item, save])
+
     useEffect(() => {
         if (item) {
             const fetchIsSaved = async () => {
