@@ -3,12 +3,11 @@ import styles from "./IconButton.module.scss";
 
 type IconButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
     variant?: 'filled' | 'outlined' | 'icon';
-    fz?: number;
+    fz?: number|string;
 };
 //todo:add disabled property
 const IconButton = forwardRef<HTMLButtonElement, IconButtonProps>(
     ({variant = 'filled',onClick, children, className, disabled, fz, ...rest}, ref) => {
-
         return (
             <button
                 ref={ref}
