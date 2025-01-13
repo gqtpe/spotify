@@ -14,7 +14,7 @@ export const Browse = () => {
     const browseLoading = useAppSelector(browseSelectors.selectLoading)
     const query = useAppSelector(browseSelectors.selectQuery)
     const navigate = useNavigate()
-    const items = useRef<HTMLDivElement>()
+    const items = useRef<HTMLDivElement>(null)
     const {setActiveTab, clearItems, browse} = useActions(browseActions)
     const handleChange = useCallback((tab: Tabs) => {
         if (items.current) items.current.scrollTo({top: 0})
