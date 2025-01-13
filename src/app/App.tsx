@@ -65,7 +65,7 @@ function App() {
                 {/*{(sidebarContentType === 'devices') && <Aside state={sidebarContentType} close={closeSidebar}>devices</Aside>}*/}
                 {/*{(sidebarContentType === 'queue') && <Aside state={sidebarContentType} close={closeSidebar}>queue</Aside>}*/}
                 {/*{(sidebarContentType === 'lyrics') && <Aside state={sidebarContentType} close={closeSidebar}>lyrics</Aside>}*/}
-                <Sidebar stackArray={stack} removeItem={removeItem} unshift={unshift}/>
+                {open && <Sidebar stackArray={stack} removeItem={removeItem}/>}
             </div>
 
             <Footer/>
