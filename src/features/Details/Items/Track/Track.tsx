@@ -26,7 +26,6 @@ const Track: FC<{ item: Track }> = ({item}) => {
         fetchIsSaved()
     }, []);
     return (
-        <div className="detailed-page track">
             <div className="detailed-page track">
                 <div className="detailed-page__header track__header">
                     <div className="detailed-page__image track__image">
@@ -64,7 +63,6 @@ const Track: FC<{ item: Track }> = ({item}) => {
 
 
             </div>
-        </div>
     );
 };
 
