@@ -1,6 +1,8 @@
 import {FC} from "react";
 import type {StackItem} from "../../../../app/App.tsx";
 import Aside from "../Aside/Aside.tsx";
+import Devices from "./Devices/Devices.tsx";
+import Queue from "./Queue/Queue.tsx";
 
 
 type Props = {
@@ -15,7 +17,8 @@ const Sidebar: FC<Props> = ({stackArray, removeItem}) => {
             return <div className="sidebar__item" key={item.id} >
             {/*return <div className="sidebar__item" key={item.id} style={{top:`calc(${index}*1rem`}}>*/}
                 <Aside state={item.name} close={close}>
-                    {item.name}
+                    {item.name === 'devices' && <Devices/>}
+                    {item.name === 'queue' && <Queue/>}
                 </Aside>
             </div>
         })}
