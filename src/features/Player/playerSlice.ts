@@ -13,27 +13,28 @@ import {
     setShuffle
 } from "./playerThunks.ts";
 
+const initialState = {
+    playback: {
+        activeDevice: null as ActiveDevice | null,
+        isPlaying: false as boolean,
+        shuffleState: false as boolean,
+        repeatState: 'off' as RepeatState,
+        progress: null as null | number,
+    },
+    item: null as Track | null,
+    queue: [] as Array<Track>,
+    availableDevices: {
+        items: [] as Device[],
+        loading: 'idle' as RequestStatuses
+    },
+    playbackLoading: 'idle' as RequestStatuses
+}
 
 const slice = createSlice({
     name: 'player',
-    initialState: {
-        playback: {
-            activeDevice: null as ActiveDevice | null,
-            isPlaying: false as boolean,
-            shuffleState: false as boolean,
-            repeatState: 'off' as RepeatState,
-            progress: null as null | number,
-        },
-        item: null as Track | null,
-        queue: [] as Array<Track>,
-        availableDevices: {
-            items: [] as Device[],
-            loading: 'idle' as RequestStatuses
-        },
-        playbackLoading: 'idle' as RequestStatuses
-    },
+    initialState: initialState,
     reducers: {
-        setDeviceID(state, action: PayloadAction<{deviceID: ActiveDevice}>){
+        setDeviceID(state, action: PayloadAction<{ deviceID: ActiveDevice }>) {
             state.playback.activeDevice = action.payload.deviceID
         }
     },
