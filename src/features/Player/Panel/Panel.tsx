@@ -5,7 +5,7 @@ import IconButton from "../../../common/components/IconButton/IconButton.tsx";
 import {createPortal} from "react-dom";
 import Modal from "../../../common/components/Modal/Modal.tsx";
 import Paper from "../../../common/components/Modal/Paper.tsx";
-import AvailableDevices from "./Devices/AvailableDevices.tsx";
+import AvailableDevices from "./AvailableDevices/AvailableDevices.tsx";
 import {HiMiniQueueList} from "react-icons/hi2";
 import {useSidebar} from "../../Application/hooks/useSidebar.ts";
 
