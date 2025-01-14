@@ -1,0 +1,77 @@
+@use '../../../../../common/styles/glass';
+
+.devices {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 0.5rem;
+  &__header {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.25rem;
+  }
+
+  &__current {
+  }
+
+  &__available {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  &__item{
+    width: 100%;
+    padding: 0.5rem 0.75rem;
+    border-radius: 0.5rem;
+    transition: 0.3s background ease-in, 0.1s scale ease-in-out;
+    &:active{
+      scale: 0.96;
+    }
+    &:hover{
+      background: var(--background-lighter);
+
+    }
+  }
+}
+
+.current {
+  position: relative;
+  padding: 0.5rem 0.75rem 1.5rem 0.75rem;
+  z-index: 2;
+  background: rgba(white, 0.09);
+  border-radius: 15px;
+
+
+
+
+  &__gradient {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    background: radial-gradient(circle, var(--primary-600), rgba(0, 0, 0, 0.9));
+    filter: blur(20px);
+    border: 1px solid red;
+    backdrop-filter: blur(10px);
+    border-radius: 15px;
+
+
+  }
+
+  &__icon {
+    color: var(--primary-400);
+    z-index: 2; // Чтобы текст был поверх градиента
+  }
+
+  &__title, &__subtitle {
+    z-index: 4;
+    position: relative;
+  }
+
+
+}
