@@ -88,8 +88,8 @@ const slice = createSlice({
         builder.addCase(fetchDevices.pending, state => {
             state.availableDevices.loading = 'loading'
         })
-        builder.addCase(fetchDevices.fulfilled, (state, action)=>{
-            state.availableDevices.items = action.payload
+        builder.addCase(fetchDevices.fulfilled, (state, action) => {
+            state.availableDevices.items = action.payload.filter(d => d.id !== state.playback.activeDevice?.id)
             state.availableDevices.loading = 'succeeded'
         })
     }
