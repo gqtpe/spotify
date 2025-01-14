@@ -8,7 +8,7 @@ const Devices = () => {
     const activeDevice = useAppSelector(playerSelectors.selectActiveDevice)
     const availableDevices = useAppSelector(playerSelectors.selectAvailableDevices)
 
-    //bind with api
+    //todo:bind with api
     return <div className="devices">
         <div className="devices__current current">
             <Typography variant="h3" className="current__title"
