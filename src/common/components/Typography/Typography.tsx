@@ -10,6 +10,7 @@ interface TypographyProps {
     userSelect?: boolean
     sx?: CSSProperties;
     link?: string;
+    icon?: ReactNode
 }
 
 export const Typography: FC<TypographyProps> = ({
@@ -18,7 +19,8 @@ export const Typography: FC<TypographyProps> = ({
                                                     children,
                                                     sx,
                                                     className = '',
-                                                    link
+                                                    link,
+    icon,
                                                 }) => {
     const Component = (component || variantMap[variant] || 'p');
     const stopPropagation = (e: React.MouseEvent<HTMLAnchorElement>) => {
@@ -31,7 +33,8 @@ export const Typography: FC<TypographyProps> = ({
         </Link>
     }
     return (
-        <Component className={[styles[variant], className,].join(' ')} style={sx}>
+        <Component className={[styles[variant], className,(icon && styles.icon)].join(' ')} style={sx}>
+            {icon && icon}
             {children}
         </Component>
     );
