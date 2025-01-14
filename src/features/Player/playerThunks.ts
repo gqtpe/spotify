@@ -126,6 +126,9 @@ const play = createAsyncThunk<unknown, PlayParamTypes>('player/play', async (par
 export const fetchDevices = createAsyncThunk<Device[], undefined>('player/fetchDevices', async (_, thunkAPI) => {
     try {
         const res = await spotifyAPI.getAvailableDevices();
+        if(res.data.devices.length === 0){
+            throwMessage('No device found')
+        }
         return res.data.devices
     } catch (e) {
         return handleError(e as AxiosError, thunkAPI.rejectWithValue)
