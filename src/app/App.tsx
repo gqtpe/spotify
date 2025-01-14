@@ -19,6 +19,9 @@ export type StackItem = {
 function App() {
     console.log('APP')
     const {isInitialized} = useInit()
+
+
+    //todo: move out------
     const {sidebarContentType, open, closeSidebar} = useSidebar()
     const [stack, setStack] = useState<StackItem[]>([])
     const unshift = useCallback((item: StackItem) => {
@@ -39,6 +42,9 @@ function App() {
             unshift(item)
         }
     }, [sidebarContentType]);
+    //----------------------
+
+
     if (!isInitialized) {
         return <div className="loader"/>
     }
