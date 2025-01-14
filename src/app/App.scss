@@ -59,7 +59,7 @@ $app-footer-height: 80px;
         width: 100%;
         height: 100%;
         @include paper;
-        z-index: auto;
+        z-index: 6;
         position: absolute;
         top: 0;
         left: 0;
