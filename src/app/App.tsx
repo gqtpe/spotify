@@ -22,7 +22,8 @@ function App() {
     const {sidebarContentType, open, closeSidebar} = useSidebar()
     const [stack, setStack] = useState<StackItem[]>([])
     const unshift = useCallback((item: StackItem) => {
-        setStack([item, ...stack])
+        const filteredStack = stack.filter(t=>t.name !== item.name)
+        setStack([item, ...filteredStack])
     }, [setStack, stack])
 
     const removeItem = useCallback((id: string) => {
