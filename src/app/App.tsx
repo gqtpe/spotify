@@ -72,9 +72,6 @@ function App() {
                 <main>
                     <Outlet/>
                 </main>
-                {/*{(sidebarContentType === 'devices') && <Aside state={sidebarContentType} close={closeSidebar}>devices</Aside>}*/}
-                {/*{(sidebarContentType === 'queue') && <Aside state={sidebarContentType} close={closeSidebar}>queue</Aside>}*/}
-                {/*{(sidebarContentType === 'lyrics') && <Aside state={sidebarContentType} close={closeSidebar}>lyrics</Aside>}*/}
                 {open && <Sidebar stackArray={stack} removeItem={removeItem}/>}
             </div>
             <Footer/>
