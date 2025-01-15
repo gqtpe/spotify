@@ -1,13 +1,13 @@
 import axios from "axios";
 import {PlayerBackState} from "../features/Player";
 import {DetailedItemType} from "../features/Details/Details.tsx";
-import {Copyrights, External_Urls, Images, ResponseType, Restrictions} from "./types/common.ts";
-import {Track} from "./types/track.ts";
-import {Album, SimplifiedAlbum} from "./types/album.ts";
-import {Artist, ArtistAlbumIncludeGroupValues} from "./types/artist.ts";
-import {Playlist, SimplifiedPlaylist} from "./types/playlist.ts";
-import {CategoryObject} from "./types/browseCategories.ts";
-import {Device, RepeatState} from "../features/Player/types.ts";
+import type {Copyrights, External_Urls, Images, ResponseType, Restrictions} from "./types/common.ts";
+import type {Track} from "./types/track.ts";
+import type {Album, SimplifiedAlbum} from "./types/album.ts";
+import type {Artist, ArtistAlbumIncludeGroupValues} from "./types/artist.ts";
+import type {Playlist, SimplifiedPlaylist} from "./types/playlist.ts";
+import type {CategoryObject} from "./types/browseCategories.ts";
+import type {Device, RepeatState} from "../features/Player/types.ts";
 import {Tabs} from "../features/Browse/browseSlice.ts";
 import {tabs} from "../features/Browse/tabs.ts";
 
@@ -15,6 +15,7 @@ const spotifyAPIInstance = axios.create({
     baseURL: 'https://api.spotify.com/v1/', // ваш базовый URL для Spotify API
 });
 const authEndpoint = import.meta.env.VITE_AUTH_ENDPOINT;
+
 export interface SpotifyTokenResponse {
     access_token: string;
     token_type: string;
@@ -39,7 +40,6 @@ export const spotifyAPI = {
         spotifyAPIInstance.defaults.headers.common['Authorization'] = `Bearer ${token}`
     },
     //==========me
-
     async play({deviceID, ...params}: {
         deviceID: string,
         context_uri?: string,
@@ -52,6 +52,8 @@ export const spotifyAPI = {
     async getMe() {
         return await spotifyAPIInstance.get<User>('me');
     },
+    //==========
+
     //==========library
     async getSavedPlaylists() {
         return await spotifyAPIInstance.get<ResponseType<SimplifiedPlaylist[]>>('me/playlists')
@@ -65,6 +67,9 @@ export const spotifyAPI = {
     async getSavedTracks() {
         return await spotifyAPIInstance.get<ResponseType<{ added_at: string; track: Track }[]>>(`me/tracks`)
     },
+    //==========
+
+    //==========save endpoints
     async savePlaylist(playlistID: string) {//follow can be user, artist or playlist
         return await spotifyAPIInstance.put(`playlists/${playlistID}/followers`)
     },
@@ -74,18 +79,6 @@ export const spotifyAPI = {
     async isSavedPlaylist(playlistID: string) {
         return await spotifyAPIInstance.get(`playlists/${playlistID}/followers/contains`)
     },
-    // async addItemToLibrary(type: 'tracks' | 'album', ids: string[]) { // can be track or album
-    //     return await spotifyAPIInstance.put(`me/${type}s`, {
-    //         ids: ids
-    //     })
-    // },
-    // async removeAlbumFromLibrary(type: 'tracks' | 'album', ids: string[]) {
-    //     return await spotifyAPIInstance.delete(`me/${type}s`,{
-    //         data:{
-    //             ids: ids,
-    //         }
-    //     })
-    // },
     async checkIsItemSaved(type: saveOrFollowItemType, ids: string[]) {
         //not support checking is playlist saved
         let endpoint;
@@ -120,10 +113,11 @@ export const spotifyAPI = {
             }
         })
     },
+    //==========
 
     //==========artist
     async getArtistTopTracks(id: string) {
-        return await spotifyAPIInstance.get<{tracks: Track[]}>(`/artists/${id}/top-tracks`)
+        return await spotifyAPIInstance.get<{ tracks: Track[] }>(`/artists/${id}/top-tracks`)
     },
     async getArtistAlbums(id: string, includeGroups: ArtistAlbumIncludeGroupValues) {
         return await spotifyAPIInstance.get<ResponseType<SimplifiedAlbum[]>>(`artists/${id}/albums?include_groups=${includeGroups}`)
@@ -138,12 +132,9 @@ export const spotifyAPI = {
     async getCurrentlyPlaying() {
         return await spotifyAPIInstance.get<PlayerBackState>('me/player/currently-playing')
     },
-    //device
     async getAvailableDevices() {
-        return await spotifyAPIInstance.get<{devices: Device[]}>('me/player/devices')
+        return await spotifyAPIInstance.get<{ devices: Device[] }>('me/player/devices')
     },
-    //player actions
-    async resume(deviceID:string) {
     async transferPlayback(device_id: string) {
         return await spotifyAPIInstance.put('me/player', {device_ids: [device_id]})
     },
@@ -153,26 +144,33 @@ export const spotifyAPI = {
     async addItemToUserQueue(uri: string, device_id: string) {
         return await spotifyAPIInstance.post(`me/player/queue?uri=${uri}&device_id=${device_id}`)
     },
+
+    //==========
+
+    //==========player actions
+    async resume(deviceID: string) {
         return await spotifyAPIInstance.put(`me/player/play?device_id=${deviceID}`)
     },
-    async pause(deviceID:string) {
+    async pause(deviceID: string) {
         return await spotifyAPIInstance.put(`me/player/pause?device_id=${deviceID}`)
     },
-    async next(deviceID:string) {
+    async next(deviceID: string) {
         return await spotifyAPIInstance.post(`me/player/next?device_id=${deviceID}`)
     },
-    async previous(deviceID:string) {
+    async previous(deviceID: string) {
         return await spotifyAPIInstance.post('me/player/previous', {deviceID})
     },
-    async setShuffle(state: boolean, deviceID:string) {
+    async setShuffle(state: boolean, deviceID: string) {
         return await spotifyAPIInstance.put(`me/player/shuffle?state=${state}&device_id=${deviceID}`)
     },
     async setRepeat(repeat_state: RepeatState, device: string) {
         return await spotifyAPIInstance.put(`me/player/repeat?state=${repeat_state}&device_id=${device}`)
     },
-    async seekPosition(position_ms: number, deviceID:string) {
+    async seekPosition(position_ms: number, deviceID: string) {
         return await spotifyAPIInstance.put(`me/player/seek?position_ms=${position_ms}&device_id=${deviceID}`)
     },
+    //==========
+
     //==========getDetailedItem
     async getDetailedItem(id: string, type: DetailedItemType) {
         return await spotifyAPIInstance.get<Playlist | Artist | Album | Track>(`${type}s/${id}`)
@@ -184,9 +182,9 @@ export const spotifyAPI = {
     //         playlists: ResponseType<SimplifiedPlaylist[]>
     //     }>('browse/categories/' + id + '/playlists')
     // }, deprecated (not working because of)
-    async getBrowseCategories() {
-        return await spotifyAPIInstance.get<{ categories: ResponseType<CategoryObject[]> }>('browse/categories')
-    },
+
+    //==========
+
     //==========search
     async search(tab: Tabs, query: string) {
         let resultTab;
@@ -197,9 +195,13 @@ export const spotifyAPI = {
         }
         return await spotifyAPIInstance.get<SearchResult>(`search?q=${query}&type=${resultTab}`)
     },
+    async getBrowseCategories() {
+        return await spotifyAPIInstance.get<{ categories: ResponseType<CategoryObject[]> }>('browse/categories')
+    },
     async getPortionOfItems(link: string) {
         return await spotifyAPIInstance.get(link)
     }
+    //==========
 }
 
 export type saveOrFollowItemType = 'track' | 'album' | 'artist' | 'user'
