@@ -11,12 +11,16 @@ import ProgressBar from "./Player/ProgressBar/ProgressBar.tsx";
 import Player from "./Player/Player.tsx";
 import Panel from "./Panel/Panel.tsx";
 import CurrentlyPlaying from "./CurrentlyPlaying.tsx";
-import {asyncAction} from "./playerThunks.ts";
+import playerAsyncActions  from "./state/thunks/playerThunks.ts";
+import playbackAsyncActions  from "./state/thunks/playbackThunks.ts";
+import queueAsyncActions  from "./state/thunks/queueThunks.ts";
 
 const playerReducer = slice.reducer
 const playerActions = {
     ...slice.actions,
-    ...asyncAction,
+    ...playerAsyncActions,
+    ...playbackAsyncActions,
+    ...queueAsyncActions,
 
 }
 
