@@ -147,6 +147,12 @@ export const spotifyAPI = {
     async transferPlayback(device_id: string) {
         return await spotifyAPIInstance.put('me/player', {device_ids: [device_id]})
     },
+    async fetchUserQueue() {
+        return await spotifyAPIInstance.get<{ currently_playing: Track, queue: Track[] }>('me/player/queue')
+    },
+    async addItemToUserQueue(uri: string, device_id: string) {
+        return await spotifyAPIInstance.post(`me/player/queue?uri=${uri}&device_id=${device_id}`)
+    },
         return await spotifyAPIInstance.put(`me/player/play?device_id=${deviceID}`)
     },
     async pause(deviceID:string) {
