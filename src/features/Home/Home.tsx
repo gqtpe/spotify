@@ -5,7 +5,7 @@ import axios from "axios";
 import {useActions} from "../Application/hooks";
 import {playerActions} from "../Player";
 import toast from "react-hot-toast";
-import {ActiveDevice} from "../Player/playerSlice.ts";
+import {ActiveDevice} from "../Player/state/playerSlice.ts";
 
 const handleClick = async () => {
     const response = await spotifyAPI.getMe()

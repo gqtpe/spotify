@@ -1,7 +1,7 @@
 import {useActions, useAppSelector} from "../../Application/hooks";
 import {playerActions, playerSelectors} from "../index.ts";
 import {useCallback} from "react";
-import {ActiveDevice} from "../playerSlice.ts";
+import {ActiveDevice} from "../state/playerSlice.ts";
 
 
 const useProgress = (device: ActiveDevice | null) => {

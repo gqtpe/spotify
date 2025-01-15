@@ -1,7 +1,7 @@
 import {useCallback} from "react";
 import {playerActions} from "../index.ts";
 import {useActions, useAppSelector} from "../../Application/hooks";
-import {PlayParamTypes} from "../playerThunks.ts";
+import {PlayParamTypes} from "../state/thunks/playerThunks.ts";
 
 type PlayParam = | {
     type: 'playlist' | 'album'

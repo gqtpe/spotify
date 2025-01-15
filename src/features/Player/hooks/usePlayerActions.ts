@@ -1,7 +1,7 @@
 import {useCallback} from "react";
 import {useActions} from "../../Application/hooks";
 import {playerActions} from "../index.ts";
-import {ActiveDevice} from "../playerSlice.ts";
+import {ActiveDevice} from "../state/playerSlice.ts";
 import {RepeatState} from "../types.ts";
 
 
