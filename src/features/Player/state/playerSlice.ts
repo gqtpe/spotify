@@ -96,6 +96,12 @@ const slice = createSlice({
             state.availableDevices.loading = 'succeeded'
         })
         builder.addCase(playbackThunks.transferPlayback.fulfilled, (state, action)=>{
+            const selectedDevice = state.availableDevices.items.find(t=>t.id === action.payload)
+            // state.availableDevices.items = state.availableDevices.items.filter(d => d.id !== action.payload)
+            if(selectedDevice){
+                state.playback.activeDevice = selectedDevice
+            }
+        })
         builder.addCase(queueThunks.fetchQueue.fulfilled, (state, action)=>{
             state.queue = action.payload
         })
