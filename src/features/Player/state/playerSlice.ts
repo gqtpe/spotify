@@ -97,6 +97,8 @@ const slice = createSlice({
         })
         builder.addCase(playbackThunks.transferPlayback.fulfilled, (state, action)=>{
         builder.addCase(queueThunks.fetchQueue.fulfilled, (state, action)=>{
+            state.queue = action.payload
+        })
     }
 })
 export type ActiveDevice = {
