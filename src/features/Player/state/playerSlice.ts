@@ -12,6 +12,7 @@ import {
     setRepeat,
     setShuffle
 } from "./playerThunks.ts";
+import {Track} from "../../../api/types/track.ts";
 import playerThunks from "./thunks/playerThunks.ts";
 
 const initialState = {
