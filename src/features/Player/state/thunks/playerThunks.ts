@@ -1,33 +1,10 @@
 import {createAsyncThunk} from "@reduxjs/toolkit";
-import {spotifyAPI} from "../../api/spotifyAPI.ts";
-import {handleError, throwMessage} from "../../common/utils/error-utils.ts";
+import {spotifyAPI} from "../../../../api/spotifyAPI.ts";
+import {handleError, throwMessage} from "../../../../common/utils/error-utils.ts";
 import {AxiosError} from "axios";
-import type {Device, PlayerBackState, RepeatState} from "./types.ts";
+import type {RepeatState} from "../../types.ts";
 
-export const fetchPlaybackState = createAsyncThunk<PlayerBackState, undefined>('player/fetchPlaybackState', async (_, thunkAPI) => {
-    try {
-        const res = await spotifyAPI.getPlaybackState();
-        if (res.status === 200) {
-            return res.data
-        }
-    } catch (e) {
-        return handleError(e as AxiosError, thunkAPI.rejectWithValue)
-    }
-})
-export const fetchCurrentlyPlaying = createAsyncThunk<PlayerBackState, undefined, {
-    rejectValue: unknown
-}>('player/fetchCurrentlyPlaying', async (_, thunkAPI) => {
-    try {
-        const response = await spotifyAPI.getCurrentlyPlaying()
-        if (response.status === 200) {
-            return response.data
-        }
-        return thunkAPI.rejectWithValue(response.statusText)
-    } catch (e) {
-        return handleError(e as AxiosError, thunkAPI.rejectWithValue)
-    }
-})
-export const resume = createAsyncThunk<string, string>('player/resume', async (deviceID, thunkAPI) => {
+const resume = createAsyncThunk<string, string>('player/resume', async (deviceID, thunkAPI) => {
     try {
         const res = await spotifyAPI.resume(deviceID);
         return res.data
@@ -35,7 +12,7 @@ export const resume = createAsyncThunk<string, string>('player/resume', async (d
         return handleError(e as AxiosError, thunkAPI.rejectWithValue)
     }
 })
-export const pause = createAsyncThunk<string, string>('player/pause', async (deviceID, thunkAPI) => {
+const pause = createAsyncThunk<string, string>('player/pause', async (deviceID, thunkAPI) => {
     try {
         const res = await spotifyAPI.pause(deviceID);
         return res.data
@@ -59,7 +36,7 @@ const previous = createAsyncThunk<string, string>('player/previous', async (devi
         return handleError(e as AxiosError, thunkAPI.rejectWithValue)
     }
 })
-export const setShuffle = createAsyncThunk<{ state: boolean, id: string }, {
+const setShuffle = createAsyncThunk<{ state: boolean, id: string }, {
     state: boolean,
     deviceID: string
 }>('player/setShuffle', async ({state, deviceID}, thunkAPI) => {
@@ -70,7 +47,7 @@ export const setShuffle = createAsyncThunk<{ state: boolean, id: string }, {
         return handleError(e as AxiosError, thunkAPI.rejectWithValue)
     }
 })
-export const setRepeat = createAsyncThunk<{ repeat_state: RepeatState, id: string }, {
+const setRepeat = createAsyncThunk<{ repeat_state: RepeatState, id: string }, {
     repeat_state: RepeatState,
     deviceID: string
 }>('player/setRepeat', async ({repeat_state, deviceID}, thunkAPI) => {
@@ -81,7 +58,7 @@ export const setRepeat = createAsyncThunk<{ repeat_state: RepeatState, id: strin
         return handleError(e as AxiosError, thunkAPI.rejectWithValue)
     }
 })
-export const seekPosition = createAsyncThunk<{ position_ms: number, response: string }, {
+const seekPosition = createAsyncThunk<{ position_ms: number, response: string }, {
     position_ms: number,
     deviceID: string
 }>('player/seekPosition', async ({position_ms, deviceID}, thunkAPI) => {
@@ -123,20 +100,8 @@ const play = createAsyncThunk<unknown, PlayParamTypes>('player/play', async (par
         return handleError(e as AxiosError, thunkAPI.rejectWithValue)
     }
 })
-export const fetchDevices = createAsyncThunk<Device[], undefined>('player/fetchDevices', async (_, thunkAPI) => {
-    try {
-        const res = await spotifyAPI.getAvailableDevices();
-        if(res.data.devices.length === 0){
-            throwMessage('No device found')
-        }
-        return res.data.devices
-    } catch (e) {
-        return handleError(e as AxiosError, thunkAPI.rejectWithValue)
-    }
-})
-export const asyncAction = {
-    fetchPlaybackState,
-    fetchCurrentlyPlaying,
+
+export default  {
     resume,
     pause,
     next,
@@ -145,7 +110,6 @@ export const asyncAction = {
     setRepeat,
     seekPosition,
     play,
-    fetchDevices
 }
 export type PlayParamTypes =
     | {
