@@ -1,6 +1,8 @@
 import "./Devices.scss"
 import {useAppSelector} from "../../../hooks";
 import {playerSelectors} from "../../../../Player";
+import {useActions, useAppSelector} from "../../../hooks";
+import {playerActions, playerSelectors} from "../../../../Player";
 import {Typography} from "../../../../../common/components/Typography/Typography.tsx";
 import {TbDeviceLaptop} from "react-icons/tb";
 
