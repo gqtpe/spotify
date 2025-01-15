@@ -40,10 +40,10 @@ const slice = createSlice({
         }
     },
     extraReducers: builder => {
-        builder.addCase(fetchPlaybackState.pending, state => {
+        builder.addCase(playbackThunks.fetchPlaybackState.pending, state => {
             state.playbackLoading = 'loading'
         })
-        builder.addCase(fetchPlaybackState.fulfilled, (state, action) => {
+        builder.addCase(playbackThunks.fetchPlaybackState.fulfilled, (state, action) => {
             if (action.payload) {
                 if (action.payload.device.is_active) {
                     state.playback.activeDevice = {id: action.payload.device.id, name: action.payload.device.name}
@@ -58,7 +58,7 @@ const slice = createSlice({
                 state.playbackLoading = 'succeeded'
             }
         })
-        builder.addCase(fetchCurrentlyPlaying.fulfilled, (state, action: PayloadAction<PlayerBackState>) => {
+        builder.addCase(playbackThunks.fetchCurrentlyPlaying.fulfilled, (state, action: PayloadAction<PlayerBackState>) => {
             if (action.payload) {
                 if (action.payload.item.type === 'track') {
                     state.item = action.payload.item
