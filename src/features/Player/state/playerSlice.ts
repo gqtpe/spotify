@@ -12,6 +12,7 @@ import {
     setRepeat,
     setShuffle
 } from "./playerThunks.ts";
+import playerThunks from "./thunks/playerThunks.ts";
 
 const initialState = {
     playback: {
@@ -68,31 +69,33 @@ const slice = createSlice({
         })
 
 
-        builder.addCase(setShuffle.fulfilled, (state, action) => {
+        builder.addCase(playerThunks.setShuffle.fulfilled, (state, action) => {
             state.playback.shuffleState = action.payload.state
         })
-        builder.addCase(setRepeat.fulfilled, (state, action) => {
+        builder.addCase(playerThunks.setRepeat.fulfilled, (state, action) => {
             state.playback.repeatState = action.payload.repeat_state
         })
-        builder.addCase(seekPosition.fulfilled, (state, action: PayloadAction<{
+        builder.addCase(playerThunks.seekPosition.fulfilled, (state, action: PayloadAction<{
             position_ms: number,
             response: string
         }>) => {
             state.playback.progress = action.payload.position_ms
         })
-        builder.addCase(pause.fulfilled, (state) => {
+        builder.addCase(playerThunks.pause.fulfilled, (state) => {
             state.playback.isPlaying = false
         })
-        builder.addCase(resume.fulfilled, (state) => {
+        builder.addCase(playerThunks.resume.fulfilled, (state) => {
             state.playback.isPlaying = true
         })
-        builder.addCase(fetchDevices.pending, state => {
+        builder.addCase(playbackThunks.fetchDevices.pending, state => {
             state.availableDevices.loading = 'loading'
         })
-        builder.addCase(fetchDevices.fulfilled, (state, action) => {
+        builder.addCase(playbackThunks.fetchDevices.fulfilled, (state, action) => {
             state.availableDevices.items = action.payload.filter(d => d.id !== state.playback.activeDevice?.id)
             state.availableDevices.loading = 'succeeded'
         })
+        builder.addCase(playbackThunks.transferPlayback.fulfilled, (state, action)=>{
+        builder.addCase(queueThunks.fetchQueue.fulfilled, (state, action)=>{
     }
 })
 export type ActiveDevice = {
