@@ -15,6 +15,6 @@ export const throwMessage = (message: string, success?: boolean, rejectWithValue
     if (success) toast.success(message, toastOptions)
     else toast(message, toastOptions)
     if (rejectWithValue) {
-        return rejectWithValue
+        return rejectWithValue(message)
     }
 }
