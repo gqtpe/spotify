@@ -144,6 +144,9 @@ export const spotifyAPI = {
     },
     //player actions
     async resume(deviceID:string) {
+    async transferPlayback(device_id: string) {
+        return await spotifyAPIInstance.put('me/player', {device_ids: [device_id]})
+    },
         return await spotifyAPIInstance.put(`me/player/play?device_id=${deviceID}`)
     },
     async pause(deviceID:string) {
