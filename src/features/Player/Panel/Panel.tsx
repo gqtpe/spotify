@@ -8,12 +8,15 @@ import Paper from "../../../common/components/Modal/Paper.tsx";
 import AvailableDevices from "./AvailableDevices/AvailableDevices.tsx";
 import {HiMiniQueueList} from "react-icons/hi2";
 import {useSidebar} from "../../Application/hooks/useSidebar.ts";
+import {useAppSelector} from "../../Application/hooks";
+import {playerSelectors} from "../index.ts";
 
 
 const availableDevicesWidth = '12rem'
 const Panel: FC = () => {
     const [showPopup, setShowPopup] = useState<boolean>(false);
     const anchorEl = useRef<HTMLButtonElement>(null);
+    const isPlaying = useAppSelector(playerSelectors.selectPlaybackItem)
     const {open, content, openSidebar, closeSidebar} = useSidebar()
     const togglePopup = useCallback(() => {
         setShowPopup(prev => !prev);
@@ -29,7 +32,7 @@ const Panel: FC = () => {
             <IconButton variant="icon" onClick={togglePopup} ref={anchorEl} disabled={content === 'devices'}>
                 <MdDevices/>
             </IconButton>
-            <IconButton variant="icon" onClick={openQueue}  disabled={content === 'queue'}>
+            <IconButton variant="icon" onClick={openQueue}  disabled={content === 'queue' || !isPlaying}>
                 <HiMiniQueueList />
             </IconButton>
 
