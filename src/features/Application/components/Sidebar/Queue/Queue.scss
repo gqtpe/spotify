@@ -1,0 +1,12 @@
+@use '../../../../../common/styles/scrollbar';
+
+.queue{
+  height: 100%;
+  padding:0.5rem;
+  overflow:hidden;
+  &__list{
+    overflow-y: scroll;
+    height: 100%;
+    @include scrollbar.scrollbar();
+  }
+}
