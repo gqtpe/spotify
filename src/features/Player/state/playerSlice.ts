@@ -83,7 +83,17 @@ const slice = createSlice({
             state.availableDevices.loading = 'loading'
         })
         builder.addCase(playbackThunks.fetchDevices.fulfilled, (state, action) => {
-            state.availableDevices.items = action.payload.filter(d => d.id !== state.playback.activeDevice?.id)
+            const activeDevice = action.payload.find(d=>d.is_active)
+            if(state.playback && activeDevice){
+                state.playback.activeDevice = {
+                    id: activeDevice.id,
+                    name: activeDevice.name,
+                }
+                state.availableDevices.items = action.payload.filter(d => d.id !== activeDevice.id)
+            }else{
+                state.availableDevices.items = action.payload
+            }
+
             state.availableDevices.loading = 'succeeded'
         })
         builder.addCase(playbackThunks.transferPlayback.fulfilled, (state, action)=>{
