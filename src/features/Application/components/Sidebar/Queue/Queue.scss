@@ -2,9 +2,12 @@
 
 .queue{
   height: 100%;
-  padding:0.5rem;
+  display: flex;
+  flex-direction: column;
+  padding:0.5rem 0.5rem 0 0.5rem;
   overflow:hidden;
   &__list{
+    margin-top: 0.5rem;
     overflow-y: scroll;
     height: 100%;
     @include scrollbar.scrollbar();
