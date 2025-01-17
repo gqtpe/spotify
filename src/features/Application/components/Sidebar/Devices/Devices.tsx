@@ -21,7 +21,7 @@ const Devices = () => {
                     children={availableDevices.length === 0 ? 'No other device found' : 'Select another device'}/>
         <div className="devices__available">
             {availableDevices.length ? availableDevices.map(t => {
-                return <div className="devices__item" onClick={()=>transferPlayback(t.id)}>
+                return <div className="devices__item" onClick={()=>transferPlayback(t.id)} key={t.id}>
                     <Typography variant="h6" className="current__title" icon={<TbDeviceLaptop/>}>{t.name}</Typography>
                 </div>
             }):null}
