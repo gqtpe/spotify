@@ -8,6 +8,14 @@ const meta: Meta = {
     title: 'common/Typography',
     component: Typography,
     tags: ['autodocs'],
+    decorators:[
+        (Story)=>(
+            //importing Browser Router because Typography link variant using Link component from react router dom
+            <BrowserRouter>
+                <Story/>
+            </BrowserRouter>
+        )
+    ],
     parameters: {
         backgrounds: {
             values: [
