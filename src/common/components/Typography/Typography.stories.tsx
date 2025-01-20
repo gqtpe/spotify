@@ -23,6 +23,8 @@ export default meta;
 
 type Story = StoryObj<typeof Typography>
 
+
+
 export const Variants: Story = {
     storyName: 'All Typographies',
     render: ()=>{
@@ -42,5 +44,92 @@ export const Variants: Story = {
             <Typography variant="subtitle2">Lorem ipsum dolor sit amet.</Typography>
 
         </div>
+    }
+}
+export const H1: Story = {
+    storyName: 'H1',
+    args:{
+        children: 'Typography',
+        variant: "h1"
+    }
+}
+export const H2: Story = {
+    storyName: 'H1',
+    args:{
+        children: 'Typography',
+        variant: "h2"
+    }
+}
+export const H3: Story = {
+    storyName: 'H3',
+    args:{
+        children: 'Typography',
+        variant: "h3"
+    }
+}
+export const H4: Story = {
+    storyName: 'H4',
+    args:{
+        children: 'Typography',
+        variant: "h4"
+    }
+}
+export const H5: Story = {
+    storyName: 'H5',
+    args:{
+        children: 'Typography',
+        variant: "h5"
+    }
+}
+export const H6: Story = {
+    storyName: 'H6',
+    args:{
+        children: 'Typography',
+        variant: "h6"
+    }
+}
+export const Link: Story = {
+    storyName: 'Link',
+    args: {
+        children: 'Typography',
+        variant: 'h2',
+        link: 'https://youtube.com'
+    }
+}
+export const WithIcon: Story = {
+    storyName: 'IconWith',
+    args: {
+        children: 'Typography',
+        variant: 'h2',
+        icon: <AiFillAlert/>,
+    }
+}
+export const DIV: Story = {
+    storyName: 'H6',
+    args:{
+        children: 'Typography',
+        variant: "div"
+    }
+}
+export const Overline: Story = {
+    storyName: 'Overline',
+
+    args:{
+        children: 'Typography',
+        variant: "overline"
+    }
+}
+export const Subtitle1: Story = {
+    storyName: 'Subtitle 1',
+    args:{
+        children: 'Typography',
+        variant: "subtitle1"
+    }
+}
+export const Subtitle2: Story = {
+    storyName: 'Subtitle 2',
+    args:{
+        children: 'Typography',
+        variant: "subtitle2"
     }
 }
