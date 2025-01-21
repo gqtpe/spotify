@@ -40,3 +40,8 @@ const useContextMenu = (type: MenuType) => {
                 })}
             </Menu>, document.getElementById("portal-menu")!)
     }, [position])
+
+    return {handleContextMenu, renderMenu}
+}
+
+export default useContextMenu;
