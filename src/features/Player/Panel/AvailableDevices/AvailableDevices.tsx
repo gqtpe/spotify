@@ -15,7 +15,7 @@ const AvailableDevices: FC<Props> = ({transferPlayback,...rest}) => {
     const {fetchDevices} = useActions(playerActions)
     useEffect(() => {
         fetchDevices()
-    }, [])
+    }, [fetchDevices])
     if (loading !== 'succeeded') return null
     return (
         <div {...rest} className={styles.actions__availableDevices}>
