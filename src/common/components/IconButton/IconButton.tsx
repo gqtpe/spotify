@@ -5,7 +5,6 @@ type IconButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
     variant?: 'filled' | 'outlined' | 'icon';
     fz?: number|string;
 };
-//todo:add disabled property
 const IconButton = forwardRef<HTMLButtonElement, IconButtonProps>(
     ({variant = 'filled',onClick, children, className, disabled, fz, ...rest}, ref) => {
         return (
