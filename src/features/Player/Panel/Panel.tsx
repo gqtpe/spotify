@@ -18,7 +18,7 @@ const Panel: FC = () => {
     const [showPopup, setShowPopup] = useState<boolean>(false);
     const anchorEl = useRef<HTMLButtonElement>(null);
     const isPlaying = useAppSelector(playerSelectors.selectPlaybackItem)
-    const {open, content, openSidebar} = useSidebar()
+    const { content, openSidebar} = useSidebar()
     const togglePopup = useCallback(() => {
         setShowPopup(prev => !prev);
     }, []);
@@ -27,11 +27,11 @@ const Panel: FC = () => {
     }, [])
     const openQueue = useCallback(() => {
         openSidebar({type: 'queue'})
-    }, [open, openSidebar])
+    }, [openSidebar])
     const handleClick = useCallback(() => {
         openSidebar({type: 'devices'})
         closePopup()
-    }, [open, openSidebar])
+    }, [closePopup,  openSidebar])
     return (
         <div className={[styles.footer__actions, styles.actions].join(' ')}>
             <IconButton variant="icon" onClick={togglePopup} ref={anchorEl} disabled={content === 'devices'}>
