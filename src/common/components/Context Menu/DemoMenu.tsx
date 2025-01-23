@@ -1,5 +1,7 @@
 import {CSSProperties, useEffect} from "react";
-import { useContextMenu } from "../../../features/Application/hooks";
+import {useContextMenu} from "../../../features/Application/hooks";
+import Menu from "../../../features/Application/components/Menu/Menu.tsx";
+import MenuItem from "../../../features/Application/components/Menu/MenuItem/MenuItem.tsx";
 
 const wrapper: CSSProperties = {
     width: '100%',
@@ -26,7 +28,7 @@ const menu: CSSProperties = {
 }
 
 export const DemoMenu = () => {
-    const {renderMenu, handleContextMenu} = useContextMenu('track');
+    const {handleContextMenu, position, anchorEl} = useContextMenu();
     useEffect(() => {
         const disableContextMenu = (e: MouseEvent) => {
             const target = e.target as Element;
@@ -45,12 +47,19 @@ export const DemoMenu = () => {
     return <div style={wrapper}>
         <div style={content}>
             <div style={menu} onContextMenu={handleContextMenu}>
-                (context menu area)
-                {renderMenu()}
+                <Menu open={!!position} portalID="portal-menu"
+                      sx={position ? {position: 'absolute', top: position.y, left: position.x} : undefined}
+                      ref={anchorEl}>
+                    <MenuItem title="item 1"/>
+                    <MenuItem title="item 2"/>
+                    <MenuItem title="item 3"/>
+                    <MenuItem title="item 4"/>
+                </Menu>
             </div>
         </div>
         <div id="portal-menu" style={portal}>
         </div>
     </div>
+
 }
 
