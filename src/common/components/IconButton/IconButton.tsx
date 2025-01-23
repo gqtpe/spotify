@@ -22,4 +22,4 @@ const IconButton = forwardRef<HTMLButtonElement, IconButtonProps>(
     }
 );
 
-export default IconButton;
+export default memo(IconButton);
