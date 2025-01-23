@@ -2,6 +2,7 @@ import { useActions } from "./useActions.ts";
 import { useAppDispatch } from "./useAppDispatch.ts";
 import { useAppSelector } from "./useAppSelector.ts";
 import useOnClickOutside from "./useOnClickOutside.ts";
+import useSidebarStack from "./useSidebarStack.ts";
 import useContextMenu from "./useContextMenu/useContextMenu.tsx";
 
 
@@ -12,4 +13,5 @@ export {
     useActions,
     useOnClickOutside,
     useContextMenu,
+    useSidebarStack
 }
