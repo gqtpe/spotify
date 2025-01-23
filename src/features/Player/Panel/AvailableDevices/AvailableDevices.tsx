@@ -1,9 +1,8 @@
 import styles from "../../Footer.module.scss";
-import {FC, HTMLAttributes, useCallback, useEffect} from "react";
+import {FC, HTMLAttributes, useEffect} from "react";
 import {useActions, useAppSelector} from "../../../Application/hooks";
 import {playerActions, playerSelectors} from "../../index.ts";
 import Typography from "../../../../common/components/Typography/Typography.tsx";
-import {useSidebar} from "../../../Application/hooks/useSidebar.ts";
 import Button from "../../../../common/components/Button/Button.tsx";
 
 type Props = {
