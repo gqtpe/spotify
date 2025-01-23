@@ -7,13 +7,6 @@ type Props = DetailedHTMLProps<InputHTMLAttributes<HTMLInputElement>, HTMLInputE
 }
 
 const Search = ({width, ...rest}: Props) => {
-    //todo:
-    // 1.1: move query to rtk
-    // 1.2: add loading logic for fetching search data,
-    // 1.3: query is changed? clear items
-    // 1.4: add pagination
-    // 1.5: add requesting items while scrolling
-    // 1.6: space is space
     return (
         <div className={styles.search} style={{width: `${width * 16}px`}}>
             <FiSearch id="search-icon" className={styles.icon}/>
