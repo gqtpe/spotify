@@ -10,6 +10,7 @@ import {HiMiniQueueList} from "react-icons/hi2";
 import {useSidebar} from "../../Application/hooks/useSidebar.ts";
 import {useAppSelector} from "../../Application/hooks";
 import {playerSelectors} from "../index.ts";
+import OutsideClick from "../../../common/hoc/OutisideClick/OutsideClick.tsx";
 
 
 const availableDevicesWidth = '12rem'
@@ -21,19 +22,23 @@ const Panel: FC = () => {
     const togglePopup = useCallback(() => {
         setShowPopup(prev => !prev);
     }, []);
-    const closePopup = useCallback(()=>{
+    const closePopup = useCallback(() => {
         setShowPopup(false)
-    },[])
+    }, [])
     const openQueue = useCallback(() => {
         openSidebar({type: 'queue'})
-    },[open, closeSidebar, openSidebar])
+    }, [open, closeSidebar, openSidebar])
+    const handleClick = useCallback(() => {
+        openSidebar({type: 'devices'})
+        closePopup()
+    }, [open, closeSidebar, openSidebar])
     return (
         <div className={[styles.footer__actions, styles.actions].join(' ')}>
             <IconButton variant="icon" onClick={togglePopup} ref={anchorEl} disabled={content === 'devices'}>
                 <MdDevices/>
             </IconButton>
-            <IconButton variant="icon" onClick={openQueue}  disabled={content === 'queue' || !isPlaying}>
-                <HiMiniQueueList />
+            <IconButton variant="icon" onClick={openQueue} disabled={content === 'queue' || !isPlaying}>
+                <HiMiniQueueList/>
             </IconButton>
 
 
