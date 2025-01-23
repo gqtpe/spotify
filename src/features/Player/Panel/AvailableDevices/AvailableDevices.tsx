@@ -10,7 +10,7 @@ type Props = {
     transferPlayback: () => void
 } & HTMLAttributes<HTMLDivElement>
 
-const AvailableDevices: FC<Props> = ({close, ...rest}) => {
+const AvailableDevices: FC<Props> = ({transferPlayback,...rest}) => {
     const loading = useAppSelector(playerSelectors.selectAvailableDevicesLoading)
     const items = useAppSelector(playerSelectors.selectAvailableDevices)
     const {fetchDevices} = useActions(playerActions)
