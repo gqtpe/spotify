@@ -44,9 +44,11 @@ const Panel: FC = () => {
                     placement="top"
                     margin={24}
                 >
-                    <Paper style={{maxWidth: availableDevicesWidth, minWidth: availableDevicesWidth}}>
-                        <AvailableDevices close={closePopup}/>
-                    </Paper>
+                    <OutsideClick callback={closePopup}>
+                        <Paper style={{maxWidth: availableDevicesWidth, minWidth: availableDevicesWidth}}>
+                            <AvailableDevices transferPlayback={handleClick}/>
+                        </Paper>
+                    </OutsideClick>
                 </Modal>,
                 document.getElementById('portal')!
             )}
