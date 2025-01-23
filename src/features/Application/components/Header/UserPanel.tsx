@@ -42,7 +42,7 @@ const UserPanel = () => {
                 </OutsideClick>
             </Modal>, document.getElementById('portal')!)}
             <Badge variant="filled" onClick={onClick} ref={anchorEl}>{user?.images[0]?.url &&
-                <img src={user.images[0].url}/>}</Badge>
+                <img src={user.images[0].url} alt="user.images"/>}</Badge>
         </div>
     );
 };
