@@ -1,4 +1,4 @@
-import {ButtonHTMLAttributes, forwardRef} from "react";
+import {ButtonHTMLAttributes, forwardRef, memo} from "react";
 import styles from "./IconButton.module.scss";
 
 type IconButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
