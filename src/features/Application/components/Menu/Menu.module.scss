@@ -6,6 +6,7 @@
     box-shadow: var(--box-shadow);
     transition: filter 0.2s ease-in-out;
     padding: 0.25rem;
+    min-width: 10rem;
     .menu__item{
         transition: background-color 0.2s ease-in-out;
         height: 2.5rem;
