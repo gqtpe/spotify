@@ -7,7 +7,7 @@ import {useSidebar} from "../../../Application/hooks/useSidebar.ts";
 import Button from "../../../../common/components/Button/Button.tsx";
 
 type Props = {
-    close: () => void
+    transferPlayback: () => void
 } & HTMLAttributes<HTMLDivElement>
 
 const AvailableDevices: FC<Props> = ({close, ...rest}) => {
@@ -35,7 +35,7 @@ const AvailableDevices: FC<Props> = ({close, ...rest}) => {
                 {items.length === 0 && <div>(device not found)</div>}
             </div>
 
-            <Button variant="filled" density="compact" onClick={handleClick}>Transfer Playback</Button>
+            <Button variant="filled" density="compact" onClick={transferPlayback}>Transfer Playback</Button>
         </div>
     );
 };
