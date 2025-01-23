@@ -14,14 +14,9 @@ const AvailableDevices: FC<Props> = ({transferPlayback,...rest}) => {
     const loading = useAppSelector(playerSelectors.selectAvailableDevicesLoading)
     const items = useAppSelector(playerSelectors.selectAvailableDevices)
     const {fetchDevices} = useActions(playerActions)
-    const {open, openSidebar, closeSidebar} = useSidebar()
     useEffect(() => {
         fetchDevices()
     }, [])
-    const handleClick = useCallback(() => {
-        openSidebar({type: 'devices'})
-        close()
-    }, [open, closeSidebar, openSidebar])
     if (loading !== 'succeeded') return null
     return (
         <div {...rest} className={styles.actions__availableDevices}>
