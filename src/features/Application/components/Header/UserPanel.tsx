@@ -24,7 +24,7 @@ const UserPanel = () => {
         localStorage.clear()
         dispatch({type: 'auth/logout'})
         navigate('/login')
-    }, [])
+    }, [navigate, dispatch])
     return (
         <div className="user-panel">
             <Badge variant="icon">
