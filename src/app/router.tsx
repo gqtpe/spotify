@@ -9,8 +9,6 @@ import {Login} from "../features/Auth";
 import Callback from "../features/callback/Callback.tsx";
 import GenrePage from "../features/Browse/Genres/Genre/GenrePage.tsx";
 
-//todo: lazy component loading(suspense)
-
 export const router = createBrowserRouter([
     {
         path: '/',

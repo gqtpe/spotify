@@ -12,7 +12,6 @@ const combinedReducer =  combineReducers({
     library: userLibraryReducer,
     player: playerReducer,
 })
-//todo: create action auth/logout
 export const rootReducer = (state: any, action: AnyAction) =>{
     if(action.type === 'auth/logout'){
         state = {}
