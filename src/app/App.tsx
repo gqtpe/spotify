@@ -4,12 +4,11 @@ import {useInit} from './useInit.ts';
 import {Header} from "../features/Application/components/Header/Header.tsx";
 import {Footer} from "../features/Player";
 import {Library} from "../features/Library";
-import {useSidebar} from "../features/Application/hooks/useSidebar.ts";
 import {RequireAuth} from "../common/hoc/RequireAuth.tsx";
 import {Toaster} from "react-hot-toast";
-import {useCallback, useEffect, useState} from "react";
 import {SidebarContent} from "../features/Application/appSlice.ts";
 import Sidebar from "../features/Application/components/Sidebar/Sidebar.tsx";
+import {useSidebarStack} from "../features/Application/hooks";
 
 export type StackItem = {
     id: string
@@ -19,31 +18,7 @@ export type StackItem = {
 function App() {
     console.log('APP')
     const {isInitialized} = useInit()
-
-
-    //todo: move out------
-    const {sidebarContentType, open, closeSidebar} = useSidebar()
-    const [stack, setStack] = useState<StackItem[]>([])
-    const unshift = useCallback((item: StackItem) => {
-        const filteredStack = stack.filter(t=>t.name !== item.name)
-        setStack([item, ...filteredStack])
-    }, [setStack, stack])
-
-    const removeItem = useCallback((id: string) => {
-        const filteredItems = stack.filter(item => item.id !== id)
-        setStack(filteredItems)
-        if (stack.length === 1) {
-            closeSidebar()
-        }
-    }, [setStack, stack, closeSidebar, stack.length])
-    useEffect(() => {
-        if (sidebarContentType) {
-            const item: StackItem = {id: `${Date.now()}`, name: sidebarContentType}
-            unshift(item)
-        }
-    }, [sidebarContentType]);
-    //----------------------
-
+    const {stack, removeItem, open} = useSidebarStack()
 
     if (!isInitialized) {
         return <div className="loader"/>
