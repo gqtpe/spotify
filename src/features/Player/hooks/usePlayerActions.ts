@@ -9,30 +9,26 @@ const usePlayerActions = (device: ActiveDevice | null, shuffleState: boolean, is
     const {pause, resume, setRepeat, next, fetchCurrentlyPlaying, previous, setShuffle} = useActions(playerActions)
 
     const shuffle = useCallback(() => {
-        if (device) {
-            if (shuffleState) {
-                setShuffle({state: false, deviceID: device.id})
-            } else {
-                setShuffle({state: true, deviceID: device.id})
-            }
+        if (shuffleState) {
+            setShuffle({state: false, deviceID: activeDeviceID})
+        } else {
+            setShuffle({state: true, deviceID: activeDeviceID})
         }
-    }, [device, setShuffle, shuffleState])
+    }, [activeDeviceID, setShuffle, shuffleState])
     const prev = useCallback(async () => {
-        if(device){
-            await previous(device.id)
+        const action = await previous(activeDeviceID);
+        if (playerActions.previous.fulfilled.match(action)) {
             await fetchCurrentlyPlaying()
         }
     }, [previous, device])
     const togglePlay = useCallback(() => {
-        if (device) {
-            if (is_playing) {
-                pause(device.id)
-            } else {
-                resume(device.id)
-            }
-            fetchCurrentlyPlaying()
+        if (is_playing) {
+            pause(activeDeviceID)
+        } else {
+            resume(activeDeviceID)
         }
-    }, [is_playing, device])
+        fetchCurrentlyPlaying()
+    }, [is_playing, activeDeviceID])
     const skip = useCallback(async () => {
         if(device){
             await next(device.id)
@@ -40,14 +36,12 @@ const usePlayerActions = (device: ActiveDevice | null, shuffleState: boolean, is
         }
     }, [next, device])
     const repeat = useCallback(() => {
-        if(device){
-            if(repeatState === "off"){
-                setRepeat({repeat_state: "context", deviceID: device.id})
-            }else if(repeatState === "context"){
-                setRepeat({repeat_state: "track", deviceID: device.id})
-            }else{
-                setRepeat({repeat_state: "off", deviceID: device.id})
-            }
+        if (repeatState === "off") {
+            setRepeat({repeat_state: "context", deviceID: activeDeviceID})
+        } else if (repeatState === "context") {
+            setRepeat({repeat_state: "track", deviceID: activeDeviceID})
+        } else {
+            setRepeat({repeat_state: "off", deviceID: activeDeviceID})
         }
     }, [device, repeatState, setRepeat])
     return {togglePlay, shuffle, prev, next: skip, repeat}
