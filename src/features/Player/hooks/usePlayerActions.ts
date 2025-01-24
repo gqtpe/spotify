@@ -51,6 +51,10 @@ const usePlayerActions = (device: ActiveDevice | null, shuffleState: boolean, is
         }
     }, [device, repeatState, setRepeat])
     return {togglePlay, shuffle, prev, next: skip, repeat}
+    const callback = useCallback((position_ms: number) => {
+        seekPosition({position_ms: position_ms, deviceID: activeDevice.id})
+    }, [activeDevice])
+    return {togglePlay, shuffle, prev, next: skip, repeat, seekPosition:callback}
 }
 
 export default usePlayerActions;
