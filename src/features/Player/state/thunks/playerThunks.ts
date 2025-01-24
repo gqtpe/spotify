@@ -6,6 +6,9 @@ import type {RepeatState} from "../../types.ts";
 
 const resume = createAsyncThunk<string, string>('player/resume', async (deviceID, thunkAPI) => {
     try {
+        if(!deviceID){
+            return throwMessage('Playback successfully next', false,thunkAPI.rejectWithValue)
+        }
         const res = await spotifyAPI.resume(deviceID);
         return res.data
     } catch (e) {
@@ -14,6 +17,9 @@ const resume = createAsyncThunk<string, string>('player/resume', async (deviceID
 })
 const pause = createAsyncThunk<string, string>('player/pause', async (deviceID, thunkAPI) => {
     try {
+        if(!deviceID){
+            return throwMessage('Playback successfully next', false,thunkAPI.rejectWithValue)
+        }
         const res = await spotifyAPI.pause(deviceID);
         return res.data
     } catch (e) {
@@ -22,6 +28,9 @@ const pause = createAsyncThunk<string, string>('player/pause', async (deviceID, 
 })
 const next = createAsyncThunk<string, string>('player/next', async (deviceID, thunkAPI) => {
     try {
+        if(!deviceID){
+            return throwMessage('Playback successfully next', false,thunkAPI.rejectWithValue)
+        }
         const res = await spotifyAPI.next(deviceID);
         return res.data
     } catch (e) {
@@ -32,6 +41,9 @@ const previous = createAsyncThunk<string, string>('player/previous', async (devi
     try {
         const res = await spotifyAPI.previous(deviceID);
         return res.data
+        if(!deviceID){
+            return throwMessage('Playback successfully next', false,thunkAPI.rejectWithValue)
+        }
     } catch (e) {
         return handleError(e as AxiosError, thunkAPI.rejectWithValue)
     }
@@ -41,6 +53,9 @@ const setShuffle = createAsyncThunk<{ state: boolean, id: string }, {
     deviceID: string
 }>('player/setShuffle', async ({state, deviceID}, thunkAPI) => {
     try {
+        if(!deviceID){
+            return throwMessage('Playback successfully next', false,thunkAPI.rejectWithValue)
+        }
         const res = await spotifyAPI.setShuffle(state, deviceID);
         return {state, id: res.data}
     } catch (e) {
@@ -52,6 +67,9 @@ const setRepeat = createAsyncThunk<{ repeat_state: RepeatState, id: string }, {
     deviceID: string
 }>('player/setRepeat', async ({repeat_state, deviceID}, thunkAPI) => {
     try {
+        if(!deviceID){
+            return throwMessage('Playback successfully next', false,thunkAPI.rejectWithValue)
+        }
         const res = await spotifyAPI.setRepeat(repeat_state, deviceID);
         return {repeat_state, id: res.data}
     } catch (e) {
@@ -63,6 +81,9 @@ const seekPosition = createAsyncThunk<{ position_ms: number, response: string },
     deviceID: string
 }>('player/seekPosition', async ({position_ms, deviceID}, thunkAPI) => {
     try {
+        if(!deviceID){
+            return throwMessage('Playback successfully next', false,thunkAPI.rejectWithValue)
+        }
         const res = await spotifyAPI.seekPosition(position_ms, deviceID);
         return {response: res.data, position_ms}
     } catch (e) {
@@ -71,9 +92,8 @@ const seekPosition = createAsyncThunk<{ position_ms: number, response: string },
 })
 const play = createAsyncThunk<unknown, PlayParamTypes>('player/play', async (params, thunkAPI) => {
     try {
-        if (!params.deviceID) {
-            const message = 'Device not found'
-            return throwMessage(message, false, thunkAPI.rejectWithValue)
+        if(!params.deviceID){
+            return throwMessage('Playback successfully next', false,thunkAPI.rejectWithValue)
         }
         let curr;
         if (params.type === "track" || params.type === "episode") {
