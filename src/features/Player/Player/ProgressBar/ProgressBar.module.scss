@@ -8,25 +8,24 @@
   justify-content: center;
   gap: 8px;
   width: 75%;
-
   @include input-range();
   &__range {
     display: block;
     flex-grow: 1;
-
   }
   &__progress, &__duration {
     flex-shrink: 0;
     font-size: 8px;
   }
-
 }
-
-.range {
-
-
-}
-
-.label {
-
+.disabled {
+  input[type="range"]::-webkit-slider-thumb {
+    background-color: transparent;
+  }
+  input[type="range"]::-moz-range-thumb {
+    background-color: transparent;
+  }
+  input[type="range"]::-moz-progress-bar{
+    background-color: transparent;
+  }
 }
