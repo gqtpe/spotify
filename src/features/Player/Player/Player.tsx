@@ -8,7 +8,7 @@ import {useAppSelector} from "../../Application/hooks";
 
 
 const Player: FC = () => {
-    const device = useAppSelector(playerSelectors.selectActiveDevice)
+    const activeDevice = useAppSelector(playerSelectors.selectActiveDevice)
     const shuffleState = useAppSelector(playerSelectors.selectShuffleState)
     const is_playing = useAppSelector(playerSelectors.selectIsPlaying)
     const item = useAppSelector(playerSelectors.selectPlaybackItem)
@@ -22,19 +22,19 @@ const Player: FC = () => {
 
     return <div className={[styles.footer__player, styles.player].join(' ')}>
         <div className={styles.player__actions}>
-            <IconButton variant="icon" className={styles.shuffle} onClick={shuffle} disabled={!device}>
+            <IconButton variant="icon" className={styles.shuffle} onClick={shuffle} disabled={!activeDevice}>
                 {shuffleState ? <FaShuffle className={styles.active}/> : <FaShuffle/>}
             </IconButton>
-            <IconButton variant="icon" onClick={prev} disabled={!device}>
+            <IconButton variant="icon" onClick={prev} disabled={!activeDevice}>
                 <FaStepBackward/>
             </IconButton>
-            <IconButton variant="outlined" className={styles.play} onClick={togglePlay} disabled={!device}>
+            <IconButton variant="outlined" className={styles.play} onClick={togglePlay} disabled={!activeDevice}>
                 {is_playing ? <FaPause/> : <FaPlay/>}
             </IconButton>
-            <IconButton variant="icon" onClick={next} disabled={!device}>
+            <IconButton variant="icon" onClick={next} disabled={!activeDevice}>
                 <FaStepForward/>
             </IconButton>
-            <Repeat variant={repeatState} onClick={repeat} disabled={!device}/>
+            <Repeat variant={repeatState} onClick={repeat} disabled={!activeDevice}/>
         </div>
         {(playbackLoading === 'succeeded') &&
             <ProgressBar
