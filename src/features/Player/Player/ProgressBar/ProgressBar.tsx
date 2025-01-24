@@ -16,22 +16,22 @@ type Props = {
 }
 
 
-const ProgressBar: FC<Props> = ({progress, duration, onSeek, loading, onSeekEnd, isPlaying}) => {
+const ProgressBar: FC<Props> = ({progress, duration,onSeekEnd, onSeek, loading, isPlaying}) => {
     const [value, setValue] = useState(progress)
     const [debounceTimeout, setDebounceTimeout] = useState<NodeJS.Timeout | null>(null)
     const [intervalID, setIntervalID] = useState<NodeJS.Timeout | null>(null)
-    const handleChange = useCallback((e: ChangeEvent<HTMLInputElement>) => {
-        if (!loading) {
-            setValue(e.target.valueAsNumber)
+    const onMouseUp = useCallback(() => {
             if (debounceTimeout) {
                 clearTimeout(debounceTimeout)
             }
             const timeOutID = setTimeout(() => {
-                onSeek(e.target.valueAsNumber)
+               onSeek(value)
             }, 300)
-            setDebounceTimeout(timeOutID)
-        }
-    }, [onSeek, loading])
+        setDebounceTimeout(timeOutID)
+    }, [loading])
+    const handleChange = useCallback((e: ChangeEvent<HTMLInputElement>)=>{
+            setValue(e.currentTarget.valueAsNumber)
+    },[])
 
     useEffect(() => {
         if (!loading) {
