@@ -6,13 +6,12 @@ type IconButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
     fz?: number|string;
 };
 const IconButton = forwardRef<HTMLButtonElement, IconButtonProps>(
-    ({variant = 'filled',onClick, children, className, disabled, fz, ...rest}, ref) => {
+    ({variant = 'filled', children, className, disabled, fz, ...rest}, ref) => {
         return (
             <button
                 ref={ref}
                 className={[className, styles.button, styles[variant], (disabled && styles.disabled)].join(' ')}
                 style={{fontSize: fz, ...rest.style}}
-                onClick={!disabled? onClick:()=>{}}
                 {...rest}
             >
                 {children}

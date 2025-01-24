@@ -3,7 +3,6 @@ import slice from "./state/playerSlice.ts";
 import type {PlayerBackState} from "./types.ts";
 import * as playerSelectors from "./state/selectors.ts";
 import * as timeHelpers from "./utils/helpers.ts";
-import useProgress from "./hooks/useProgress.ts";
 import usePlayerActions from "./hooks/usePlayerActions.ts";
 import usePlayAction from "./hooks/usePlayAction.ts";
 import Repeat from "./Player/Repeat/Repeat.tsx";
@@ -31,7 +30,6 @@ export {
     PlayerBackState,
     timeHelpers,
     usePlayerActions,
-    useProgress,
     usePlayAction,
     Footer,
     Repeat,
