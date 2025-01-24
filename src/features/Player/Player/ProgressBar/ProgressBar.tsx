@@ -28,7 +28,7 @@ const ProgressBar: FC<Props> = ({progress, duration,onSeekEnd, onSeek, loading, 
                onSeek(value)
             }, 300)
         setDebounceTimeout(timeOutID)
-    }, [loading])
+    }, [loading,value,onSeek])
     const handleChange = useCallback((e: ChangeEvent<HTMLInputElement>)=>{
             setValue(e.currentTarget.valueAsNumber)
     },[])
