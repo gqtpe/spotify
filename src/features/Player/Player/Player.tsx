@@ -3,7 +3,7 @@ import styles from "../Footer.module.scss";
 import IconButton from "../../../common/components/IconButton/IconButton.tsx";
 import {FaPause, FaPlay, FaShuffle} from "react-icons/fa6";
 import {FaStepBackward, FaStepForward} from "react-icons/fa";
-import {playerSelectors, ProgressBar, Repeat, usePlayerActions, useProgress} from "../index.ts";
+import {playerSelectors, ProgressBar, Repeat, usePlayerActions} from "../index.ts";
 import {useAppSelector} from "../../Application/hooks";
 
 
@@ -14,10 +14,9 @@ const Player: FC = () => {
     const item = useAppSelector(playerSelectors.selectPlaybackItem)
     const repeatState = useAppSelector(playerSelectors.selectRepeatState)
     const playbackLoading = useAppSelector(playerSelectors.selectPlaybackLoading)
+    const progress = useAppSelector(playerSelectors.selectProgress)
 
-    const {togglePlay, shuffle, next, prev, repeat} = usePlayerActions(device, shuffleState, is_playing, repeatState)
-
-    const {progress, seekPosition, fetchCurrentlyPlaying} = useProgress(device)
+    const {togglePlay, shuffle, next, prev, repeat,seekPosition,fetchCurrentlyPlaying} = usePlayerActions(activeDevice?activeDevice.id:null, shuffleState, is_playing, repeatState)
 
 
     return <div className={[styles.footer__player, styles.player].join(' ')}>
@@ -44,7 +43,7 @@ const Player: FC = () => {
                 onSeekEnd={fetchCurrentlyPlaying}
                 loading={false}
                 isPlaying={is_playing}
-            /> }
+            />}
         {playbackLoading !== 'succeeded' &&
             <ProgressBar
                 progress={0}
