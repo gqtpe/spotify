@@ -40,10 +40,12 @@ const next = createAsyncThunk<string, DeviceID>('player/next', async (deviceID, 
 })
 const previous = createAsyncThunk<string, DeviceID>('player/previous', async (deviceID, thunkAPI) => {
     try {
-        const res = await spotifyAPI.previous(deviceID);
-        return res.data
         if(!deviceID){
             return throwMessage('Playback successfully next', false,thunkAPI.rejectWithValue)
+        }
+        const res = await spotifyAPI.previous(deviceID)
+        if(res.status === 200) {
+            return res.data
         }
     } catch (e) {
         return handleError(e as AxiosError, thunkAPI.rejectWithValue)
