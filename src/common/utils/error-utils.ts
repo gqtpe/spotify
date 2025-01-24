@@ -12,9 +12,10 @@ export const handleError = (e: AxiosError<any>, rejectWithValue: Function) => {
     return rejectWithValue(error)
 }
 export const throwMessage = (message: string, success?: boolean, rejectWithValue?: Function) => {
-    if (success) toast.success(message, toastOptions)
-    else toast(message, toastOptions)
     if (rejectWithValue) {
+        toast.error(message, toastOptions)
         return rejectWithValue(message)
     }
+    if (success) toast.success(message, toastOptions)
+    else toast(message, toastOptions)
 }
