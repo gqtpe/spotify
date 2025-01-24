@@ -1,12 +1,20 @@
 import {useCallback} from "react";
 import {useActions} from "../../Application/hooks";
 import {playerActions} from "../index.ts";
-import {ActiveDevice} from "../state/playerSlice.ts";
 import {RepeatState} from "../types.ts";
 
 
-const usePlayerActions = (device: ActiveDevice | null, shuffleState: boolean, is_playing: boolean, repeatState: RepeatState) => {
-    const {pause, resume, setRepeat, next, fetchCurrentlyPlaying, previous, setShuffle} = useActions(playerActions)
+const usePlayerActions = (activeDeviceID: string | null, shuffleState: boolean, is_playing: boolean, repeatState: RepeatState) => {
+    const {
+        pause,
+        resume,
+        setRepeat,
+        next,
+        fetchCurrentlyPlaying,
+        previous,
+        setShuffle,
+        seekPosition
+    } = useActions(playerActions)
 
     const shuffle = useCallback(() => {
         if (shuffleState) {
@@ -20,7 +28,7 @@ const usePlayerActions = (device: ActiveDevice | null, shuffleState: boolean, is
         if (playerActions.previous.fulfilled.match(action)) {
             await fetchCurrentlyPlaying()
         }
-    }, [previous, device])
+    }, [previous, activeDeviceID])
     const togglePlay = useCallback(() => {
         if (is_playing) {
             pause(activeDeviceID)
@@ -30,11 +38,11 @@ const usePlayerActions = (device: ActiveDevice | null, shuffleState: boolean, is
         fetchCurrentlyPlaying()
     }, [is_playing, activeDeviceID])
     const skip = useCallback(async () => {
-        if(device){
-            await next(device.id)
+        const action = await next(activeDeviceID);
+        if (playerActions.next.fulfilled.match(action)) {
             await fetchCurrentlyPlaying()
         }
-    }, [next, device])
+    }, [next, activeDeviceID])
     const repeat = useCallback(() => {
         if (repeatState === "off") {
             setRepeat({repeat_state: "context", deviceID: activeDeviceID})
@@ -43,12 +51,14 @@ const usePlayerActions = (device: ActiveDevice | null, shuffleState: boolean, is
         } else {
             setRepeat({repeat_state: "off", deviceID: activeDeviceID})
         }
-    }, [device, repeatState, setRepeat])
-    return {togglePlay, shuffle, prev, next: skip, repeat}
+    }, [activeDeviceID, repeatState, setRepeat])
+
+
     const callback = useCallback((position_ms: number) => {
         seekPosition({position_ms: position_ms, deviceID: activeDeviceID})
     }, [activeDeviceID])
     return {togglePlay, shuffle, prev, next: skip, repeat, seekPosition: callback}
 }
+
 
 export default usePlayerActions;
