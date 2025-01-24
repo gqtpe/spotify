@@ -40,9 +40,12 @@ const remove = async () => {
 
 export const Home = () => {
     const {setDeviceID} = useActions(playerActions)
-    const {fetchPlaybackState} = useActions(playerActions)
+    const {fetchPlaybackState, fetchCurrentlyPlaying} = useActions(playerActions)
     const fetch = async () => {
         fetchPlaybackState()
+    }
+    const fetch1 = async () => {
+        fetchCurrentlyPlaying()
     }
     const errorHandleHelper1 = () =>{
         const helper: ActiveDevice = {
@@ -58,6 +61,7 @@ export const Home = () => {
         <Button onClick={fetchAvailableDevices}>get devices</Button>
         <Button onClick={refreshToken}>refreshToken</Button>
         <Button onClick={fetch}>playbackState</Button>
+        <Button onClick={fetch1}>currentlyPlaying</Button>
         <Button onClick={fetchBrowseCategories}>fetch categories</Button>
         {/*<Button onClick={fetchBrowseCategoryPlaylist}>fetch category playlists</Button>*/}
         <Button onClick={fetchIsSaved}> fetch is 3iPSVi54hsacKKl1xIR2eH saved</Button>
