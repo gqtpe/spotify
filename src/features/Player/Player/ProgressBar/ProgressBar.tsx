@@ -68,18 +68,20 @@ const ProgressBar: FC<Props> = ({progress, duration,onSeekEnd, onSeek, loading, 
         }
     },[progress])
 
-    return <div className={styles.progressBar}>
+    return <div className={[styles.progressBar, (loading ? styles.disabled: '')].join(' ')}>
         <label htmlFor="progress" className={styles.progressBar__progress}><Typography
             variant='caption'>{loading ? blankTime : timeHelpers.msToTime(value)}</Typography></label>
         <input
             name="progress"
-            className={[styles.progressBar__range, styles.range].join(' ')}
+            className={[styles.progressBar__range, styles.range,].join(' ')}
             type="range"
             min={0}
             step={1}
             max={duration}
             value={value}
+            disabled={loading}
             onChange={handleChange}
+            onMouseUp={onMouseUp}
         />
         <label htmlFor="progress" className={styles.progressBar__duration}><Typography
             variant='caption'>{loading ? blankTime : timeHelpers.msToTime(duration)}</Typography></label>
