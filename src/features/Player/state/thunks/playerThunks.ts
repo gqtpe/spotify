@@ -4,7 +4,8 @@ import {handleError, throwMessage} from "../../../../common/utils/error-utils.ts
 import {AxiosError} from "axios";
 import type {RepeatState} from "../../types.ts";
 
-const resume = createAsyncThunk<string, string>('player/resume', async (deviceID, thunkAPI) => {
+
+const resume = createAsyncThunk<string, DeviceID>('player/resume', async (deviceID, thunkAPI) => {
     try {
         if(!deviceID){
             return throwMessage('Playback successfully next', false,thunkAPI.rejectWithValue)
@@ -15,7 +16,7 @@ const resume = createAsyncThunk<string, string>('player/resume', async (deviceID
         return handleError(e as AxiosError, thunkAPI.rejectWithValue)
     }
 })
-const pause = createAsyncThunk<string, string>('player/pause', async (deviceID, thunkAPI) => {
+const pause = createAsyncThunk<string, DeviceID>('player/pause', async (deviceID, thunkAPI) => {
     try {
         if(!deviceID){
             return throwMessage('Playback successfully next', false,thunkAPI.rejectWithValue)
@@ -26,7 +27,7 @@ const pause = createAsyncThunk<string, string>('player/pause', async (deviceID, 
         return handleError(e as AxiosError, thunkAPI.rejectWithValue)
     }
 })
-const next = createAsyncThunk<string, string>('player/next', async (deviceID, thunkAPI) => {
+const next = createAsyncThunk<string, DeviceID>('player/next', async (deviceID, thunkAPI) => {
     try {
         if(!deviceID){
             return throwMessage('Playback successfully next', false,thunkAPI.rejectWithValue)
@@ -37,7 +38,7 @@ const next = createAsyncThunk<string, string>('player/next', async (deviceID, th
         return handleError(e as AxiosError, thunkAPI.rejectWithValue)
     }
 })
-const previous = createAsyncThunk<string, string>('player/previous', async (deviceID, thunkAPI) => {
+const previous = createAsyncThunk<string, DeviceID>('player/previous', async (deviceID, thunkAPI) => {
     try {
         const res = await spotifyAPI.previous(deviceID);
         return res.data
@@ -50,7 +51,7 @@ const previous = createAsyncThunk<string, string>('player/previous', async (devi
 })
 const setShuffle = createAsyncThunk<{ state: boolean, id: string }, {
     state: boolean,
-    deviceID: string
+    deviceID: DeviceID
 }>('player/setShuffle', async ({state, deviceID}, thunkAPI) => {
     try {
         if(!deviceID){
@@ -64,7 +65,7 @@ const setShuffle = createAsyncThunk<{ state: boolean, id: string }, {
 })
 const setRepeat = createAsyncThunk<{ repeat_state: RepeatState, id: string }, {
     repeat_state: RepeatState,
-    deviceID: string
+    deviceID: DeviceID
 }>('player/setRepeat', async ({repeat_state, deviceID}, thunkAPI) => {
     try {
         if(!deviceID){
@@ -78,7 +79,7 @@ const setRepeat = createAsyncThunk<{ repeat_state: RepeatState, id: string }, {
 })
 const seekPosition = createAsyncThunk<{ position_ms: number, response: string }, {
     position_ms: number,
-    deviceID: string
+    deviceID: DeviceID
 }>('player/seekPosition', async ({position_ms, deviceID}, thunkAPI) => {
     try {
         if(!deviceID){
@@ -131,6 +132,7 @@ export default  {
     seekPosition,
     play,
 }
+type DeviceID = string|null
 export type PlayParamTypes =
     | {
     type: 'playlist' | 'album'
