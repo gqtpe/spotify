@@ -48,20 +48,14 @@ const Card: FC<PlaylistProps> = ({
     const navigate = useNavigate()
     return (
         <div
-            onClick={() => {
-                navigate(link || '')
-            }}
+            onClick={() => {navigate(link || '')}}
             className={`card card--${variant}`}
             style={dense === 'none' ? {padding: '0px'} : {}}
         >
             <div className="card__image-container">
-                {image ? (
-                    <img className={imageClassName} src={image} alt="image"/>
-                ) : (
-                    ((variant !== 'small-') || (variant !== 'small-')) ? <div className={imageClassName}>
+                {image ? <img className={imageClassName} src={image} alt="image"/>: ((variant !== 'small-') || (variant !== 'small-')) ? <div className={imageClassName}>
                         <IoMdMusicalNote/>
-                    </div> : null
-                )}
+                    </div> : null}
                 {onPlay && (
                     <IconButton
                         variant={iconButtonVariant}
