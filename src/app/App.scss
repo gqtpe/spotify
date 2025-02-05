@@ -29,6 +29,7 @@ $app-footer-height: 80px;
     grid-template-columns: 1fr auto;
     grid-gap: 8px;
     main{
+      @include mixins.content-main-paper();
       overflow-y: hidden;
       height: calc(100vh - $app-footer-height - 48px - 16px);
       @include paper;
@@ -39,6 +40,7 @@ $app-footer-height: 80px;
       position:relative;
       overflow:hidden;
       .sidebar__item{
+        @include mixins.content-main-paper;
         width: 100%;
         height: 100%;
         z-index: 6;
@@ -46,7 +48,6 @@ $app-footer-height: 80px;
         top: 0;
         left: 0;
         overflow: hidden;
-        @include paper();
       }
     }
   }
@@ -66,6 +67,7 @@ $app-footer-height: 80px;
   }
 
   nav {
+    @include mixins.content-main-paper();
     grid-area: navbar;
     @include paper;
     margin: 0 8px;
