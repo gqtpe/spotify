@@ -21,25 +21,26 @@ $app-footer-height: 80px;
         "navbar main main"
         "footer footer footer";
 
-  }
-  .content{
+  .content {
     grid-area: main;
-
     display: grid;
     grid-template-columns: 1fr auto;
-    grid-gap: 8px;
-    main{
+
+    main {
       @include mixins.content-main-paper();
       overflow-y: hidden;
       height: calc(100vh - $app-footer-height - 48px - 16px);
-      @include paper;
     }
-    .sidebar{
+
+    .sidebar {
+      //todo:sidebar mobile version
       width: 20rem;
       display: flex;
-      position:relative;
-      overflow:hidden;
-      .sidebar__item{
+      position: relative;
+      overflow: hidden;
+      margin-left: 0.5rem;
+
+      .sidebar__item {
         @include mixins.content-main-paper;
         width: 100%;
         height: 100%;
@@ -51,44 +52,24 @@ $app-footer-height: 80px;
       }
     }
   }
-  header {
-    grid-area: header;
-    margin: 8px 0;
-    background: transparent;
-  }
 
-  .user-panel {
-    display: flex;
-    grid-area: user-panel;
-    align-items: center;
-    gap: 8px;
-    justify-content: flex-end;
-    padding: 0 12px;
-  }
 
   nav {
     @include mixins.content-main-paper();
     grid-area: navbar;
-    @include paper;
     margin: 0 8px;
     overflow: hidden;
     max-width: 20rem;
     height: calc(100vh - 80px - 48px - 16px);
-    @media (max-width: 992px) {
-
-    }
   }
 
 
   footer {
     grid-area: footer;
     background-color: var(--background-dark);
-    color: #fff;
-    height: $app-footer-height; // Высота футера по умолчанию
-    @media (max-width: 768px) {
-      height: $app-footer-height; // Высота футера на мобильных устройствах
-    }
+    height: $app-footer-height;
   }
+
   @media (max-width: 992px) {
     grid-template-columns: 96px auto auto;
     grid-template-rows: auto;
@@ -97,22 +78,9 @@ $app-footer-height: 80px;
             "navbar main main"
             "footer footer footer";
 
-}
+  }
 
-.header {
-  @include flex-center;
-  gap: 8px;
-}
-
-.loader {
-  width: 24px;
-  margin: 12px auto 0;
-  aspect-ratio: 1;
-  border-radius: 50%;
-  border: 4px solid lightblue;
-  border-right-color: var(--primary-500);
-  animation: l2 0.75s infinite linear;
-}
+  @media (max-width: 456px) {
     grid-template-areas:"header" "main" "footer";
     grid-template-columns: 1fr;
     grid-template-rows: auto 1fr auto;
