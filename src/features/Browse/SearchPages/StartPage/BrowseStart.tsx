@@ -5,7 +5,7 @@ import Genres from "../../Genres/Genres.tsx";
 export const BrowseStart = () => {
     return <div className={styles.browseStart}>
         <div className={styles.browseStart__header}>
-            <Typography variant="h4" sx={{marginTop: 32, fontWeight: 'bolder'}}>Browse all</Typography>
+            <Typography variant="h4" sx={{fontWeight: 'bolder'}}>Browse all</Typography>
         </div>
         <div className={styles.browseStart__tiles}>
             <Genres/>
