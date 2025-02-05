@@ -1,18 +1,6 @@
+@use '../common/styles/mixins' as mixins;
 @import '../common/styles/scrollbar';
 
-
-@mixin flex-center {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-@mixin top-radius($radius) {
-    border-radius: $radius $radius 0 0;
-}
-@mixin paper {
-  background: var(--background-darker);
-  @include top-radius(15px);
-}
 
 $app-footer-height: 80px;
 
