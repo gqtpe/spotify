@@ -1,31 +1,49 @@
 $scrollbar-bg: #333; // Цвет фона скроллбара
-$scrollbar-thumb: #61c86a; // Цвет ползунка
-
+$scrollbar-thumb: #61c86a; // Цвет ползунка;
+$scrollbar-transition: 0.3s ease-in-out; // Плавность появления
+//todo: slowly appearing
 @mixin scrollbar {
   &::-webkit-scrollbar {
     width: 8px;
-    //width: 12px; /* Ширина скроллбара */
-    background-color: $scrollbar-bg; /* Цвет фона скроллбара */
+    height: 4px;
+    background-color: transparent;
+    transition: background-color $scrollbar-transition;
   }
 
   &::-webkit-scrollbar-thumb {
-    background-color: $scrollbar-thumb; /* Цвет ползунка */
-    border-radius: 0; /* Скругленные края */
-    //border: 3px solid $scrollbar-bg; /* Бордер для контраста */
+    background-color: transparent;
+    border-radius: 0;
+    transition: background-color $scrollbar-transition;
   }
 
   &::-webkit-scrollbar-track {
-    background-color: $scrollbar-bg; /* Цвет трека */
-    border-radius: 0; /* Скругление трека */
+    background-color: transparent;
+    border-radius: 0;
+    transition: background-color $scrollbar-transition;
   }
 
-  &::-webkit-scrollbar-button {
-    //background-color: $scrollbar-bg; /* Закрашиваем стрелки в цвет фона */
-    //border: none; /* Убираем бордеры (если есть) */
+  &:hover {
+    &::-webkit-scrollbar {
+      background-color: $scrollbar-bg;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background-color: $scrollbar-thumb;
+    }
+
+    &::-webkit-scrollbar-track {
+      background-color: $scrollbar-bg;
+    }
   }
-  //
+
   @supports (-moz-appearance: none) {
-    scrollbar-color: $scrollbar-thumb $scrollbar-bg; /* Цвета для Firefox */
-    scrollbar-width: thin; /* Узкий скроллбар для Firefox */
+    scrollbar-color: transparent transparent;
+    scrollbar-width: none;
+    transition: scrollbar-color $scrollbar-transition;
+
+    &:hover {
+      scrollbar-color: $scrollbar-thumb $scrollbar-bg;
+      scrollbar-width: thin;
+    }
   }
 }
