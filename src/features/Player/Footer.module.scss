@@ -1,19 +1,28 @@
 
 .footer {
   display: grid;
-  grid-template-columns: 20rem 1fr 20rem;
-  grid-template-areas: 'current panel actions';
+  grid-template-columns: auto 1fr auto;
+  grid-template-areas: 'current player actions';
 
   &__current {
     grid-area: current;
   }
 
-  &__panel {
-    grid-area: panel;
+  &__player {
+    grid-area: player;
   }
 
   &__actions {
     font-size: 1rem;
+    grid-area: actions;
+    padding: 0 2rem;
+  }
+  @media(max-width: 456px){
+    grid-template-areas: 'current actions';
+    grid-template-columns: auto auto;
+    &__player,.player{
+      display: none;
+    }
   }
 }
 
