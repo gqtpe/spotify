@@ -1,0 +1,7 @@
+@mixin top-radius($radius) {
+  border-radius: $radius $radius 0 0;
+}
+@mixin content-main-paper {
+  background: var(--background-darker);
+  @include top-radius(1rem);
+}
