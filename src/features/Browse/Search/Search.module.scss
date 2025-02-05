@@ -47,4 +47,25 @@
       outline: none;
     }
   }
+  &:hover{
+    background: var(--background-light);
+    .icon{
+      color: var(--text-primary);
+    }
+    box-shadow: 0 1px 1px 0 rgba(255, 255, 255, 0.3)
+    , 0px -1px 1px 0px rgba(255, 255, 255,0.3);
+
+  }
+  &:focus-within {
+    border-color: var(--white);
+    background: var(--background-light);
+    .icon{
+      color: (--text-primary);
+    }
+  }
+}
+@media(max-width: 456px){
+  .search{
+    width: 20rem;
+  }
 }
