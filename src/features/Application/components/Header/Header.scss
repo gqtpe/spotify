@@ -1,0 +1,37 @@
+.header {
+    grid-area: header;
+    margin: 8px 0;
+    background: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+
+
+    &__searchbar{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+    }
+    &__user-panel{
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        justify-content: flex-end;
+        padding: 0 0.75rem;
+        //display: none;
+    }
+
+
+    @media (max-width:456px){
+        display: flex;
+        justify-content: center;
+        &__home,.user-panel{
+            display: none;
+        }
+    }
+}
+.user-panel {
+
+}
