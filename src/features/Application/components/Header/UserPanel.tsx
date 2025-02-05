@@ -26,7 +26,7 @@ const UserPanel = () => {
         navigate('/login')
     }, [navigate, dispatch])
     return (
-        <div className="user-panel">
+        <div className="header__user-panel user-panel">
             <Badge variant="icon">
                 <IoIosNotificationsOutline/>
             </Badge>
@@ -40,9 +40,11 @@ const UserPanel = () => {
                     <Button variant="outlined" onClick={logout}>Log Out</Button>
                 </Paper>
                 </OutsideClick>
-            </Modal>, document.getElementById('portal')!)}
-            <Badge variant="filled" onClick={onClick} ref={anchorEl}>{user?.images[0]?.url &&
-                <img src={user.images[0].url} alt="user.images"/>}</Badge>
+            </Modal>, document.getElementById('portal')!)
+            }
+            <Badge variant="filled" onClick={onClick} ref={anchorEl}>
+                <img src={user?.images[0].url} alt="user.images"/>
+            </Badge>
         </div>
     );
 };
