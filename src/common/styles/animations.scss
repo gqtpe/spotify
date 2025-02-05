@@ -11,3 +11,10 @@
     background-position: 200px 0;
   }
 }
+
+
+@keyframes loader {
+  to {
+    transform: rotate(1turn)
+  }
+}
