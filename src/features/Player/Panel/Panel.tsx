@@ -46,7 +46,7 @@ const Panel: FC = () => {
             {showPopup && anchorEl && createPortal(
                 <Modal
                     anchorEl={anchorEl.current}
-                    placement="top"
+                    placement="top-end"
                     margin={24}
                 >
                     <OutsideClick callback={closePopup}>
