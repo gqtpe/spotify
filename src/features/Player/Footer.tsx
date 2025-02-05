@@ -9,6 +9,7 @@ export const Footer: FC = () => {
     useEffect(() => {
        fetchPlaybackState()
     }, [])
+    //todo: apply to sidebar(module) player on mobile ui
     return <footer className={styles.footer}>
         <CurrentlyPlaying/>
         <Player/>

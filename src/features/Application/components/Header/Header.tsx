@@ -4,6 +4,7 @@ import {useCallback} from "react";
 import {useLocation, useNavigate} from "react-router-dom";
 import {GoHomeFill} from "react-icons/go";
 import UserPanel from "./UserPanel.tsx";
+import "./Header.scss";
 import {useAppSelector} from "../../hooks";
 
 export const Header = () => {
@@ -21,18 +22,18 @@ export const Header = () => {
         navigate('/')
     }, [])
 
-    return <>
-        <header className="header">
-            <Badge variant="filled" onClick={handleClick}><GoHomeFill/></Badge>
+    return <header className="header">
+            <div className="header__searchbar">
+            <Badge className="header__home" variant="filled" onClick={handleClick}><GoHomeFill/></Badge>
             <Search
-                width={25}
                 placeholder={'What do you want to play?'}
                 onFocus={onFocus}
                 value={value ? value : undefined}
                 onChange={onChange}
             />
+            </div>
+            <UserPanel/>
         </header>
-        <UserPanel/>
-    </>
+
 }
 
