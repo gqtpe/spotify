@@ -5,7 +5,8 @@
 $app-footer-height: 80px;
 
 .app {
-  *:not(input){
+  //exclude input from user-select:none
+  *:not(input) {
     user-select: none;
   }
   display: grid;
