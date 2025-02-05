@@ -24,12 +24,12 @@ $box-size: 42px;
     font-size: $size * 1.02;
   }
 }
-
-.filled {
+//todo:adaptive width
+.badge-filled {
   background: var(--background-lighter);
 }
 
-.icon {
+.badge-icon {
   background: transparent; /* No background for icons */
   font-size: $size;
 }
