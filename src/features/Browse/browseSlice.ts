@@ -17,12 +17,12 @@ const slice = createSlice/**/(
     {
         name: 'browse',
         initialState: {
-            activeTab: 'all' as Tabs,
-            items: {} as SearchResult,
-            query: null as string|null,
-            loading: 'idle' as RequestStatuses,
-            categories: [] as CategoryObject[],
-        },
+            activeTab: 'all',
+            items: {},
+            query: null ,
+            loading: 'idle',
+            categories: [],
+        } as BrowseStateType,
         reducers: {
             setActiveTab(state, action: PayloadAction<Tabs>) {
                 state.activeTab = action.payload
