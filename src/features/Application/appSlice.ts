@@ -2,18 +2,25 @@ import {createSlice, PayloadAction} from "@reduxjs/toolkit";
 import {initializeApp} from "./appThunks.ts";
 
 export type SidebarContent = 'queue' | 'lyrics' | 'devices'
-
+export type AppSliceInitialStateType = {
+    error: string | null
+    isInitialized: boolean
+    sidebar: {
+        isOpen: boolean
+        content: SidebarContent | null
+    }
+}
 export const slice = createSlice(
     {
         name: 'app',
         initialState: {
-            error: null as null | string,
-            isInitialized: false as boolean,
+            error: null,
+            isInitialized: false,
             sidebar: {
-                isOpen: false as boolean,
-                content: null as SidebarContent | null,
+                isOpen: false,
+                content: null,
             }
-        },
+        } as AppSliceInitialStateType,
         reducers: {
             setAppInitialized: (state, action: PayloadAction<boolean>) => {
                 state.isInitialized = action.payload
