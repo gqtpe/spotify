@@ -4,17 +4,23 @@ import {appActions} from "../Application";
 import {asyncActions} from "./authThunks.ts";
 
 export type Token = string
-
+export type AuthSliceStateType = {
+    loggedIn: boolean,
+    authToken: Token | null,
+    refreshToken: Token | null,
+    expirationTime: number | null,
+    user: null | User
+}
 
 export const slice = createSlice({
     name: 'auth',
     initialState: {
-        loggedIn: false as boolean,
-        authToken: null as Token | null,
-        refreshToken: null as Token | null,
-        expirationTime: null as number | null,
-        user: null as null | User
-    },
+        loggedIn: false,
+        authToken: null,
+        refreshToken: null,
+        expirationTime: null,
+        user: null
+    } as AuthSliceStateType,
     reducers: {},
     extraReducers: builder => {
         builder.addCase(appActions.initializeApp.fulfilled, (state, action: PayloadAction<SpotifyTokenResponse | null>) => {
