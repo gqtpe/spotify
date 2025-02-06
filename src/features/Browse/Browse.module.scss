@@ -27,8 +27,10 @@
 
 .container {
   display: grid;
-  grid-auto-rows: min-content;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  @media(max-width: 456px){
+    grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
+  }
 }
 .items{
   height: 100%;
