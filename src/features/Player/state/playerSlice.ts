@@ -6,21 +6,37 @@ import playerThunks from "./thunks/playerThunks.ts";
 import playbackThunks from "./thunks/playbackThunks.ts";
 import queueThunks from "./thunks/queueThunks.ts";
 
-const initialState = {
+export type PlayerStateType = {
     playback: {
-        activeDevice: null as ActiveDevice | null,
-        isPlaying: false as boolean,
-        shuffleState: false as boolean,
-        repeatState: 'off' as RepeatState,
-        progress: null as null | number,
+        activeDevice: ActiveDevice | null
+        isPlaying: boolean
+        shuffleState: boolean
+        repeatState: RepeatState
+        progress: null | number
+    }
+    item: Track | null
+    queue: Array<Track>
+    availableDevices:{
+        items: Device[]
+        loading: RequestStatuses
+    }
+    playbackLoading: RequestStatuses
+}
+const initialState: PlayerStateType = {
+    playback: {
+        activeDevice: null,
+        isPlaying: false,
+        shuffleState: false,
+        repeatState: 'off',
+        progress: null,
     },
-    item: null as Track | null,
-    queue: [] as Array<Track>,
+    item: null,
+    queue: [],
     availableDevices: {
-        items: [] as Device[],
-        loading: 'idle' as RequestStatuses
+        items: [],
+        loading: 'idle',
     },
-    playbackLoading: 'idle' as RequestStatuses
+    playbackLoading: 'idle',
 }
 //todo: tests
 const slice = createSlice({
