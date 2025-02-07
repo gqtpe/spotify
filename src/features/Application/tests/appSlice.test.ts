@@ -47,12 +47,12 @@ describe("appSlice synchronous actions", () => {
             const newValue: SidebarContent = 'devices';
             const endState = appReducer(startState, openSidebar({type: newValue}))
             expect(endState.sidebar.content).toBe(newValue);
-            expect(endState.sidebar.isOpen).toBe(true);
+            expect(endState.sidebar.isOpen).toBeTruthy()
         })
         test('should set isOpen false, and clear content',()=>{
             const endState = appReducer(startState, closeSidebar())
-            expect(endState.sidebar.content).toBe(null);
-            expect(endState.sidebar.isOpen).toBe(false);
+            expect(endState.sidebar.content).toBeNull()
+            expect(endState.sidebar.isOpen).toBeFalsy();
         })
     })
 })
@@ -67,13 +67,13 @@ describe("appSlice async actions", () => {
                 scope: '3333333',
             } as SpotifyTokenResponse
             const endState = appReducer(startState, initializeApp.fulfilled(payload, 'request-id'))
-            expect(endState.isInitialized).toBe(true);
+            expect(endState.isInitialized).toBeTruthy()
         });
 
         test("should set isInitialized to false when rejected", () => {
             const error = null
             const endState = appReducer(startState, initializeApp.rejected(error, 'request-id',))
-            expect(endState.isInitialized).toBe(false);
+            expect(endState.isInitialized).toBeFalsy();
         });
     });
 });
