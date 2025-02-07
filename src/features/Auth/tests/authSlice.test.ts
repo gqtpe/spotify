@@ -28,6 +28,8 @@ describe("auth async actions", () => {
             } as SpotifyTokenResponse
             const endState = authReducer(startState, initializeApp.fulfilled(payload, 'request-id'))
             expect(endState.authToken).toBe(payload.access_token);
+            expect(endState.refreshToken).toBe(payload.refresh_token);
+            expect(endState.expirationTime).toBe(payload.expires_in);
             // console.log(endState.authToken)
         });
         test('getMe.fulfilled should set user from payload',()=>{
@@ -49,7 +51,6 @@ describe("auth async actions", () => {
                 id: '389dfh928hioh2dfon89',
             }
             const endState = authReducer(startState, getMe.fulfilled(payload, 'request-id'))
-            expect(endState.user?.display_name).toBe(payload.display_name)
-            expect(endState.user?.id).toBe(payload.id)
+            expect(endState.user).toEqual(payload)
         })
 });
