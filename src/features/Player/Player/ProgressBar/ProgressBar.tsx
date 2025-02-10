@@ -1,4 +1,4 @@
-import {ChangeEvent, FC, memo, useCallback, useEffect, useState} from "react";
+import {ChangeEvent, FC, memo, useCallback, useEffect, useRef, useState} from "react";
 import styles from './ProgressBar.module.scss';
 import Typography from "../../../../common/components/Typography/Typography.tsx";
 import {timeHelpers} from "../../index.ts";
@@ -7,84 +7,92 @@ export const blankTime = "-:--" as const
 
 type blankTime = typeof blankTime
 type Props = {
-    progress: number
-    duration: number
+    progress: number | null
+    duration: number | null
     onSeek: (position_ms: number) => void
     onSeekEnd?: () => void
-    loading?: boolean
-    isPlaying: boolean
 }
 
 
-const ProgressBar: FC<Props> = ({progress, duration,onSeekEnd, onSeek, loading, isPlaying}) => {
+const ProgressBar: FC<Props> = ({progress, duration, onSeek,onSeekEnd}) => {
+    //moved debounce to ref for prevent rerenders
+    const debounceTimeout = useRef<NodeJS.Timeout | null>(null);
+    const interval = useRef<NodeJS.Timeout | null>(null)
     const [value, setValue] = useState(progress)
-    const [debounceTimeout, setDebounceTimeout] = useState<NodeJS.Timeout | null>(null)
-    const [intervalID, setIntervalID] = useState<NodeJS.Timeout | null>(null)
+    const handleSeek = useCallback(() => {
+        if (null === value || null === duration) return;
+        onSeek(value)
+    }, [value, duration,onSeek,])
+    //sending request for seek position only onMouseup
+
+    // console.log(`value:${value}`)
+    // console.log(`progress:${progress}`)
+    // console.log(`duration:${duration}`)
+
     const onMouseUp = useCallback(() => {
-            if (debounceTimeout) {
-                clearTimeout(debounceTimeout)
-            }
-            const timeOutID = setTimeout(() => {
-               onSeek(value)
-            }, 300)
-        setDebounceTimeout(timeOutID)
-    }, [loading,value,onSeek])
-    const handleChange = useCallback((e: ChangeEvent<HTMLInputElement>)=>{
-            setValue(e.currentTarget.valueAsNumber)
-    },[])
-
-    useEffect(() => {
-        if (!loading) {
-            if (isPlaying) {
-                if (!intervalID) {
-                    const curr = setInterval(() => {
-                        if(value+1000<duration){
-                            setValue(value => value + 1000)
-                        }
-                    }, 1000)
-                    setIntervalID(curr)
-                }
-            } else {
-                if (intervalID) {
-                    clearInterval(intervalID)
-                    setIntervalID(null)
-                }
-            }
+        if (!value || !duration) {
+            return
         }
-    }, [duration, progress, isPlaying])
-
-    useEffect(()=>{
-        if(!loading){
-            if(isPlaying){
-                if(value+1000>duration){
-                    onSeekEnd?.()
-                }
-            }
+        if (debounceTimeout.current) {
+            clearTimeout(debounceTimeout.current);
         }
-    },[value])
+        const timeOutID = setTimeout(() => {
+            handleSeek()
+        }, 300)
+        debounceTimeout.current = (timeOutID)
+    }, [handleSeek])
+    const handleChange = useCallback((e: ChangeEvent<HTMLInputElement>) => {
+        setValue(e.currentTarget.valueAsNumber)
+    }, [])
+
+
+    const startInterval = useCallback(() => {
+        if(!progress)return;
+        //works only if progress exists
+        if (interval.current) clearInterval(interval.current);
+        interval.current = setInterval(() => {
+            setValue((prev) => (prev !== null ? prev + 1000 : progress + 1000));
+        }, 1000);
+    },[progress])
     useEffect(()=>{
-        if(!loading){
-            setValue(progress)
+        if(!progress)return
+        //for init value reset from null to loaded progress value,
+        //to set new progress value after new track come
+        if (value !== progress) {
+            setValue(progress);
+            startInterval();
         }
     },[progress])
-
-    return <div className={[styles.progressBar, (loading ? styles.disabled: '')].join(' ')}>
+    useEffect(()=>{
+        if(!onSeekEnd || !value || !duration)return
+        if(value >= duration){
+            onSeekEnd()
+        }
+    },[value])
+    useEffect(() => {
+        return () => {
+            if (interval.current) {
+                clearInterval(interval.current);
+            }
+        };
+    }, []);
+    return <div className={[styles.progressBar, ((!progress) ? styles.disabled : '')].join(' ')}>
         <label htmlFor="progress" className={styles.progressBar__progress}><Typography
-            variant='caption'>{loading ? blankTime : timeHelpers.msToTime(value)}</Typography></label>
+            variant='caption'>{value ? timeHelpers.msToTime(value) : blankTime}</Typography></label>
         <input
             name="progress"
             className={[styles.progressBar__range, styles.range,].join(' ')}
             type="range"
             min={0}
             step={1}
-            max={duration}
-            value={value}
-            disabled={loading}
+            max={duration || 0}
+            value={value || 0}
+            disabled={!duration || !value}
             onChange={handleChange}
             onMouseUp={onMouseUp}
         />
         <label htmlFor="progress" className={styles.progressBar__duration}><Typography
-            variant='caption'>{loading ? blankTime : timeHelpers.msToTime(duration)}</Typography></label>
+            variant='caption'>{duration ? timeHelpers.msToTime(duration) : blankTime}</Typography></label>
     </div>
 }
 export default memo(ProgressBar)
