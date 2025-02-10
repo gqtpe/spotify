@@ -13,6 +13,7 @@ import CurrentlyPlaying from "./CurrentlyPlaying.tsx";
 import playerAsyncActions  from "./state/thunks/playerThunks.ts";
 import playbackAsyncActions  from "./state/thunks/playbackThunks.ts";
 import queueAsyncActions  from "./state/thunks/queueThunks.ts";
+import Actions from "./Player/Actions.tsx";
 
 const playerReducer = slice.reducer
 const playerActions = {
@@ -36,5 +37,6 @@ export {
     ProgressBar,
     Player,
     Panel,
-    CurrentlyPlaying
+    CurrentlyPlaying,
+    Actions
 }

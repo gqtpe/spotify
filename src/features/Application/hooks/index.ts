@@ -4,6 +4,7 @@ import { useAppSelector } from "./useAppSelector.ts";
 import useOnClickOutside from "./useOnClickOutside.ts";
 import useSidebarStack from "./useSidebarStack.ts";
 import useContextMenu from "./useContextMenu/useContextMenu.tsx";
+import useProgressBar from "../../Player/hooks/useProgressBar.ts";
 
 
 
@@ -13,5 +14,6 @@ export {
     useActions,
     useOnClickOutside,
     useContextMenu,
-    useSidebarStack
+    useSidebarStack,
+    useProgressBar,
 }
