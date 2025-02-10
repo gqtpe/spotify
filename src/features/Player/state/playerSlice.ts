@@ -13,6 +13,7 @@ export type PlayerStateType = {
         shuffleState: boolean
         repeatState: RepeatState
         progress: null | number
+        duration: null | number
     }
     item: Track | null
     queue: Array<Track>
@@ -29,6 +30,7 @@ const initialState: PlayerStateType = {
         shuffleState: false,
         repeatState: 'off',
         progress: null,
+        duration: null
     },
     item: null,
     queue: [],
