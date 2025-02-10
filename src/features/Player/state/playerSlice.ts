@@ -62,9 +62,12 @@ const slice = createSlice({
                 state.playback.shuffleState = action.payload.shuffle_state
                 state.playback.repeatState = action.payload.repeat_state
                 state.playback.progress = action.payload.progress_ms
+
                 if (action.payload.item.type === 'track') {
                     state.item = action.payload.item
+                    state.playback.duration = action.payload.item.duration_ms
                 }
+
                 state.playbackLoading = 'succeeded'
             }
         })
