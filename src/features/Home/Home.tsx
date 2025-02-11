@@ -37,7 +37,9 @@ const remove = async () => {
     const response = await spotifyAPI.removeItem('album', ['3iPSVi54hsacKKl1xIR2eH'])
     console.log('remove:', response.data)
 }
-
+type HomeTestContentType = 'main'|'modal'|'context-menu'
+//todo: home page optimization(not required)
+//todo: useOutsideClick hook integration inside ContextMenuHome
 export const Home = () => {
     const {setDeviceID} = useActions(playerActions)
     const {fetchPlaybackState, fetchCurrentlyPlaying} = useActions(playerActions)
