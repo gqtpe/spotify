@@ -135,6 +135,22 @@ const ModalHome = () => {
         )}
     </div>
 }
+
+const ContextMenuHome = () => {
+
+    const {handleContextMenu, position, anchorEl} = useContextMenu();
+
+    return <div style={{padding: '16px', border:'1px solid white', height: '32rem',backgroundColor: 'rgba(255, 0, 0, 0.1);'}} onContextMenu={handleContextMenu} ref={anchorEl}>
+        <Menu open={!!position} portalID="portal"
+              sx={position ? {position: 'absolute', top: position.y, left: position.x} : undefined}
+              ref={anchorEl}>
+            <MenuItem title="item 1"/>
+            <MenuItem title="item 2"/>
+            <MenuItem title="item 3"/>
+            <MenuItem title="item 4"/>
+        </Menu>
+    </div>
+}
     const {setDeviceID} = useActions(playerActions)
     const {fetchPlaybackState, fetchCurrentlyPlaying} = useActions(playerActions)
     const fetch = async () => {
