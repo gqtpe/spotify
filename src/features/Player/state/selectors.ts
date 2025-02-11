@@ -16,6 +16,8 @@ export const selectRepeatState = (state: AppRootStateType) => state.player.playb
 
 export const selectProgress = (state: AppRootStateType) => state.player.playback.progress
 
+export const selectDuration = (state: AppRootStateType) => state.player.playback.duration
+
 export const selectAvailableDevices = (state: AppRootStateType) => state.player.availableDevices.items
 
 export const selectAvailableDevicesLoading = (state: AppRootStateType) => state.player.availableDevices.loading
