@@ -41,6 +41,11 @@ type HomeTestContentType = 'main'|'modal'|'context-menu'
 //todo: home page optimization(not required)
 //todo: useOutsideClick hook integration inside ContextMenuHome
 export const Home = () => {
+        <TabGroup value={content} handleChange={handleChange}>
+            <TabItem value={'main'} label={'Main'}/>
+            <TabItem value={'modal'} label={'Modal'}/>
+            <TabItem value={'context-menu'} label={'Context Menu'}/>
+        </TabGroup>
     const {setDeviceID} = useActions(playerActions)
     const {fetchPlaybackState, fetchCurrentlyPlaying} = useActions(playerActions)
     const fetch = async () => {
