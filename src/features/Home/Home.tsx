@@ -2,12 +2,20 @@ import Button from "../../common/components/Button/Button.tsx";
 import {spotifyAPI} from "../../api/spotifyAPI.ts";
 import {getItem} from "../../common/utils/localStorage.ts";
 import axios from "axios";
-import {useActions} from "../Application/hooks";
-import {playerActions} from "../Player";
+import {useActions, useContextMenu} from "../Application/hooks";
+import {CurrentlyPlaying, playerActions} from "../Player";
 import toast from "react-hot-toast";
 import {ActiveDevice} from "../Player/state/playerSlice.ts";
+import MenuItem from "../Application/components/Menu/MenuItem/MenuItem.tsx";
+import Menu from "../Application/components/Menu/Menu.tsx";
+import {createPortal} from "react-dom";
+import Modal, {PlacementType} from "../../common/components/Modal/Modal.tsx";
+import Paper from "../../common/components/Modal/Paper.tsx";
+import {useState} from "react";
+import TabGroup from "../../common/components/TabGroup/TabGroup.tsx";
+import TabItem from "../../common/components/TabGroup/TabItem/TabItem.tsx";
 
-const handleClick = async () => {
+const fetchMe = async () => {
     const response = await spotifyAPI.getMe()
     console.log('me:', response.data)
 }
@@ -151,6 +159,7 @@ const ContextMenuHome = () => {
         </Menu>
     </div>
 }
+const ButtonsHome = () =>{
     const {setDeviceID} = useActions(playerActions)
     const {fetchPlaybackState, fetchCurrentlyPlaying} = useActions(playerActions)
     const fetch = async () => {
@@ -159,7 +168,7 @@ const ContextMenuHome = () => {
     const fetch1 = async () => {
         fetchCurrentlyPlaying()
     }
-    const errorHandleHelper1 = () =>{
+    const errorHandleHelper1 = () => {
         const helper: ActiveDevice = {
             name: 'helper',
             id: 'helper',
@@ -169,7 +178,7 @@ const ContextMenuHome = () => {
 
     const notify = () => toast.success('Here is your toast.');
     return <div style={{padding: '16px'}}>
-        <Button onClick={handleClick}>get me</Button>
+        <Button onClick={fetchMe}>get me</Button>
         <Button onClick={fetchAvailableDevices}>get devices</Button>
         <Button onClick={refreshToken}>refreshToken</Button>
         <Button onClick={fetch}>playbackState</Button>
@@ -181,5 +190,6 @@ const ContextMenuHome = () => {
         <Button onClick={remove}>removeItem</Button>
         <Button onClick={notify}>add toast</Button>
         <Button onClick={errorHandleHelper1}>errorHandleHelper1</Button>
+        <div><CurrentlyPlaying/></div>
     </div>
 }
