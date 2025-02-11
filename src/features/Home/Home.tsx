@@ -56,6 +56,85 @@ export const Home = () => {
         {(content === 'modal') && <ModalHome/>}
         {(content === 'context-menu') && <ContextMenuHome/>}
     </div>
+}
+const ModalHome = () => {
+    const [anchorEl, setAnchorEl] = useState<HTMLButtonElement | null>(null);
+    const [open, setOpen] = useState<boolean>(false);
+    const [placement, setPlacement] = useState<PlacementType>('top');
+    const handleClick = (newPlacement: PlacementType) => (event: React.MouseEvent<HTMLButtonElement>) => {
+        setAnchorEl(event.currentTarget);
+        setOpen(prev => placement !== newPlacement || !prev);
+        setPlacement(newPlacement);
+    };
+
+    return <div style={{padding: '16px'}}>
+        <div style={{
+                display: 'grid',
+                gridTemplateRows: 'auto auto',
+                gridTemplateColumns: '1fr 1fr 1fr',
+                gap: '16px',
+                justifyItems: 'center',
+                alignItems: 'center',
+                padding: '20px',
+            }}>
+            {/* Top Row */}
+            <div style={{gridColumn: 'span 3', display: 'flex', gap: '8px', justifyContent: 'space-evenly'}}>
+                <Button onClick={handleClick('top-start')}>TOP-START</Button>
+                <Button onClick={handleClick('top')}>TOP</Button>
+                <Button onClick={handleClick('top-end')}>TOP-END</Button>
+            </div>
+
+            {/* Left Column */}
+            <div style={{
+                gridRow: 'span 2',
+                display: 'flex',
+                gap: '36px',
+                flexDirection: 'column',
+                justifyContent: 'space-evenly'
+            }}>
+                <Button onClick={handleClick('left-start')}>LEFT-START</Button>
+                <Button onClick={handleClick('left')}>LEFT</Button>
+                <Button onClick={handleClick('left-end')}>LEFT-END</Button>
+            </div>
+
+            {/* Right Column */}
+            <div style={{
+                gridRow: 'span 2',
+                gridColumn: 3,
+                display: 'flex',
+                gap: '36px',
+                flexDirection: 'column',
+                justifyContent: 'space-evenly'
+            }}>
+                <Button onClick={handleClick('right-start')}>RIGHT-START</Button>
+                <Button onClick={handleClick('right')}>RIGHT</Button>
+                <Button onClick={handleClick('right-end')}>RIGHT-END</Button>
+            </div>
+
+            {/* Bottom Row */}
+            <div style={{gridColumn: 'span 3', display: 'flex', gap: '8px', justifyContent: 'space-evenly'}}>
+                <Button onClick={handleClick('bottom-start')}>BOTTOM-START</Button>
+                <Button onClick={handleClick('bottom')}>BOTTOM</Button>
+                <Button onClick={handleClick('bottom-end')}>BOTTOM-END</Button>
+            </div>
+        </div>
+
+        {/* Modal */}
+        {open && anchorEl && createPortal(
+            <Modal
+                anchorEl={anchorEl}
+                placement={placement}
+                margin={10}
+            >
+                <Paper>
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloremque id labore nesciunt nulla
+                    numquam quae quia repellat.
+                </Paper>
+            </Modal>,
+            document.getElementById('portal')!
+        )}
+    </div>
+}
     const {setDeviceID} = useActions(playerActions)
     const {fetchPlaybackState, fetchCurrentlyPlaying} = useActions(playerActions)
     const fetch = async () => {
