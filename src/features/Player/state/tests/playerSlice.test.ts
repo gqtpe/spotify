@@ -30,6 +30,7 @@ beforeEach(() => {
             shuffleState: false,
             repeatState: 'off',
             progress: null,
+            duration: null,
         },
         item: null,
         queue: [],
