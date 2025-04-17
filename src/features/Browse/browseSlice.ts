@@ -30,7 +30,7 @@ const slice = createSlice/**/(
             clearItems(state) {
                 state.items = {}
             },
-            setQuery(state, action: PayloadAction<string>) {
+            setQuery(state, action: PayloadAction<string|null>) {
                 state.query = action.payload
             },
         },
