@@ -1,4 +1,4 @@
-import {AppRootStateType} from "../../Application/types.ts";
+import {AppRootStateType} from "@/features/Application/types.ts";
 
 export const selectIsPlaying = (state: AppRootStateType) => state.player.playback.isPlaying
 

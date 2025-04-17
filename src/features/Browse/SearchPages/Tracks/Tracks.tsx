@@ -1,9 +1,9 @@
 import {browseActions, browseSelectors} from "../../"
 import {memo, useCallback, useEffect} from "react";
 import styles from '../../Browse.module.scss'
-import {useActions, useAppSelector} from "../../../Application/hooks";
-import Table from "../../../../common/components/Table/Table.tsx";
-import useIntersectionObserver from "../../../Application/hooks/useIntersectionObserver.tsx";
+import {useActions, useAppSelector} from "@/features/Application/hooks";
+import Table from "@common/components/Table/Table.tsx";
+import useIntersectionObserver from "@/features/Application/hooks/useIntersectionObserver.tsx";
 import {trackColumns} from "./trackColumns.tsx";
 
 const Tracks = () => {

@@ -1,9 +1,9 @@
 import {DetailedHTMLProps, DetailsHTMLAttributes, FC, memo, useState,} from "react";
-import {CategoryObject} from "../../../../api/types/browseCategories.ts";
+import {CategoryObject} from "@/api/types/browseCategories.ts";
 import styles from "../../SearchPages/StartPage/BrowseStart.module.scss";
-import Typography from "../../../../common/components/Typography/Typography.tsx";
+import Typography from "@common/components/Typography/Typography.tsx";
 import {useNavigate} from "react-router-dom";
-import {ImageColorThief} from "../../../../common/components/ImageColorThief/ImageColorThief.tsx";
+import ImageColorThief from "@common/components/ImageColorThief/ImageColorThief.tsx";
 
 type Props = DetailedHTMLProps<
     DetailsHTMLAttributes<HTMLDivElement>,

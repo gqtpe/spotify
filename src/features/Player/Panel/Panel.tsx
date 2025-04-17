@@ -1,16 +1,19 @@
 import {FC, useCallback, useRef, useState} from "react";
 import styles from "../Footer.module.scss";
-import {MdDevices} from "react-icons/md";
-import IconButton from "../../../common/components/IconButton/IconButton.tsx";
-import {createPortal} from "react-dom";
-import Modal from "../../../common/components/Modal/Modal.tsx";
-import Paper from "../../../common/components/Modal/Paper.tsx";
-import AvailableDevices from "./AvailableDevices/AvailableDevices.tsx";
-import {HiMiniQueueList} from "react-icons/hi2";
-import {useSidebar} from "../../Application/hooks/useSidebar.ts";
-import {useAppSelector} from "../../Application/hooks";
 import {playerSelectors} from "../index.ts";
-import OutsideClick from "../../../common/hoc/OutisideClick/OutsideClick.tsx";
+
+import {useAppSelector} from "@/features/Application/hooks";
+import {useSidebar} from "@/features/Application/hooks/useSidebar.ts";
+
+import IconButton from "@common/components/IconButton/IconButton.tsx";
+import Modal from "@common/components/Modal/Modal.tsx";
+import Paper from "@common/components/Modal/Paper.tsx";
+import OutsideClick from "@common/hoc/OutisideClick/OutsideClick.tsx";
+import AvailableDevices from "./AvailableDevices/AvailableDevices.tsx";
+
+import {HiMiniQueueList} from "react-icons/hi2";
+import {MdDevices} from "react-icons/md";
+import {createPortal} from "react-dom";
 
 
 const availableDevicesWidth = '12rem'
@@ -42,12 +45,12 @@ const Panel: FC = () => {
             </IconButton>
 
 
-            {/*popup*/}
+            {/*--------popup--------*/}
             {showPopup && anchorEl && createPortal(
                 <Modal
                     anchorEl={anchorEl.current}
                     placement="top-end"
-                    margin={24}
+                    margin={32}
                 >
                     <OutsideClick callback={closePopup}>
                         <Paper style={{maxWidth: availableDevicesWidth, minWidth: availableDevicesWidth}}>
@@ -57,7 +60,7 @@ const Panel: FC = () => {
                 </Modal>,
                 document.getElementById('portal')!
             )}
-            {/*popup*/}
+            {/*--------popup--------*/}
         </div>
     );
 };

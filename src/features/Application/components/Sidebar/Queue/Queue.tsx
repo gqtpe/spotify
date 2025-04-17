@@ -1,10 +1,10 @@
-import {useActions, useAppSelector} from "../../../hooks";
-import {CurrentlyPlaying, playerActions, playerSelectors} from "../../../../Player";
-import Card from "../../../../../common/components/Cards/Card/Card.tsx";
-import {useEffect} from "react";
-import {cutFrom30} from "../../../../Browse/utils/cutFrom30.ts";
 import "./Queue.scss";
-import Typography from "../../../../../common/components/Typography/Typography.tsx";
+import {CurrentlyPlaying, playerActions, playerSelectors} from "@/features/Player";
+import {useEffect} from "react";
+import {useActions, useAppSelector} from "@/features/Application/hooks";
+import Card from "@common/components/Cards/Card/Card.tsx";
+import Typography from "@/common/components/Typography/Typography.tsx";
+import {cutFrom30} from "@/features/Browse/utils/cutFrom30.ts";
 
 const Queue = () => {
     const {fetchQueue} = useActions(playerActions)

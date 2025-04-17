@@ -1,4 +1,4 @@
-import React, {CSSProperties} from "react";
+import {CSSProperties, memo} from "react";
 import styles from './Button.module.scss'
 import {Link} from "react-router-dom";
 
@@ -33,4 +33,4 @@ const Button = ({children, variant = 'filled', className,link, density = 'normal
     );
 };
 
-export default Button;
+export default memo(Button);

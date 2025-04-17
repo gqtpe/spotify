@@ -1,6 +1,6 @@
 import {ChangeEvent, FC, memo, useCallback, useEffect, useRef, useState} from "react";
 import styles from './ProgressBar.module.scss';
-import Typography from "../../../../common/components/Typography/Typography.tsx";
+import Typography from "@common/components/Typography/Typography.tsx";
 import {timeHelpers} from "../../index.ts";
 
 export const blankTime = "-:--" as const

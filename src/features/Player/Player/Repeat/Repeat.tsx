@@ -1,4 +1,4 @@
-import IconButton from "../../../../common/components/IconButton/IconButton.tsx";
+import IconButton from "@common/components/IconButton/IconButton.tsx";
 import {RepeatState} from "../../types.ts";
 import {FC, memo} from "react";
 import {RiRepeat2Fill, RiRepeatOneFill} from "react-icons/ri";

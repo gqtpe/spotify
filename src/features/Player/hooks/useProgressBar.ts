@@ -1,5 +1,5 @@
 import {useCallback} from "react";
-import {useActions, useAppSelector} from "../../Application/hooks";
+import {useActions, useAppSelector} from "@/features/Application/hooks";
 import {playerActions, playerSelectors} from "../index.ts";
 
 

@@ -1,4 +1,4 @@
-import {Children, cloneElement, CSSProperties, forwardRef, isValidElement, ReactNode, RefObject} from "react";
+import {Children, cloneElement, CSSProperties, forwardRef, isValidElement, memo, ReactNode, RefObject} from "react";
 import styles from "./Menu.module.scss";
 import MenuItem from "./MenuItem/MenuItem.tsx";
 import {createPortal} from "react-dom";
@@ -32,4 +32,4 @@ const Menu = forwardRef<HTMLDivElement, Props>(({sx, children, portalID, open}, 
 })
 
 
-export default Menu;
+export default memo(Menu);

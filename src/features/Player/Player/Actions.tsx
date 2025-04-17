@@ -1,10 +1,10 @@
 import {FC} from "react";
 import styles from "../Footer.module.scss";
-import IconButton from "../../../common/components/IconButton/IconButton.tsx";
+import IconButton from "@common/components/IconButton/IconButton.tsx";
 import {FaPause, FaPlay, FaShuffle} from "react-icons/fa6";
 import {FaStepBackward, FaStepForward} from "react-icons/fa";
 import {playerSelectors, Repeat, usePlayerActions} from "../index.ts";
-import {useAppSelector} from "../../Application/hooks";
+import {useAppSelector} from "@/features/Application/hooks";
 
 const Actions: FC = () => {
     const activeDevice = useAppSelector(playerSelectors.selectActiveDevice)

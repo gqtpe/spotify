@@ -1,6 +1,6 @@
 import {createAsyncThunk} from "@reduxjs/toolkit";
-import {spotifyAPI} from "../../../../api/spotifyAPI.ts";
-import {handleError, throwMessage} from "../../../../common/utils/error-utils.ts";
+import {spotifyAPI} from "@/api/spotifyAPI.ts";
+import {handleError, throwMessage} from "@common/utils/error-utils.ts";
 import {AxiosError} from "axios";
 import type {RepeatState} from "../../types.ts";
 
@@ -53,7 +53,7 @@ const previous = createAsyncThunk<string, DeviceID>('player/previous', async (de
 })
 const setShuffle = createAsyncThunk<{ state: boolean, id: string }, {
     state: boolean,
-    deviceID: DeviceID
+    deviceID?: string
 }>('player/setShuffle', async ({state, deviceID}, thunkAPI) => {
     try {
         if(!deviceID){

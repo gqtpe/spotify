@@ -1,9 +1,9 @@
 import styles from "../../Footer.module.scss";
 import {FC, HTMLAttributes, useEffect} from "react";
-import {useActions, useAppSelector} from "../../../Application/hooks";
+import {useActions, useAppSelector} from "@/features/Application/hooks";
 import {playerActions, playerSelectors} from "../../index.ts";
-import Typography from "../../../../common/components/Typography/Typography.tsx";
-import Button from "../../../../common/components/Button/Button.tsx";
+import Typography from "@common/components/Typography/Typography.tsx";
+import Button from "@common/components/Button/Button.tsx";
 
 type Props = {
     transferPlayback: () => void

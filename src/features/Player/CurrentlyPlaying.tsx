@@ -1,15 +1,16 @@
 import {FC, useCallback, useEffect, useState} from "react";
-import footerStyles from "./Footer.module.scss";
-import Card from "../../common/components/Cards/Card/Card.tsx";
-import "../../common/components/Cards/Card/Card.scss";
 import {useAppSelector} from "../Application/hooks";
+import {spotifyAPI} from "@/api/spotifyAPI.ts";
+import useSave from "@/features/Library/useSave/useSave.ts";
 import {playerSelectors} from "./index.ts";
-import Skeleton from "../../common/components/Skeleton/Skeleton.tsx";
-import Typography from "../../common/components/Typography/Typography.tsx";
-import IconButton from "../../common/components/IconButton/IconButton.tsx";
+import footerStyles from "./Footer.module.scss";
+
+import "@/common/components/Cards/Card/Card.scss";
+import Card from "@/common/components/Cards/Card/Card.tsx";
+import Skeleton from "@/common/components/Skeleton/Skeleton.tsx";
+import Typography from "@/common/components/Typography/Typography.tsx";
+import IconButton from "@/common/components/IconButton/IconButton.tsx";
 import {IoIosAddCircleOutline, IoIosCheckmarkCircle} from "react-icons/io";
-import useSave from "../Library/useSave/useSave.ts";
-import {spotifyAPI} from "../../api/spotifyAPI.ts";
 import {cutFrom30} from "../Browse/utils/cutFrom30.ts";
 
 

@@ -1,15 +1,15 @@
 import {createAsyncThunk} from "@reduxjs/toolkit";
-import {spotifyAPI, SpotifyTokenResponse, spotifyTokenService} from "../../api/spotifyAPI.ts";
-import {getItem, setItem} from "../../common/utils/localStorage.ts";
+import {spotifyAPI, SpotifyTokenResponse, spotifyTokenService} from "@/api/spotifyAPI.ts";
+import {localStorageUtils} from "@common/utils";
 import {authActions} from "../Auth";
 import {userLibraryActions} from "../Library";
-import {handleError} from "../../common/utils/error-utils.ts";
+import {handleError} from "@common/utils/error-utils.ts";
 import {AxiosError} from "axios";
+const {getItem,setItem} = localStorageUtils
 
 export const initializeApp = createAsyncThunk<SpotifyTokenResponse | null>(
     'app/initializeApp',
     async (_, thunkAPI) => {
-
         let authToken = getItem('auth_token')
         const refreshToken = getItem('refresh_token')
         let expirationTime = getItem('expiration_time')

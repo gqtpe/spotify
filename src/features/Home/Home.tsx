@@ -9,11 +9,12 @@ import {ActiveDevice} from "../Player/state/playerSlice.ts";
 import MenuItem from "../Application/components/Menu/MenuItem/MenuItem.tsx";
 import Menu from "../Application/components/Menu/Menu.tsx";
 import {createPortal} from "react-dom";
-import Modal, {PlacementType} from "../../common/components/Modal/Modal.tsx";
+import Modal from "../../common/components/Modal/Modal.tsx";
 import Paper from "../../common/components/Modal/Paper.tsx";
 import {useState} from "react";
 import TabGroup from "../../common/components/TabGroup/TabGroup.tsx";
 import TabItem from "../../common/components/TabGroup/TabItem/TabItem.tsx";
+import { PlacementType } from "@/common/components/Modal/types.ts";
 
 const fetchMe = async () => {
     const response = await spotifyAPI.getMe()

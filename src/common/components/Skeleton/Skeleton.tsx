@@ -1,4 +1,4 @@
-import {CSSProperties, HTMLAttributes} from "react";
+import {CSSProperties, HTMLAttributes, memo, ReactNode} from "react";
 
 
 type Animations = 'pulsate' | 'wave'
@@ -7,7 +7,7 @@ type Props =  HTMLAttributes<HTMLDivElement> &{
     height?: number
     round?: boolean
     animation?: Animations
-    children?: React.ReactNode
+    children?: ReactNode
 }
 const Skeleton = ({children, width,height,round, animation = 'pulsate',style, ...rest}:Props) =>{
     const styles: CSSProperties = {
@@ -25,4 +25,4 @@ const Skeleton = ({children, width,height,round, animation = 'pulsate',style, ..
         {children?children:'blank blank blank'}
     </span>
 }
-export default Skeleton
+export default memo(Skeleton)

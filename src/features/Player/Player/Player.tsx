@@ -1,7 +1,7 @@
 import {FC, memo} from "react";
 import styles from "../Footer.module.scss";
 import {Actions, ProgressBar} from "../index.ts";
-import {useProgressBar} from "../../Application/hooks";
+import {useProgressBar} from "@/features/Application/hooks";
 
 
 const Player: FC = () => {

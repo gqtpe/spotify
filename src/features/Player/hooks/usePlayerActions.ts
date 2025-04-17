@@ -1,8 +1,8 @@
 import {useCallback} from "react";
 import {useActions} from "../../Application/hooks";
 import {playerActions} from "../index.ts";
-import {RepeatState} from "../types.ts";
-import {ActiveDevice} from "../state/playerSlice.ts";
+import type {RepeatState} from "../types.ts";
+import type {ActiveDevice} from "../state/playerSlice.ts";
 
 
 const usePlayerActions = (activeDevice: ActiveDevice, shuffleState: boolean, is_playing: boolean, repeatState: RepeatState) => {

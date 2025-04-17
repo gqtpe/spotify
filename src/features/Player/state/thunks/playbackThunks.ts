@@ -1,8 +1,8 @@
 import {createAsyncThunk} from "@reduxjs/toolkit";
-import type {Device, PlayerBackState} from "../../types.ts";
-import {spotifyAPI} from "../../../../api/spotifyAPI.ts";
-import {handleError, throwMessage} from "../../../../common/utils/error-utils.ts";
+import {spotifyAPI} from "@/api/spotifyAPI.ts";
+import {handleError, throwMessage} from "@common/utils/error-utils.ts";
 import {AxiosError} from "axios";
+import type {Device, PlayerBackState} from "../../types.ts";
 
 const fetchPlaybackState = createAsyncThunk<PlayerBackState, undefined>('player/fetchPlaybackState', async (_, thunkAPI) => {
     try {

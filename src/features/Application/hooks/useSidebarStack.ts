@@ -1,6 +1,6 @@
-import {useSidebar} from "./useSidebar.ts";
 import {useCallback, useEffect, useState} from "react";
-import {StackItem} from "../../../app/App.tsx";
+import {useSidebar} from "./useSidebar.ts";
+import {StackItem} from "@/app/App.tsx";
 
 
 const useSidebarStack = () =>{

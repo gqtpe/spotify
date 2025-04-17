@@ -1,7 +1,7 @@
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
-import {Track} from "../../../api/types/track.ts";
+import {Track} from "@/api/types/track.ts";
 import type {Device, PlayerBackState, RepeatState} from "../types.ts";
-import {RequestStatuses} from "../../../api/types/common.ts";
+import {RequestStatuses} from "@/api/types/common.ts";
 import playerThunks from "./thunks/playerThunks.ts";
 import playbackThunks from "./thunks/playbackThunks.ts";
 import queueThunks from "./thunks/queueThunks.ts";

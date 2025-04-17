@@ -1,9 +1,10 @@
-import Modal, {PlacementType} from "./Modal.tsx";
+import Modal from "./Modal.tsx";
 import {StoryObj} from "@storybook/react";
 import Button from "../Button/Button.tsx";
 import {useRef, useState} from "react";
 import {createPortal} from "react-dom";
 import Paper from "./Paper.tsx";
+import type { PlacementType } from "./types.ts";
 
 
 export default {

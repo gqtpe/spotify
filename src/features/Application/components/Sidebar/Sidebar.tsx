@@ -1,8 +1,8 @@
-import {FC} from "react";
-import type {StackItem} from "../../../../app/App.tsx";
+import {FC, memo} from "react";
 import Aside from "../Aside/Aside.tsx";
 import Devices from "./Devices/Devices.tsx";
 import Queue from "./Queue/Queue.tsx";
+import type {StackItem} from "@/app/App.tsx";
 
 
 type Props = {
@@ -25,4 +25,4 @@ const Sidebar: FC<Props> = ({stackArray, removeItem}) => {
     </div>
 }
 
-export default Sidebar;
+export default memo(Sidebar);

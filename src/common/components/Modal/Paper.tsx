@@ -1,4 +1,4 @@
-import {HTMLAttributes} from "react";
+import {HTMLAttributes, memo} from "react";
 
 type Props = & HTMLAttributes<HTMLDivElement>
 const Paper = ({style, children, ...rest}: Props) => {
@@ -17,4 +17,4 @@ const Paper = ({style, children, ...rest}: Props) => {
     );
 };
 
-export default Paper;
+export default memo(Paper);

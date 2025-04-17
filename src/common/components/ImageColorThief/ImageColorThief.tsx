@@ -1,6 +1,6 @@
-import {useEffect, useRef} from "react";
+import {memo, useEffect, useRef} from "react";
 
-export const ImageColorThief = ({
+const ImageColorThief = ({
                              imageUrl,
                              onColorDetected,
                          }: {
@@ -50,3 +50,4 @@ export const ImageColorThief = ({
 
     return <canvas ref={canvasRef} width={1} height={1} style={{display: "none"}}/>;
 };
+export default memo(ImageColorThief)

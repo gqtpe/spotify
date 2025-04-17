@@ -1,8 +1,8 @@
 import {createAsyncThunk} from "@reduxjs/toolkit";
-import {spotifyAPI} from "../../api/spotifyAPI.ts";
-import {SimplifiedPlaylist} from "../../api/types/playlist.ts";
-import type {Album} from "../../api/types/album.ts";
-import {handleError, throwMessage} from "../../common/utils/error-utils.ts";
+import {spotifyAPI} from "@/api/spotifyAPI.ts";
+import type {SimplifiedPlaylist} from "@/api/types/playlist.ts";
+import type {Album} from "@/api/types/album.ts";
+import {handleError, throwMessage} from "@common/utils/error-utils.ts";
 import {AxiosError} from "axios";
 
 export const fetchUserLibrary = createAsyncThunk<Array<SimplifiedPlaylist | Album>>('userLibrary/fetchUserLibrary', async (_, thunkAPI) => {

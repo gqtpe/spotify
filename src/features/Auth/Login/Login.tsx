@@ -1,4 +1,4 @@
-import Button from "../../../common/components/Button/Button.tsx";
+import Button from "@common/components/Button/Button.tsx";
 import "./Login.scss";
 import {CSSProperties, useState} from "react";
 

@@ -1,10 +1,15 @@
-import {SidebarContent} from "../../appSlice.ts";
-import IconButton from "../../../../common/components/IconButton/IconButton.tsx";
-import {IoMdClose} from "react-icons/io";
-import './Aside.scss';
-import {Typography} from "../../../../common/components/Typography/Typography.tsx";
-import {firstToUpper} from "../../../Browse/utils/firstToUpper.ts";
 import {ReactNode} from "react";
+import './Aside.scss';
+import type {SidebarContent} from "@/features/Application/appSlice.ts";
+
+import IconButton from "@common/components/IconButton/IconButton.tsx";
+import {Typography} from "@common/components/Typography/Typography.tsx";
+import {firstToUpper} from "@/features/Browse/utils/firstToUpper.ts";
+
+import {IoMdClose} from "react-icons/io";
+
+
+
 
 type Props = {
     state: SidebarContent

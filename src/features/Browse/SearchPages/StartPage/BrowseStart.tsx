@@ -1,4 +1,4 @@
-import Typography from "../../../../common/components/Typography/Typography.tsx";
+import Typography from "@common/components/Typography/Typography.tsx";
 import styles from "./BrowseStart.module.scss"
 import Genres from "../../Genres/Genres.tsx";
 

@@ -13,7 +13,7 @@ export const trackColumns: ColumnDef<Track>[] = [
             <div style={{display: 'flex', alignItems: 'center', gap: '8px'}}>
                 <img
                     height={40}
-                    src={row.original.album.images[2].url}
+                    
                     style={{borderRadius: '5px'}}
                 />
                 <div style={{display: 'flex', flexDirection: 'column'}}>

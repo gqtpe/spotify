@@ -1,17 +1,18 @@
-import {BiLibrary} from "react-icons/bi";
-import Typography from "../../common/components/Typography/Typography.tsx";
 import "./Library.scss";
-import IconButton from "../../common/components/IconButton/IconButton.tsx";
-import {IoIosArrowForward, IoMdAdd} from "react-icons/io";
-import TabItem from "../../common/components/TabGroup/TabItem/TabItem.tsx";
-import TabGroup from "../../common/components/TabGroup/TabGroup.tsx";
-import {RxCross2} from "react-icons/rx";
-import {useActions, useAppSelector} from "../Application/hooks";
+import {useActions, useAppSelector} from "@/features/Application/hooks";
 import {userLibraryActions, userLibrarySelectors} from "./index.ts";
-import Card from "../../common/components/Cards/Card/Card.tsx";
+
+import Typography from "@common/components/Typography/Typography.tsx";
+import IconButton from "@common/components/IconButton/IconButton.tsx";
+import TabGroup from "@common/components/TabGroup/TabGroup.tsx";
+import TabItem from "@common/components/TabGroup/TabItem/TabItem.tsx";
+import Card from "@common/components/Cards/Card/Card.tsx";
+
+import {IoIosArrowForward, IoMdAdd} from "react-icons/io";
+import {BiLibrary} from "react-icons/bi";
 import {usePlayAction} from "../Player";
-import getSubtitleLink from "../../common/utils/getSubtitleLink.ts";
-import getSubtitleForCard from "../../common/utils/getSubtitleForCard.ts";
+import {RxCross2} from "react-icons/rx";
+import {getSubtitleForCard, getSubtitleLink} from "@common/utils";
 
 
 export const Library = () => {

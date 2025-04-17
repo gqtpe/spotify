@@ -1,4 +1,4 @@
-import {DetailedHTMLProps, FC, HTMLAttributes, ReactElement} from "react";
+import {DetailedHTMLProps, FC, HTMLAttributes, memo, ReactElement} from "react";
 import {Typography} from "../../../../../common/components/Typography/Typography.tsx";
 
 
@@ -15,4 +15,4 @@ const MenuItem: FC<Props> = ({title, icon, ...rest}) => {
     );
 };
 
-export default MenuItem;
+export default memo(MenuItem);

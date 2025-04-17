@@ -1,7 +1,7 @@
 import "./Devices.scss"
-import {useActions, useAppSelector} from "../../../hooks";
-import {playerActions, playerSelectors} from "../../../../Player";
-import {Typography} from "../../../../../common/components/Typography/Typography.tsx";
+import {useActions, useAppSelector} from "@/features/Application/hooks";
+import {playerActions, playerSelectors} from "@/features/Player";
+import {Typography} from "@common/components/Typography/Typography.tsx";
 import {TbDeviceLaptop} from "react-icons/tb";
 
 const Devices = () => {

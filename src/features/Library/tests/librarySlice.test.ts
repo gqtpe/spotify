@@ -1,6 +1,6 @@
-import {LibraryFilterType, LibraryStateType} from "../userLibrarySlice.ts";
 import {beforeEach, describe, expect, test} from "vitest";
 import {userLibraryActions, userLibraryReducer} from "../index.ts";
+import type {LibraryFilterType, LibraryStateType} from "../userLibrarySlice.ts";
 
 
 let startState: LibraryStateType;

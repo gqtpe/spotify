@@ -1,7 +1,7 @@
 import {authActions, authReducer} from "../";
 import {beforeEach, describe, expect, test} from 'vitest'
-import {SpotifyTokenResponse, User} from "../../../api/spotifyAPI.ts";
-import {appActions} from "../../Application";
+import {SpotifyTokenResponse, User} from "@/api/spotifyAPI.ts";
+import {appActions} from "@/features/Application";
 import {AuthSliceStateType} from "../authSlice.ts";
 
 const {getMe} = authActions;

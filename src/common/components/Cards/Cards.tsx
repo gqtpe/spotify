@@ -1,18 +1,17 @@
-import {FC, useCallback, useEffect} from "react";
-import {useActions, useAppSelector} from "../../../features/Application/hooks";
-import styles from '../../../features/Browse/Browse.module.scss'
-import type {ResponseType} from "../../../api/types/common.ts";
-import {AppRootStateType} from "../../../features/Application/types.ts";
+import {FC, memo, useCallback, useEffect} from "react";
+import {useActions, useAppSelector} from "@/features/Application/hooks";
+import styles from '@/features/Browse/Browse.module.scss'
+import type {ResponseType} from "@/api/types/common.ts";
+import {AppRootStateType} from "@/features/Application/types.ts";
 import Card from "./Card/Card.tsx";
-import {SimplifiedAlbum} from "../../../api/types/album.ts";
-import {Artist} from "../../../api/types/artist.ts";
-import {SimplifiedPlaylist} from "../../../api/types/playlist.ts";
-import useIntersectionObserver from "../../../features/Application/hooks/useIntersectionObserver.tsx";
-import {browseActions, browseSelectors} from "../../../features/Browse";
+import {SimplifiedAlbum} from "@/api/types/album.ts";
+import {Artist} from "@/api/types/artist.ts";
+import {SimplifiedPlaylist} from "@/api/types/playlist.ts";
+import useIntersectionObserver from "@/features/Application/hooks/useIntersectionObserver.tsx";
+import {browseActions, browseSelectors} from "@/features/Browse";
 import {useParams} from "react-router-dom";
-import {usePlayAction} from "../../../features/Player";
-import getSubtitleForCard from "../../utils/getSubtitleForCard.ts";
-import getSubtitleLink from "../../utils/getSubtitleLink.ts";
+import {usePlayAction} from "@/features/Player";
+import {getSubtitleForCard,getSubtitleLink} from "@common/utils";
 
 
 type CardsProps = {
@@ -73,4 +72,4 @@ const Cards: FC<CardsProps> = ({selector, preview}) => {
     }
 ;
 
-export default Cards;
+export default memo(Cards);

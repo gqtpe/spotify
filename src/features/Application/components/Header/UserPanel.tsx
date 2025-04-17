@@ -1,14 +1,15 @@
-import Badge from "../../../../common/components/Badge/Badge.tsx";
-import {IoIosNotificationsOutline} from "react-icons/io";
 import {createPortal} from "react-dom";
-import Modal from "../../../../common/components/Modal/Modal.tsx";
-import Paper from "../../../../common/components/Modal/Paper.tsx";
 import {useCallback, useRef, useState} from "react";
 import {useAppSelector} from "../../hooks";
-import Button from "../../../../common/components/Button/Button.tsx";
 import {useDispatch} from "react-redux";
 import {useNavigate} from "react-router-dom";
-import OutsideClick from "../../../../common/hoc/OutisideClick/OutsideClick.tsx";
+import Badge from "@common/components/Badge/Badge.tsx";
+import Modal from "@common/components/Modal/Modal.tsx";
+import Paper from "@common/components/Modal/Paper.tsx";
+import Button from "@common/components/Button/Button.tsx";
+import OutsideClick from "@common/hoc/OutisideClick/OutsideClick.tsx";
+import {IoIosNotificationsOutline} from "react-icons/io";
+
 
 const UserPanel = () => {
     const [open, setOpen] = useState<boolean>(false)

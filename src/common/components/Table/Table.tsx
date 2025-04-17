@@ -2,7 +2,7 @@ import {ColumnDef, flexRender, getCoreRowModel, getSortedRowModel, useReactTable
 import {CSSProperties, memo, useState} from "react";
 import styles from "./Table.module.scss"
 import Typography from '../Typography/Typography';
-import {usePlayAction} from "../../../features/Player";
+import {usePlayAction} from "@/features/Player";
 
 
 interface TableProps {// Колонки с типом данных

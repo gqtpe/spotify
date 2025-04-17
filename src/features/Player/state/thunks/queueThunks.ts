@@ -1,7 +1,7 @@
 import {createAsyncThunk} from "@reduxjs/toolkit";
-import {spotifyAPI} from "../../../../api/spotifyAPI.ts";
-import type {Track} from "../../../../api/types/track.ts";
-import {handleError, throwMessage} from "../../../../common/utils/error-utils.ts";
+import {spotifyAPI} from "@/api/spotifyAPI.ts";
+import type {Track} from "@/api/types/track.ts";
+import {handleError, throwMessage} from "@common/utils/error-utils.ts";
 import {AxiosError} from "axios";
 
 

@@ -1,7 +1,7 @@
 import {AppSliceInitialStateType, SidebarContent} from "../appSlice.ts";
 import {appActions, appReducer} from "../index.ts";
 import {beforeEach, describe, expect, test} from 'vitest'
-import {SpotifyTokenResponse} from "../../../api/spotifyAPI.ts";
+import {SpotifyTokenResponse} from "@/api/spotifyAPI.ts";
 
 const {
     setAppError,

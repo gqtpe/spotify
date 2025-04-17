@@ -1,6 +1,6 @@
 import {createSlice} from "@reduxjs/toolkit";
-import type {Album} from "../../api/types/album.ts";
-import {SimplifiedPlaylist} from "../../api/types/playlist.ts";
+import type {Album} from "@/api/types/album.ts";
+import {SimplifiedPlaylist} from "@/api/types/playlist.ts";
 import {fetchUserLibrary} from "./libraryThunks.ts";
 export type LibraryStateType = {
     items: Array<SimplifiedPlaylist | Album>

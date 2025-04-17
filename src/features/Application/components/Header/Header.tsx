@@ -1,11 +1,11 @@
-import Badge from "../../../../common/components/Badge/Badge.tsx";
-import {browseSelectors, Search, useSearch} from "../../../Browse";
+import "./Header.scss";
 import {useCallback} from "react";
+import {browseSelectors, Search, useSearch} from "@/features/Browse";
+import {useAppSelector} from "../../hooks";
+import Badge from "@/common/components/Badge/Badge.tsx";
+import UserPanel from "./UserPanel.tsx";
 import {useLocation, useNavigate} from "react-router-dom";
 import {GoHomeFill} from "react-icons/go";
-import UserPanel from "./UserPanel.tsx";
-import "./Header.scss";
-import {useAppSelector} from "../../hooks";
 
 export const Header = () => {
     const navigate = useNavigate()
@@ -15,7 +15,7 @@ export const Header = () => {
     const onFocus = useCallback(() => {
         //why !includes, for prevent endless /search navigate
         if (!location.pathname.includes('/search/')) {
-            navigate(`/search${query?'/' + query : ''}`);
+            navigate(`/search${query ? '/' + query : ''}`);
         }
     }, [navigate, location.pathname, query])
     const handleClick = useCallback(() => {
@@ -23,7 +23,7 @@ export const Header = () => {
     }, [])
 
     return <header className="header">
-            <div className="header__searchbar">
+        <div className="header__searchbar">
             <Badge className="header__home" variant="filled" onClick={handleClick}><GoHomeFill/></Badge>
             <Search
                 placeholder={'What do you want to play?'}
@@ -31,9 +31,9 @@ export const Header = () => {
                 value={value ? value : undefined}
                 onChange={onChange}
             />
-            </div>
-            <UserPanel/>
-        </header>
+        </div>
+        <UserPanel/>
+    </header>
 
 }
 

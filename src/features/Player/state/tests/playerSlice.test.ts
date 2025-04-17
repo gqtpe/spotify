@@ -1,8 +1,8 @@
 import {beforeEach, describe, expect, test} from "vitest";
-import {ActiveDevice, PlayerStateType} from "../playerSlice.ts";
 import {playerActions, playerReducer} from "../../index.ts";
-import {RequestStatuses} from "../../../../api/types/common.ts";
 import {playbackMock} from "../../utils/mockData.ts";
+import type {ActiveDevice, PlayerStateType} from "../playerSlice.ts";
+import type {RequestStatuses} from "../../../../api/types/common.ts";
 
 const {
     setDeviceID,
