@@ -6,6 +6,7 @@ import Typography from "../../Typography/Typography.tsx";
 import {MdExplicit} from "react-icons/md";
 import {cutFrom30} from "../../../../features/Browse/utils/cutFrom30.ts";
 import {useNavigate} from "react-router-dom";
+import Image from "@common/components/Image/Image.tsx";
 
 type PlaylistProps = {
     title: string;
@@ -53,7 +54,7 @@ const Card: FC<PlaylistProps> = ({
             style={dense === 'none' ? {padding: '0px'} : {}}
         >
             <div className="card__image-container">
-                {image ? <img className={imageClassName} src={image} alt="image"/>: ((variant !== 'small-') || (variant !== 'small-')) ? <div className={imageClassName}>
+                {image ? <Image className={imageClassName} src={image} alt="image"/>: ((variant !== 'small-') || (variant !== 'small-')) ? <div className={imageClassName}>
                         <IoMdMusicalNote/>
                     </div> : null}
                 {onPlay && (

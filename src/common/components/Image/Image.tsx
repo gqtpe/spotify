@@ -1,24 +1,21 @@
 import {DetailedHTMLProps, FC, ImgHTMLAttributes, memo, useState} from 'react';
 import styles from './Image.module.scss';
-import Skeleton from "../Skeleton/Skeleton.tsx";
 
-interface PropsType extends DetailedHTMLProps<ImgHTMLAttributes<HTMLImageElement>, HTMLImageElement> {
-    variant?: number
-}
-
-const Image: FC<PropsType> = (props) => {
+type PropsType = DetailedHTMLProps<ImgHTMLAttributes<HTMLImageElement>, HTMLImageElement>
+const Image: FC<PropsType> = ({className, ...rest}) => {
     const [imageLoaded, setImageLoaded] = useState(false)
 
     return (
         <div className={styles.container}>
-            <img {...props}
-                 onLoad={() => setImageLoaded(true)}
+            <img {...rest}
+                className={className}
+                 onLoad={() => setTimeout(()=>setImageLoaded(true),300)}
                  style={{display: imageLoaded ? 'block' : 'none',}}
 
             />
-            <Skeleton
-                animation="pulsate"
-            />
+            {!imageLoaded && <div
+                className={styles.skeleton + ' ' + className}
+            />}
         </div>
 
     );
