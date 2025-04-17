@@ -33,6 +33,8 @@ export const Browse = () => {
         if (query) {
             clearItems();
             handleSearch(query, activeTab)
+        }else{
+
         }
     }, [query])
 
