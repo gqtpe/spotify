@@ -1,6 +1,6 @@
 import {useActions, useAppSelector} from "../../../Application/hooks";
 import {browseActions, browseSelectors} from "../../index.ts";
-import {ChangeEvent, useCallback, useEffect, useState} from "react";
+import {ChangeEvent, useCallback, useState} from "react";
 
 export const useSearch = (navigate: (path: string) => void) => {
     // console.log('useSearch')
@@ -8,40 +8,28 @@ export const useSearch = (navigate: (path: string) => void) => {
     const activeTab = useAppSelector(browseSelectors.selectActiveTab)
     const {setQuery} = useActions(browseActions)
     //---
-    const [value, setValue] = useState(()=>query)
+    const [value, setValue] = useState(()=>query?query:null)
     const [timeoutID, setTimeoutID] = useState<string | number | NodeJS.Timeout | undefined>( undefined)
-    //---
-
     const onChange = useCallback((e: ChangeEvent<HTMLInputElement>) => {
-        setValue(e.target.value)
-    }, [setValue])
+        if(timeoutID){
+            clearTimeout(timeoutID)
+        }
+        if(e.target.value){
+            setValue(e.target.value);
+            const currID = setTimeout(()=>{
+                handleSubmit(e.target.value)
+            },500)
+            setTimeoutID(currID)
+        }else{
+            navigate('/search')
+            setValue(null)
+            setQuery(null)
+        }
+    }, [timeoutID])
     const handleSubmit = useCallback((value: string) => {
         navigate(`/search/${value}${activeTab==='all'?'':'/' + activeTab}`)
         setQuery(value)
     },[activeTab, navigate, setQuery])
-
-    useEffect(() => {
-        // console.log('value changed')
-        if(timeoutID){
-            clearTimeout(timeoutID)
-        }
-        if (value) {
-            const currID = setTimeout(() => {
-                handleSubmit(value)
-            }, 500)
-            setTimeoutID(currID)
-            return () => clearTimeout(timeoutID)
-        }else{
-            const currID = setTimeout(() => {
-                // console.log('v1')
-                // setValue('')
-                // setQuery('')
-                // navigate('/search')
-            }, 500)
-            setTimeoutID(currID)
-            return () => clearTimeout(timeoutID)
-        }
-    }, [value])
 
     return {value, onChange}
 }
