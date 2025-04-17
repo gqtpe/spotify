@@ -39,7 +39,7 @@ const Cards: FC<CardsProps> = ({selector, preview}) => {
             return null
         }
 
-        const cardItems = item.items ? item.items.map(item => {
+        const cardItems = item.items ? item.items.map((item,index) => {
             if (!item) {
                 return null
             }
@@ -50,7 +50,7 @@ const Cards: FC<CardsProps> = ({selector, preview}) => {
             }
 
             return <Card
-                key={item.id}
+                key={item.id + index}
                 title={item.name}
                 subtitle={subTitle}
                 image={item.images[0]?.url || undefined}
