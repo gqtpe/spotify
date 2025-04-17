@@ -28,7 +28,7 @@ export const Header = () => {
             <Search
                 placeholder={'What do you want to play?'}
                 onFocus={onFocus}
-                value={value ? value : undefined}
+                value={value ? value:undefined}
                 onChange={onChange}
             />
         </div>
